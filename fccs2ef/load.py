@@ -1,4 +1,4 @@
-"""io.py:
+"""load.py:
 """
 
 __author__      = "Joel Dubowy"
@@ -9,12 +9,12 @@ import copy
 import csv
 
 __all__ = [
-    'Fccs2SafSrmParser',
-    'UrbanskiEfParser'
+    'Fccs2UrbanskiGroupMappingLoader',
+    'UrbanskiGroup2EfMappingLoader'
 ]
 
-class ParserBase(object):
-    def __init__(self, file_name):
+class LoaderBase(object):
+    def __init__(self, file_name=None):
         """Constructor
 
         Arguments:
@@ -31,13 +31,17 @@ class ParserBase(object):
     def get(self):
         return copy.deepcopy(self._data)
 
-class Fccs2SafSrmParser(ParserBase):
+class Fccs2UrbanskiGroupMappingLoader(LoaderBase):
+    FILENAME = './data/fccs2safsrn2urbanskigroup.csv'
+
     def _load(self):
         # TODO: read file and load into dict self._data
         pass
 
 
-class UrbanskiEfParser(ParserBase):
+class UrbanskiGroup2EfMappingLoader(LoaderBase):
+    FILENAME = './data/fccs2safsrn2urbanskigroup.csv'
+
     def _load(self):
         # TODO: read file and load into dict self._data
         pass
