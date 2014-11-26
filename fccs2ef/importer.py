@@ -84,12 +84,10 @@ class Fccs2UrbanskiImporter(ImporterBase):
                 "urbanski_duff,urbanski_flame_smold_rx\n")
             for m in sorted(self._mappings, lambda a,b: cmp(a['fccs_id'], b['fccs_id'])):
                 #logging.debug(str(m))
-                csvfile.write(','.join([str(e or '') for e in [
+                csvfile.write("%s\n" % (','.join([str(e or '') for e in [
                     m['fccs_id'],
                     m['urbanski_flame_smold_wf'],
                     m['urbanski_residual'],
                     m['urbanski_duff'],
-                    m['urbanski_flame_smold_rx'],
-                    '\n'
-                ]]))
-
+                    m['urbanski_flame_smold_rx']
+                ]])))
