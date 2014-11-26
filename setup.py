@@ -9,9 +9,12 @@ setup(
     author='Joel Dubowy',
     author_email='jdubowy@gmail.com',
     packages=[
-        'fccs2ef',
-        'fccs2ef.bluesky'],
-    scripts=[],
+        'fccs2ef'
+    ],
+    scripts=[
+        'bin/fccs2ef.py',
+        'bin/import-fccs-2-urbanski.py'
+    ],
     url='git@bitbucket.org:fera/airfire-fccs2ef.git',
     description='Package supporting lookup of emissions factors for FCCS fuel bed types.',
     install_requires=REQUIREMENTS,
