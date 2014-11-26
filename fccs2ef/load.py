@@ -70,7 +70,6 @@ class EFMappingLoader(LoaderBase):
     FILE_NAME = os.path.dirname(__file__) + '/data/urbanskiefs.csv'
 
     def _process_headers(self,csv_reader):
-        csv_reader.next()
         self._data = dict([(e, {}) for e in csv_reader.next() if e not in ['Pollutant', 'Formula']])
 
     def _process_row(self, row):

@@ -41,9 +41,14 @@ class ImporterBase(object):
     def _load(self, input_file_name):
         self._mappings = []
         with open(input_file_name, 'rb') as csvfile:
-            csvfile.next() # header
-            for row in csv.reader(csvfile, delimiter=',', skipinitialspace=True):
+            csv_reader = csv.reader(csvfile, delimiter=',', skipinitialspace=True)
+            self._process_headers(csv_reader)
+            for row in csv_reader:
                 self._process_row(row)
+
+    def _process_headers(self, csv_reader):
+        # Default is to through away header information
+        csv_reader.next()
 
     @abc.abstractmethod
     def _process_row(self, row):
@@ -54,6 +59,9 @@ class ImporterBase(object):
         pass
 
 class Fccs2UrbanskiImporter(ImporterBase):
+    """Fccs2UrbanskiImporter: imports associations between FCCS fuelbed ids
+    and Urbanski cover types.
+    """
 
     # TODO: fill in missing ids
     GROUP_IDS = {
@@ -91,3 +99,30 @@ class Fccs2UrbanskiImporter(ImporterBase):
                     m['urbanski_duff'],
                     m['urbanski_flame_smold_rx']
                 ]])))
+
+class UrbanskiEfImporter(ImporterBase):
+    GROUP_IDS = {
+        'boreal forest': UrbanskiGroups.BOREAL_FOREST,
+        'boreal residual': UrbanskiGroups.BOREAL_RESIDUAL,
+        'cwd residual': UrbanskiGroups.CWD_RESIDUAL,
+        'grass': UrbanskiGroups.GRASS,
+        'nw forest (rx)': UrbanskiGroups.NW_FOREST,
+        'se forest': UrbanskiGroups.SE_FOREST,
+        'shrub': UrbanskiGroups.SHRUB,
+        'sw forest (rx)': UrbanskiGroups.SW_FOREST,
+        'temperate residual': UrbanskiGroups.TEMPERATE_RESIDUAL,
+        'western forest (wf)': UrbanskiGroups.WESTERN_FOREST
+    }
+
+    def _process_headers(self, csv_reader):
+        csv_reader.next() # first line is 'Units = g/kg'
+        self._headers = [self._str_to_group_id(e) if e not in ['Pollutant', 'Formula'] else e for e in csv_reader.next()]
+
+    def _process_row(self, row):
+        self._mappings.append(row)
+
+    def write(self, output_file_name):
+        with open(output_file_name, 'wb') as csvfile:
+            csvfile.write(','.join([str(e) for e in self._headers]))
+            for m in self._mappings:
+                csvfile.write("%s\n" % (','.join(m)))
