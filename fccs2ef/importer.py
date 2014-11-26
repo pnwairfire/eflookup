@@ -20,14 +20,27 @@ class UrbanskiGroups(object):
     BOREAL_RESIDUAL = 2
     CWD_RESIDUAL = 3
     GRASS = 4
-    NW_FOREST = 5
+    NW_FOREST_RX = 5
     SE_FOREST = 6
     SHRUB = 7
-    SW_FOREST = 8
-    WESTERN_FOREST = 9
+    SW_FOREST_RX = 8
+    WESTERN_FOREST_WF = 9
     TEMPERATE_RESIDUAL = 10
 
 class ImporterBase(object):
+
+    GROUP_IDS = {
+        'boreal forest': UrbanskiGroups.BOREAL_FOREST,
+        'boreal residual': UrbanskiGroups.BOREAL_RESIDUAL,
+        'cwd residual': UrbanskiGroups.CWD_RESIDUAL,
+        'grass': UrbanskiGroups.GRASS,
+        'nw forest (rx)': UrbanskiGroups.NW_FOREST_RX,
+        'se forest': UrbanskiGroups.SE_FOREST,
+        'shrub': UrbanskiGroups.SHRUB,
+        'sw forest (rx)': UrbanskiGroups.SW_FOREST_RX,
+        'temperate residual': UrbanskiGroups.TEMPERATE_RESIDUAL,
+        'western forest (wf)': UrbanskiGroups.WESTERN_FOREST_WF
+    }
 
     def __init__(self, input_file_name):
         self._load(input_file_name)
@@ -63,20 +76,6 @@ class Fccs2UrbanskiImporter(ImporterBase):
     and Urbanski cover types.
     """
 
-    # TODO: fill in missing ids
-    GROUP_IDS = {
-        'boreal forest':UrbanskiGroups.BOREAL_FOREST,
-        'boreal residual': UrbanskiGroups.BOREAL_RESIDUAL,
-        'cwd residual': UrbanskiGroups.CWD_RESIDUAL,
-        'grass': UrbanskiGroups.GRASS,
-        'nw forest': UrbanskiGroups.NW_FOREST,
-        'se forest': UrbanskiGroups.SE_FOREST,
-        'sw forest': UrbanskiGroups.SW_FOREST,
-        'shrub': UrbanskiGroups.SHRUB,
-        'temperate residual': UrbanskiGroups.TEMPERATE_RESIDUAL,
-        'western forest': UrbanskiGroups.WESTERN_FOREST
-    }
-
     def _process_row(self, row):
         self._mappings.append({
             'fccs_id': int(row[0]),
@@ -101,18 +100,8 @@ class Fccs2UrbanskiImporter(ImporterBase):
                 ]])))
 
 class UrbanskiEfImporter(ImporterBase):
-    GROUP_IDS = {
-        'boreal forest': UrbanskiGroups.BOREAL_FOREST,
-        'boreal residual': UrbanskiGroups.BOREAL_RESIDUAL,
-        'cwd residual': UrbanskiGroups.CWD_RESIDUAL,
-        'grass': UrbanskiGroups.GRASS,
-        'nw forest (rx)': UrbanskiGroups.NW_FOREST,
-        'se forest': UrbanskiGroups.SE_FOREST,
-        'shrub': UrbanskiGroups.SHRUB,
-        'sw forest (rx)': UrbanskiGroups.SW_FOREST,
-        'temperate residual': UrbanskiGroups.TEMPERATE_RESIDUAL,
-        'western forest (wf)': UrbanskiGroups.WESTERN_FOREST
-    }
+    """UrbanskiEfImporter: imports urbanski group based emission factor sets.
+    """
 
     def _process_headers(self, csv_reader):
         csv_reader.next() # first line is 'Units = g/kg'
