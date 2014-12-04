@@ -12,6 +12,10 @@ Run the following to install dependencies:
 
     pip install -r requirements.txt
 
+Run the following for installing development dependencies (like running tests):
+
+    pip install -r dev-requirements.txt
+
 ### Setup Environment
 
 To import fccs2ef in development, you'll have to add the repo root directory
@@ -19,11 +23,12 @@ to the search path.
 
 ## Running tests
 
-Use nose:
+Use pytest:
 
-    nosetests
-    nosetests test/fccs2ef/fccs2ef_tests.py
-    nosetests -v -w ./test/fccs2ef/
+    pytest
+    pytest test/fccs2ef/test_lookup.py
+
+See [pytest](http://pytest.org/latest/getting-started.html#getstarted) for more information about
 
 ## Installing
 
