@@ -112,6 +112,6 @@ class UrbanskiEfImporter(ImporterBase):
 
     def write(self, output_file_name):
         with open(output_file_name, 'wb') as csvfile:
-            csvfile.write(','.join([str(e) for e in self._headers]))
+            csvfile.write("%s\n" % (','.join([str(e) for e in self._headers])))
             for m in self._mappings:
                 csvfile.write("%s\n" % (','.join(m)))
