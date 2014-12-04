@@ -87,8 +87,12 @@ class Fccs2UrbanskiImporter(ImporterBase):
 
     def write(self, output_file_name):
         with open(output_file_name, 'wb') as csvfile:
-            csvfile.write("fccs_id,urbanski_flame_smold_wf,urbanski_residual,"
-                "urbanski_duff,urbanski_flame_smold_rx\n")
+            csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
+                quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+            csv_writer.writerow([
+                "fccs_id", "urbanski_flame_smold_wf", "urbanski_residual",
+                "urbanski_duff", "urbanski_flame_smold_rx"
+            ])
             for m in sorted(self._mappings, lambda a,b: cmp(a['fccs_id'], b['fccs_id'])):
                 #logging.debug(str(m))
                 csvfile.write("%s\n" % (','.join([str(e or '') for e in [
@@ -112,6 +116,8 @@ class UrbanskiEfImporter(ImporterBase):
 
     def write(self, output_file_name):
         with open(output_file_name, 'wb') as csvfile:
-            csvfile.write("%s\n" % (','.join([str(e) for e in self._headers])))
+            csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
+                quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+            csv_writer.writerow([str(e) for e in self._headers])
             for m in self._mappings:
-                csvfile.write("%s\n" % (','.join(m)))
+                csv_writer.writerow(m)
