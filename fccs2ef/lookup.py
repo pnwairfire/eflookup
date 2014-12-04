@@ -19,7 +19,7 @@ class LookUp(object):
         for quick access.
         """
         self._fccs_2_urbanski_groups = Fccs2UrbanskiLoader(file_name=options.get(
-            'fccs_2_safsrm_file')).get()
+            'fccs_2_urbanski_file')).get()
         self._urbanski_efs = EFMappingLoader(file_name=options.get(
             'urbanski_efs_file')).get()
 
