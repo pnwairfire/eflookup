@@ -17,16 +17,17 @@ class TestFccs2UrbanskiImporter:
 57,Wheatgrass - Cheatgrass grassland,"Native bunchgrass communities once dominated the Great Basin. Overgrazing, agriculture and other disturbances have significantly altered these grasslands, which are now dominated by non-native grass species. Data from John Day Fossil Beds National Monument.",1,2,,,,SRM 101: Bluebunch Wheatgrass,Grass,CWD residual,Temperate residual,Grass,Savanna/Grassland
 66,Bluebunch wheatgrass - Bluegrass grassland,Prairie grasslands occur throughout the Midwest.  This prairie is a mixed-grass prairie that is transitional between short and tall grass prairies in South Dakota.  Fire has occurred at intervals of less than 35 years.,1,173,182,223,,SRM 101: Bluebunch Wheatgrass,Grass,CWD residual,Temperate residual,Grass,Savanna/Grassland
 240,Saw palmetto / Three-awned grass shrubland,Dry to mesic shrublands in Florida dominated by saw palmetto and mixed grasses typical of flatwoods.  Natural occurrences are maintained by periodic fire.  Unnatural occurrences of similar vegetation composition can develop following logging in pine and palmetto flatwoods.  Fire exclusion in natural occurrences leads to more dense saw palmetto and tree encroachment.,293,,,,,SRM 816: Cabbage Palm Hammocks,SE forest,CWD residual,Temperate residual,SE forest,Temperate Forest
-83,Molasses grass grassland,"This Hawaiian submontane grassland is dominated by the coarse non-native sod grass, molasses grass (Melinis minutiflora).  Molasses grass is found in dry and mesic environments from sea level to 4500 feet throughout the Hawaiian Islands.",,,,,,,,,,,
 98,Marsh Labrador tea - Lingonberry tundra shrubland,"Low ericaceous shrub tundra dominated by Labrador tea, lingonberry, and blueberry.  Found on uplands in interior, western and northern Alaska.  Comparable to Viereck's &quot;Vaccinium dwarf shrub tundra&quot; vegetation type.",310,311,,,,SRM 911: Lichen Tundra,Boreal residual,CWD residual,Boreal residual,Boreal residual,Boreal Forest
+83,Molasses grass grassland,"This Hawaiian submontane grassland is dominated by the coarse non-native sod grass, molasses grass (Melinis minutiflora).  Molasses grass is found in dry and mesic environments from sea level to 4500 feet throughout the Hawaiian Islands.",,,,,,,,,,,
 """
 
+    # Note: the output is ordered by FCCS Id
     EXPECTED_OUTPUT = """fccs_id,urbanski_flame_smold_wf,urbanski_residual,urbanski_duff,urbanski_flame_smold_rx
 57,4,3,10,4
 66,4,3,10,4
-240,6,3,10,6
 83,,,,
 98,2,3,2,2
+240,6,3,10,6
 """
 
     def test_import(self, tmpdir):
