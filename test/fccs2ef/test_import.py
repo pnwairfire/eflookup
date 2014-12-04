@@ -44,11 +44,34 @@ class TestUrbanskiEfImporter:
     """Top level functional test for importing Urbanski emission factors.
     """
 
-    INPUT_CONTENT = """
-    """
+    INPUT_CONTENT = """Units = g/kg,,,,,,,,,,,
+Pollutant,Formula,SE Forest,Boreal Forest,Western Forest (WF),SW Forest (Rx),NW Forest (Rx),Shrub,Grass,CWD Residual,Temperate Residual,Boreal Residual
+Carbon Dioxide,CO2,1703,1641,1600,1653,1598,1674,1705,1408,1305,1436
+Carbon Monoxide,CO,76,95,135,87,105,74,61,229,271,244
+Ammonia,NH3,0.14,0.79,1.50,0.50,1.53,1.50,1.50,0.48,2.67,2.67
+PM10,PM10,14.8,25.4,27.4,17.0,20.7,8.3,10.0,38.9,59.0,24.3
+Total non-methane volatile organic compounds,NMOC,16.040,23.150,33.870,18.670,26.980,17.500,17.500,45.243,68.865,54.526
+Ethene ,C2H4,1.090,1.310,1.825,,,1.010,1.010,1.398,1.683,1.246
+1-Butenylbenzene ,C10H14,0.002,0.002,0.004,,,0.002,0.002,0.005,0.002,0.002
+Camphene ,C10H16,0.008,0.024,0.038,,,0.009,0.009,0.361,0.081,0.081
+iso-Limonene ,C10H16,0.003,0.005,0.008,,,0.000,0.000,0.011,0.002,0.002
+n-Decane ,C10H22,0.019,0.012,0.018,,,0.015,0.015,0.027,0.027,0.027
+C11 Aromatics ,C11,0.084,0.117,0.184,,,0.055,0.055,0.274,0.228,0.228
+"""
 
-    EXPECTED_OUTPUT = """
-    """
+    EXPECTED_OUTPUT = """Pollutant,Formula,6,1,9,8,5,7,4,3,10,2
+Carbon Dioxide,CO2,1703,1641,1600,1653,1598,1674,1705,1408,1305,1436
+Carbon Monoxide,CO,76,95,135,87,105,74,61,229,271,244
+Ammonia,NH3,0.14,0.79,1.50,0.50,1.53,1.50,1.50,0.48,2.67,2.67
+PM10,PM10,14.8,25.4,27.4,17.0,20.7,8.3,10.0,38.9,59.0,24.3
+Total non-methane volatile organic compounds,NMOC,16.040,23.150,33.870,18.670,26.980,17.500,17.500,45.243,68.865,54.526
+Ethene ,C2H4,1.090,1.310,1.825,,,1.010,1.010,1.398,1.683,1.246
+1-Butenylbenzene ,C10H14,0.002,0.002,0.004,,,0.002,0.002,0.005,0.002,0.002
+Camphene ,C10H16,0.008,0.024,0.038,,,0.009,0.009,0.361,0.081,0.081
+iso-Limonene ,C10H16,0.003,0.005,0.008,,,0.000,0.000,0.011,0.002,0.002
+n-Decane ,C10H22,0.019,0.012,0.018,,,0.015,0.015,0.027,0.027,0.027
+C11 Aromatics ,C11,0.084,0.117,0.184,,,0.055,0.055,0.274,0.228,0.228
+"""
 
     def test_import(self, tmpdir):
         input_file = tmpdir.join("input.csv")
