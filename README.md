@@ -28,6 +28,10 @@ Use pytest:
     pytest
     pytest test/fccs2ef/test_lookup.py
 
+You can also use the ```--collect-only``` option to see a list of all tests.
+
+    py.test --collect-only
+
 See [pytest](http://pytest.org/latest/getting-started.html#getstarted) for more information about
 
 ## Installing
