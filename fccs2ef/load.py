@@ -82,8 +82,9 @@ class EFMappingLoader(LoaderBase):
     FILE_NAME = os.path.dirname(__file__) + '/data/urbanskiefs.csv'
 
     def _process_headers(self,csv_reader):
-        self._data = dict([(e, {}) for e in csv_reader.next() if e not in ['Pollutant', 'Formula']])
+        self._headers = csv_reader.next()[2:]
+        self._data = dict([(e, {}) for e in self._headers])
 
     def _process_row(self, row):
-        for header, val in zip(self._data.keys(), row[2:]):
+        for header, val in zip(self._headers, row[2:]):
             self._data[header][row[1]] = float(val) if val else None
