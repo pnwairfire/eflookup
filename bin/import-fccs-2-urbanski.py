@@ -69,10 +69,13 @@ def main():
         logging.basicConfig(level=logging.DEBUG)
 
     try:
-        Fccs2UrbanskiImporter(options.fccs_2_urbanski_input).write(
-            options.fccs_2_urbanski_output)
-        UrbanskiEfImporter(options.urbanski_ef_input).write(
-            options.urbanski_ef_output)
+        f2u_importer = Fccs2UrbanskiImporter(options.fccs_2_urbanski_input)
+        f2u_importer .write(options.fccs_2_urbanski_output)
+        uef_importer = UrbanskiEfImporter(options.urbanski_ef_input)
+        uef_importer.write(options.urbanski_ef_output)
+
+        print "Unrecognized Urbanski groups in fccs2urbansku file: %s" % (f2u_importer.unrecognized or '(None)')
+        print "Unrecognized Urbanski groups in EF file header: %s" % (uef_importer.unrecognized or '(None)')
 
     except Exception, e:
         raise

@@ -43,11 +43,13 @@ class ImporterBase(object):
     }
 
     def __init__(self, input_file_name):
+        self._unrecognized = set()
         self._load(input_file_name)
 
     def _str_to_group_id(self, val):
         gid = self.GROUP_IDS.get(val.lower())
         if not gid:
+            self._unrecognized.add(val)
             logging.error("Failed to look up urbanski group '%s'", val)
         return gid
 
@@ -62,6 +64,10 @@ class ImporterBase(object):
     def _process_headers(self, csv_reader):
         # Default is to through away header information
         csv_reader.next()
+
+    @property
+    def unrecognized(self):
+        return list(self._unrecognized)
 
     @abc.abstractmethod
     def _process_row(self, row):
