@@ -74,4 +74,4 @@ class EFMappingLoader(LoaderBase):
 
     def _process_row(self, row):
         for header, val in zip(self._data.keys(), row[2:]):
-            self._data[header][row[1]] = float(val) if val else val
+            self._data[header][row[1]] = float(val) if val else None
