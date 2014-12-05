@@ -1,4 +1,8 @@
 """lookup.py:
+
+@todo:
+ - Use something other than 'flame_smold_wf', 'residual', 'duff',
+   'flame_smold_rx' for keys
 """
 
 __author__      = "Joel Dubowy"
@@ -23,12 +27,19 @@ class LookUp(object):
         self._urbanski_efs = EFMappingLoader(file_name=options.get(
             'urbanski_efs_file')).get()
 
-    def get(self, fccs_fuel_bed_id):
+    def get(self, fccs_fuel_bed_id, ef_set_type=None, species=None):
         gs = self._fccs_2_urbanski_groups[str(fccs_fuel_bed_id)]
-        return {
+        ef_sets = {
             'flame_smold_wf': self._urbanski_efs.get(gs[EFSetTypes.FLAME_SMOLD_WF], {}),
             'residual': self._urbanski_efs.get(gs[EFSetTypes.RESIDUAL], {}),
             'duff': self._urbanski_efs.get(gs[EFSetTypes.DUFF], {}),
             'flame_smold_rx': self._urbanski_efs.get(gs[EFSetTypes.FLAME_SMOLD_RX], {})
         }
+        if ef_set_type:
+            if species:
+                return ef_sets[ef_set_type][species]
+            else:
+                return ef_sets[ef_set_type]
+        else:
+            return ef_sets
     __getitem__ = get

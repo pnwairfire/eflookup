@@ -35,8 +35,22 @@ Methylbenzofuran ,"isomer 1,C9H8O",0.008,0.011,0.018,,,0.012,0.012,0.027,0.024,0
 
         lu = LookUp(fccs_2_urbanski_file=str(f2u), urbanski_efs_file=str(uef))
 
-        with raises(KeyError):
-            lu[2]
+        def raises_key_error(l):
+            with raises(KeyError):
+                l()
+
+        raises_key_error(lambda: lu[2])                        # FCCS fuelbed id doesn't exist
+        raises_key_error(lambda: lu.get(2))                    # FCCS fuelbed id doesn't exist
+        raises_key_error(lambda: lu[2]['duff'])                # FCCS fuelbed id doesn't exist
+        raises_key_error(lambda: lu.get(2, 'duff'))            # FCCS fuelbed id doesn't exist
+        raises_key_error(lambda: lu[2]['duff']['CO2'])         # FCCS fuelbed id doesn't exist
+        raises_key_error(lambda: lu.get(2, 'duff', 'CO2'))     # FCCS fuelbed id doesn't exist
+        raises_key_error(lambda: lu[4]['duffsdf'])             # EF set type doesn't exist
+        raises_key_error(lambda: lu.get(4, 'duffsdf'))         # EF set type doesn't exist
+        raises_key_error(lambda: lu[4]['duff']['sdfsdf'])      # Chemical species doesn't exist
+        raises_key_error(lambda: lu.get(4, 'duff', 'sdfsdf'))  # Chemical species doesn't exist
+        raises_key_error(lambda: lu[71]['duff']['CO2'])        # Chemical species not defined for this FCCS fuelbed id
+        raises_key_error(lambda: lu.get(71, 'duff', 'CO2'))    # Chemical species not defined for this FCCS fuelbed id
 
         expected = {
             'flame_smold_wf': {  # 9
@@ -77,6 +91,9 @@ Methylbenzofuran ,"isomer 1,C9H8O",0.008,0.011,0.018,,,0.012,0.012,0.027,0.024,0
             }
         }
         assert expected == lu[4]
+        assert expected == lu.get(4)
+        assert expected['duff'] == lu[4]['duff']
+        assert expected['duff'] == lu.get(4, 'duff')
 
         expected = {
             'flame_smold_wf': {},
@@ -85,3 +102,6 @@ Methylbenzofuran ,"isomer 1,C9H8O",0.008,0.011,0.018,,,0.012,0.012,0.027,0.024,0
             'flame_smold_rx': {}
         }
         assert expected == lu[71]
+        assert expected == lu.get(71)
+        assert expected['duff'] == lu[71]['duff']
+        assert expected['duff'] == lu.get(71, 'duff')
