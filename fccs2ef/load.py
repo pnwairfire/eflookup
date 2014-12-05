@@ -19,6 +19,18 @@ __all__ = [
     'UrbanskiGroup2EfMappingLoader'
 ]
 
+class EFSetTypes(object):
+    """Enumeration representing ....
+
+    @note: Future versions of python have an Enum class build in, added by
+    https://www.python.org/dev/peps/pep-0435/.  It's not worth requiring the
+    backport (https://pypi.python.org/pypi/enum34) here, though.
+    """
+    FLAME_SMOLD_WF = 1
+    RESIDUAL = 2
+    DUFF = 3
+    FLAME_SMOLD_RX = 4
+
 class LoaderBase(object):
     def __init__(self, **kwargs):
         """Constructor
@@ -56,10 +68,10 @@ class Fccs2UrbanskiLoader(LoaderBase):
 
     def _process_row(self, row):
         self._data[row[0]] = {
-            'urbanski_flame_smold_wf': row[1],
-            'urbanski_residual': row[2],
-            'urbanski_duff': row[3],
-            'urbanski_flame_smold_rx': row[4]
+            EFSetTypes.FLAME_SMOLD_WF: row[1],
+            EFSetTypes.RESIDUAL: row[2],
+            EFSetTypes.DUFF: row[3],
+            EFSetTypes.FLAME_SMOLD_RX: row[4]
         }
 
 class EFMappingLoader(LoaderBase):
