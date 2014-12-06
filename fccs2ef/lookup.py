@@ -3,6 +3,8 @@
 @todo:
  - Use something other than 'flame_smold_wf', 'residual', 'duff',
    'flame_smold_rx' for keys
+ - Update LookUp.get to support specying 'species' without specying 'ef_set_type'
+   (ex. to get all CO2 EFs associated with a specific FCCS fuelbed)
 """
 
 __author__      = "Joel Dubowy"
