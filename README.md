@@ -55,6 +55,8 @@ If you get an error like    ```AttributeError: 'NoneType' object has no attribut
 
 ## Usage:
 
+### Using the Python Package
+
 First import and instantiate
 
     >>> from fccs2ef.lookup import LookUp
@@ -74,6 +76,48 @@ Or, get an EF for a specific species:
 
     >>> lu[4]['flame_smold_rx']['CO2']
     1598.0
+
+### Using the Executable In Perl
+
+#### Setup
+
+To use the code below, you'll need JSON, which you can install with cpanm
+
+    sudo cpanm --install JSON::Parse
+
+To try it in a perl console, you can either use:
+
+    perl -d -e 1
+
+or you can use Devel::Repl, which you can install with
+
+    sudo cpanm --install TAP::Harness::Env
+    sudo cpanm --install MooseX::Object::Pluggable
+    sudo cpanm --install Devel::REPL
+    sudo cpanm --install Devel::REPL::Script
+
+and invoked with
+
+    re.pl
+
+#### The Code
+
+Once you're in the console (or in your perl script), you can do something
+like the following:
+
+    use JSON;
+    use Data::Dumper;
+    my $j = `./bin/fccs2ef.py -f 13`;
+    my $p = decode_json($j);
+
+At this point ```$p``` should be a perl hash object, and you should be able
+to do something like:
+
+    print Dumper($p{"flame_smold_rx"}{"CH4"})
+    ...
+
+(Note:  I [Joel], couldn't get decode_json to work on my Mac, so take
+the above code with a grain of salt.)
 
 ## TODO
 
