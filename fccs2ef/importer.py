@@ -84,11 +84,11 @@ class Fccs2UrbanskiImporter(ImporterBase):
 
     def _process_row(self, row):
         self._mappings.append({
-            'fccs_id': int(row[0]),
-            'urbanski_flame_smold_wf': self._str_to_group_id(row[9]),  # row 'J'
-            'urbanski_residual': self._str_to_group_id(row[10]),  # row 'K'
-            'urbanski_duff': self._str_to_group_id(row[11]),  # row 'L'
-            'urbanski_flame_smold_rx': self._str_to_group_id(row[12])  # row 'M'
+            'fccs_id': int(row[0].strip()),
+            'urbanski_flame_smold_wf': self._str_to_group_id(row[9].strip()),  # row 'J'
+            'urbanski_residual': self._str_to_group_id(row[10].strip()),  # row 'K'
+            'urbanski_duff': self._str_to_group_id(row[11].strip()),  # row 'L'
+            'urbanski_flame_smold_rx': self._str_to_group_id(row[12].strip())  # row 'M'
         })
 
     def write(self, output_file_name):
@@ -115,7 +115,7 @@ class UrbanskiEfImporter(ImporterBase):
 
     def _process_headers(self, csv_reader):
         csv_reader.next() # first line is 'Units = g/kg'
-        self._headers = [self._str_to_group_id(e) if e not in ['Pollutant', 'Formula'] else e for e in csv_reader.next()]
+        self._headers = [self._str_to_group_id(e.strip()) if e not in ['Pollutant', 'Formula'] else e for e in csv_reader.next()]
 
     def _process_row(self, row):
         self._mappings.append(row)
@@ -126,4 +126,4 @@ class UrbanskiEfImporter(ImporterBase):
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
             csv_writer.writerow([str(e) for e in self._headers])
             for m in self._mappings:
-                csv_writer.writerow(m)
+                csv_writer.writerow([e.strip() for e in m])
