@@ -15,9 +15,9 @@ setup(
         'bin/fccs2ef.py',
         'bin/import-fccs-2-urbanski.py'
     ],
-    data_files=[
-        ('data', ['fccs2ef/data/fccs2urbanski.csv','fccs2ef/data/urbanskiefs.csv'])
-    ],
+    package_data={
+        'fccs2ef': ['data/*.csv']
+    },
     url='git@bitbucket.org:fera/airfire-fccs2ef.git',
     description='Package supporting lookup of emissions factors for FCCS fuel bed types.',
     install_requires=REQUIREMENTS,
