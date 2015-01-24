@@ -40,7 +40,7 @@ def main():
     parser, options, args = scripting.options.parse_options(REQUIRED_OPTIONS, [])
 
     try:
-        print json.dumps(LookUp()[options.fccs_fuelbed_id])
+        sys.stdout.write(json.dumps(LookUp()[options.fccs_fuelbed_id]))
 
     except Exception, e:
         scripting.utils.exit_with_msg(e.message)
