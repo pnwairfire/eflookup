@@ -4,15 +4,21 @@
 fuelbed ids and Urbanski group types, and then writes it out in more consise manner
 
 Example calls:
- > ./bin/import-fccs-2-urbanski.py -i ~/Downloads/fccs2safsrn2urbanskigroup.csv \
-    ./fccs2ef/data/fccs2urbansky.csv
+ > ./bin/import-fccs-2-urbanski.py \
+    -a ./input-data/fccs2safsrn2urbanskigroup.csv \
+    -b ./input-data/urbanskiefs.csv \
+    -y ./fccs2ef/data/fccs2urbanski.csv \
+    -z ./fccs2ef/data/urbanskiefs.csv
 """
 
 __author__      = "Joel Dubowy"
 __copyright__   = "Copyright 2014, AirFire, PNW, USFS"
 
+import logging
 import sys
 from optparse import OptionParser
+
+from pyairfire import scripting
 
 try:
     from fccs2ef.importer import Fccs2UrbanskiImporter, UrbanskiEfImporter
@@ -22,64 +28,53 @@ except:
     sys.path.insert(0, root_dir)
     from fccs2ef.importer import Fccs2UrbanskiImporter, UrbanskiEfImporter
 
-def exit_with_msg(msg, extra_output=None):
-    print "* Error: %s\n" % (msg)
-    if extra_output:
-        extra_output()
-    sys.exit(1)
+# Note: though some argue that all required parameters should be specified as
+# positional arguments, I prefer using 'options' flags, even though this
+# means that there are required 'options', which is oxymoronic.
 
-def parse_options():
-    parser = OptionParser()
-    parser.add_option("-a", "--fccs-2-urbanski-input",
-        help="csv containing mapping of FCCS fuelbed id to Urbanski group set",
-        metavar="FILE")
-    parser.add_option("-b", "--urbanski-ef-input",
-        help="csv containing mapping of Urbanski group to emission factors set",
-        metavar="FILE")
-    parser.add_option("-y", "--fccs-2-urbanski-output",
-        help="Name of new, pruned and encoded fccs-2-urbanski csv",
-        metavar="FILE")
-    parser.add_option("-z", "--urbanski-ef-output",
-        help="Name of new, pruned and encoded urbanski ef csv",
-        metavar="FILE")
-    parser.add_option("-v", "--verbose", dest="verbose",
-        help="to turn on extra output",
-        action="store_true", default=False)
-
-    options, args = parser.parse_args()
-
-    if (not options.fccs_2_urbanski_input or not options.fccs_2_urbanski_output or
-        not options.urbanski_ef_input or not options.urbanski_ef_output):
-        exit_with_msg("specify input and out file names ('-a', '-b', '-y', & '-z')",
-            lambda: parser.print_help())
-
-    if options.verbose:
-        print "FCCS-to-Urbanski Input: %s" % (options.fccs_2_urbanski_input)
-        print "FCCS-to-Urbanski Output: %s" % (options.fccs_2_urbanski_output)
-        print "Urbanski EF Input: %s" % (options.urbanski_ef_input)
-        print "Urbanski EF Output: %s" % (options.urbanski_ef_output)
-
-    return options
+REQUIRED_OPTIONS = [
+    {
+        'short': "-a",
+        'long': "--fccs-2-urbanski-input",
+        'help': "csv containing mapping of FCCS fuelbed id to Urbanski group set",
+        'metavar': "FILE"
+    },
+    {
+        'short': "-b",
+        'long': "--urbanski-ef-input",
+        'help': "csv containing mapping of Urbanski group to emission factors set",
+        'metavar': "FILE"
+    },
+    {
+        'short': "-y",
+        'long': "--fccs-2-urbanski-output",
+        'help': "Name of new, pruned and encoded fccs-2-urbanski csv",
+        'metavar': "FILE"
+    },
+    {
+        'short': "-z",
+        'long': "--urbanski-ef-output",
+        'help': "Name of new, pruned and encoded urbanski ef csv",
+        'metavar': "FILE"
+    }
+]
 
 def main():
-    options = parse_options()
-
-    if options.verbose:
-        import logging
-        logging.basicConfig(level=logging.DEBUG)
+    parser, options, args = scripting.options.parse_options(REQUIRED_OPTIONS, [])
 
     try:
         f2u_importer = Fccs2UrbanskiImporter(options.fccs_2_urbanski_input)
-        f2u_importer .write(options.fccs_2_urbanski_output)
+        f2u_importer.write(options.fccs_2_urbanski_output)
         uef_importer = UrbanskiEfImporter(options.urbanski_ef_input)
         uef_importer.write(options.urbanski_ef_output)
 
-        print "Unrecognized Urbanski groups in fccs2urbansku file: %s" % (f2u_importer.unrecognized or '(None)')
-        print "Unrecognized Urbanski groups in EF file header: %s" % (uef_importer.unrecognized or '(None)')
+        logging.info("Unrecognized Urbanski groups in fccs2urbansku file: %s" % (
+            f2u_importer.unrecognized or '(None)'))
+        logging.info("Unrecognized Urbanski groups in EF file header: %s" % (
+            uef_importer.unrecognized or '(None)'))
 
     except Exception, e:
-        raise
-        exit_with_msg(e.message)
+        scripting.utils.exit_with_msg(e.message)
 
 if __name__ == "__main__":
     main()
