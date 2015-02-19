@@ -8,7 +8,7 @@ distributions
 """
 
 from fccs2ef.importer import (
-    Fccs2CoverType, CoverType2EfGroupImporter, EfGroup2EfImporter
+    Fccs2CoverTypeImporter, CoverType2EfGroupImporter, EfGroup2EfImporter
 )
 
 def run_test(tmpdir, input_content, importer_class, expected_output):
@@ -40,7 +40,7 @@ fuelbed_number,filename,cover_type,ecoregion,overstory_loading,midstory_loading,
 """
 
     def test_import(self, tmpdir):
-        run_test(tmpdir, self.INPUT_CONTENT, Fccs2UrbanskiImporter,
+        run_test(tmpdir, self.INPUT_CONTENT, Fccs2CoverTypeImporter,
             self.EXPECTED_OUTPUT)
 
 

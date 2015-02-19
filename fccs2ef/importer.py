@@ -8,8 +8,9 @@ in this module, or b) creating custom data files.
 import abc
 import csv
 import logging
+import re
 
-__all__ [
+__all__ = [
     'Fccs2CoverTypeImporter',
     'CoverType2EfGroupImporter',
     'EfGroup2EfImporter'
