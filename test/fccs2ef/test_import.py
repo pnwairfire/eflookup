@@ -19,7 +19,7 @@ def run_test(tmpdir, input_content, importer_class, expected_output):
     importer_class(input_filename).write(output_filename)
     assert len(tmpdir.listdir()) == 2
     # TODO: assert that output_filename exists
-    assert open(output_filename, 'r').read() == expected_output
+    assert expected_output == open(output_filename, 'r').read()
 
 
 class TestFccs2CoverTypeImporter:
@@ -89,7 +89,7 @@ Sulfur Dioxide  ,SO2,2.1200, 2.1200,2.1200,2.1200,1.3600,1.3600,0.0000,3.5200
 PM2.5 ,PM2.5 ,25.1600,43.0000 , 35.1400,46.4000,14.1200,17.0200,66.0000,70.6000
 PM10,PM10,29.6888,50.7400,41.4652,54.7520,16.6616,20.0836,77.8800,83.3080
 Total non-methane VOCs, NMOC,32.0920,46.3040,53.9500,67.7480,34.9976,35.2902,90.3500,123.3910
-Hydrogen Cyanide ,HCN,1.2260,1.7800,1.5300,1.0800,1.4980,1.4980,1.4460,3.9760
+Hydrogen Cyanide ,HCN,1.2260,1.7800, 1.5300 ,1.0800,1.4980,1.4980,1.4460,3.9760
 Formaldehyde ,HCHO,3.3620,3.9500,4.4700,4.4960,2.6600,2.6600,4.2480,4.9530
 Methanol ,CH3OH,1.9720,2.6100,5.0300,4.1220,2.7000,2.7000,7.0340,9.3550
 Isocyanic Acid ,HNCO,0.1800,0.2520,0.2940,0.3960,0.1630,0.1630,0.5860,0.5420
@@ -103,7 +103,7 @@ Methane,CH4,4.6400,6.7600,9.7200,14.6400,7.3800,3.9000,27.8800,15.8900
 Nitrogen Oxides,NOx,3.4000,2.0000,4.1200,4.0000,4.3600,4.3600,0.0000,1.3400
 Ammonia,NH3,0.2800,1.5800,3.0600,3.0000,3.0000,3.0000,0.9600,5.3400
 Sulfur Dioxide,SO2,2.1200,2.1200,2.1200,2.1200,1.3600,1.3600,0.0000,3.5200
-PM2.5 ,PM2.5 ,25.1600,43.0000,35.1400,46.4000,14.1200,17.0200,66.0000,70.6000
+PM2.5,PM2.5,25.1600,43.0000,35.1400,46.4000,14.1200,17.0200,66.0000,70.6000
 PM10,PM10,29.6888,50.7400,41.4652,54.7520,16.6616,20.0836,77.8800,83.3080
 Total non-methane VOCs,NMOC,32.0920,46.3040,53.9500,67.7480,34.9976,35.2902,90.3500,123.3910
 Hydrogen Cyanide,HCN,1.2260,1.7800,1.5300,1.0800,1.4980,1.4980,1.4460,3.9760
@@ -114,5 +114,5 @@ FormicAcid,HCOOH,0.2320,0.9400,0.3680,1.0100,0.1550,0.1550,0.0000,2.1890
 """
 
     def test_import(self, tmpdir):
-        run_test(tmpdir, self.INPUT_CONTENT, EfGroup2EfImporterEfGroup2EfImporter,
+        run_test(tmpdir, self.INPUT_CONTENT, EfGroup2EfImporter,
             self.EXPECTED_OUTPUT)

@@ -1,14 +1,18 @@
 #!/usr/bin/env python
 
-"""import-fccs-2-urbanski.py: reads file containing associations between FCCS
-fuelbed ids and Urbanski group types, and then writes it out in more consise manner
+"""import-fccs2ef.py: reads files containing mappings from FCCS fuelbed ids
+to cover type ids, from covert type ids to EF groupings, and from EF groupings
+to EF sets, and then writes the mappings out in more consise manner to new
+data files
 
 Example calls:
- > ./bin/import-fccs-2-urbanski.py \
-    -a ./input-data/fccs2safsrn2urbanskigroup.csv \
-    -b ./input-data/urbanskiefs.csv \
-    -y ./fccs2ef/data/fccs2urbanski.csv \
-    -z ./fccs2ef/data/urbanskiefs.csv
+ > ./bin/import-fccs2ef \
+    -a ./input-data/fccs_loadings.csv \
+    -b ./input-data/EFGroup_byCoverType.csv \
+    -c ./input-data/EFbyGroup_English.csv    \
+    -x ./fccs2ef/data/fccs2covertype.csv \
+    -y ./fccs2ef/data/covertype2efgroup.csv \
+    -z ./fccs2ef/data/efgroup2ef.csv
 """
 
 __author__      = "Joel Dubowy"
@@ -33,19 +37,19 @@ REQUIRED_OPTIONS = [
     {
         'short': "-a",
         'long': "--fccs-2-cover-type-input",
-        'help': "csv containing mapping of FCCS fuelbed id to cover type id",
+        'help': "csv containing mappings of FCCS fuelbed id to cover type id",
         'metavar': "FILE"
     },
     {
         'short': "-b",
         'long': "--cover-type-2-ef-group-input",
-        'help': "csv containing mapping of cover type id to Urbanski group sets",
+        'help': "csv containing mappings of cover type id to emission factor group",
         'metavar': "FILE"
     },
     {
         'short': "-c",
-        'long': "--ef-group-2-efs-input",
-        'help': "csv containing mapping of Urbanski group to emission factors set",
+        'long': "--ef-group-2-ef-input",
+        'help': "csv containing mappings of emission factor group to emission factors set",
         'metavar': "FILE"
     },
     # output Files
@@ -58,13 +62,13 @@ REQUIRED_OPTIONS = [
     {
         'short': "-y",
         'long': "--cover-type-2-ef-group-output",
-        'help': "Name of new, pruned and encoded cover-type-2-urbanski csv",
+        'help': "Name of new, pruned and encoded cover-type-2-ef-group csv",
         'metavar': "FILE"
     },
     {
         'short': "-z",
-        'long': "--ef-group-2-efs-output",
-        'help': "Name of new, pruned and encoded ef-group-2-efs csv",
+        'long': "--ef-group-2-ef-output",
+        'help': "Name of new, pruned and encoded ef-group-2-ef csv",
         'metavar': "FILE"
     }
 ]
@@ -77,8 +81,8 @@ def main():
         fccs2ct_import.write(options.fccs_2_cover_type_output)
         ct2efg_importer = CoverType2EfGroupImporter(options.cover_type_2_ef_group_input)
         ct2efg_importer.write(options.cover_type_2_ef_group_output)
-        efg2efs_importer = EfGroup2EfsImporter(options.urbanski_2_ef_input)
-        efg2efs_importer.write(options.urbanski_2_ef_output)
+        efg2ef_importer = EfGroup2EfImporter(options.ef_group_2_ef_input)
+        efg2ef_importer.write(options.ef_group_2_ef_output)
 
     except Exception, e:
         scripting.utils.exit_with_msg(e.message)

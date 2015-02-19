@@ -74,7 +74,7 @@ class Fccs2CoverTypeImporter(ImporterBase):
             csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
             csv_writer.writerow([
-                "fccs_id", "cover_type"
+                "fccs_id", "cover_type_id"
             ])
             for m in sorted(self._mappings, key=lambda a: a[0]):
                 #logging.debug(str(m))
@@ -123,6 +123,6 @@ class EfGroup2EfImporter(ImporterBase):
         with open(output_file_name, 'wb') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-            csv_writer.writerow(['Pollutant','Formula'] + range(1,self._num_groups))
+            csv_writer.writerow(['Pollutant','Formula'] + range(1,self._num_groups+1))
             for m in self._mappings:
                 csv_writer.writerow([e.strip() for e in m])
