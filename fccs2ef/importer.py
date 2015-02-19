@@ -1,57 +1,26 @@
-"""importer.py: Module for importing FCCS, SAF/SRM, Urbanski data
+"""importer.py: Module for importing FCCS, covert type, and emission factors data
 into format required by fccs2ef module.
 
-Note that this is module is only useful for a) creating the data
-files included in this module, or b) creating custom data files.
+Note that this module is only useful for a) creating the data files included
+in this module, or b) creating custom data files.
 """
 
 import abc
 import csv
 import logging
 
-class UrbanskiGroups(object):
-    """Enumeration representing Urbansnki cover type groups.
-
-    @note: Future versions of python have an Enum class build in, added by
-    https://www.python.org/dev/peps/pep-0435/.  It's not worth requiring the
-    backport (https://pypi.python.org/pypi/enum34) here, though.
-    """
-    BOREAL_FOREST = 1
-    BOREAL_RESIDUAL = 2
-    CWD_RESIDUAL = 3
-    GRASS = 4
-    NW_FOREST_RX = 5
-    SE_FOREST = 6
-    SHRUB = 7
-    SW_FOREST_RX = 8
-    WESTERN_FOREST_WF = 9
-    TEMPERATE_RESIDUAL = 10
+__all__ [
+    'Fccs2CoverTypeImporter',
+    'CoverType2EfGroupImporter',
+    'EfGroup2EfImporter'
+]
 
 class ImporterBase(object):
 
-    GROUP_IDS = {
-        'boreal forest': UrbanskiGroups.BOREAL_FOREST,
-        'boreal residual': UrbanskiGroups.BOREAL_RESIDUAL,
-        'cwd residual': UrbanskiGroups.CWD_RESIDUAL,
-        'grass': UrbanskiGroups.GRASS,
-        'nw forest (rx)': UrbanskiGroups.NW_FOREST_RX,
-        'se forest': UrbanskiGroups.SE_FOREST,
-        'shrub': UrbanskiGroups.SHRUB,
-        'sw forest (rx)': UrbanskiGroups.SW_FOREST_RX,
-        'temperate residual': UrbanskiGroups.TEMPERATE_RESIDUAL,
-        'western forest (wf)': UrbanskiGroups.WESTERN_FOREST_WF
-    }
 
     def __init__(self, input_file_name):
         self._unrecognized = set()
         self._load(input_file_name)
-
-    def _str_to_group_id(self, val):
-        gid = self.GROUP_IDS.get(val.lower())
-        if not gid:
-            self._unrecognized.add(val)
-            logging.error("Failed to look up urbanski group '%s'", val)
-        return gid
 
     def _load(self, input_file_name):
         self._mappings = []
@@ -65,9 +34,9 @@ class ImporterBase(object):
         # Default is to through away header information
         csv_reader.next()
 
-    @property
-    def unrecognized(self):
-        return list(self._unrecognized)
+    # @property
+    # def unrecognized(self):
+    #     return list(self._unrecognized)
 
     @abc.abstractmethod
     def _process_row(self, row):
@@ -77,45 +46,74 @@ class ImporterBase(object):
     def write(self, output_file_name):
         pass
 
-class Fccs2UrbanskiImporter(ImporterBase):
-    """Fccs2UrbanskiImporter: imports associations between FCCS fuelbed ids
-    and Urbanski cover types.
+class Fccs2CoverTypeImporter(ImporterBase):
+    """Fccs2CoverType imports FCCS to cover type mappings from the consume
+    module's fccs_loadings.csv output
     """
 
+    FCCS_ID_COLUMN_HEADER = 'fuelbed_number'
+    COVER_TYPE_COLUMN_HEADER = 'cover_type'
+
+    def _process_headers(self, csv_reader):
+        # skip first line, which looks like
+        #  'GeneratorName=FCCS 3.0,GeneratorVersion=3.0.0,DateCreated=11/14/2014'
+        csv_reader.next()
+        header_row = csv_reader.next()
+        self._headers = dict([(header_row[i], i) for i in xrange(len(header_row))])
+
     def _process_row(self, row):
-        self._mappings.append({
-            'fccs_id': int(row[0].strip()),
-            'urbanski_flame_smold_wf': self._str_to_group_id(row[9].strip()),  # row 'J'
-            'urbanski_residual': self._str_to_group_id(row[10].strip()),  # row 'K'
-            'urbanski_duff': self._str_to_group_id(row[11].strip()),  # row 'L'
-            'urbanski_flame_smold_rx': self._str_to_group_id(row[12].strip())  # row 'M'
-        })
+        m = (
+            row[self._headers[self.FCCS_ID_COLUMN_HEADER]],
+            row[self._headers[self.COVER_TYPE_COLUMN_HEADER]],
+        )
+        self._mappings.append(m)
 
     def write(self, output_file_name):
         with open(output_file_name, 'wb') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
             csv_writer.writerow([
-                "fccs_id", "urbanski_flame_smold_wf", "urbanski_residual",
-                "urbanski_duff", "urbanski_flame_smold_rx"
+                "fccs_id", "cover_type"
             ])
-            for m in sorted(self._mappings, lambda a,b: cmp(a['fccs_id'], b['fccs_id'])):
+            for m in sorted(self._mappings, key=lambda a: a[0]):
                 #logging.debug(str(m))
-                csvfile.write("%s\n" % (','.join([str(e or '') for e in [
-                    m['fccs_id'],
-                    m['urbanski_flame_smold_wf'],
-                    m['urbanski_residual'],
-                    m['urbanski_duff'],
-                    m['urbanski_flame_smold_rx']
-                ]])))
+                csvfile.write("%s\n" % (','.join(m)))
 
-class UrbanskiEfImporter(ImporterBase):
-    """UrbanskiEfImporter: imports urbanski group based emission factor sets.
+class CoverType2EfGroupImporter(ImporterBase):
+
+    EF_GROUP_EXTRACTOR = re.compile('^[ ]*(\d+):')
+    def _extract_ef_group_id(self, val):
+        m = self.EF_GROUP_EXTRACTOR.search(val.strip())
+        if m:
+            return m.group(1)
+        # else, returns None
+
+    def _process_row(self, row):
+        wf = self._extract_ef_group_id(row[2])
+        rx = self._extract_ef_group_id(row[3])
+        self._mappings.append((row[0], wf, rx))
+
+    def write(self, output_file_name):
+        with open(output_file_name, 'wb') as csvfile:
+            csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
+                quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+            csv_writer.writerow([
+                'cover_type_id','wf','rx'
+            ])
+            for m in sorted(self._mappings, key=lambda a: a[0]):
+                csvfile.write("%s\n" % (','.join(m)))
+
+class EfGroup2EfImporter(ImporterBase):
+    """EfGroup2EfImporter: imports grouped emission factor
     """
 
     def _process_headers(self, csv_reader):
-        csv_reader.next() # first line is 'Units = g/kg'
-        self._headers = [self._str_to_group_id(e.strip()) if e not in ['Pollutant', 'Formula'] else e for e in csv_reader.next()]
+        # skip first line, which looks like:
+        #  'Units = lb/ton,,Group 1,Group 2,Group 3,Group 4,Group 5,Group 6,Group 7,Group 8'
+        csv_reader.next()
+        # skip second line, which looks like:
+        #  'Pollutant,Formula,Southeastern Forest,Boreal Forest,Western Forest - Rx,Western Forest - WF,Shrubland,Grassland,Woody RSC,Duff RSC'
+        self._num_groups = len(csv_reader.next()) - 2
 
     def _process_row(self, row):
         self._mappings.append(row)
@@ -124,6 +122,6 @@ class UrbanskiEfImporter(ImporterBase):
         with open(output_file_name, 'wb') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-            csv_writer.writerow([str(e) for e in self._headers])
+            csv_writer.writerow(['Pollutant','Formula'] + range(1,self._num_groups))
             for m in self._mappings:
                 csv_writer.writerow([e.strip() for e in m])
