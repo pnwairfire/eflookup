@@ -20,12 +20,13 @@ __copyright__   = "Copyright 2014, AirFire, PNW, USFS"
 
 import logging
 import sys
+import traceback
 from optparse import OptionParser
 
 from pyairfire import scripting
 
 from fccs2ef.importer import (
-    Fccs2CoverType, CoverType2EfGroupImporter, EfGroup2EfImporter
+    Fccs2CoverTypeImporter, CoverType2EfGroupImporter, EfGroup2EfImporter
 )
 
 # Note: though some argue that all required parameters should be specified as
@@ -77,7 +78,7 @@ def main():
     parser, options, args = scripting.options.parse_options(REQUIRED_OPTIONS, [])
 
     try:
-        fccs2ct_import == Fccs2CoverType(options.fccs_2_cover_type_input)
+        fccs2ct_import = Fccs2CoverTypeImporter(options.fccs_2_cover_type_input)
         fccs2ct_import.write(options.fccs_2_cover_type_output)
         ct2efg_importer = CoverType2EfGroupImporter(options.cover_type_2_ef_group_input)
         ct2efg_importer.write(options.cover_type_2_ef_group_output)
@@ -85,7 +86,7 @@ def main():
         efg2ef_importer.write(options.ef_group_2_ef_output)
 
     except Exception, e:
-        scripting.utils.exit_with_msg(e.message)
+        scripting.utils.exit_with_msg(e.message + '\n\n' + traceback.format_exc())
 
 if __name__ == "__main__":
     main()
