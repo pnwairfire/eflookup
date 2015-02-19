@@ -1,16 +1,16 @@
 """test_import.py:  Functional tests for code that imports raw data from
 scientists and writes data files formatted to be included in the package
 distributions
-
-@todo:
- - add base class to remove redundant code currently in each class'
-   test_import method
 """
 
 from fccs2ef.importer import (
     Fccs2CoverTypeImporter, CoverType2EfGroupImporter, EfGroup2EfImporter
 )
 
+# TODO: put this in base class, add base class 'test_import' method, remove
+# each class' test_import method, and add IMPORTER_CLASS class variable to
+# each child class.  This will only work if we can somehow tell py.test
+# not to run test_import if the current class is the base class
 def run_test(tmpdir, input_content, importer_class, expected_output):
     input_file = tmpdir.join("input.csv")
     input_file.write(input_content)
@@ -23,6 +23,9 @@ def run_test(tmpdir, input_content, importer_class, expected_output):
 
 
 class TestFccs2CoverTypeImporter:
+    """Top level functional test for importing fccs id to cover type mappings
+    """
+
     INPUT_CONTENT = """GeneratorName=FCCS 3.0,GeneratorVersion=3.0.0,DateCreated=11/14/2014
 fuelbed_number,filename,cover_type,ecoregion,overstory_loading,midstory_loading,understory_loading,snags_c1_foliage_loading,snags_c1wo_foliage_loading,snags_c1_wood_loading,snags_c2_loading,snags_c3_loading,shrubs_primary_loading,shrubs_secondary_loading,shrubs_primary_perc_live,shrubs_secondary_perc_live,nw_primary_loading,nw_secondary_loading,nw_primary_perc_live,nw_secondary_perc_live,w_sound_0_quarter_loading,w_sound_quarter_1_loading,w_sound_1_3_loading,w_sound_3_9_loading,w_sound_9_20_loading,w_sound_gt20_loading,w_rotten_3_9_loading,w_rotten_9_20_loading,w_rotten_gt20_loading,w_stump_sound_loading,w_stump_rotten_loading,w_stump_lightered_loading,litter_depth,litter_loading,lichen_depth,lichen_loading,moss_depth,moss_loading,basal_accum_loading,squirrel_midden_loading,ladderfuels_loading,duff_lower_depth,duff_lower_loading,duff_upper_depth,duff_upper_loading,pile_clean_loading,pile_dirty_loading,pile_vdirty_loading,Total_available_fuel_loading,efg_natural,efg_activity
 0,FB_0000_FCCS.xml,0,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,8,8
@@ -45,7 +48,7 @@ fuelbed_number,filename,cover_type,ecoregion,overstory_loading,midstory_loading,
 
 
 class TestCoverType2EfGroupImporter:
-    """Top level functional test for importing FCCS-to-Urbanski group mappings
+    """Top level functional test for importing cover type to ef group mappings
     """
 
     INPUT_CONTENT = """MapID,Cover type,WF EF Assignment,RxBurn EF Assignment
@@ -75,7 +78,7 @@ class TestCoverType2EfGroupImporter:
 
 
 class TestEfGroup2EfImporter:
-    """Top level functional test for importing Urbanski emission factors.
+    """Top level functional test for importing ef group to emission factors mappings.
     """
 
     INPUT_CONTENT = """Units = lb/ton,,Group 1,Group 2,Group 3,Group 4,Group 5,Group 6,Group 7,Group 8
