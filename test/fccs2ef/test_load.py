@@ -1,5 +1,8 @@
-class TestFccs2UrbanskiLoader:
+class TestFccs2CoverTypeLoader:
     pass
 
-class TestEFMappingLoader:
+class TestCoverType2EfGroupLoader:
+    pass
+
+class TestEFGroup2EFLoader:
     pass
