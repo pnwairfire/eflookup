@@ -36,11 +36,34 @@ REQUIRED_OPTIONS = [
     }
 ]
 
+OPTIONAL_OPTIONS = [
+    {
+        'long': 'fccs_2_cover_type_file',
+        'help': "csv containing mappings of FCCS fuelbed id to cover type id",
+        'metavar': "FILE"
+    },
+    {
+        'long': 'cover_type_2_ef_group_file',
+        'help': "csv containing mappings of cover type id to emission factor group",
+        'metavar': "FILE"
+    },
+    {
+        'long': "--ef-group-2-ef-file",
+        'help': "csv containing mappings of emission factor group to emission factors set",
+        'metavar': "FILE"
+    }
+]
+
 def main():
-    parser, options, args = scripting.options.parse_options(REQUIRED_OPTIONS, [])
+    parser, options, args = scripting.options.parse_options(REQUIRED_OPTIONS, OPTIONAL_OPTIONS)
 
     try:
-        sys.stdout.write(json.dumps(LookUp()[options.fccs_fuelbed_id]))
+        look_up = LookUp(
+            fccs_2_cover_type_file=options.fccs_2_cover_type_file,
+            covertype_2_ef_group_file=options.covertype_2_ef_group_file,
+            ef_group_2_ef_file=options.ef_group_2_ef_file
+        )
+        sys.stdout.write(json.dumps(look_up[options.fccs_fuelbed_id]))
 
     except Exception, e:
         scripting.utils.exit_with_msg(e.message)

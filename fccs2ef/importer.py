@@ -18,7 +18,6 @@ __all__ = [
 
 class ImporterBase(object):
 
-
     def __init__(self, input_file_name):
         self._unrecognized = set()
         self._load(input_file_name)
