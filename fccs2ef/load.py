@@ -9,11 +9,6 @@ import copy
 import csv
 import os
 
-# TODO: Replace classes with 3 that load:
-#  1) FCCS to SAF/SRM (s)
-#  2) SAF/SRM to Urbanski Group
-#  3) Urbanski Group to EF set
-
 __all__ = [
     'EFSetTypes',
     'Fccs2CoverTypeLoader',

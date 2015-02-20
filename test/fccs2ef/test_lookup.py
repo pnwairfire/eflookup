@@ -1,6 +1,4 @@
-"""test_lookup.py:  Functional tests for code that loads FCCS fuelbed type to
-urbanski group mappings and urbansku group emission factors, and returns data
-structure for looking up EFs by FCCS.
+"""test_lookup.py:  tests for looking up EFs by FCCS id or cover type.
 """
 
 from fccs2ef.lookup import LookUp, FCCSLookup, CoverTypeLookup
@@ -234,16 +232,16 @@ class TestCoverTypeLookup(LookUpTestBase):
         # cases where chemical species doesn't exist
         self.raises_key_error(lambda: lu[130]['duff_rsc']['sdfsdf'])
         # cases where ef set type isn't defined
-        self.raises_key_error(lambda: lu[71]['flame_smold_wf'])
-        self.raises_key_error(lambda: lu[71]['flame_smold_wf']['CO2'])
+        self.raises_key_error(lambda: lu[232]['flame_smold_wf'])
+        self.raises_key_error(lambda: lu[232]['flame_smold_wf']['CO2'])
         # cases where species isn't defined
         assert None == lu[130]['woody_rsc']['CO2']
 
         assert self.EXPECTED_FCCS_10_CT_130 == lu[130]
         assert self.EXPECTED_FCCS_10_CT_130['duff_rsc'] == lu[130]['duff_rsc']
         assert self.EXPECTED_FCCS_10_CT_130['duff_rsc']['PM2.5'] == lu[130]['duff_rsc']['PM2.5']
-        assert self.EXPECTED_FCCS_71_CT_232 == lu[71]
-        assert self.EXPECTED_FCCS_71_CT_232['duff_rsc'] == lu[71]['duff_rsc']
+        assert self.EXPECTED_FCCS_71_CT_232 == lu[232]
+        assert self.EXPECTED_FCCS_71_CT_232['duff_rsc'] == lu[232]['duff_rsc']
 
 
     def test_load_and_get(self, tmpdir):
