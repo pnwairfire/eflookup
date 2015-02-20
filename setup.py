@@ -5,7 +5,7 @@ REQUIREMENTS = [str(ir.req) for ir in parse_requirements('requirements.txt')]
 
 setup(
     name='fccs2ef',
-    version='0.2.2',
+    version='0.3.0',
     author='Joel Dubowy',
     author_email='jdubowy@gmail.com',
     packages=[
@@ -13,7 +13,7 @@ setup(
     ],
     scripts=[
         'bin/fccs2ef',
-        'bin/import-fccs2ef'
+        'bin/ct2ef'
     ],
     package_data={
         'fccs2ef': ['data/*.csv']
