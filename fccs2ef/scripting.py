@@ -18,19 +18,27 @@ from fccs2ef.lookup import LookUp
 
 OPTIONAL_OPTIONS = [
     {
-        'short': '-f',
+        'short': '-e',
+        'long': '--ef-set',
+        'help': "ef category ('flame_smold_wf','flame_smold_rx','woody_rsc', or 'duff_rsc')"
+    },
+    {
+        'short': '-s',
+        'long': '--species',
+        'help': "emissions species (e.g. 'CO2', 'PM2.5')"
+    },
+    # Options to specify alternate data files
+    {
         'long': '--fccs-2-cover-type-file',
         'help': "csv containing mappings of FCCS fuelbed id to cover type id",
         'metavar': "FILE"
     },
     {
-        'short': '-c',
         'long': '--cover-type-2-ef-group-file',
         'help': "csv containing mappings of cover type id to emission factor group",
         'metavar': "FILE"
     },
     {
-        'short': '-e',
         'long': "--ef-group-2-ef-file",
         'help': "csv containing mappings of emission factor group to emission factors set",
         'metavar': "FILE"
@@ -54,8 +62,16 @@ def run(lookup_class):
             cover_type_2_ef_group_file=options.cover_type_2_ef_group_file,
             ef_group_2_ef_file=options.ef_group_2_ef_file
         )
-
-        sys.stdout.write(json.dumps(look_up[args[0]]))
+        data = {}
+        for a in args:
+            r = look_up.get(args[0], ef_set_type=options.ef_set,
+                species=options.species)
+            if options.ef_set is not None and options.species is not None:
+                r = {options.ef_set: {options.species: r}}
+            elif options.ef_set:
+                r = {options.ef_set: r}
+            data.update({a: r})
+        sys.stdout.write(json.dumps(data))
 
     except Exception, e:
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
