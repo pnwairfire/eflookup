@@ -124,45 +124,45 @@ class TestLookUp(LookUpTestBase):
 
     def test_load_and_get(self, tmpdir):
         lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS)
-        # Neither fccs_fuel_bed_id nor cover_type_id is specified
+        # Neither fccs_fuelbed_id nor cover_type_id is specified
         with raises(LookupError):
             lu.get()
-        # both fccs_fuel_bed_id and cover_type_id is specified
+        # both fccs_fuelbed_id and cover_type_id is specified
         with raises(LookupError):
-            lu.get(fccs_fuel_bed_id=10, cover_type_id=130)
+            lu.get(fccs_fuelbed_id=10, cover_type_id=130)
         # cases where FCCS id or cover type doesn't exist
-        assert None == lu.get(fccs_fuel_bed_id=999)
+        assert None == lu.get(fccs_fuelbed_id=999)
         assert None == lu.get(cover_type_id=999)
-        assert None == lu.get(fccs_fuel_bed_id=999, ef_set_type='duff_rsc')
+        assert None == lu.get(fccs_fuelbed_id=999, ef_set_type='duff_rsc')
         assert None == lu.get(cover_type_id=999, ef_set_type='duff_rsc')
-        assert None == lu.get(fccs_fuel_bed_id=999, ef_set_type='duff_rsc', species='CO2')
+        assert None == lu.get(fccs_fuelbed_id=999, ef_set_type='duff_rsc', species='CO2')
         assert None == lu.get(cover_type_id=999, ef_set_type='duff_rsc', species='CO2')
         # cases where ef group type doesn't exist
-        assert None == lu.get(fccs_fuel_bed_id=10, ef_set_type='duffsdf')
+        assert None == lu.get(fccs_fuelbed_id=10, ef_set_type='duffsdf')
         assert None == lu.get(cover_type_id=130, ef_set_type='duffsdf')
-        assert None == lu.get(fccs_fuel_bed_id=10, ef_set_type='duffsdf', species='CO2')
+        assert None == lu.get(fccs_fuelbed_id=10, ef_set_type='duffsdf', species='CO2')
         assert None == lu.get(cover_type_id=130, ef_set_type='duffsdf', species='CO2')
         # cases where chemical species doesn't exist
-        assert None == lu.get(fccs_fuel_bed_id=10, ef_set_type='duff_rsc', species='sdfsdf')
+        assert None == lu.get(fccs_fuelbed_id=10, ef_set_type='duff_rsc', species='sdfsdf')
         assert None == lu.get(cover_type_id=130, ef_set_type='duff_rsc', species='sdfsdf')
         # cases where ef set type isn't defined
-        assert None == lu.get(fccs_fuel_bed_id=71, ef_set_type='flame_smold_wf')
+        assert None == lu.get(fccs_fuelbed_id=71, ef_set_type='flame_smold_wf')
         assert None == lu.get(cover_type_id=232, ef_set_type='flame_smold_wf')
-        assert None == lu.get(fccs_fuel_bed_id=71, ef_set_type='flame_smold_wf', species='CO2')
+        assert None == lu.get(fccs_fuelbed_id=71, ef_set_type='flame_smold_wf', species='CO2')
         assert None == lu.get(cover_type_id=232, ef_set_type='flame_smold_wf', species='CO2')
         # cases where species isn't defined
-        assert None == lu.get(fccs_fuel_bed_id=10, ef_set_type='woody_rsc', species='CO2')
+        assert None == lu.get(fccs_fuelbed_id=10, ef_set_type='woody_rsc', species='CO2')
         assert None == lu.get(cover_type_id=130, ef_set_type='woody_rsc', species='CO2')
 
-        assert self.EXPECTED_FCCS_10_CT_130 == lu.get(fccs_fuel_bed_id=10)
+        assert self.EXPECTED_FCCS_10_CT_130 == lu.get(fccs_fuelbed_id=10)
         assert self.EXPECTED_FCCS_10_CT_130 == lu.get(cover_type_id=130)
-        assert self.EXPECTED_FCCS_10_CT_130['duff_rsc'] == lu.get(fccs_fuel_bed_id=10, ef_set_type='duff_rsc')
+        assert self.EXPECTED_FCCS_10_CT_130['duff_rsc'] == lu.get(fccs_fuelbed_id=10, ef_set_type='duff_rsc')
         assert self.EXPECTED_FCCS_10_CT_130['duff_rsc'] == lu.get(cover_type_id=130, ef_set_type='duff_rsc')
-        assert self.EXPECTED_FCCS_10_CT_130['duff_rsc']['PM2.5'] == lu.get(fccs_fuel_bed_id=10, ef_set_type='duff_rsc', species='PM2.5')
+        assert self.EXPECTED_FCCS_10_CT_130['duff_rsc']['PM2.5'] == lu.get(fccs_fuelbed_id=10, ef_set_type='duff_rsc', species='PM2.5')
         assert self.EXPECTED_FCCS_10_CT_130['duff_rsc']['PM2.5'] == lu.get(cover_type_id=130, ef_set_type='duff_rsc', species='PM2.5')
-        assert self.EXPECTED_FCCS_71_CT_232 == lu.get(fccs_fuel_bed_id=71)
+        assert self.EXPECTED_FCCS_71_CT_232 == lu.get(fccs_fuelbed_id=71)
         assert self.EXPECTED_FCCS_71_CT_232 == lu.get(cover_type_id=232)
-        assert self.EXPECTED_FCCS_71_CT_232['duff_rsc'] == lu.get(fccs_fuel_bed_id=71, ef_set_type='duff_rsc')
+        assert self.EXPECTED_FCCS_71_CT_232['duff_rsc'] == lu.get(fccs_fuelbed_id=71, ef_set_type='duff_rsc')
         assert self.EXPECTED_FCCS_71_CT_232['duff_rsc'] == lu.get(cover_type_id=232, ef_set_type='duff_rsc')
 
 class TestFCCSLookup(LookUpTestBase):

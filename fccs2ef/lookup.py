@@ -46,7 +46,7 @@ class LookUp(object):
         or cover type
 
         Lookup Keys:
-         - fccs_fuel_bed_id -- FCCS fuelbed id
+         - fccs_fuelbed_id -- FCCS fuelbed id
          - cover_type_id -- FCCS fuelbed id
          - ef_set_type (optional) -- emissions factor set identifier
             ('flame_smold_wf', 'flame_smold_rx', 'woody_rsc', or 'duff_rsc')
@@ -54,36 +54,36 @@ class LookUp(object):
             isn't also defined
 
         Notes:
-         - Either 'fccs_fuel_bed_id' or 'cover_type_id' must be specified, but
+         - Either 'fccs_fuelbed_id' or 'cover_type_id' must be specified, but
             not both
          - 'species' is ignored if 'ef_set_type' isn't specified
 
         Examples:
         >>> lu = LookUp
-        >>> lu.get(fccs_fuel_bed_id=4)
-        >>> lu.get(fccs_fuel_bed_id=4, ef_set_type='flame_smold_rx')
-        >>> lu.get(fccs_fuel_bed_id=4, ef_set_type='flame_smold_rx', species='CO2')
+        >>> lu.get(fccs_fuelbed_id=4)
+        >>> lu.get(fccs_fuelbed_id=4, ef_set_type='flame_smold_rx')
+        >>> lu.get(fccs_fuelbed_id=4, ef_set_type='flame_smold_rx', species='CO2')
         >>> lu.get(cover_type_id=118)
         >>> lu.get(cover_type_id=118, ef_set_type='flame_smold_rx')
         >>> lu.get(cover_type_id=118, ef_set_type='flame_smold_rx', species='CO2')
 
         Note: returns None if any of the arguments are invalid.
         """
-        fccs_fuel_bed_id = keys.get('fccs_fuel_bed_id')
+        fccs_fuelbed_id = keys.get('fccs_fuelbed_id')
         cover_type_id = keys.get('cover_type_id')
         ef_set_type = keys.get('ef_set_type')
         species = keys.get('species')
 
-        if fccs_fuel_bed_id is None and cover_type_id is None:
-            raise LookupError("Specify either fccs_fuel_bed_id or cover_type_id")
-        elif fccs_fuel_bed_id is not None and cover_type_id is not None:
-            raise LookupError("Specify either fccs_fuel_bed_id or cover_type_id, not both")
+        if fccs_fuelbed_id is None and cover_type_id is None:
+            raise LookupError("Specify either fccs_fuelbed_id or cover_type_id")
+        elif fccs_fuelbed_id is not None and cover_type_id is not None:
+            raise LookupError("Specify either fccs_fuelbed_id or cover_type_id, not both")
 
         try:
             if not cover_type_id:
-                # fccs_fuel_bed_id should be a string, since it's not necessary
+                # fccs_fuelbed_id should be a string, since it's not necessary
                 # numeric but cast to string in case user specified it as an integer
-                cover_type_id = self._fccs_2_cover_type[str(fccs_fuel_bed_id)]
+                cover_type_id = self._fccs_2_cover_type[str(fccs_fuelbed_id)]
 
             ef_groups = self._cover_type_2_ef_group[str(cover_type_id)]
 
@@ -109,11 +109,11 @@ class LookUp(object):
             return None
 
 class FCCSLookup(LookUp):
-    def get(self, fccs_fuel_bed_id, ef_set_type=None, species=None):
+    def get(self, fccs_fuelbed_id, ef_set_type=None, species=None):
         """Looks up and returns emissions factor info for the fccs fuelbed type
 
         Args:
-         - fccs_fuel_bed_id -- FCCS fuelbed id
+         - fccs_fuelbed_id -- FCCS fuelbed id
         Optional Args
          - ef_set_type -- emissions factor set identifier ('flame_smold_wf',
             'flame_smold_rx', 'woody_rsc', or 'duff_rsc')
@@ -121,18 +121,18 @@ class FCCSLookup(LookUp):
             defined
 
         Examples:
-        >>> LookUp().get(fccs_fuel_bed_id=4)
-        >>> LookUp().get(fccs_fuel_bed_id=4, 'flame_smold_rx')
-        >>> LookUp().get(fccs_fuel_bed_id=4, 'flame_smold_rx', 'CO2')
+        >>> LookUp().get(fccs_fuelbed_id=4)
+        >>> LookUp().get(fccs_fuelbed_id=4, 'flame_smold_rx')
+        >>> LookUp().get(fccs_fuelbed_id=4, 'flame_smold_rx', 'CO2')
 
         Note: returns None if any of the arguments are invalid.
         """
-        return super(FCCSLookup, self).get(fccs_fuel_bed_id=fccs_fuel_bed_id,
+        return super(FCCSLookup, self).get(fccs_fuelbed_id=fccs_fuelbed_id,
             ef_set_type=ef_set_type, species=species)
 
-    def __getitem__(self, fccs_fuel_bed_id):
+    def __getitem__(self, fccs_fuelbed_id):
         """Enables bracket access, returning a dict containing emissions
-        factors information for the specified fccs_fuel_bed_id. The
+        factors information for the specified fccs_fuelbed_id. The
         returned dict is of the form:
 
         {
@@ -143,16 +143,16 @@ class FCCSLookup(LookUp):
         }
 
         Args:
-         - fccs_fuel_bed_id -- FCCS fuelbed id
+         - fccs_fuelbed_id -- FCCS fuelbed id
 
         Example:
         >>> LookUp()[4]
         >>> LookUp()[4]['flame_smold_rx']
         >>> LookUp()[4]['flame_smold_rx']['CO2']
 
-        Note: raises KeyError if fccs_fuel_bed_id is invalid.
+        Note: raises KeyError if fccs_fuelbed_id is invalid.
         """
-        key = str(fccs_fuel_bed_id)
+        key = str(fccs_fuelbed_id)
         if not self._fccs_2_cover_type.has_key(key):
             raise KeyError(key)
         return self.get(key)

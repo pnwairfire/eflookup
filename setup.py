@@ -19,6 +19,6 @@ setup(
         'fccs2ef': ['data/*.csv']
     },
     url='git@bitbucket.org:fera/airfire-fccs2ef.git',
-    description='Package supporting lookup of emissions factors by FCCS fuel bed or cover type.',
+    description='Package supporting lookup of emissions factors by FCCS fuelbed or cover type.',
     install_requires=REQUIREMENTS,
 )

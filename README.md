@@ -1,6 +1,6 @@
 # fccs2ef
 
-This package supports the look-up of emissions factors for FCCS fuel bed types.
+This package supports the look-up of emissions factors for FCCS fuelbed types.
 It is based on **Urbanski, S., 2014. Wildland fire emissions, carbon, and
 climate: Emission factors. Forest Ecology and Management. 31, 51-60.
 
