@@ -30,7 +30,7 @@ class LookUp(object):
 
         Options:
          - fccs_2_cover_type_file --
-         - covertype_2_ef_group_file --
+         - cover_type_2_ef_group_file --
          - ef_group_2_ef_file --
         """
         self._fccs_2_cover_type = Fccs2CoverTypeLoader(file_name=options.get(

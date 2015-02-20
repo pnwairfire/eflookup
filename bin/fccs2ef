@@ -1,72 +1,15 @@
 #!/usr/bin/env python
 
-"""fccs2ef.py: returns emissions factors associated with an FCCS fuelbed id
+"""fccs2ef: returns emissions factors associated with an FCCS fuelbed id
 
 Example calls:
- > ./bin/fccs2ef.py -f 13
+ > ./bin/fccs2ef 1
 """
 
 __author__      = "Joel Dubowy"
 __copyright__   = "Copyright 2014, AirFire, PNW, USFS"
 
-import json
-import sys
-from optparse import OptionParser
-
-from pyairfire import scripting
-
-try:
-    from fccs2ef.lookup import LookUp
-except:
-    import os
-    root_dir = os.path.abspath(os.path.join(sys.path[0], '../'))
-    sys.path.insert(0, root_dir)
-    from fccs2ef.lookup import LookUp
-
-# Note: though some argue that all required parameters should be specified as
-# positional arguments, I prefer using 'options' flags, even though this
-# means that there are required 'options', which is oxymoronic.
-
-REQUIRED_OPTIONS = [
-    {
-        'short': "-f",
-        'long': "--fccs-fuelbed-id",
-        'dest': 'fccs_fuelbed_id',
-        'help': "FCCS fuelbed id"
-    }
-]
-
-OPTIONAL_OPTIONS = [
-    {
-        'long': 'fccs_2_cover_type_file',
-        'help': "csv containing mappings of FCCS fuelbed id to cover type id",
-        'metavar': "FILE"
-    },
-    {
-        'long': 'cover_type_2_ef_group_file',
-        'help': "csv containing mappings of cover type id to emission factor group",
-        'metavar': "FILE"
-    },
-    {
-        'long': "--ef-group-2-ef-file",
-        'help': "csv containing mappings of emission factor group to emission factors set",
-        'metavar': "FILE"
-    }
-]
-
-def main():
-    parser, options, args = scripting.options.parse_options(REQUIRED_OPTIONS, OPTIONAL_OPTIONS)
-
-    try:
-        look_up = LookUp(
-            fccs_2_cover_type_file=options.fccs_2_cover_type_file,
-            covertype_2_ef_group_file=options.covertype_2_ef_group_file,
-            ef_group_2_ef_file=options.ef_group_2_ef_file
-        )
-        sys.stdout.write(json.dumps(look_up[options.fccs_fuelbed_id]))
-
-    except Exception, e:
-        scripting.utils.exit_with_msg(e.message)
+from fccs2ef import scripting, lookup
 
 if __name__ == "__main__":
-    main()
+    scripting.run(lookup.Fccs2Ef)
