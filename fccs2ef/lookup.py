@@ -16,8 +16,8 @@ from .load import (
 
 __all__ = [
     'LookUp',
-    'FCCSLookup',
-    'CoverTypeLookup'
+    'Fccs2Ef',
+    'CoverType2Ef'
 ]
 
 class LookUp(object):
@@ -108,7 +108,7 @@ class LookUp(object):
         except KeyError:
             return None
 
-class FCCSLookup(LookUp):
+class Fccs2Ef(LookUp):
     def get(self, fccs_fuelbed_id, ef_set_type=None, species=None):
         """Looks up and returns emissions factor info for the fccs fuelbed type
 
@@ -127,7 +127,7 @@ class FCCSLookup(LookUp):
 
         Note: returns None if any of the arguments are invalid.
         """
-        return super(FCCSLookup, self).get(fccs_fuelbed_id=fccs_fuelbed_id,
+        return super(Fccs2Ef, self).get(fccs_fuelbed_id=fccs_fuelbed_id,
             ef_set_type=ef_set_type, species=species)
 
     def __getitem__(self, fccs_fuelbed_id):
@@ -158,7 +158,7 @@ class FCCSLookup(LookUp):
         return self.get(key)
 
 
-class CoverTypeLookup(LookUp):
+class CoverType2Ef(LookUp):
     def get(self, cover_type_id, ef_set_type=None, species=None):
         """Looks up and returns emissions factor info for the cover type
 
@@ -177,7 +177,7 @@ class CoverTypeLookup(LookUp):
 
         Note: returns None if any of the arguments are invalid.
         """
-        return super(CoverTypeLookup, self).get(cover_type_id=cover_type_id,
+        return super(CoverType2Ef, self).get(cover_type_id=cover_type_id,
             ef_set_type=ef_set_type, species=species)
 
     def __getitem__(self, cover_type_id):

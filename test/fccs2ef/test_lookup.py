@@ -1,7 +1,7 @@
 """test_lookup.py:  tests for looking up EFs by FCCS id or cover type.
 """
 
-from fccs2ef.lookup import LookUp, FCCSLookup, CoverTypeLookup
+from fccs2ef.lookup import LookUp, Fccs2Ef, CoverType2Ef
 from py.test import raises
 
 FCCS_2_COVER_TYPE_DATA="""fccs_id,cover_type_id
@@ -165,8 +165,8 @@ class TestLookUp(LookUpTestBase):
         assert self.EXPECTED_FCCS_71_CT_232['duff_rsc'] == lu.get(fccs_fuelbed_id=71, ef_set_type='duff_rsc')
         assert self.EXPECTED_FCCS_71_CT_232['duff_rsc'] == lu.get(cover_type_id=232, ef_set_type='duff_rsc')
 
-class TestFCCSLookup(LookUpTestBase):
-    LOOKUP_CLASS = FCCSLookup
+class TestFccs2Ef(LookUpTestBase):
+    LOOKUP_CLASS = Fccs2Ef
 
     def test_load_and_getitem(self, tmpdir):
         lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS)
@@ -216,8 +216,8 @@ class TestFCCSLookup(LookUpTestBase):
         assert self.EXPECTED_FCCS_71_CT_232 == lu.get(71)
         assert self.EXPECTED_FCCS_71_CT_232['duff_rsc'] == lu.get(71, ef_set_type='duff_rsc')
 
-class TestCoverTypeLookup(LookUpTestBase):
-    LOOKUP_CLASS = CoverTypeLookup
+class TestCoverType2Ef(LookUpTestBase):
+    LOOKUP_CLASS = CoverType2Ef
 
     def test_load_and_getitem(self, tmpdir):
         lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS)
