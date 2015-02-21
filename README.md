@@ -192,7 +192,3 @@ to do something like:
 
 (Note:  I [Joel], couldn't get decode_json to work on my Mac, so take
 the above code with a grain of salt.)
-
-## TODO
-
-- Unit tests!
