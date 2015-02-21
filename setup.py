@@ -1,7 +1,12 @@
 from distutils.core import setup
 from pip.req import parse_requirements
 
-REQUIREMENTS = [str(ir.req) for ir in parse_requirements('requirements.txt')]
+# Note: using pip.req.parse_requirements like so:
+#  > REQUIREMENTS = [str(ir.req) for ir in parse_requirements('requirements.txt')]
+# results in the folloing error on Heroku:
+#    TypeError: parse_requirements() missing 1 required keyword argument: 'session'
+with open('requirements.txt') as f:
+    REQUIREMENTS = f.read().splitlines()
 
 setup(
     name='fccs2ef',
