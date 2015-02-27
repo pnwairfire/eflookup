@@ -37,9 +37,6 @@ See [pytest](http://pytest.org/latest/getting-started.html#getstarted) for more 
 
 ## Installing
 
-The repo is currently public. So, you don't need to be on the FERA bitbucket team
-to install from the repo.
-
 ### Installing With pip
 
 First, install pip:
@@ -48,7 +45,7 @@ First, install pip:
 
 Then, to install, for example, v0.3.0, use the following:
 
-    sudo pip install git+https://bitbucket.org/fera/airfire-fccs2ef@v0.3.0
+    sudo pip install git+https://github.org/fera/airfire-fccs2ef@v0.3.0
 
 If you get an error like    ```AttributeError: 'NoneType' object has no attribute 'skip_requirements_regex```, it means you need in upgrade pip.  One way to do so is with the following:
 
