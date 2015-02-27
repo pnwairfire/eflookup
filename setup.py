@@ -10,7 +10,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='fccs2ef',
-    version='0.3.0',
+    version='0.3.1',
     author='Joel Dubowy',
     author_email='jdubowy@gmail.com',
     packages=[
