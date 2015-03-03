@@ -1,1 +1,1 @@
-git+https://guthub.com/pnwairfire/pyairfire.git@v0.6.11
+git+https://guthub.com/pnwairfire/pyairfire.git@v0.6.12
