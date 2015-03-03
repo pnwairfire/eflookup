@@ -15,7 +15,7 @@ Run the following to install dependencies:
 
 Run the following for installing development dependencies (like running tests):
 
-    pip install -r dev-requirements.txt
+    pip install -r requirements-test.txt
 
 ### Setup Environment
 
