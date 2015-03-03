@@ -12,7 +12,8 @@ def parse_requirements(dep_links, req_file_name):
         for r in f.read().splitlines():
             m = git_url_matcher.match(r)
             if m:
-                dep_links.append(r)
+                # TODO: figure out how dep link should be formatted
+                dep_links.append(r + '#egg=%s-%s' % (m.group(1), m.group(3)))
                 reqs.append("%s==%s" % (m.group(1), m.group(3)))
             else:
                 reqs.append(r)
