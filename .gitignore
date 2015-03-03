@@ -2,3 +2,5 @@
 .DS_Store
 tmp/
 build/
+dist/
+fccs2ef.egg-info/
