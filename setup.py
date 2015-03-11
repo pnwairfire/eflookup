@@ -25,7 +25,7 @@ test_requirements = parse_requirements(dependency_links, 'requirements-test.txt'
 
 setup(
     name='fccs2ef',
-    version='0.3.6',
+    version='0.3.7',
     author='Joel Dubowy',
     license='MIT',
     author_email='jdubowy@gmail.com',

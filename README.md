@@ -43,9 +43,9 @@ First, install pip:
 
     sudo apt-get install python-pip
 
-Then, to install, for example, v0.3.6, use the following:
+Then, to install, for example, v0.3.7, use the following:
 
-    sudo pip install git+https://github.com/pnwairfire/fccs2ef@v0.3.6
+    sudo pip install git+https://github.com/pnwairfire/fccs2ef@v0.3.7
 
 If you get an error like    ```AttributeError: 'NoneType' object has no attribute 'skip_requirements_regex```, it means you need in upgrade pip.  One way to do so is with the following:
 
