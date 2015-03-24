@@ -1,4 +1,4 @@
-"""lookup.py: contains common scripting code
+"""scripting.py: contains common scripting code
 """
 
 __author__      = "Joel Dubowy"
