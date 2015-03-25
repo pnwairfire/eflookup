@@ -1,9 +1,11 @@
-# fccs2ef
+# eflookup
 
-This package supports the look-up of emissions factors by either FCCS fuelbed
-or FERA cover type id.  The categorization of emissions factors is based on
-**Urbanski, S., 2014. Wildland fire emissions, carbon, and climate: Emission
-factors. Forest Ecology and Management. 31, 51-60.
+
+This package supports the look-up of emissions factors used to compute
+emissions from wildland fires.  Multiple sets of EF are supported, including:
+
+ - FCCS specific EFs, based on **Urbanski, S., 2014. Wildland fire emissions, carbon, and climate: Emission factors. Forest Ecology and Management. 31, 51-60.
+ - FEPS style EFs
 
 ## Development
 
@@ -13,13 +15,13 @@ Run the following to install dependencies:
 
     pip install -r requirements.txt
 
-Run the following for installing development dependencies (like running tests):
+Run the following for installing test specific dependencies:
 
     pip install -r requirements-test.txt
 
 ### Setup Environment
 
-To import fccs2ef in development, you'll have to add the repo root directory
+To import eflookup in development, you'll have to add the repo root directory
 to the search path.
 
 ## Running tests
@@ -27,7 +29,7 @@ to the search path.
 Use pytest:
 
     py.test
-    py.test test/fccs2ef/test_lookup.py
+    py.test test/eflookup/test_lookup.py
 
 You can also use the ```--collect-only``` option to see a list of all tests.
 
@@ -45,7 +47,7 @@ First, install pip:
 
 Then, to install, for example, v0.3.7, use the following:
 
-    sudo pip install git+https://github.com/pnwairfire/fccs2ef@v0.3.7
+    sudo pip install git+https://github.com/pnwairfire/eflookup@v0.3.7
 
 If you get an error like    ```AttributeError: 'NoneType' object has no attribute 'skip_requirements_regex```, it means you need in upgrade pip.  One way to do so is with the following:
 
@@ -55,6 +57,8 @@ If you get an error like    ```AttributeError: 'NoneType' object has no attribut
 
 ### Using the Python Package
 
+### ```eflookup.fccs2ef```
+
 There are two look-up classes to choose from, depending on whether you're
 keying off of FCCS id or cover type - Fccs2Ef and CoverType2Ef.  The following
 example illustrates use of Fccs2Ef, but the usage of CoverType2Ef is identical
@@ -62,7 +66,7 @@ other than passing in a cover type id instead of an FCCS id.
 
 First import and instantiate
 
-    >>> from fccs2ef.lookup import Fccs2Ef
+    >>> from eflookup.fccs2ef.lookup import Fccs2Ef
     >>> lu = Fccs2Ef()
 
 Then, get all EF's associated with a specific FCCS fuelbed id:
@@ -108,6 +112,8 @@ keys, whereas 'get' returns None if any of the arguments are invalid.  For examp
 
 ### Using the Executables
 
+#### ```fccs2ef``` & ```ct2ef```
+
 There are two scripts to choose from, again depending on whether you're
 keying off of FCCS id or cover type - ./bin/fccs2ef and ./bin/ct2ef.  The
 following example illustrates use of ./bin/fccs2ef, but as with the classes
@@ -150,6 +156,9 @@ same regardless of the input specificity.  The format is always like the followi
 
 ### Invoking the Executables In Perl
 
+The following example illustrates using fccs2ef, but could be easily modified
+to work for the other executables.
+
 #### Setup
 
 To use the code below, you'll need JSON, which you can install with cpanm
@@ -178,7 +187,7 @@ like the following:
 
     use JSON;
     use Data::Dumper;
-    my $j = `./bin/fccs2ef.py 13`;
+    my $j = `./bin/fccs2ef 13`;
     my $p = decode_json($j);
 
 At this point ```$p``` should be a perl hash object, and you should be able

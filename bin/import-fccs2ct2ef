@@ -25,7 +25,7 @@ from optparse import OptionParser
 
 from pyairfire import scripting
 
-from fccs2ef.importer import (
+from eflookup.fccs2ef.importer import (
     Fccs2CoverTypeImporter, CoverType2EfGroupImporter, EfGroup2EfImporter
 )
 

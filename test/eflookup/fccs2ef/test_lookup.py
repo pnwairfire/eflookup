@@ -1,7 +1,7 @@
 """test_lookup.py:  tests for looking up EFs by FCCS id or cover type.
 """
 
-from fccs2ef.lookup import LookUp, Fccs2Ef, CoverType2Ef
+from eflookup.fccs2ef.lookup import LookUp, Fccs2Ef, CoverType2Ef
 from py.test import raises
 
 FCCS_2_COVER_TYPE_DATA="""fccs_id,cover_type_id

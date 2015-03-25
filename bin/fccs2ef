@@ -9,7 +9,7 @@ Example calls:
 __author__      = "Joel Dubowy"
 __copyright__   = "Copyright 2014, AirFire, PNW, USFS"
 
-from fccs2ef import scripting, lookup
+from eflookup.fccs2ef import scripting, lookup
 
 if __name__ == "__main__":
     scripting.run(lookup.Fccs2Ef)

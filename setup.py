@@ -1,7 +1,7 @@
 import re
 from setuptools import setup, find_packages
 
-from fccs2ef import __version__
+from eflookup import __version__
 
 # Note: using pip.req.parse_requirements like so:
 #  > REQUIREMENTS = [str(ir.req) for ir in parse_requirements('requirements.txt')]
@@ -32,7 +32,7 @@ requirements = parse_requirements(dependency_links, 'requirements.txt')
 test_requirements = parse_requirements(dependency_links, 'requirements-test.txt')
 
 setup(
-    name='fccs2ef',
+    name='eflookup',
     version=__version__,
     author='Joel Dubowy',
     license='MIT',
@@ -53,8 +53,8 @@ setup(
         "Operating System :: POSIX",
         "Operating System :: MacOS"
     ],
-    url='https://github.com/pnwairfire/fccs2ef/',
-    description='Package supporting lookup of emissions factors by FCCS fuelbed or cover type.',
+    url='https://github.com/pnwairfire/eflookup/',
+    description='Package supporting the look-up of emissions factors used to compute emissions from wildland fires.',
     install_requires=requirements,
     dependency_links=dependency_links,
     tests_require=test_requirements

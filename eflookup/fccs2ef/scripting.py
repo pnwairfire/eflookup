@@ -12,7 +12,7 @@ from optparse import OptionParser
 
 from pyairfire import scripting as pya_scripting
 
-from fccs2ef.lookup import LookUp
+from eflookup.fccs2ef.lookup import LookUp
 
 # Note: required parameters are specified as positional arguments
 
