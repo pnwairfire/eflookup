@@ -1,4 +1,4 @@
-"""load.py:
+"""eflookup.fccs2ef.load:
 """
 
 __author__      = "Joel Dubowy"

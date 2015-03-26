@@ -1,5 +1,5 @@
-"""importer.py: Module for importing FCCS, covert type, and emission factors data
-into format required by fccs2ef module.
+"""eflookup.fccs2ef.importer: Module for importing FCCS, covert type, and
+emission factors data into format required by fccs2ef module.
 
 Note that this module is only useful for a) creating the data files included
 in this module, or b) creating custom data files.

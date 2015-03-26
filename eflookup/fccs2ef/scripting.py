@@ -1,4 +1,4 @@
-"""scripting.py: contains common scripting code
+"""eflookup.fccs2ef.scripting: contains common scripting code
 """
 
 __author__      = "Joel Dubowy"

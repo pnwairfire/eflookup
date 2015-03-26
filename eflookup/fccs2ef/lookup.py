@@ -1,4 +1,4 @@
-"""lookup.py:
+"""eflookup.fccs2ef.lookup:
 
 @todo:
  - Use something other than 'flame_smold_wf', 'woody_rsc', 'duff_rsc',
