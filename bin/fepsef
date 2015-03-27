@@ -11,7 +11,9 @@ Example calls:
 __author__      = "Joel Dubowy"
 __copyright__   = "Copyright 2014, AirFire, PNW, USFS"
 
+import json
 import logging
+import sys
 
 from pyairfire import scripting as pya_scripting
 from eflookup.fepsef.lookup import FepsEFLookup
@@ -30,7 +32,9 @@ OPTIONAL_OPTIONS = [
     {
         'short': '-i',
         'long': '--include-haps-polutants',
-        'help': "include HAPS polutants (ex. 1,3-Dichloropropene, 1,4-Butanediol, etc.)"
+        'help': "include HAPS polutants (ex. 1,3-Dichloropropene, 1,4-Butanediol, etc.)",
+        'action': 'store_true',
+        'default': False
     }
 ]
 
@@ -41,10 +45,10 @@ def main():
         look_up = FepsEFLookup(include_haps=args.include_haps_polutants)
         r = look_up.get(phase=args.phase, species=args.species)
         if args.phase is not None:
-            if args.species:
+            if args.species is not None:
                 r = {args.species: r}
             r = {args.phase: r}
-        return r
+        sys.stdout.write(json.dumps(r))
 
     except Exception, e:
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
