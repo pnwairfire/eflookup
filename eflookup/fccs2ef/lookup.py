@@ -88,6 +88,7 @@ class LookUp(object):
             not both
          - fuel_category is effectively ignored for 'flaming' and 'smoldering'
             (since the same EFs are used accross all fuel categories)
+         - returns None if any of the arguments are invalid.
 
         Examples:
         >>> lu = LookUp
@@ -97,8 +98,6 @@ class LookUp(object):
         >>> lu.get(cover_type_id=118)
         >>> lu.get(cover_type_id=118, phase='flaming')
         >>> lu.get(cover_type_id=118, phase='flaming', species='CO2')
-
-        Note: returns None if any of the arguments are invalid.
         """
         fccs_fuelbed_id = keys.get('fccs_fuelbed_id')
         cover_type_id = keys.get('cover_type_id')
