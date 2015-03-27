@@ -4,12 +4,13 @@
  - Update LookUp.get to support specifying 'fuel_category' without specifying
    'phase', and to suport specifying 'species' without specifying either
    'phase' or 'fuel_category' (ex. to get all CO2 EFs associated with a
-    specific FCCS fuelbed)
+    specific FCCS fuelbed) (?)
 """
 
 __author__      = "Joel Dubowy"
 __copyright__   = "Copyright 2014, AirFire, PNW, USFS"
 
+from ..constants import Phase, FuelCategory
 from .load import (
     EFSetTypes, Fccs2CoverTypeLoader, CoverType2EfGroupLoader, EfGroup2EfLoader
 )
@@ -26,29 +27,32 @@ class LookUp(object):
 
     RSC_KEYS = {
         # Accept 'woody' and 'duff' to be explicitly selected
-        "woody": "woody",
-        "duff": "duff",
+        "woody": FuelCategory.WOODY,
+        "duff": FuelCategory.DUFF,
         # Consume fuel categories with residual emissions
         # TODO: check these!!!
         # TODO: expect different keys???
-        "100-hr fuels": 'woody',
-        "1000-hr fuels sound": 'woody',
-        "1000-hr fuels rotten": 'woody',
-        "10k+-hr fuels rotten": 'woody',
-        "10k+-hr fuels sound": 'woody',
-        "10000-hr fuels rotten": 'woody',
-        "-hr fuels sound": 'woody',
-        "stumps rotten": 'woody',
-        "stumps lightered": 'woody',
-        "duff lower": 'duff',
-        "duff upper": 'duff',
-        "basal accumulations": 'duff',
-        "squirrel middens": 'duff'
+        "100-hr fuels": FuelCategory.WOODY,
+        "1000-hr fuels sound": FuelCategory.WOODY,
+        "1000-hr fuels rotten": FuelCategory.WOODY,
+        "10k+-hr fuels rotten": FuelCategory.WOODY,
+        "10k+-hr fuels sound": FuelCategory.WOODY,
+        "10000-hr fuels rotten": FuelCategory.WOODY,
+        "-hr fuels sound": FuelCategory.WOODY,
+        "stumps rotten": FuelCategory.WOODY,
+        "stumps lightered": FuelCategory.WOODY,
+        "duff lower": FuelCategory.DUFF,
+        "duff upper": FuelCategory.DUFF,
+        "basal accumulations": FuelCategory.DUFF,
+        "squirrel middens": FuelCategory.DUFF
     }
 
     def __init__(self, is_rx, **options):
         """Constructor - reads FCCS-based emissions factors into dictionary
         for quick access.
+
+        Args:
+         - is_rx - set to True if a prescribed burn
 
         Options:
          - fccs_2_cover_type_file --
@@ -113,21 +117,21 @@ class LookUp(object):
             ef_groups = self._cover_type_2_ef_group[str(cover_type_id)]
 
             ef_sets = {
-                'residual': {
-                    'woody': self._ef_group_2_ef_loader.get_woody_rsc(),
-                    'duff': self._ef_group_2_ef_loader.get_duff_rsc()
+                Phase.RESIDUAL: {
+                    FuelCategory.WOODY: self._ef_group_2_ef_loader.get_woody_rsc(),
+                    FuelCategory.DUFF: self._ef_group_2_ef_loader.get_duff_rsc()
                 }
             }
             ef_set_type = EFSetTypes.FLAME_SMOLD_RX if self.is_rx else EFSetTypes.FLAME_SMOLD_WF
             if self._ef_group_2_ef.has_key(ef_groups[ef_set_type]):
                 # flaming and smoldering have the same EFs
-                ef_sets.update(
-                    flaming=self._ef_group_2_ef[ef_groups[ef_set_type]],
-                    smoldering=self._ef_group_2_ef[ef_groups[ef_set_type]]
-                )
+                ef_sets.update({
+                    Phase.FLAMING: self._ef_group_2_ef[ef_groups[ef_set_type]],
+                    Phase.SMOLDERING: self._ef_group_2_ef[ef_groups[ef_set_type]]
+                })
 
             if phase:
-                if 'residual' == phase and fuel_category:
+                if Phase.RESIDUAL == phase and fuel_category:
                     rsc_k = self.RSC_KEYS[fuel_category]
                     if species:
                         return ef_sets[phase][rsc_k][species]
