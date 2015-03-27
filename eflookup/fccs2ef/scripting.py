@@ -18,14 +18,25 @@ from eflookup.fccs2ef.lookup import LookUp
 
 OPTIONAL_OPTIONS = [
     {
-        'short': '-e',
-        'long': '--ef-set',
-        'help': "ef category ('flame_smold_wf','flame_smold_rx','woody_rsc', or 'duff_rsc')"
+        'short': '-p',
+        'long': '--phase',
+        'help': "combustion phase ('flaming','smoldering','residual')"
+    },
+    {
+        'short': '-f',
+        'long': '--fuel-category',
+        'help': "fuel category (ex. '100-hr fuels', 'stumps rotten', etc.)"
     },
     {
         'short': '-s',
         'long': '--species',
         'help': "emissions species (e.g. 'CO2', 'PM2.5')"
+    },
+    {
+        'long': '--rx',
+        'help': "Is a prescribed burn",
+        'action': 'store_true',
+        'default': False
     },
     # Options to specify alternate data files
     {
@@ -45,12 +56,17 @@ OPTIONAL_OPTIONS = [
     }
 ]
 
-USAGE = "usage: %prog [options] <id> [<id> ...]"
+POSITIONAL_ARGS = [
+    {
+        'long': 'id',
+        'nargs': '*'
+    }
+]
 
 def run(lookup_class):
-    parser, options, args = pya_scripting.options.parse_options([],
-        OPTIONAL_OPTIONS, usage=USAGE)
-    if len(args) == 0:
+    parser, args = pya_scripting.args.parse_args([], OPTIONAL_OPTIONS,
+        positional_args=POSITIONAL_ARGS)
+    if len(args.id) == 0:
 
         pya_scripting.utils.exit_with_msg(
             "Specify one or more %s ids" % (lookup_class.__name__.replace('2Ef','')),
@@ -58,18 +74,19 @@ def run(lookup_class):
 
     try:
         look_up = lookup_class(
-            fccs_2_cover_type_file=options.fccs_2_cover_type_file,
-            cover_type_2_ef_group_file=options.cover_type_2_ef_group_file,
-            ef_group_2_ef_file=options.ef_group_2_ef_file
+            args.rx,
+            fccs_2_cover_type_file=args.fccs_2_cover_type_file,
+            cover_type_2_ef_group_file=args.cover_type_2_ef_group_file,
+            ef_group_2_ef_file=args.ef_group_2_ef_file
         )
         data = {}
-        for a in args:
-            r = look_up.get(args[0], ef_set_type=options.ef_set,
-                species=options.species)
-            if options.ef_set is not None and options.species is not None:
-                r = {options.ef_set: {options.species: r}}
-            elif options.ef_set:
-                r = {options.ef_set: r}
+        for a in args.id:
+            r = look_up.get(args.id[0], phase=args.phase,
+                fuel_category=args.fuel_category, species=args.species)
+            if args.phase is not None and args.species is not None:
+                r = {args.phase: {args.species: r}}
+            elif args.phase:
+                r = {args.phase: r}
             data.update({a: r})
         sys.stdout.write(json.dumps(data))
 
