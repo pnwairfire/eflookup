@@ -240,7 +240,7 @@ class FepsEFLookup(dict):
         """Constructor
 
         Options:
-        - include_haps --
+        - include_haps -- include HAPS (hazardous air pollutants) chemical species
         """
         # TODO: only include 'hap_*' pollutants if  is True
         efs = FEPS_EFS if options.get('include_haps') else FEPS_EFS_NO_HAPS
