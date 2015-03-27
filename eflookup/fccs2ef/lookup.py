@@ -112,7 +112,7 @@ class LookUp(object):
         if not phase and (fuel_category or species):
             raise LookupError("Specify phase when also specifying fuel_category or species")
         if not fuel_category and species and Phase.RESIDUAL == phase:
-            raise LookupError("Specify fuel_category or when also specifying species")
+            raise LookupError("Specify fuel_category when also specifying species if phase is 'residual'")
 
         try:
             if not cover_type_id:
