@@ -4,6 +4,11 @@
 __author__      = "Joel Dubowy"
 __copyright__   = "Copyright 2014, AirFire, PNW, USFS"
 
+import copy
+import re
+
+from ..constants import Phase, FuelCategory
+
 __all__ = [
     'FepsEF'
 ]
@@ -102,7 +107,7 @@ class FepsEFLookup(dict):
     """
 
     EFS = {
-        'flaming': {
+        Phase.FLAMING: {
             'CH4': 0.003819999999999997,
             'CO': 0.07179999999999997,
             'CO2': 1.6497,
@@ -142,7 +147,7 @@ class FepsEFLookup(dict):
             'hap_75070': 0.000204125,
             'hap_85018': 2.5e-06
         },
-        'residual': {
+        Phase.RESIDUAL: {
             'CH4': 0.009868000000000002,
             'CO': 0.21011999999999997,
             'CO2': 1.39308,
@@ -182,7 +187,7 @@ class FepsEFLookup(dict):
             'hap_75070': 0.000204125,
             'hap_85018': 2.5e-06
         },
-        'smoldering': {
+        Phase.SMOLDERING: {
             'CH4': 0.009868000000000002,
             'CO': 0.21011999999999997,
             'CO2': 1.39308,
@@ -224,6 +229,10 @@ class FepsEFLookup(dict):
         }
     }
 
+    HAP_MATCHER_RE = re.compile('hap_.*')
+    EFS_NO_HAPS = copy.deepcopy(EFS)
+    for phase in EFS_NO_HAPS.keys():
+        EFS_NO_HAPS[phase] = {k:v for k,v in EFS_NO_HAPS[phase].items() if not HAP_MATCHER_RE.match(k)}
 
     def __init__(self, **options):
         """Constructor
@@ -231,5 +240,44 @@ class FepsEFLookup(dict):
         Options:
         - include_haps --
         """
-        # TODO: only include 'hap_*' pollutants if options.include_haps is True
-        self.update(self.EFS)
+        # TODO: only include 'hap_*' pollutants if  is True
+        efs = self.EFS_NO_HAPS if options.include_haps else self.EFS
+        self.update(copy.deepcopy(efs))
+
+    def get(self, **keys):
+        """Looks up and returns emission factors
+
+        Lookup Keys:
+         - phase -- emissions factor set identifier ('flaming', 'smoldering',
+            'residual')
+         - species -- chemical species; phase (and fuel_category if phase is
+            'residual') must also be defined
+
+        Notes:
+         - ignores any other keys
+         - returns None if any of the arguments are invalid.
+
+        Examples:
+        >>> lu = LookUp
+        >>> lu.get(fccs_fuelbed_id=4)
+        >>> lu.get(fccs_fuelbed_id=4, phase='flaming')
+        >>> lu.get(fccs_fuelbed_id=4, phase='flaming', species='CO2')
+        >>> lu.get(cover_type_id=118)
+        >>> lu.get(cover_type_id=118, phase='flaming')
+        >>> lu.get(cover_type_id=118, phase='flaming', species='CO2')
+        """
+        phase = keys.get('phase')
+        species = keys.get('species')
+
+        if not phase and species:
+            raise LookupError("Specify phase when also specifying species")
+
+        try:
+            if phase:
+                if species:
+                    return self[phase][species]
+                return self[phase]
+            return self
+
+        except KeyError:
+            return None
