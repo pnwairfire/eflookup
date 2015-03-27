@@ -75,15 +75,15 @@ REQUIRED_OPTIONS = [
 ]
 
 def main():
-    parser, options, args = scripting.options.parse_options(REQUIRED_OPTIONS, [])
+    parser, args = scripting.args.parse_args(REQUIRED_OPTIONS, [])
 
     try:
-        fccs2ct_import = Fccs2CoverTypeImporter(options.fccs_2_cover_type_input)
-        fccs2ct_import.write(options.fccs_2_cover_type_output)
-        ct2efg_importer = CoverType2EfGroupImporter(options.cover_type_2_ef_group_input)
-        ct2efg_importer.write(options.cover_type_2_ef_group_output)
-        efg2ef_importer = EfGroup2EfImporter(options.ef_group_2_ef_input)
-        efg2ef_importer.write(options.ef_group_2_ef_output)
+        fccs2ct_import = Fccs2CoverTypeImporter(args.fccs_2_cover_type_input)
+        fccs2ct_import.write(args.fccs_2_cover_type_output)
+        ct2efg_importer = CoverType2EfGroupImporter(args.cover_type_2_ef_group_input)
+        ct2efg_importer.write(args.cover_type_2_ef_group_output)
+        efg2ef_importer = EfGroup2EfImporter(args.ef_group_2_ef_input)
+        efg2ef_importer.write(args.ef_group_2_ef_output)
 
     except Exception, e:
         scripting.utils.exit_with_msg(e.message + '\n\n' + traceback.format_exc())
