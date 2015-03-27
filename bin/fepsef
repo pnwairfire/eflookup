@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+
+"""fepsef: returns FEPS style emissions factors
+
+Example calls:
+ > ./bin/fepsef
+ > ./bin/fepsef -p residual
+ > ./bin/fepsef -p flaming -s CO2
+"""
+
+__author__      = "Joel Dubowy"
+__copyright__   = "Copyright 2014, AirFire, PNW, USFS"
+
+import logging
+
+from pyairfire import scripting as pya_scripting
+from eflookup.fepsef.lookup import FepsEFLookup
+
+OPTIONAL_OPTIONS = [
+    {
+        'short': '-p',
+        'long': '--phase',
+        'help': "combustion phase ('flaming','smoldering','residual')"
+    },
+    {
+        'short': '-s',
+        'long': '--species',
+        'help': "emissions species (e.g. 'CO2', 'PM2.5')"
+    },
+    {
+        'short': '-i',
+        'long': '--include-haps-polutants',
+        'help': "include HAPS polutants (ex. 1,3-Dichloropropene, 1,4-Butanediol, etc.)"
+    }
+]
+
+def main():
+    parser, args = pya_scripting.args.parse_args([], OPTIONAL_OPTIONS)
+
+    try:
+        look_up = FepsEFLookup(include_haps=args.include_haps_polutants)
+        r = look_up.get(phase=args.phase, species=args.species)
+        if args.phase is not None:
+            if args.species:
+                r = {args.species: r}
+            r = {args.phase: r}
+        return r
+
+    except Exception, e:
+        if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
+            pya_scripting.utils.exit_with_msg(traceback.format_exc(), prefix="")
+        else:
+            pya_scripting.utils.exit_with_msg(e.message)
+
+if __name__ == "__main__":
+    main()
