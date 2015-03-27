@@ -75,16 +75,17 @@ class LookUp(object):
         Lookup Keys:
          - fccs_fuelbed_id -- FCCS fuelbed id
          - cover_type_id -- FCCS fuelbed id
-         - phase (optional) -- emissions factor set identifier
-            ('flaming', 'smoldering', 'residual')
-         - fuel_category -- comes into play for residual EFs
-         - species (optional) -- chemical species; is ignored if phase
-            isn't also defined
+         - phase -- emissions factor set identifier ('flaming', 'smoldering',
+            'residual')
+         - fuel_category -- fuel category (ex. '100-hr fuels',
+            'stumps rotten', etc.); only relevant if phase is 'residual';
+            phase must also be defined
+         - species -- chemical species; phase (and fuel_category if phase is
+            'residual') must also be defined
 
         Notes:
          - Either 'fccs_fuelbed_id' or 'cover_type_id' must be specified, but
             not both
-         - 'species' is ignored if 'phase' isn't specified
 
         Examples:
         >>> lu = LookUp
@@ -107,6 +108,11 @@ class LookUp(object):
             raise LookupError("Specify either fccs_fuelbed_id or cover_type_id")
         elif fccs_fuelbed_id is not None and cover_type_id is not None:
             raise LookupError("Specify either fccs_fuelbed_id or cover_type_id, not both")
+
+        if not phase and (fuel_category or species):
+            raise LookupError("Specify phase when also specifying fuel_category or species")
+        if not fuel_category and species and Phase.RESIDUAL == phase:
+            raise LookupError("Specify fuel_category or when also specifying species")
 
         try:
             if not cover_type_id:
@@ -158,11 +164,13 @@ class Fccs2Ef(LookUp):
         Args:
          - fccs_fuelbed_id -- FCCS fuelbed id
         Optional Args
-         - phase -- emissions factor set identifier ('flaming', 'smolding',
+         - phase -- emissions factor set identifier ('flaming', 'smoldering',
             'residual')
          - fuel_category -- fuel category (ex. '100-hr fuels',
-            'stumps rotten', etc.)
-         - species -- chemical species; is ignored if phase isn't also defined
+            'stumps rotten', etc.); only relevant if phase is 'residual';
+            phase must also be defined
+         - species -- chemical species; phase (and fuel_category if phase is
+            'residual') must also be defined
 
         Examples:
         >>> LookUp().get(fccs_fuelbed_id=4)
@@ -217,11 +225,13 @@ class CoverType2Ef(LookUp):
         Args:
          - cover_type_id -- cover type id
         Optional Args
-         - phase -- emissions factor set identifier ('flaming', 'smolding',
+         - phase -- emissions factor set identifier ('flaming', 'smoldering',
             'residual')
          - fuel_category -- fuel category (ex. '100-hr fuels',
-            'stumps rotten', etc.)
-         - species -- chemical species; is ignored if phase isn't also defined
+            'stumps rotten', etc.); only relevant if phase is 'residual';
+            phase must also be defined
+         - species -- chemical species; phase (and fuel_category if phase is
+            'residual') must also be defined
 
         Examples:
         >>> LookUp().get(cover_type_id=118)

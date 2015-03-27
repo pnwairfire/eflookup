@@ -262,6 +262,20 @@ class TestLookUp(LookUpTestBase):
         # both fccs_fuelbed_id and cover_type_id is specified
         with raises(LookupError):
             lu.get(fccs_fuelbed_id=10, cover_type_id=130)
+
+        # fuel category is specified without phase
+        with raises(LookupError):
+            lu.get(fuel_category='woody')
+        # species is specified without phase
+        with raises(LookupError):
+            lu.get(species='CO2')
+        # fuel category and species are specified without phase
+        with raises(LookupError):
+            lu.get(fuel_category='woody', species='CO2')
+        # species is specified without fuel_category for residual phase
+        with raises(LookupError):
+            lu.get(phase='residual', species='CO2')
+
         # cases where FCCS id or cover type doesn't exist
         assert None == lu.get(fccs_fuelbed_id=999)
         assert None == lu.get(cover_type_id=999)
