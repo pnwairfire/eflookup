@@ -83,9 +83,11 @@ def run(lookup_class):
         for a in args.id:
             r = look_up.get(args.id[0], phase=args.phase,
                 fuel_category=args.fuel_category, species=args.species)
-            if args.phase is not None and args.species is not None:
-                r = {args.phase: {args.species: r}}
-            elif args.phase:
+            if args.phase is not None:
+                if args.fuel_category is not None:
+                    if args.species is not None:
+                        r = {args.species: r}
+                    r = {args.fuel_category: r}
                 r = {args.phase: r}
             data.update({a: r})
         sys.stdout.write(json.dumps(data))
