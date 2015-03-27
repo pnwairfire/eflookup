@@ -88,6 +88,8 @@ def run(lookup_class):
                     if args.species is not None:
                         r = {args.species: r}
                     r = {args.fuel_category: r}
+                elif args.species: # non-residual
+                    r = {args.species: r}
                 r = {args.phase: r}
             data.update({a: r})
         sys.stdout.write(json.dumps(data))
