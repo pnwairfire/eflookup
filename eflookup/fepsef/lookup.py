@@ -8,7 +8,7 @@ __all__ = [
     'FepsEF'
 ]
 
-class FepsEF(dict):
+class FepsEFLookup(dict):
     """Returns and EF lookup object containing FEPS style EFs
 
     The emissions factors contained in FepsEF.EFS are static. To generate them,
