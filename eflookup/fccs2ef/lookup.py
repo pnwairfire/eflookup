@@ -24,9 +24,13 @@ class LookUp(object):
     """Class for looking up emission factors for FCCS fuelbed types
     """
 
-    # TODO: check these!!!
-    # TODO: expect different keys???
     RSC_KEYS = {
+        # Accept 'woody' and 'duff' to be explicitly selected
+        "woody": "woody",
+        "duff": "duff",
+        # Consume fuel categories with residual emissions
+        # TODO: check these!!!
+        # TODO: expect different keys???
         "100-hr fuels": 'woody',
         "1000-hr fuels sound": 'woody',
         "1000-hr fuels rotten": 'woody',
