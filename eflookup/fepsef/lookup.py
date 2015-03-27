@@ -1,4 +1,4 @@
-"""fepsef.lookup:
+"""eflookup.fepsef.lookup:
 """
 
 __author__      = "Joel Dubowy"

@@ -86,6 +86,8 @@ class LookUp(object):
         Notes:
          - Either 'fccs_fuelbed_id' or 'cover_type_id' must be specified, but
             not both
+         - fuel_category is effectively ignored for 'flaming' and 'smoldering'
+            (since the same EFs are used accross all fuel categories)
 
         Examples:
         >>> lu = LookUp
