@@ -206,3 +206,13 @@ class TestLookup:
         lu = FepsEFLookup()
         lu = {'dsf':123}
         assert FEPS_EFS_NO_HAPS == WITHOUT_HAPS
+
+    def test_species(self):
+        lu = FepsEFLookup()
+        assert set(WITHOUT_HAPS['flaming'].keys()) == lu.species('flaming')
+        assert set(WITHOUT_HAPS['smoldering'].keys()) == lu.species('smoldering')
+        assert set(WITHOUT_HAPS['residual'].keys()) == lu.species('residual')
+        lu = FepsEFLookup(include_haps=True)
+        assert set(WITH_HAPS['flaming'].keys()) == lu.species('flaming')
+        assert set(WITH_HAPS['smoldering'].keys()) == lu.species('smoldering')
+        assert set(WITH_HAPS['residual'].keys()) == lu.species('residual')

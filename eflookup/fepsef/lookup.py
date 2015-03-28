@@ -283,3 +283,6 @@ class FepsEFLookup(dict):
 
         except KeyError:
             return None
+
+    def species(self, phase):
+        return set(self[phase].keys())
