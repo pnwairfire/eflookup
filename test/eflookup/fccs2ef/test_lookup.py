@@ -161,7 +161,7 @@ class LookUpTestBase(object):
         ct2efg.write(COVER_TYPE_2_EF_GROUP_DATA)
         efg2ef = tmpdir.join("efg2ef.csv")
         efg2ef.write(EF_GROUP_2_EF_DATA)
-        return self.LOOKUP_CLASS(
+        return look_up_class(
             is_rx,
             fccs_2_cover_type_file=str(f2c),
             cover_type_2_ef_group_file=str(ct2efg),
@@ -345,3 +345,65 @@ class TestCoverType2Ef(Fccs2EfAndCoverType2EfBase):
     LOOKUP_CLASS = CoverType2Ef
     F_S_R_ID = 130
     R_ID = 232
+
+
+class TestSpecies(LookUpTestBase):
+
+    def test_wf_species(self, tmpdir):
+        expected_flaming = {
+            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
+        }
+        expected_smoldering = {
+            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
+        }
+        expected_residual = {
+            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
+        }
+
+        lu = self.create_look_up_object(tmpdir, Fccs2Ef, False)
+        assert expected_flaming == lu[10].species('flaming')
+        assert expected_smoldering == lu[10].species('smoldering')
+        assert expected_residual == lu[10].species('residual')
+
+        lu = self.create_look_up_object(tmpdir, CoverType2Ef, False)
+        assert expected_flaming == lu[130].species('flaming')
+        assert expected_smoldering == lu[130].species('smoldering')
+        assert expected_residual == lu[130].species('residual')
+
+    def test_rx_species(self, tmpdir):
+        expected_flaming = {
+            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
+        }
+        expected_smoldering = {
+            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
+        }
+        expected_residual = {
+            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
+        }
+
+        lu = self.create_look_up_object(tmpdir, Fccs2Ef, True)
+        assert expected_flaming == lu[10].species('flaming')
+        assert expected_smoldering == lu[10].species('smoldering')
+        assert expected_residual == lu[10].species('residual')
+
+        lu = self.create_look_up_object(tmpdir, CoverType2Ef, True)
+        assert expected_flaming == lu[130].species('flaming')
+        assert expected_smoldering == lu[130].species('smoldering')
+        assert expected_residual == lu[130].species('residual')
+
+    def test_residual_only_species(self, tmpdir):
+        expected_flaming = set()
+        expected_smoldering = set()
+        expected_residual = {
+            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
+        }
+
+        lu = self.create_look_up_object(tmpdir, Fccs2Ef, True)
+        assert expected_flaming == lu[71].species('flaming')
+        assert expected_smoldering == lu[71].species('smoldering')
+        assert expected_residual == lu[71].species('residual')
+
+        lu = self.create_look_up_object(tmpdir, CoverType2Ef, True)
+        assert expected_flaming == lu[232].species('flaming')
+        assert expected_smoldering == lu[232].species('smoldering')
+        assert expected_residual == lu[232].species('residual')

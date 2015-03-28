@@ -122,6 +122,9 @@ class SingleCoverTypeEfLookup(dict):
 
 
     def species(self, phase):
+        if not self.has_key(phase):
+            return set()
+
         if phase == Phase.RESIDUAL:
             woody_keys = self[phase][FuelCategory.WOODY].keys()
             duff_keys = self[phase][FuelCategory.WOODY].keys()
