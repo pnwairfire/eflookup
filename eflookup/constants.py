@@ -1,4 +1,6 @@
 """eflookup.constants: defines constants used throughout eflookup package
+
+TODO: Make these immutable
 """
 
 __author__      = "Joel Dubowy"
