@@ -96,7 +96,7 @@ __copyright__   = "Copyright 2014, AirFire, PNW, USFS"
 import copy
 import re
 
-from ..constants import Phase, FuelCategory
+from .lookup import Phase, FuelCategory, BasicEFLookup
 
 __all__ = [
     'FepsEFLookup'
@@ -232,7 +232,7 @@ for phase in FEPS_EFS_NO_HAPS.keys():
         k:v for k,v in FEPS_EFS_NO_HAPS[phase].items() if not HAP_MATCHER_RE.match(k)
     }
 
-class FepsEFLookup(dict):
+class FepsEFLookup(BasicEFLookup):
     """Look-up object containing FEPS EFs
     """
 
@@ -245,44 +245,3 @@ class FepsEFLookup(dict):
         # TODO: only include 'hap_*' pollutants if  is True
         efs = FEPS_EFS if options.get('include_haps') else FEPS_EFS_NO_HAPS
         self.update(copy.deepcopy(efs))
-
-    def get(self, **keys):
-        """Looks up and returns emission factors
-
-        Lookup Keys:
-         - phase -- emissions factor set identifier ('flaming', 'smoldering',
-            'residual')
-         - species -- chemical species; phase (and fuel_category if phase is
-            'residual') must also be defined
-
-        Notes:
-         - ignores any other keys
-         - returns None if any of the arguments are invalid.
-
-        Examples:
-        >>> lu = LookUp
-        >>> lu.get(fccs_fuelbed_id=4)
-        >>> lu.get(fccs_fuelbed_id=4, phase='flaming')
-        >>> lu.get(fccs_fuelbed_id=4, phase='flaming', species='CO2')
-        >>> lu.get(cover_type_id=118)
-        >>> lu.get(cover_type_id=118, phase='flaming')
-        >>> lu.get(cover_type_id=118, phase='flaming', species='CO2')
-        """
-        phase = keys.get('phase')
-        species = keys.get('species')
-
-        if not phase and species:
-            raise LookupError("Specify phase when also specifying species")
-
-        try:
-            if phase:
-                if species:
-                    return self[phase][species]
-                return self[phase]
-            return self
-
-        except KeyError:
-            return None
-
-    def species(self, phase):
-        return set(self[phase].keys())
