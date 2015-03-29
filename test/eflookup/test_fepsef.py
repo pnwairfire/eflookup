@@ -3,7 +3,7 @@
 
 from py.test import raises
 
-from eflookup.fepsef.lookup import FepsEFLookup, FEPS_EFS_NO_HAPS
+from eflookup.fepsef import FepsEFLookup, FEPS_EFS_NO_HAPS
 
 WITH_HAPS = {
     'flaming': {
