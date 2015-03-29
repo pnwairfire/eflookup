@@ -66,7 +66,7 @@ they are excluded.
 
 First, import and instantiate:
 
-    >>> from eflookup.fepsef.lookup import FepsEFLookup
+    >>> from eflookup.fepsef import FepsEFLookup
     >>> lu = FepsEFLookup(include_haps=True)
 
 Then, get all EFs
@@ -120,7 +120,7 @@ is_rx to False when instantiating the look-up object.
 
 First import and instantiate
 
-    >>> from eflookup.fccs2ef.lookup import Fccs2Ef
+    >>> from eflookup.fccs2ef import Fccs2Ef
     >>> lu = Fccs2Ef(is_rx=True)
 
 Then, get all EFs associated with a specific FCCS fuelbed id:

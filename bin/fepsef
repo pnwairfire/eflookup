@@ -16,7 +16,7 @@ import logging
 import sys
 
 from pyairfire import scripting as pya_scripting
-from eflookup.fepsef.lookup import FepsEFLookup
+from eflookup.fepsef import FepsEFLookup
 
 OPTIONAL_OPTIONS = [
     {
