@@ -45,9 +45,9 @@ First, install pip:
 
     sudo apt-get install python-pip
 
-Then, to install, for example, v0.6.0, use the following:
+Then, to install, for example, v0.6.1, use the following:
 
-    sudo pip install git+https://github.com/pnwairfire/eflookup@v0.6.0
+    sudo pip install git+https://github.com/pnwairfire/eflookup@v0.6.1
 
 If you get an error like    ```AttributeError: 'NoneType' object has no attribute 'skip_requirements_regex```, it means you need in upgrade pip.  One way to do so is with the following:
 
