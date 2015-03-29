@@ -4,7 +4,7 @@ TODO: Make these immutable
 """
 
 __author__      = "Joel Dubowy"
-__copyright__   = "Copyright 2014, AirFire, PNW, USFS"
+__copyright__   = "Copyright 2015, AirFire, PNW, USFS"
 
 class Phase:
     FLAMING = 'flaming'

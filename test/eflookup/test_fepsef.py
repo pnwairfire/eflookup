@@ -1,6 +1,9 @@
 """test_lookup.py:  tests for looking up EFs by FCCS id or cover type.
 """
 
+__author__      = "Joel Dubowy"
+__copyright__   = "Copyright 2015, AirFire, PNW, USFS"
+
 from py.test import raises
 
 from eflookup.fepsef import FepsEFLookup, FEPS_EFS_NO_HAPS
