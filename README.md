@@ -57,7 +57,81 @@ If you get an error like    ```AttributeError: 'NoneType' object has no attribut
 
 ### Using the Python Package
 
-#### ```eflookup.fepsef```
+#### ```eflookup.lookup.BasicEFLookup```
+
+```BasicEFLookup``` is look-up object for arbitrary, phase specific emission
+factors.  Instantiated with a nested dict of phase-specific EFS:
+
+    >>> EFS = {
+        'flaming': {
+            'CH4': 0.003819999999999997,
+            'CO': 0.07179999999999997,
+            'VOC': 0.017341999999999996
+        },
+        'residual': {
+            'NOx': 0.000908,
+            'PM10': 0.01962576,
+        },
+        'smoldering': {
+            'NH3': 0.00341056,
+        }
+    }
+    >>> from eflookup.lookup import BasicEFLookup
+    >>> lu = BasicEFLookup(EFS)
+
+And then access the EFs with ```get```:
+
+    >>> lu.get()
+    {
+        'flaming': {
+            'CH4': 0.003819999999999997,
+            'CO': 0.07179999999999997,
+            'VOC': 0.017341999999999996
+        },
+        'residual': {
+            'NOx': 0.000908,
+            'PM10': 0.01962576
+        },
+        'smoldering': {
+            'NH3': 0.00341056
+        }
+    }
+    >>> lu.get(phase='flaming')
+    {
+        'CH4': 0.003819999999999997,
+        'CO': 0.07179999999999997,
+        'VOC': 0.017341999999999996
+    }
+    >>> lu.get(phase='flaming', species='CO')
+    0.07179999999999997
+
+ or ```[]```:
+
+    >>> lu
+    {
+        'flaming': {
+            'CH4': 0.003819999999999997,
+            'CO': 0.07179999999999997,
+            'VOC': 0.017341999999999996
+        },
+        'residual': {
+            'NOx': 0.000908,
+            'PM10': 0.01962576
+        },
+        'smoldering': {
+            'NH3': 0.00341056
+        }
+    }
+    >>> lu['flaming']
+    {
+        'CH4': 0.003819999999999997,
+        'CO': 0.07179999999999997,
+        'VOC': 0.017341999999999996
+    }
+    >>> lu['flaming']['CO']
+    0.07179999999999997
+
+#### ```eflookup.fepsef.FepsEFLookup```
 
 There's only one look-up class for FEPS style EFs.  It has one option: to include
 or exclude HAPS (hazardous air pollutants) chemical species; the default is to

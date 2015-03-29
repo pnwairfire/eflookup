@@ -1,4 +1,5 @@
-"""eflookup.constants: defines constants used throughout eflookup package
+"""eflookup.lookup: defines constants used throughout eflookup package, along
+with a basic EF look-up class
 
 TODO: Make these immutable
 """
@@ -16,7 +17,7 @@ class FuelCategory:
     DUFF = 'duff'
 
 class BasicEFLookup(dict):
-    """Look-up object containing FEPS EFs
+    """Look-up object for arbitrary, phase specific emission factors
     """
 
     def get(self, **keys):
@@ -33,13 +34,13 @@ class BasicEFLookup(dict):
          - returns None if any of the arguments are invalid.
 
         Examples:
-        >>> lu = LookUp
-        >>> lu.get(fccs_fuelbed_id=4)
-        >>> lu.get(fccs_fuelbed_id=4, phase='flaming')
-        >>> lu.get(fccs_fuelbed_id=4, phase='flaming', species='CO2')
-        >>> lu.get(cover_type_id=118)
-        >>> lu.get(cover_type_id=118, phase='flaming')
-        >>> lu.get(cover_type_id=118, phase='flaming', species='CO2')
+        >>> lu = BasicLookUp({'flaming':{'CO':34}, 'smoldering': {'CO':3}, 'residual': {'CO':34.9}})
+        >>> lu.get()
+        >>> lu.get(phase='flaming')
+        >>> lu.get(phase='flaming', species='CO')
+        >>> lu.get()
+        >>> lu.get(phase='flaming')
+        >>> lu.get(phase='flaming', species='CO')
         """
         phase = keys.get('phase')
         species = keys.get('species')
