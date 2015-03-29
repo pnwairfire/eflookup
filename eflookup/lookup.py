@@ -11,6 +11,7 @@ class Phase:
     FLAMING = 'flaming'
     SMOLDERING = 'smoldering'
     RESIDUAL = 'residual'
+    ALL = set([FLAMING, SMOLDERING, RESIDUAL])
 
 class FuelCategory:
     WOODY = 'woody'
@@ -19,6 +20,17 @@ class FuelCategory:
 class BasicEFLookup(dict):
     """Look-up object for arbitrary, phase specific emission factors
     """
+
+    def __init__(self, *args, **kwargs):
+        super(BasicEFLookup, self).__init__(*args, **kwargs)
+
+        if set(self.keys()) != Phase.ALL:
+            raise ValueError("BasicEFLookup must contain %s" % (', '.join(Phase.ALL)))
+        if any(not hasattr(d, 'has_key') for d in self.values()):
+            raise ValueError("Each phase-specific set of EFs must be a dict")
+        for d in self.values():
+            if any(not hasattr(ef, 'real') for ef in d.values()):
+                raise ValueError("All EFs must be numeric value")
 
     def get(self, **keys):
         """Looks up and returns emission factors
