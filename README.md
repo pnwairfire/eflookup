@@ -9,6 +9,16 @@ emissions from wildland fires.  Multiple sets of EF are supported, including:
 
 ## Development
 
+### Clone Repo
+
+Via ssh:
+
+    git clone git@github.com:pnwairfire/eflookup.git
+
+or http:
+
+    git clone https://github.com/pnwairfire/eflookup.git
+
 ### Install Dependencies
 
 Run the following to install dependencies:
@@ -41,13 +51,14 @@ See [pytest](http://pytest.org/latest/getting-started.html#getstarted) for more 
 
 ### Installing With pip
 
-First, install pip:
+First, install pip (with sudo if necessary):
 
-    sudo apt-get install python-pip
+    apt-get install python-pip
 
-Then, to install, for example, v0.6.1, use the following:
+Then, to install, for example, v0.6.2, use the following (with
+sudo if necessary):
 
-    sudo pip install git+https://github.com/pnwairfire/eflookup@v0.6.1
+    pip install --trusted-host pypi.smoke.airfire.org -i http://pypi.smoke.airfire.org/simple eflookup==v0.6.2
 
 If you get an error like    ```AttributeError: 'NoneType' object has no attribute 'skip_requirements_regex```, it means you need in upgrade pip.  One way to do so is with the following:
 

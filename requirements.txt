@@ -1,1 +1,2 @@
-git+https://github.com/pnwairfire/pyairfire@v0.6.14
+-i http://pypi.smoke.airfire.org/simple/
+-e .
