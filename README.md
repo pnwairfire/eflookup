@@ -23,11 +23,22 @@ or http:
 
 Run the following to install dependencies:
 
-    pip install -r requirements.txt
+    pip install --trusted-host pypi.smoke.airfire.org -r requirements.txt
 
-Run the following for installing test specific dependencies:
+Run the following to install packages required for development and testing:
 
     pip install -r requirements-test.txt
+    pip install -r requirements-dev.txt
+
+#### Notes
+
+##### pip issues
+
+If you get an error like    ```AttributeError: 'NoneType' object has no
+attribute 'skip_requirements_regex```, it means you need in upgrade
+pip. One way to do so is with the following:
+
+    pip install --upgrade pip
 
 ### Setup Environment
 
@@ -60,9 +71,8 @@ sudo if necessary):
 
     pip install --trusted-host pypi.smoke.airfire.org -i http://pypi.smoke.airfire.org/simple eflookup==v0.6.2
 
-If you get an error like    ```AttributeError: 'NoneType' object has no attribute 'skip_requirements_regex```, it means you need in upgrade pip.  One way to do so is with the following:
-
-    pip install --upgrade pip
+See the Development > Install Dependencies > Notes section, above, for
+notes on resolving pip and gdal issues.
 
 ## Usage:
 
