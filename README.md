@@ -1,11 +1,14 @@
 # eflookup
 
-
 This package supports the look-up of emissions factors used to compute
 emissions from wildland fires.  Multiple sets of EF are supported, including:
 
  - FCCS specific EFs, based on **Urbanski, S., 2014. Wildland fire emissions, carbon, and climate: Emission factors. Forest Ecology and Management. 31, 51-60.
  - FEPS style EFs
+
+***This software is provided for research purposes only. It's output may
+not accurately reflect observed data due to numerous reasons. Data are
+provisional; use at own risk.***
 
 ## Development
 
