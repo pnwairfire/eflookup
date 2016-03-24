@@ -10,7 +10,7 @@ setup(
     name='eflookup',
     version=__version__,
     author='Joel Dubowy',
-    license='MIT',
+    license='GPLv3+',
     author_email='jdubowy@gmail.com',
     packages=find_packages(),
     scripts=[
@@ -23,7 +23,7 @@ setup(
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Programming Language :: Python :: 2",
         "Operating System :: POSIX",
         "Operating System :: MacOS"
