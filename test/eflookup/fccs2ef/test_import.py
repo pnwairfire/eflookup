@@ -4,7 +4,6 @@ distributions
 """
 
 __author__      = "Joel Dubowy"
-__copyright__   = "Copyright 2015, AirFire, PNW, USFS"
 
 from eflookup.fccs2ef.importer import (
     Fccs2CoverTypeImporter, CoverType2EfGroupImporter, EfGroup2EfImporter

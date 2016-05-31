@@ -1,5 +1,4 @@
 __author__      = "Joel Dubowy"
-__copyright__   = "Copyright 2015, AirFire, PNW, USFS"
 
 class TestFccs2CoverTypeLoader:
     pass

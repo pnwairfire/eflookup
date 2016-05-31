@@ -6,7 +6,6 @@ in this module, or b) creating custom data files.
 """
 
 __author__      = "Joel Dubowy"
-__copyright__   = "Copyright 2015, AirFire, PNW, USFS"
 
 import abc
 import csv
