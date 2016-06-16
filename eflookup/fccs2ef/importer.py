@@ -26,7 +26,7 @@ class ImporterBase(object):
 
     def _load(self, input_file_name):
         self._mappings = []
-        with open(input_file_name, 'rb') as csvfile:
+        with open(input_file_name, 'rt') as csvfile:
             csv_reader = csv.reader(csvfile, delimiter=',', skipinitialspace=True)
             self._process_headers(csv_reader)
             for row in csv_reader:
@@ -71,7 +71,7 @@ class Fccs2CoverTypeImporter(ImporterBase):
         self._mappings.append(m)
 
     def write(self, output_file_name):
-        with open(output_file_name, 'wb') as csvfile:
+        with open(output_file_name, 'wt') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
             csv_writer.writerow([
@@ -96,7 +96,7 @@ class CoverType2EfGroupImporter(ImporterBase):
         self._mappings.append((row[0], wf, rx))
 
     def write(self, output_file_name):
-        with open(output_file_name, 'wb') as csvfile:
+        with open(output_file_name, 'wt') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
             csv_writer.writerow([
@@ -121,7 +121,7 @@ class EfGroup2EfImporter(ImporterBase):
         self._mappings.append(row)
 
     def write(self, output_file_name):
-        with open(output_file_name, 'wb') as csvfile:
+        with open(output_file_name, 'wt') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
             csv_writer.writerow(['Pollutant','Formula'] + list(range(1,self._num_groups+1)))

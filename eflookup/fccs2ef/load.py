@@ -44,7 +44,7 @@ class LoaderBase(object):
         next(csv_reader)
 
     def _load(self):
-        with open(self._file_name, 'rb') as csvfile:
+        with open(self._file_name, 'rt') as csvfile:
             csv_reader = csv.reader(csvfile, delimiter=',', skipinitialspace=True)
             self._process_headers(csv_reader)
             for row in csv_reader:
@@ -80,7 +80,7 @@ class EfGroup2EfLoader(LoaderBase):
     DUFF_RSC_IDX = '8'
 
     def _process_headers(self,csv_reader):
-        self._headers = csv_reader.next()[2:]
+        self._headers = next(csv_reader)[2:]
         self._data = dict([(e, {}) for e in self._headers])
 
     def _process_row(self, row):

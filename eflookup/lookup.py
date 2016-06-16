@@ -25,7 +25,7 @@ class BasicEFLookup(dict):
 
         if set(self.keys()) != Phase.ALL:
             raise ValueError("BasicEFLookup must contain %s" % (', '.join(Phase.ALL)))
-        if any(not hasattr(d, 'has_key') for d in list(self.values())):
+        if any(not isinstance(d, dict) for d in list(self.values())):
             raise ValueError("Each phase-specific set of EFs must be a dict")
         for d in list(self.values()):
             if any(not hasattr(ef, 'real') for ef in list(d.values())):
