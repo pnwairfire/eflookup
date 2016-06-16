@@ -4,3 +4,4 @@ tmp/
 build/
 dist/
 eflookup.egg-info/
+.cache/
