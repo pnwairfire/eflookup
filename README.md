@@ -10,6 +10,12 @@ emissions from wildland fires.  Multiple sets of EF are supported, including:
 not accurately reflect observed data due to numerous reasons. Data are
 provisional; use at own risk.***
 
+## Python 2 and 3 Support
+
+This package was originally developed to support python 2.7, but has since
+been refactored to support 3.5. Attempts to support both 2.7 and 3.5 have
+been made but are not guaranteed.
+
 ## Development
 
 ### Clone Repo
