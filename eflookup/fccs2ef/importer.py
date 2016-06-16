@@ -34,7 +34,7 @@ class ImporterBase(object):
 
     def _process_headers(self, csv_reader):
         # Default is to through away header information
-        csv_reader.next()
+        next(csv_reader)
 
     # @property
     # def unrecognized(self):
@@ -59,9 +59,9 @@ class Fccs2CoverTypeImporter(ImporterBase):
     def _process_headers(self, csv_reader):
         # skip first line, which looks like
         #  'GeneratorName=FCCS 3.0,GeneratorVersion=3.0.0,DateCreated=11/14/2014'
-        csv_reader.next()
-        header_row = csv_reader.next()
-        self._headers = dict([(header_row[i], i) for i in xrange(len(header_row))])
+        next(csv_reader)
+        header_row = next(csv_reader)
+        self._headers = dict([(header_row[i], i) for i in range(len(header_row))])
 
     def _process_row(self, row):
         m = (
@@ -112,10 +112,10 @@ class EfGroup2EfImporter(ImporterBase):
     def _process_headers(self, csv_reader):
         # skip first line, which looks like:
         #  'Units = lb/ton,,Group 1,Group 2,Group 3,Group 4,Group 5,Group 6,Group 7,Group 8'
-        csv_reader.next()
+        next(csv_reader)
         # skip second line, which looks like:
         #  'Pollutant,Formula,Southeastern Forest,Boreal Forest,Western Forest - Rx,Western Forest - WF,Shrubland,Grassland,Woody RSC,Duff RSC'
-        self._num_groups = len(csv_reader.next()) - 2
+        self._num_groups = len(next(csv_reader)) - 2
 
     def _process_row(self, row):
         self._mappings.append(row)
@@ -124,6 +124,6 @@ class EfGroup2EfImporter(ImporterBase):
         with open(output_file_name, 'wb') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-            csv_writer.writerow(['Pollutant','Formula'] + range(1,self._num_groups+1))
+            csv_writer.writerow(['Pollutant','Formula'] + list(range(1,self._num_groups+1)))
             for m in self._mappings:
                 csv_writer.writerow([e.strip() for e in m])

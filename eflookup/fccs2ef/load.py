@@ -41,7 +41,7 @@ class LoaderBase(object):
 
     def _process_headers(self, csv_reader):
         # Default is to through away header information
-        csv_reader.next()
+        next(csv_reader)
 
     def _load(self):
         with open(self._file_name, 'rb') as csvfile:

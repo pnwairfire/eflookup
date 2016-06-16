@@ -60,7 +60,7 @@ class SingleCoverTypeEfLookup(dict):
             }
         })
         ef_set_type = EFSetTypes.FLAME_SMOLD_RX if is_rx else EFSetTypes.FLAME_SMOLD_WF
-        if ef_group_2_ef.has_key(ef_groups[ef_set_type]):
+        if ef_groups[ef_set_type] in ef_group_2_ef:
             # flaming and smoldering have the same EFs
             self.update({
                 Phase.FLAMING: ef_group_2_ef[ef_groups[ef_set_type]],
@@ -121,12 +121,12 @@ class SingleCoverTypeEfLookup(dict):
 
 
     def species(self, phase):
-        if not self.has_key(phase):
+        if phase not in self:
             return set()
 
         if phase == Phase.RESIDUAL:
-            woody_keys = self[phase][FuelCategory.WOODY].keys()
-            duff_keys = self[phase][FuelCategory.WOODY].keys()
+            woody_keys = list(self[phase][FuelCategory.WOODY].keys())
+            duff_keys = list(self[phase][FuelCategory.WOODY].keys())
             return set(woody_keys).union(duff_keys)
         else:
             return set(self[phase].keys())
@@ -208,7 +208,7 @@ class LookUp(object):
 
             ef_groups = self._cover_type_2_ef_group[str(cover_type_id)]
 
-            if not self.cover_type_look_ups.has_key(cover_type_id):
+            if cover_type_id not in self.cover_type_look_ups:
                 self.cover_type_look_ups[cover_type_id] = SingleCoverTypeEfLookup(
                     self.is_rx, ef_groups, self._cover_type_2_ef_group,
                     self._ef_group_2_ef_loader, self._ef_group_2_ef
@@ -275,7 +275,7 @@ class Fccs2Ef(LookUp):
         Note: raises KeyError if fccs_fuelbed_id is invalid.
         """
         key = str(fccs_fuelbed_id)
-        if not self._fccs_2_cover_type.has_key(key):
+        if key not in self._fccs_2_cover_type:
             raise KeyError(key)
         return self.get(key)
 
@@ -335,6 +335,6 @@ class CoverType2Ef(LookUp):
         Note: raises KeyError if cover_type_id is invalid.
         """
         key = str(cover_type_id)
-        if not self._cover_type_2_ef_group.has_key(key):
+        if key not in self._cover_type_2_ef_group:
             raise KeyError(key)
         return self.get(key)

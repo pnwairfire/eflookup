@@ -226,9 +226,9 @@ FEPS_EFS = {
 
 HAP_MATCHER_RE = re.compile('hap_.*')
 FEPS_EFS_NO_HAPS = copy.deepcopy(FEPS_EFS)
-for phase in FEPS_EFS_NO_HAPS.keys():
+for phase in list(FEPS_EFS_NO_HAPS.keys()):
     FEPS_EFS_NO_HAPS[phase] = {
-        k:v for k,v in FEPS_EFS_NO_HAPS[phase].items() if not HAP_MATCHER_RE.match(k)
+        k:v for k,v in list(FEPS_EFS_NO_HAPS[phase].items()) if not HAP_MATCHER_RE.match(k)
     }
 
 class FepsEFLookup(BasicEFLookup):

@@ -93,7 +93,7 @@ def run(lookup_class):
             data.update({a: r})
         sys.stdout.write(json.dumps(data))
 
-    except Exception, e:
+    except Exception as e:
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             pya_scripting.utils.exit_with_msg(traceback.format_exc(), prefix="")
         else:
