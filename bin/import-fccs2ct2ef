@@ -85,7 +85,7 @@ def main():
         efg2ef_importer.write(args.ef_group_2_ef_output)
 
     except Exception, e:
-        scripting.utils.exit_with_msg(e.message + '\n\n' + traceback.format_exc())
+        scripting.utils.exit_with_msg(str(e) + '\n\n' + traceback.format_exc())
 
 if __name__ == "__main__":
     main()

@@ -97,4 +97,4 @@ def run(lookup_class):
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
             pya_scripting.utils.exit_with_msg(traceback.format_exc(), prefix="")
         else:
-            pya_scripting.utils.exit_with_msg(e.message)
+            pya_scripting.utils.exit_with_msg(str(e))
