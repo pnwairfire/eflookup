@@ -69,10 +69,10 @@ First, install pip (with sudo if necessary):
 
     apt-get install python-pip
 
-Then, to install, for example, v1.0.0, use the following (with
+Then, to install, for example, v1.0.1, use the following (with
 sudo if necessary):
 
-    pip install --trusted-host pypi.smoke.airfire.org -i http://pypi.smoke.airfire.org/simple eflookup==v1.0.0
+    pip install --trusted-host pypi.smoke.airfire.org -i http://pypi.smoke.airfire.org/simple eflookup==v1.0.1
 
 See the Development > Install Dependencies > Notes section, above, for
 notes on resolving pip and gdal issues.
