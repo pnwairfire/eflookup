@@ -18,7 +18,7 @@ setup(
         'bin/ct2ef'
     ],
     package_data={
-        'fccs2ef': ['data/*.csv']
+        'eflookup': ['fccs2ef/data/*.csv']
     },
     classifiers=[
         "Development Status :: 3 - Alpha",
