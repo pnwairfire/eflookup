@@ -1,11 +1,6 @@
 #!/usr/bin/env python
 
 """fepsef: returns FEPS style emissions factors
-
-Example calls:
- > ./bin/fepsef
- > ./bin/fepsef -p residual
- > ./bin/fepsef -p flaming -s CO2
 """
 
 __author__      = "Joel Dubowy"
@@ -36,9 +31,16 @@ OPTIONAL_OPTIONS = [
         'default': False
     }
 ]
+EXAMPLES_STRING = """
+Example calls:
+ $ ./bin/fepsef
+ $ ./bin/fepsef -p residual
+ $ ./bin/fepsef -p flaming -s CO2
+ """
 
 def main():
-    parser, args = pya_scripting.args.parse_args([], OPTIONAL_OPTIONS)
+    parser, args = pya_scripting.args.parse_args([], OPTIONAL_OPTIONS,
+        epilog=EXAMPLES_STRING)
 
     try:
         look_up = FepsEFLookup(include_haps=args.include_haps_polutants)

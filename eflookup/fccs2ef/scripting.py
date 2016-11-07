@@ -62,9 +62,9 @@ POSITIONAL_ARGS = [
     }
 ]
 
-def run(lookup_class):
+def run(lookup_class, examples_string=None):
     parser, args = pya_scripting.args.parse_args([], OPTIONAL_OPTIONS,
-        positional_args=POSITIONAL_ARGS)
+        positional_args=POSITIONAL_ARGS, epilog=examples_string)
     if len(args.id) == 0:
 
         pya_scripting.utils.exit_with_msg(
