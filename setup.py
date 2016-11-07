@@ -15,7 +15,8 @@ setup(
     packages=find_packages(),
     scripts=[
         'bin/fccs2ef',
-        'bin/ct2ef'
+        'bin/ct2ef',
+        'bin/fepsef',
     ],
     package_data={
         'eflookup': ['fccs2ef/data/*.csv']
