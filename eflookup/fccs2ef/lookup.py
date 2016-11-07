@@ -53,6 +53,12 @@ class SingleCoverTypeEfLookup(dict):
 
     def __init__(self, is_rx, ef_groups, cover_type_2_ef_group,
             ef_group_2_ef_loader, ef_group_2_ef):
+        ################################ TEMP ################################
+        # WF data are bad; until they are replaced, use RX data for everything
+        # TODO: switch back to WF data once they are corrected
+        is_rx = True  #is_rx
+        ################################ TEMP ################################
+
         self.update({
             Phase.RESIDUAL: {
                 FuelCategory.WOODY: ef_group_2_ef_loader.get_woody_rsc(),

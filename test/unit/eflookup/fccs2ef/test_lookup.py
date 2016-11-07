@@ -235,7 +235,13 @@ class Fccs2EfAndCoverType2EfBase(LookUpTestBase):
 
     def test_load_and_getitem_wf(self, tmpdir):
         lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, False)
-        self._test_load_and_getitem(tmpdir, lu, self.EXPECTED_FCCS_10_CT_130_WF, self.F_S_R_ID, self.R_ID)
+        ################################ TEMP ################################
+        # WF data are bad; until they are replaced, use RX data for everything
+        # TODO: switch back to WF data once they are corrected
+        self._test_load_and_getitem(tmpdir, lu,
+            self.EXPECTED_FCCS_10_CT_130_RX, #self.EXPECTED_FCCS_10_CT_130_WF,
+            self.F_S_R_ID, self.R_ID)
+        ################################ TEMP ################################
 
     def test_load_and_getitem_rx(self, tmpdir):
         lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, True)
@@ -243,7 +249,13 @@ class Fccs2EfAndCoverType2EfBase(LookUpTestBase):
 
     def test_load_and_get_wf(self, tmpdir):
         lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, False)
-        self._test_load_and_get(tmpdir, lu, self.EXPECTED_FCCS_10_CT_130_WF, self.F_S_R_ID, self.R_ID)
+        ################################ TEMP ################################
+        # WF data are bad; until they are replaced, use RX data for everything
+        # TODO: switch back to WF data once they are corrected
+        self._test_load_and_get(tmpdir, lu,
+            self.EXPECTED_FCCS_10_CT_130_RX, #self.EXPECTED_FCCS_10_CT_130_WF,
+            self.F_S_R_ID, self.R_ID)
+        ################################ TEMP ################################
 
     def test_load_and_get_rx(self, tmpdir):
         lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, True)
@@ -330,7 +342,12 @@ class TestLookUp(LookUpTestBase):
 
     def test_load_and_get_wf(self, tmpdir):
         lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, False)
-        self._test_load_and_get(tmpdir, lu, self.EXPECTED_FCCS_10_CT_130_WF)
+        ################################ TEMP ################################
+        # WF data are bad; until they are replaced, use RX data for everything
+        # TODO: switch back to WF data once they are corrected
+        self._test_load_and_get(tmpdir, lu,
+            self.EXPECTED_FCCS_10_CT_130_RX) #self.EXPECTED_FCCS_10_CT_130_WF)
+        ################################ TEMP ################################
 
     def test_load_and_get_rx(self, tmpdir):
         lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, True)
