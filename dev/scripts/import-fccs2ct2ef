@@ -64,13 +64,13 @@ REQUIRED_OPTIONS = [
 ]
 EXAMPLES_STRING = """
 Example calls:
- $ ./bin/import-fccs2ef \\
+ $ ./dev/scripts/import-fccs2ct2ef \\
     -a ./input-data/fccs_loadings.csv \\
     -b ./input-data/EFGroup_byCoverType.csv \\
     -c ./input-data/EFbyGroup_English.csv    \\
-    -x ./fccs2ef/data/fccs2covertype.csv \\
-    -y ./fccs2ef/data/covertype2efgroup.csv \\
-    -z ./fccs2ef/data/efgroup2ef.csv
+    -x ./eflookup/fccs2ef/data/fccs2covertype.csv \\
+    -y ./eflookup/fccs2ef/data/covertype2efgroup.csv \\
+    -z ./eflookup/fccs2ef/data/efgroup2ef.csv
  """
 
 def main():
