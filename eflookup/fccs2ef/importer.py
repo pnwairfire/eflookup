@@ -127,6 +127,8 @@ class EfGroup2EfImporter(ImporterBase):
             csv_writer.writerow(['Pollutant','Formula'] + list(range(1,self._num_groups+1)))
             for m in self._mappings:
                 m = [e.strip() for e in m]
-                # convert EFs from g/kg to lbs/ton
-                m[2:] = [str(float(e) / 2.0) for e in m[2:]]
-                csv_writer.writerow([e.strip() for e in m])
+                # TODO: confirm that the EFs are already in lbs/ton;
+                #   otherwise, convert from g/kg to lbs/ton by
+                #   multiplying by 2  (since 1 g/kg == 2 lbs/ton)
+                #      m[2:] = [str(float(e) * 2.0) for e in m[2:]]
+                csv_writer.writerow(m)
