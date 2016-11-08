@@ -9,7 +9,11 @@ import json
 import logging
 import sys
 
-from pyairfire import scripting as pya_scripting
+from afscripting import (
+    args as scripting_args,
+    utils as scripting_utils
+)
+
 from eflookup.fepsef import FepsEFLookup
 
 OPTIONAL_OPTIONS = [
@@ -39,7 +43,7 @@ Example calls:
  """
 
 def main():
-    parser, args = pya_scripting.args.parse_args([], OPTIONAL_OPTIONS,
+    parser, args = scripting_args.parse_args([], OPTIONAL_OPTIONS,
         epilog=EXAMPLES_STRING)
 
     try:
@@ -53,9 +57,9 @@ def main():
 
     except Exception as e:
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-            pya_scripting.utils.exit_with_msg(traceback.format_exc(), prefix="")
+            scripting_utils.exit_with_msg(traceback.format_exc(), prefix="")
         else:
-            pya_scripting.utils.exit_with_msg(str(e))
+            scripting_utils.exit_with_msg(str(e))
 
 if __name__ == "__main__":
     main()

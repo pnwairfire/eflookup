@@ -12,7 +12,10 @@ import logging
 import sys
 import traceback
 
-from pyairfire import scripting
+from afscripting import (
+    args as scripting_args,
+    utils as scripting_utils
+)
 
 from eflookup.fccs2ef.importer import (
     Fccs2CoverTypeImporter, CoverType2EfGroupImporter, EfGroup2EfImporter
@@ -74,7 +77,7 @@ Example calls:
  """
 
 def main():
-    parser, args = scripting.args.parse_args(REQUIRED_OPTIONS, [],
+    parser, args = scripting_args.parse_args(REQUIRED_OPTIONS, [],
         epilog=EXAMPLES_STRING)
 
     try:
@@ -86,7 +89,7 @@ def main():
         efg2ef_importer.write(args.ef_group_2_ef_output)
 
     except Exception as e:
-        scripting.utils.exit_with_msg(str(e) + '\n\n' + traceback.format_exc())
+        scripting_utils.exit_with_msg(str(e) + '\n\n' + traceback.format_exc())
 
 if __name__ == "__main__":
     main()

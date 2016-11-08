@@ -9,7 +9,10 @@ import sys
 import traceback
 from optparse import OptionParser
 
-from pyairfire import scripting as pya_scripting
+from afscripting import (
+    args as scripting_args,
+    utils as scripting_utils
+)
 
 from eflookup.fccs2ef.lookup import LookUp
 
@@ -63,11 +66,11 @@ POSITIONAL_ARGS = [
 ]
 
 def run(lookup_class, examples_string=None):
-    parser, args = pya_scripting.args.parse_args([], OPTIONAL_OPTIONS,
+    parser, args = scripting_args.parse_args([], OPTIONAL_OPTIONS,
         positional_args=POSITIONAL_ARGS, epilog=examples_string)
     if len(args.id) == 0:
 
-        pya_scripting.utils.exit_with_msg(
+        scripting_utils.exit_with_msg(
             "Specify one or more %s ids" % (lookup_class.__name__.replace('2Ef','')),
             extra_output=lambda: parser.print_help())
 
@@ -95,6 +98,6 @@ def run(lookup_class, examples_string=None):
 
     except Exception as e:
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
-            pya_scripting.utils.exit_with_msg(traceback.format_exc(), prefix="")
+            scripting_utils.exit_with_msg(traceback.format_exc(), prefix="")
         else:
-            pya_scripting.utils.exit_with_msg(str(e))
+            scripting_utils.exit_with_msg(str(e))
