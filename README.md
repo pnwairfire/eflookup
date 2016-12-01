@@ -165,7 +165,7 @@ And then access the EFs with ```get```:
 
 There's only one look-up class for FEPS style EFs.  It has one option: to include
 or exclude HAPS (hazardous air pollutants) chemical species; the default is to
-#exclude them.  The following example includes them, but the usage is identical if
+exclude them.  The following example includes them, but the usage is identical if
 they are excluded.
 
 First, import and instantiate:
