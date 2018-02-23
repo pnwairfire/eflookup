@@ -31,49 +31,49 @@ REQUIRED_OPTIONS = [
         'short': "-a",
         'long': "--fccs-2-cover-type-input",
         'help': "csv containing mappings of FCCS fuelbed id to cover type id",
-        'metavar': "FILE"
+        'metavar': "FILE",
+        'default': "./input-data/orig-fccs2covertype.csv"
     },
     {
         'short': "-b",
         'long': "--cover-type-2-ef-group-input",
         'help': "csv containing mappings of cover type id to emission factor group",
-        'metavar': "FILE"
+        'metavar': "FILE",
+        'default': "./input-data/orig-covertype2efgroup.csv"
     },
     {
         'short': "-c",
         'long': "--ef-group-2-ef-input",
         'help': "csv containing mappings of emission factor group to emission factors set",
-        'metavar': "FILE"
+        'metavar': "FILE",
+        'default': "./input-data/EFbyGroup_English.csv"
     },
     # output Files
     {
         'short': "-x",
         'long': "--fccs-2-cover-type-output",
         'help': "Name of new, pruned and encoded fccs-2-covert-type csv",
-        'metavar': "FILE"
+        'metavar': "FILE",
+        'default': "./eflookup/fccs2ef/data/fccs2covertype.csv"
     },
     {
         'short': "-y",
         'long': "--cover-type-2-ef-group-output",
         'help': "Name of new, pruned and encoded cover-type-2-ef-group csv",
-        'metavar': "FILE"
+        'metavar': "FILE",
+        'default': "./eflookup/fccs2ef/data/covertype2efgroup.csv"
     },
     {
         'short': "-z",
         'long': "--ef-group-2-ef-output",
         'help': "Name of new, pruned and encoded ef-group-2-ef csv",
-        'metavar': "FILE"
+        'metavar': "FILE",
+        'default': "./eflookup/fccs2ef/data/efgroup2ef.csv"
     }
 ]
 EXAMPLES_STRING = """
 Example calls:
- $ ./dev/scripts/import-fccs2ct2ef \\
-    -a ./input-data/orig-fccs2covertype.csv \\
-    -b ./input-data/orig-covertype2efgroup.csv \\
-    -c ./input-data/EFbyGroup_English.csv    \\
-    -x ./eflookup/fccs2ef/data/fccs2covertype.csv \\
-    -y ./eflookup/fccs2ef/data/covertype2efgroup.csv \\
-    -z ./eflookup/fccs2ef/data/efgroup2ef.csv
+ $ ./dev/scripts/import-fccs2ct2ef
  """
 
 def main():
