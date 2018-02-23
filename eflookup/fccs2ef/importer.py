@@ -87,7 +87,7 @@ class Fccs2CoverTypeImporter(ImporterBase):
 
 class CoverType2EfGroupImporter(ImporterBase):
 
-    EF_GROUP_EXTRACTOR = re.compile('^[ ]*(\d+):')
+    EF_GROUP_EXTRACTOR = re.compile('^[ ]*(\d+(-\d+)?):')
     def _extract_ef_group_id(self, val):
         m = self.EF_GROUP_EXTRACTOR.search(val.strip())
         if m:
@@ -97,14 +97,15 @@ class CoverType2EfGroupImporter(ImporterBase):
     def _process_row(self, row):
         wf = self._extract_ef_group_id(row[2])
         rx = self._extract_ef_group_id(row[3])
-        self._mappings.append((row[0], wf, rx))
+        regionalrx = self._extract_ef_group_id(row[4])
+        self._mappings.append((row[0], wf, rx, regionalrx))
 
     def write(self, output_file_name):
         with open(output_file_name, 'wt') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
             csv_writer.writerow([
-                'cover_type_id','wf','rx'
+                'cover_type_id','wf','rx', 'regionalrx'
             ])
             for m in sorted(self._mappings, key=lambda a: a[0]):
                 csvfile.write("%s\n" % (','.join(m)))
