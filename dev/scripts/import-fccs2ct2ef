@@ -68,7 +68,7 @@ REQUIRED_OPTIONS = [
 EXAMPLES_STRING = """
 Example calls:
  $ ./dev/scripts/import-fccs2ct2ef \\
-    -a ./input-data/fccs_loadings.csv \\
+    -a ./input-data/orig-fccs2covertype.csv \\
     -b ./input-data/EFGroup_byCoverType.csv \\
     -c ./input-data/EFbyGroup_English.csv    \\
     -x ./eflookup/fccs2ef/data/fccs2covertype.csv \\

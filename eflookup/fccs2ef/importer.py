@@ -49,12 +49,16 @@ class ImporterBase(object):
         pass
 
 class Fccs2CoverTypeImporter(ImporterBase):
-    """Fccs2CoverType imports FCCS to cover type mappings from the consume
-    module's fccs_loadings.csv output
+    """Fccs2CoverType imports FCCS to cover type mappings
+
+    Due to changes in the input file (orig-fccs2covertype.csv)
+    which made it match the internal fccs2covertype.csv file,
+    this class doesn't do anything other than clean up the csv data,
+    removing any unused columns.
     """
 
-    FCCS_ID_COLUMN_HEADER = 'fuelbed_number'
-    COVER_TYPE_COLUMN_HEADER = 'cover_type'
+    FCCS_ID_COLUMN_HEADER = 'fccs_id'
+    COVER_TYPE_COLUMN_HEADER = 'cover_type_id'
 
     def _process_headers(self, csv_reader):
         # skip first line, which looks like
