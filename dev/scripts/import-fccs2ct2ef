@@ -25,7 +25,9 @@ from eflookup.fccs2ef.importer import (
 # positional arguments, I prefer using 'options' flags, even though this
 # means that there are required 'options', which is oxymoronic.
 
-REQUIRED_OPTIONS = [
+REQUIRED_OPTIONS = []
+
+OPTIONAL_OPTIONS = [
     # Input files
     {
         'short': "-a",
@@ -77,8 +79,8 @@ Example calls:
  """
 
 def main():
-    parser, args = scripting_args.parse_args(REQUIRED_OPTIONS, [],
-        epilog=EXAMPLES_STRING)
+    parser, args = scripting_args.parse_args(REQUIRED_OPTIONS,
+        OPTIONAL_OPTIONS, epilog=EXAMPLES_STRING)
 
     try:
         fccs2ct_import = Fccs2CoverTypeImporter(args.fccs_2_cover_type_input)
