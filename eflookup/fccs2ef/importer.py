@@ -116,11 +116,14 @@ class EfGroup2EfImporter(ImporterBase):
 
     def _process_headers(self, csv_reader):
         # skip first line, which looks like:
-        #  'Units = lb/ton,,Group 1,Group 2,Group 3,Group 4,Group 5,Group 6,Group 7,Group 8'
+        #  'g/kg,,Urbanski + Liu (1-8),,,,,,,,Revised (9-32),,,,,,,,,,,,,,,,,,,,,,,,,,'
         next(csv_reader)
         # skip second line, which looks like:
-        #  'Pollutant,Formula,Southeastern Forest,Boreal Forest,Western Forest - Rx,Western Forest - WF,Shrubland,Grassland,Woody RSC,Duff RSC'
-        self._num_groups = len(next(csv_reader)) - 2
+        #  ',,SE pine,Boreal,Rx NW Conifer,WF NW Conifer,W Shrub,Grass,Residual CWD,Residual Duff,SE grass F/S,SE Grass F,SE Grass S,SE Hdwd F/S,SE Hdwd F,SE Hdwd S,SE Pine F/S,SE Pine F,SE Pine S,SE Shrub F/S,SE Shrub F,SE Shrub S,W MC F/S,W MC F,W MC S,W Grass F/S,W Grass F,W Grass S,W Hdwd F/S,W Hdwd F,W Hdwd S,W Shrub F/S,W Shrub F,W Shrub S,Boreal F/S,Boreal F,Boreal S'
+        next(csv_reader)
+        # leave the third line, which looks like:
+        #  'Pollutant,Formula,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35'
+        # since it's the header we want
 
     def _process_row(self, row):
         self._mappings.append(row)
@@ -129,7 +132,6 @@ class EfGroup2EfImporter(ImporterBase):
         with open(output_file_name, 'wt') as csvfile:
             csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-            csv_writer.writerow(['Pollutant','Formula'] + list(range(1,self._num_groups+1)))
             for m in self._mappings:
                 m = [e.strip() for e in m]
                 # TODO: confirm that the EFs are already in lbs/ton;
