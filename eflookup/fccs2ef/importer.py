@@ -61,9 +61,6 @@ class Fccs2CoverTypeImporter(ImporterBase):
     COVER_TYPE_COLUMN_HEADER = 'cover_type_id'
 
     def _process_headers(self, csv_reader):
-        # skip first line, which looks like
-        #  'GeneratorName=FCCS 3.0,GeneratorVersion=3.0.0,DateCreated=11/14/2014'
-        next(csv_reader)
         header_row = next(csv_reader)
         self._headers = dict([(header_row[i], i) for i in range(len(header_row))])
 
