@@ -48,7 +48,7 @@ OPTIONAL_OPTIONS = [
         'long': "--ef-group-2-ef-input",
         'help': "csv containing mappings of emission factor group to emission factors set",
         'metavar': "FILE",
-        'default': "./input-data/EFbyGroup_English.csv"
+        'default': "./input-data/orig-efgroup2ef.csv"
     },
     # output Files
     {
