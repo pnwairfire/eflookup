@@ -6,7 +6,8 @@ distributions
 __author__      = "Joel Dubowy"
 
 from eflookup.fccs2ef.importer import (
-    Fccs2CoverTypeImporter, CoverType2EfGroupImporter, EfGroup2EfImporter
+    Fccs2CoverTypeImporter, CoverType2EfGroupImporter,
+    EfGroup2EfImporter, EFGroupByCatPhaseImporter
 )
 
 # TODO: put this in base class, add base class 'test_import' method, remove
@@ -106,4 +107,23 @@ PM2.5,PM2.5,12.58,21.5,17.57,26,7.06,8.51,33,35.3,12.08,,,14.32,,,29.43,17.56,49
 
     def test_import(self, tmpdir):
         run_test(tmpdir, self.INPUT_CONTENT, EfGroup2EfImporter,
+            self.EXPECTED_OUTPUT)
+
+
+class TestEfGroup2EfImporter:
+    """Top level functional test for importing
+    """
+
+    INPUT_CONTENT = """Note: This mapping should be used along with EF Group by FB to assign EFs.,,,,"CO2, CH4","CO, NOx, NH3, SO2, PM25","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, NH3, PM2.5","NOx, SO2","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, PM2.5","NOx, NH3, SO2","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, PM25","NOx, NH3, SO2","CO2, CO, CH4, NH3, PM25","NOx, SO2","CO2, CO, CH4, NH3, PM25","NOx, SO2","CO2, CO, CH4",,"Most of the time, the emissions module will use these rules (but see exceptions)",,,These are just for reference purposes.,,,,,,,,,,EF Group,CO2,CO,CH4,NOx,NH3,SO2,PM2.5,
+Consume output variable,Category,CombustionPhase,Generic Assignment,9-11: SE Grass,9-11: SE Grass,12-14: SE Hdwd,12-14: SE Hdwd,15-17: SE Pine,15-17: SE Pine,18-20: SE Shrub,18-20: SE Shrub,21-23: W MC,21-23: W MC,24-26: W Grass,24-26: W Grass,27-29: W Hdwd,27-29: W Hdwd,30-32: W Shrub,30-32: W Shrub,30-32: W Shrub,30-32: W Shrub,33-35: Boreal,,Simplified Rules,EF Group,,Group #,# Cover Type,Note,,,,,,,SE grass F/S,9,1700,70.2,2.67,3.26,1.2,0.97,12.08,
+C_over_crown_F,Overstory tree crowns,Flaming,General (1-6),10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33,,All outputs except for below:,Flaming/Short-term smoldering EF Groups 1-6,,1,Southeastern Forest,Assigned by fuelbed,,,,,,,SE Grass F,10,1710,,2.42,,,,,
+C_over_crown_S,Overstory tree crowns,Smoldering,General (1-6),11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34,,,,,2,Boreal Forest,Assigned by fuelbed,,,,,,,SE Grass S,11,1538,,5.4,,,,,
+C_over_crown_R,Overstory tree crowns,Residual,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,,C_wood_S1000hr_R,Woody RSC (7),,3,Western Forest - Rx,Assigned by fuelbed and burn type (prescribed or wildfire),,,,,,,SE Hdwd F/S,12,1688,78.9,2.42,2.43,1.79,0.63,14.32,
+"""
+
+    EXPECTED_OUTPUT = """
+"""
+
+    def test_import(self, tmpdir):
+        run_test(tmpdir, self.INPUT_CONTENT, EFGroupByCatPhaseImporter,
             self.EXPECTED_OUTPUT)

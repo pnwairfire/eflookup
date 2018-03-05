@@ -18,7 +18,8 @@ from afscripting import (
 )
 
 from eflookup.fccs2ef.importer import (
-    Fccs2CoverTypeImporter, CoverType2EfGroupImporter, EfGroup2EfImporter
+    Fccs2CoverTypeImporter, CoverType2EfGroupImporter,
+    EfGroup2EfImporter, EFGroupByCatPhaseImporter
 )
 
 # Note: though some argue that all required parameters should be specified as
@@ -50,27 +51,37 @@ OPTIONAL_OPTIONS = [
         'metavar': "FILE",
         'default': "./input-data/orig-efgroup2ef.csv"
     },
+    {
+        'short': "-d",
+        'long': "--ef-group-by-cat-phase-input",
+        'help': "csv containing ....",
+        'metavar': "FILE",
+        'default': "./input-data/orig-EFGroupByCatPhase.csv"
+    },
     # output Files
     {
-        'short': "-x",
         'long': "--fccs-2-cover-type-output",
         'help': "Name of new, pruned and encoded fccs-2-covert-type csv",
         'metavar': "FILE",
         'default': "./eflookup/fccs2ef/data/fccs2covertype.csv"
     },
     {
-        'short': "-y",
         'long': "--cover-type-2-ef-group-output",
         'help': "Name of new, pruned and encoded cover-type-2-ef-group csv",
         'metavar': "FILE",
         'default': "./eflookup/fccs2ef/data/covertype2efgroup.csv"
     },
     {
-        'short': "-z",
         'long': "--ef-group-2-ef-output",
         'help': "Name of new, pruned and encoded ef-group-2-ef csv",
         'metavar': "FILE",
         'default': "./eflookup/fccs2ef/data/efgroup2ef.csv"
+    },
+    {
+        'long': "--ef-group-by-cat-phase-output",
+        'help': "Name of new ef-group-by-cat-phase csv",
+        'metavar': "FILE",
+        'default': "./eflookup/fccs2ef/data/EFGroupByCatPhase.csv"
     }
 ]
 EXAMPLES_STRING = """
@@ -89,6 +100,8 @@ def main():
         ct2efg_importer.write(args.cover_type_2_ef_group_output)
         efg2ef_importer = EfGroup2EfImporter(args.ef_group_2_ef_input)
         efg2ef_importer.write(args.ef_group_2_ef_output)
+        efgbycatphase_importer = EFGroupByCatPhaseImporter(args.ef_group_by_cat_phase_input)
+        efgbycatphase_importer.write(args.ef_group_by_cat_phase_output)
 
     except Exception as e:
         scripting_utils.exit_with_msg(str(e) + '\n\n' + traceback.format_exc())

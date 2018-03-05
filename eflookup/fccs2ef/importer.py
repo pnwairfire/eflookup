@@ -136,3 +136,41 @@ class EfGroup2EfImporter(ImporterBase):
                 #   multiplying by 2  (since 1 g/kg == 2 lbs/ton)
                 #      m[2:] = [str(float(e) * 2.0) for e in m[2:]]
                 csv_writer.writerow(m)
+
+class EFGroupByCatPhaseImporter(ImporterBase):
+    """EFGroupByCatPhaseImporter: imports regional EF group assignments
+    for specific chemical species + consume category combinations.
+    """
+
+    def _process_headers(self, csv_reader):
+        # First row, We need to grab up through the last species set column
+        #  'Note: This mapping should be used along with EF Group by FB to assign EFs.,,,,"CO2, CH4","CO, NOx, NH3, SO2, PM25","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, NH3, PM2.5","NOx, SO2","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, PM2.5","NOx, NH3, SO2","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, PM25","NOx, NH3, SO2","CO2, CO, CH4, NH3, PM25","NOx, SO2","CO2, CO, CH4, NH3, PM25","NOx, SO2","CO2, CO, CH4",,"Most of the time, the emissions module will use these rules (but see exceptions)",,,These are just for reference purposes.,,,,,,,,,,EF Group,CO2,CO,CH4,NOx,NH3,SO2,PM2.5,'
+        first_row = []
+        reached_chem_species_sets = False
+        for i, e in eumerate(next(csv_reader)):
+            if i == 0:
+                # skip the note
+                continue
+
+
+
+        import pdb;pdb.set_trace()
+
+        # grab the same number of columns from second row
+        #  'Consume output variable,Category,CombustionPhase,Generic Assignment,9-11: SE Grass,9-11: SE Grass,12-14: SE Hdwd,12-14: SE Hdwd,15-17: SE Pine,15-17: SE Pine,18-20: SE Shrub,18-20: SE Shrub,21-23: W MC,21-23: W MC,24-26: W Grass,24-26: W Grass,27-29: W Hdwd,27-29: W Hdwd,30-32: W Shrub,30-32: W Shrub,30-32: W Shrub,30-32: W Shrub,33-35: Boreal,,Simplified Rules,EF Group,,Group #,# Cover Type,Note,,,,,,,SE grass F/S,9,1700,70.2,2.67,3.26,1.2,0.97,12.08,'
+        second_row = next_csv_reader()[len(first_row)]
+
+        # combine the two rows into single set of column headers
+        self._headers = []
+
+    def _process_row(self, row):
+        self._mappings.append(row)
+
+    def write(self, output_file_name):
+        with open(output_file_name, 'wt') as csvfile:
+            csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
+                quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+            csv_writer.writerow(self._headers)
+            for m in self._mappings:
+                m = ['' if e == 'N/A' else e for e in m]
+                csv_writer.writerow(m)
