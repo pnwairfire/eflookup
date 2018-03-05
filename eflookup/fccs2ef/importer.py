@@ -105,7 +105,7 @@ class CoverType2EfGroupImporter(ImporterBase):
                 'cover_type_id','wf','rx', 'regionalrx'
             ])
             for m in sorted(self._mappings, key=lambda a: a[0]):
-                csvfile.write("%s\n" % (','.join(m)))
+                csvfile.write("%s\n" % (','.join([e or '' for e in m])))
 
 class EfGroup2EfImporter(ImporterBase):
     """EfGroup2EfImporter: imports grouped emission factor
