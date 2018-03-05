@@ -75,7 +75,7 @@ OPTIONAL_OPTIONS = [
 ]
 EXAMPLES_STRING = """
 Example calls:
- $ ./dev/scripts/import-fccs2ct2ef
+ $ ./dev/scripts/import-fccs2ct2ef --log-level=DEBUG
  """
 
 def main():
