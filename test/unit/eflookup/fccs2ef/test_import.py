@@ -119,9 +119,16 @@ Consume output variable,Category,CombustionPhase,Generic Assignment,9-11: SE Gra
 C_over_crown_F,Overstory tree crowns,Flaming,General (1-6),10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33,,All outputs except for below:,Flaming/Short-term smoldering EF Groups 1-6,,1,Southeastern Forest,Assigned by fuelbed,,,,,,,SE Grass F,10,1710,,2.42,,,,,
 C_over_crown_S,Overstory tree crowns,Smoldering,General (1-6),11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34,,,,,2,Boreal Forest,Assigned by fuelbed,,,,,,,SE Grass S,11,1538,,5.4,,,,,
 C_over_crown_R,Overstory tree crowns,Residual,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,,C_wood_S1000hr_R,Woody RSC (7),,3,Western Forest - Rx,Assigned by fuelbed and burn type (prescribed or wildfire),,,,,,,SE Hdwd F/S,12,1688,78.9,2.42,2.43,1.79,0.63,14.32,
+C_mid_crown_F,Midstory tree crowns,Flaming,General (1-6),10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33,,C_wood_R1000hr_R,Woody RSC (7),,4,Western Forest - WF,Assigned by fuelbed and burn type (prescribed or wildfire),,,,,,,SE Hdwd F,13,1702,68.6,1.92,,,,,
+C_snagc3_R,Class 3 snag wood,Residual,Woody RSC (7),7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
 """
 
-    EXPECTED_OUTPUT = """
+    EXPECTED_OUTPUT = """consume_output_variable,category,combustion_phase,generic_assignment,"9-11:CO2,CH4","9-11:CO,NOx,NH3,SO2,PM25","12-14:CO2,CO,CH4","12-14:NOx,NH3,SO2,PM25","15-17:CO2,CO,CH4,NH3,PM2.5","15-17:NOx,SO2","18-20:CO2,CO,CH4","18-20:NOx,NH3,SO2,PM25","21-23:CO2,CO,CH4,PM2.5","21-23:NOx,NH3,SO2","24-26:CO2,CO,CH4","24-26:NOx,NH3,SO2,PM25","27-29:CO2,CO,CH4,PM25","27-29:NOx,NH3,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","33-35:CO2,CO,CH4"
+C_over_crown_F,Overstory tree crowns,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+C_over_crown_S,Overstory tree crowns,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+C_over_crown_R,Overstory tree crowns,Residual,,,,,,,,,,,,,,,,,,,,
+C_mid_crown_F,Midstory tree crowns,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+C_snagc3_R,Class 3 snag wood,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
 """
 
     def test_import(self, tmpdir):

@@ -140,31 +140,77 @@ class EfGroup2EfImporter(ImporterBase):
 class EFGroupByCatPhaseImporter(ImporterBase):
     """EFGroupByCatPhaseImporter: imports regional EF group assignments
     for specific chemical species + consume category combinations.
+
+    TODO: skip 'Category' column, and maybe 'CombustionPhase' as well
     """
+
+    HEADER_TRANSLATIONS = {
+        "Consume output variable": "consume_output_variable",
+        "Category": "category",
+        "CombustionPhase": "combustion_phase",
+        "Generic Assignment": "generic_assignment"
+    }
+
+    SECOND_ROW_HEADER_PROCESSOR = re.compile(':.*')
 
     def _process_headers(self, csv_reader):
         # First row, We need to grab up through the last species set column
         #  'Note: This mapping should be used along with EF Group by FB to assign EFs.,,,,"CO2, CH4","CO, NOx, NH3, SO2, PM25","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, NH3, PM2.5","NOx, SO2","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, PM2.5","NOx, NH3, SO2","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, PM25","NOx, NH3, SO2","CO2, CO, CH4, NH3, PM25","NOx, SO2","CO2, CO, CH4, NH3, PM25","NOx, SO2","CO2, CO, CH4",,"Most of the time, the emissions module will use these rules (but see exceptions)",,,These are just for reference purposes.,,,,,,,,,,EF Group,CO2,CO,CH4,NOx,NH3,SO2,PM2.5,'
         first_row = []
         reached_chem_species_sets = False
-        for i, e in eumerate(next(csv_reader)):
+        for i, e in enumerate(next(csv_reader)):
             if i == 0:
-                # skip the note
+                # don't record the 'Note: ...'
+                first_row.append('')
                 continue
+            if not e and reached_chem_species_sets:
+                # we've reaced the end of data that we want to record
+                break
+            first_row.append(e)
+            if e:
+                reached_chem_species_sets = True
 
-
-
-        import pdb;pdb.set_trace()
+        self.num_headers = len(first_row)
 
         # grab the same number of columns from second row
         #  'Consume output variable,Category,CombustionPhase,Generic Assignment,9-11: SE Grass,9-11: SE Grass,12-14: SE Hdwd,12-14: SE Hdwd,15-17: SE Pine,15-17: SE Pine,18-20: SE Shrub,18-20: SE Shrub,21-23: W MC,21-23: W MC,24-26: W Grass,24-26: W Grass,27-29: W Hdwd,27-29: W Hdwd,30-32: W Shrub,30-32: W Shrub,30-32: W Shrub,30-32: W Shrub,33-35: Boreal,,Simplified Rules,EF Group,,Group #,# Cover Type,Note,,,,,,,SE grass F/S,9,1700,70.2,2.67,3.26,1.2,0.97,12.08,'
-        second_row = next_csv_reader()[len(first_row)]
+        second_row = next(csv_reader)[:self.num_headers]
 
         # combine the two rows into single set of column headers
         self._headers = []
+        for i in range(len(first_row)):
+
+            if not first_row[i]:
+                backup_val = second_row[i].replace(' ', '_').lower()
+                self._headers.append(self.HEADER_TRANSLATIONS.get(
+                    second_row[i], backup_val))
+            else:
+                # This is the case where the first row column val is something
+                # like "CO2, CH4", and the second column val is something
+                # like "9-11: SE Grass"
+                first_row_val = first_row[i].replace(' ', '')
+                second_row_val = self.SECOND_ROW_HEADER_PROCESSOR.sub(
+                    ':', second_row[i])
+                self._headers.append(second_row_val + first_row_val)
 
     def _process_row(self, row):
-        self._mappings.append(row)
+        self._mappings.append(row[:self.num_headers])
+
+
+    # extracts number range (e.g. "General (1-6)" -> '1-6')
+    # and scalar number values (e.g. 'Woody RSC (7)' -> '7')
+    NUMBER_RANGE_EXTRACTOR = m = re.compile('.*\(([0-9-]+)\)*')
+    def _process_value(self, val):
+        # conver 'N/A' values to empty strings and strip
+        # number range out of values like "General (1-6)"
+        if val == 'N/A':
+            return ''
+
+        m = self.NUMBER_RANGE_EXTRACTOR.search(val)
+        if m:
+            return m.group(1)
+
+        return val
 
     def write(self, output_file_name):
         with open(output_file_name, 'wt') as csvfile:
@@ -172,5 +218,5 @@ class EFGroupByCatPhaseImporter(ImporterBase):
                 quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
             csv_writer.writerow(self._headers)
             for m in self._mappings:
-                m = ['' if e == 'N/A' else e for e in m]
+                m = [self._process_value(e) for e in m]
                 csv_writer.writerow(m)
