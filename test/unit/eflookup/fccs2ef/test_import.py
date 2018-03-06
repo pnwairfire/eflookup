@@ -7,7 +7,7 @@ __author__      = "Joel Dubowy"
 
 from eflookup.fccs2ef.importer import (
     Fccs2CoverTypeImporter, CoverType2EfGroupImporter,
-    EfGroup2EfImporter, EFGroupByCatPhaseImporter
+    EfGroup2EfImporter, CatPhase2EFGroupImporter
 )
 
 # TODO: put this in base class, add base class 'test_import' method, remove
@@ -132,5 +132,5 @@ C_snagc3_R,Class 3 snag wood,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
 """
 
     def test_import(self, tmpdir):
-        run_test(tmpdir, self.INPUT_CONTENT, EFGroupByCatPhaseImporter,
+        run_test(tmpdir, self.INPUT_CONTENT, CatPhase2EFGroupImporter,
             self.EXPECTED_OUTPUT)

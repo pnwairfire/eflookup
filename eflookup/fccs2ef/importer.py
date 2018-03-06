@@ -107,38 +107,8 @@ class CoverType2EfGroupImporter(ImporterBase):
             for m in sorted(self._mappings, key=lambda a: a[0]):
                 csvfile.write("%s\n" % (','.join([e or '' for e in m])))
 
-class EfGroup2EfImporter(ImporterBase):
-    """EfGroup2EfImporter: imports grouped emission factor
-    """
-
-    def _process_headers(self, csv_reader):
-        # skip first line, which looks like:
-        #  'g/kg,,Urbanski + Liu (1-8),,,,,,,,Revised (9-32),,,,,,,,,,,,,,,,,,,,,,,,,,'
-        next(csv_reader)
-        # skip second line, which looks like:
-        #  ',,SE pine,Boreal,Rx NW Conifer,WF NW Conifer,W Shrub,Grass,Residual CWD,Residual Duff,SE grass F/S,SE Grass F,SE Grass S,SE Hdwd F/S,SE Hdwd F,SE Hdwd S,SE Pine F/S,SE Pine F,SE Pine S,SE Shrub F/S,SE Shrub F,SE Shrub S,W MC F/S,W MC F,W MC S,W Grass F/S,W Grass F,W Grass S,W Hdwd F/S,W Hdwd F,W Hdwd S,W Shrub F/S,W Shrub F,W Shrub S,Boreal F/S,Boreal F,Boreal S'
-        next(csv_reader)
-        # leave the third line, which looks like:
-        #  'Pollutant,Formula,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35'
-        # since it's the header we want
-
-    def _process_row(self, row):
-        self._mappings.append(row)
-
-    def write(self, output_file_name):
-        with open(output_file_name, 'wt') as csvfile:
-            csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
-                quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-            for m in self._mappings:
-                m = [e.strip() for e in m]
-                # TODO: confirm that the EFs are already in lbs/ton;
-                #   otherwise, convert from g/kg to lbs/ton by
-                #   multiplying by 2  (since 1 g/kg == 2 lbs/ton)
-                #      m[2:] = [str(float(e) * 2.0) for e in m[2:]]
-                csv_writer.writerow(m)
-
-class EFGroupByCatPhaseImporter(ImporterBase):
-    """EFGroupByCatPhaseImporter: imports regional EF group assignments
+class CatPhase2EFGroupImporter(ImporterBase):
+    """CatPhase2EFGroupImporter: imports regional EF group assignments
     for specific chemical species + consume category combinations.
 
     TODO: skip 'Category' column, and maybe 'CombustionPhase' as well
@@ -196,7 +166,6 @@ class EFGroupByCatPhaseImporter(ImporterBase):
     def _process_row(self, row):
         self._mappings.append(row[:self.num_headers])
 
-
     # extracts number range (e.g. "General (1-6)" -> '1-6')
     # and scalar number values (e.g. 'Woody RSC (7)' -> '7')
     NUMBER_RANGE_EXTRACTOR = m = re.compile('.*\(([0-9-]+)\)*')
@@ -219,4 +188,34 @@ class EFGroupByCatPhaseImporter(ImporterBase):
             csv_writer.writerow(self._headers)
             for m in self._mappings:
                 m = [self._process_value(e) for e in m]
+                csv_writer.writerow(m)
+
+class EfGroup2EfImporter(ImporterBase):
+    """EfGroup2EfImporter: imports grouped emission factor
+    """
+
+    def _process_headers(self, csv_reader):
+        # skip first line, which looks like:
+        #  'g/kg,,Urbanski + Liu (1-8),,,,,,,,Revised (9-32),,,,,,,,,,,,,,,,,,,,,,,,,,'
+        next(csv_reader)
+        # skip second line, which looks like:
+        #  ',,SE pine,Boreal,Rx NW Conifer,WF NW Conifer,W Shrub,Grass,Residual CWD,Residual Duff,SE grass F/S,SE Grass F,SE Grass S,SE Hdwd F/S,SE Hdwd F,SE Hdwd S,SE Pine F/S,SE Pine F,SE Pine S,SE Shrub F/S,SE Shrub F,SE Shrub S,W MC F/S,W MC F,W MC S,W Grass F/S,W Grass F,W Grass S,W Hdwd F/S,W Hdwd F,W Hdwd S,W Shrub F/S,W Shrub F,W Shrub S,Boreal F/S,Boreal F,Boreal S'
+        next(csv_reader)
+        # leave the third line, which looks like:
+        #  'Pollutant,Formula,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35'
+        # since it's the header we want
+
+    def _process_row(self, row):
+        self._mappings.append(row)
+
+    def write(self, output_file_name):
+        with open(output_file_name, 'wt') as csvfile:
+            csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
+                quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
+            for m in self._mappings:
+                m = [e.strip() for e in m]
+                # TODO: confirm that the EFs are already in lbs/ton;
+                #   otherwise, convert from g/kg to lbs/ton by
+                #   multiplying by 2  (since 1 g/kg == 2 lbs/ton)
+                #      m[2:] = [str(float(e) * 2.0) for e in m[2:]]
                 csv_writer.writerow(m)
