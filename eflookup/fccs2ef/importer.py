@@ -124,7 +124,6 @@ class CatPhase2EFGroupImporter(ImporterBase):
     SECOND_ROW_HEADER_PROCESSOR = re.compile(':.*$')
 
     def _process_first_header_row(self, csv_reader):
-
         # First row, We need to grab up through the last species set column
         #  'Note: This mapping should be used along with EF Group by FB to assign EFs.,,,,"CO2, CH4","CO, NOx, NH3, SO2, PM25","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, NH3, PM2.5","NOx, SO2","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, PM2.5","NOx, NH3, SO2","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, PM25","NOx, NH3, SO2","CO2, CO, CH4, NH3, PM25","NOx, SO2","CO2, CO, CH4, NH3, PM25","NOx, SO2","CO2, CO, CH4",,"Most of the time, the emissions module will use these rules (but see exceptions)",,,These are just for reference purposes.,,,,,,,,,,EF Group,CO2,CO,CH4,NOx,NH3,SO2,PM2.5,'
         self._first_row = []
@@ -134,11 +133,13 @@ class CatPhase2EFGroupImporter(ImporterBase):
                 # don't record the 'Note: ...'
                 self._first_row.append('')
                 continue
+
             if not e and self._first_chem_species_set_idx:
                 # we've reaced the end of data that we want to record
                 break
+
             self._first_row.append(e)
-            if e:
+            if e and not self._first_chem_species_set_idx:
                 self._first_chem_species_set_idx = i
 
         self._num_headers = len(self._first_row)
@@ -204,7 +205,7 @@ class CatPhase2EFGroupImporter(ImporterBase):
         if self._headers[idx] == 'consume_output_variable':
             return self.CONSUME_CATEGORY_PROCESSOR.sub('', val).lower()
 
-        return val
+        return val.lower()
 
     def write(self, output_file_name):
         with open(output_file_name, 'wt') as csvfile:
