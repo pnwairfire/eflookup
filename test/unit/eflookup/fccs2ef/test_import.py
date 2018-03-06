@@ -25,7 +25,7 @@ def run_test(tmpdir, input_content, importer_class, expected_output):
     assert expected_output == open(output_filename, 'r').read()
 
 
-class TestFccs2CoverTypeImporter:
+class TestFccs2CoverTypeImporter(object):
     """Top level functional test for importing fccs id to cover type mappings
     """
 
@@ -49,7 +49,7 @@ class TestFccs2CoverTypeImporter:
             self.EXPECTED_OUTPUT)
 
 
-class TestCoverType2EfGroupImporter:
+class TestCoverType2EfGroupImporter(object):
     """Top level functional test for importing cover type to ef group mappings
     """
 
@@ -79,7 +79,7 @@ class TestCoverType2EfGroupImporter:
             self.EXPECTED_OUTPUT)
 
 
-class TestCatPhase2EFGroupImporter:
+class TestCatPhase2EFGroupImporter(object):
     """Top level functional test for importing
     """
 
@@ -92,19 +92,19 @@ C_mid_crown_F,Midstory tree crowns,Flaming,General (1-6),10,9,13,12,16,15,19,18,
 C_snagc3_R,Class 3 snag wood,Residual,Woody RSC (7),7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
 """
 
-    EXPECTED_OUTPUT = """consume_output_variable,category,combustion_phase,generic_assignment,"9-11:CO2,CH4","9-11:CO,NOx,NH3,SO2,PM25","12-14:CO2,CO,CH4","12-14:NOx,NH3,SO2,PM25","15-17:CO2,CO,CH4,NH3,PM2.5","15-17:NOx,SO2","18-20:CO2,CO,CH4","18-20:NOx,NH3,SO2,PM25","21-23:CO2,CO,CH4,PM2.5","21-23:NOx,NH3,SO2","24-26:CO2,CO,CH4","24-26:NOx,NH3,SO2,PM25","27-29:CO2,CO,CH4,PM25","27-29:NOx,NH3,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","33-35:CO2,CO,CH4"
-C_over_crown_F,Overstory tree crowns,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_over_crown_S,Overstory tree crowns,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_over_crown_R,Overstory tree crowns,Residual,,,,,,,,,,,,,,,,,,,,
-C_mid_crown_F,Midstory tree crowns,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_snagc3_R,Class 3 snag wood,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+    EXPECTED_OUTPUT = """consume_output_variable,combustion_phase,generic_assignment,"9-11:CO2,CH4","9-11:CO,NOx,NH3,SO2,PM25","12-14:CO2,CO,CH4","12-14:NOx,NH3,SO2,PM25","15-17:CO2,CO,CH4,NH3,PM2.5","15-17:NOx,SO2","18-20:CO2,CO,CH4","18-20:NOx,NH3,SO2,PM25","21-23:CO2,CO,CH4,PM2.5","21-23:NOx,NH3,SO2","24-26:CO2,CO,CH4","24-26:NOx,NH3,SO2,PM25","27-29:CO2,CO,CH4,PM25","27-29:NOx,NH3,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","33-35:CO2,CO,CH4"
+c_over_crown,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_over_crown,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_over_crown,residual,,,,,,,,,,,,,,,,,,,,
+c_mid_crown,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_snagc3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
 """
 
     def test_import(self, tmpdir):
         run_test(tmpdir, self.INPUT_CONTENT, CatPhase2EFGroupImporter,
             self.EXPECTED_OUTPUT)
 
-class TestEfGroup2EfImporter:
+class TestEfGroup2EfImporter(object):
     """Top level functional test for importing ef group to emission factors mappings.
     """
 
