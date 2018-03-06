@@ -7,6 +7,7 @@ import abc
 import copy
 import csv
 import os
+import re
 
 __all__ = [
     'EFSetTypes',
@@ -49,9 +50,14 @@ class LoaderBase(object):
             self._process_headers(csv_reader)
             for row in csv_reader:
                 self._process_row(row)
+        self._post_load()
 
     @abc.abstractmethod
     def _process_row(self):
+        pass
+
+    def _post_load(self):
+        # override if there's any logic to execut after loading
         pass
 
     def get(self, key=None, default=None):
@@ -66,12 +72,50 @@ class Fccs2CoverTypeLoader(LoaderBase):
 class CoverType2EfGroupLoader(LoaderBase):
     FILE_NAME = os.path.dirname(__file__) + '/data/covertype2efgroup.csv'
 
-
     def _process_row(self, row):
         self._data[row[0]] = {
             EFSetTypes.FLAME_SMOLD_WF: row[1],
             EFSetTypes.FLAME_SMOLD_RX: row[2]
         }
+
+class CatPhase2EFGroupLoader(LoaderBase):
+    """Loads ef group assignment overrides, specific to
+    Consume category and chemical species.
+    """
+    FILE_NAME = os.path.dirname(__file__) + '/data/catphase2efgroup.csv'
+
+    REGION_SPECIES_MATCHER = re.compile('^[0-9-]+:.*$')
+    def _process_headers(self, csv_reader):
+        self._headers = next(csv_reader)
+        self._region_species_idxs = {}
+        self._data = {}
+        for i, h in enumerate(self._headers):
+            if h == 'consume_output_variable':
+                self._cat_phase_idx = i
+            elif self.REGION_SPECIES_MATCHER.match(h):
+                reg, species = h.split(':')
+                self._region_species_idxs[i] = {
+                    'region': reg,
+                    'species': species.split(',')
+                }
+                self._data[reg] = {}
+            # else, skip column
+
+    def _process_row(self, row):
+        consume_cat = row[self._cat_phase_idx]
+        for idx, d in self._region_species_idxs.items():
+            self._data[d['region']][consume_cat] = {
+                s: row[idx] for s in d['species'] if row[idx]
+            }
+
+    def _post_load(self):
+        for reg in self._data:
+            self._data[reg] = {k: v for k, v in self._data[reg].items() if v}
+
+    def get(self, region, cat_phase, species, default=None):
+        return copy.deepcopy(self._data.get(region, {}).get(
+            cat_phase).get(species, None))
+
 
 class EfGroup2EfLoader(LoaderBase):
     FILE_NAME = os.path.dirname(__file__) + '/data/efgroup2ef.csv'
