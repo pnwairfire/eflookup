@@ -1,109 +1,109 @@
-consume_output_variable,category,combustion_phase,generic_assignment,"9-11:CO2,CH4","9-11:CO,NOx,NH3,SO2,PM25","12-14:CO2,CO,CH4","12-14:NOx,NH3,SO2,PM25","15-17:CO2,CO,CH4,NH3,PM2.5","15-17:NOx,SO2","18-20:CO2,CO,CH4","18-20:NOx,NH3,SO2,PM25","21-23:CO2,CO,CH4,PM2.5","21-23:NOx,NH3,SO2","24-26:CO2,CO,CH4","24-26:NOx,NH3,SO2,PM25","27-29:CO2,CO,CH4,PM25","27-29:NOx,NH3,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","33-35:CO2,CO,CH4"
-C_over_crown_F,Overstory tree crowns,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_over_crown_S,Overstory tree crowns,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_over_crown_R,Overstory tree crowns,Residual,,,,,,,,,,,,,,,,,,,,
-C_mid_crown_F,Midstory tree crowns,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_mid_crown_S,Midstory tree crowns,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_mid_crown_R,Midstory tree crowns,Residual,,,,,,,,,,,,,,,,,,,,
-C_under_crown_F,Understory tree crowns,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_under_crown_S,Understory tree crowns,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_under_crown_R,Understory tree crowns,Residual,,,,,,,,,,,,,,,,,,,,
-C_snagc1f_crown_F,Class 1 snag with foliage crowns,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_snagc1f_crown_S,Class 1 snag with foliage crowns,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_snagc1f_crown_R,Class 1 snag with foliage crowns,Residual,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_snagc1f_wood_F,Class 1 snag with foliage wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_snagc1f_wood_S,Class 1 snag with foliage wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_snagc1f_wood_R,Class 1 snag with foliage wood,Residual,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_snagc1_F,Class 1 snag other wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_snagc1_S,Class 1 snag other wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_snagc1_R,Class 1 snag wood,Residual,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_snagc2_F,Class 2 snag wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_snagc2_S,Class 2 snag wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_snagc2_R,Class 2 snag wood,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-C_snagc3_F,Class 3 snag wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_snagc3_S,Class 3 snag wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_snagc3_R,Class 3 snag wood,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-C_ladder_F,Ladder fuel wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_ladder_S,Ladder fuels,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_ladder_R,Ladder fuel   ,Residual,,,,,,,,,,,,,,,,,,,,
-C_shrub_1live_F,Shrubs - live primary layer,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_shrub_1live_S,Shrubs - live primary layer,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_shrub_1live_R,Shrubs - live primary layer,Residual,,,,,,,,,,,,,,,,,,,,
-C_shrub_1dead_F,Shrubs - dead primary layer,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_shrub_1dead_S,Shrubs - dead primary layer,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_shrub_1dead_R,Shrubs - dead primary layer,Residual,,,,,,,,,,,,,,,,,,,,
-C_shrub_2live_F,Shrubs - live secondary layer,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_shrub_2live_S,Shrubs - live secondary layer,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_shrub_2live_R,Shrubs - live secondary layer,Residual,,,,,,,,,,,,,,,,,,,,
-C_shrub_2dead_F,Shrubs - dead secondary layer,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_shrub_2dead_S,Shrubs - dead secondary layer,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_shrub_2dead_R,Shrubs - dead secondary layer,Residual,,,,,,,,,,,,,,,,,,,,
-C_herb_1live_F,Herbs - live primary layer,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_herb_1live_S,Herbs - live primary layer,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_herb_1live_R,Herbs - live primary layer,Residual,,,,,,,,,,,,,,,,,,,,
-C_herb_1dead_F,Herbs - dead primary layer,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_herb_1dead_S,Herbs - dead primary layer,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_herb_1dead_R,Herbs - dead primary layer,Residual,,,,,,,,,,,,,,,,,,,,
-C_herb_2live_F,Herbs - live secondary layer,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_herb_2live_S,Herbs - live secondary layer,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_herb_2live_R,Herbs - live secondary layer,Residual,,,,,,,,,,,,,,,,,,,,
-C_herb_2dead_F,Herbs - dead secondary layer,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_herb_2dead_S,Herbs - dead secondary layer,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_herb_2dead_R,Herbs - dead secondary layer,Residual,,,,,,,,,,,,,,,,,,,,
-C_wood_1hr_F,1-hr downed wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_wood_1hr_S,1-hr downed wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_wood_1hr_R,1-hr downed wood,Residual,,,,,,,,,,,,,,,,,,,,
-C_wood_10hr_F,10-hr downed wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_wood_10hr_S,10-hr downed wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_wood_10hr_R,10-hr downed wood,Residual,,,,,,,,,,,,,,,,,,,,
-C_wood_100hr_F,100-hr downed wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_wood_100hr_S,100-hr downed wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_wood_100hr_R,100-hr downed wood,Residual,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_wood_S1000hr_F,Sound 1000-hr wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_wood_S1000hr_S,Sound 1000-hr wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_wood_S1000hr_R,Sound 1000-hr wood,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-C_wood_R1000hr_F,Rotten 1000-hr wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_wood_R1000hr_S,Rotten 1000-hr wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_wood_R1000hr_R,Rotten 1000-hr wood,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-C_wood_R10k_F,Rotten 10k-hr wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_wood_R10k_S,Rotten 10k-hr wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_wood_R10k_R,Rotten 10k-hr wood,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-C_wood_S10k_F,Sound 10k-hr wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_wood_S10k_S,Sound 10k-hr wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_wood_S10k_R,Sound 10k-hr wood,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-C_wood_+S10k_F,Sound >10k-hr wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_wood_+S10k_S,Sound >10k-hr wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_wood_+S10k_R,Sound >10k-hr wood,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-C_wood_+R10k_F,Rotten >10k-hr wood,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_wood_+R10k_S,Rotten >10k-hr wood,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_wood_+R10k_R,Rotten >10k-hr wood,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-C_stump_sound_F,Stumps - sound,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_stump_sound_S,Stumps - sound,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_stump_sound_R,Stumps - sound,Residual,,,,,,,,,,,,,,,,,,,,
-C_stump_rotten_F,Stumps - rotten,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_stump_rotten_S,Stumps - rotten,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_stump_rotten_R,Stumps - rotten,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-C_stump_lightered_F,Stumps - lightered,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_stump_lightered_S,Stumps - lightered,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_stump_lightered_R,Stumps - lightered,Residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-C_litter_F,Litter,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_litter_S,Litter,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_litter_R,Litter,Residual,,,,,,,,,,,,,,,,,,,,
-C_lichen_F,Ground lichen,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_lichen_S,Ground lichen,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_lichen_R,Ground lichen,Residual,,,,,,,,,,,,,,,,,,,,
-C_moss_F,Moss,Flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-C_moss_S,Moss,Smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-C_moss_R,Moss,Residual,,,,,,,,,,,,,,,,,,,,
-C_upperduff_F,Upper duff layer,Flaming,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
-C_upperduff_S,Upper duff layer,Smoldering,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
-C_upperduff_R,Upper duff layer,Residual,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
-C_lowerduff_F,Lower duff layer,Flaming,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
-C_lowerduff_S,Lower duff layer,Smoldering,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
-C_lowerduff_R,Lower duff layer,Residual,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
-C_BA_F,Basal accumulations,Flaming,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
-C_BA_S,Basal accumulations,Smoldering,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
-C_BA_R,Basal accumulations,Residual,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
-C_SM_F,Squirrel middens,Flaming,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
-C_SM_S,Squirrel middens,Smoldering,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
-C_SM_R,Squirrel middens,Residual,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+consume_output_variable,phase,generic_assignment,"9-11:CO2,CH4","9-11:CO,NOx,NH3,SO2,PM25","12-14:CO2,CO,CH4","12-14:NOx,NH3,SO2,PM25","15-17:CO2,CO,CH4,NH3,PM2.5","15-17:NOx,SO2","18-20:CO2,CO,CH4","18-20:NOx,NH3,SO2,PM25","21-23:CO2,CO,CH4,PM2.5","21-23:NOx,NH3,SO2","24-26:CO2,CO,CH4","24-26:NOx,NH3,SO2,PM25","27-29:CO2,CO,CH4,PM25","27-29:NOx,NH3,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","33-35:CO2,CO,CH4"
+c_over_crown,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_over_crown,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_over_crown,residual,,,,,,,,,,,,,,,,,,,,
+c_mid_crown,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_mid_crown,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_mid_crown,residual,,,,,,,,,,,,,,,,,,,,
+c_under_crown,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_under_crown,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_under_crown,residual,,,,,,,,,,,,,,,,,,,,
+c_snagc1f_crown,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_snagc1f_crown,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_snagc1f_crown,residual,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_snagc1f_wood,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_snagc1f_wood,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_snagc1f_wood,residual,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_snagc1,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_snagc1,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_snagc1,residual,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_snagc2,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_snagc2,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_snagc2,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+c_snagc3,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_snagc3,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_snagc3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+c_ladder,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_ladder,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_ladder,residual,,,,,,,,,,,,,,,,,,,,
+c_shrub_1live,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_shrub_1live,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_shrub_1live,residual,,,,,,,,,,,,,,,,,,,,
+c_shrub_1dead,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_shrub_1dead,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_shrub_1dead,residual,,,,,,,,,,,,,,,,,,,,
+c_shrub_2live,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_shrub_2live,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_shrub_2live,residual,,,,,,,,,,,,,,,,,,,,
+c_shrub_2dead,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_shrub_2dead,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_shrub_2dead,residual,,,,,,,,,,,,,,,,,,,,
+c_herb_1live,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_herb_1live,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_herb_1live,residual,,,,,,,,,,,,,,,,,,,,
+c_herb_1dead,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_herb_1dead,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_herb_1dead,residual,,,,,,,,,,,,,,,,,,,,
+c_herb_2live,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_herb_2live,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_herb_2live,residual,,,,,,,,,,,,,,,,,,,,
+c_herb_2dead,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_herb_2dead,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_herb_2dead,residual,,,,,,,,,,,,,,,,,,,,
+c_wood_1hr,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_wood_1hr,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_wood_1hr,residual,,,,,,,,,,,,,,,,,,,,
+c_wood_10hr,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_wood_10hr,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_wood_10hr,residual,,,,,,,,,,,,,,,,,,,,
+c_wood_100hr,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_wood_100hr,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_wood_100hr,residual,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_wood_s1000hr,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_wood_s1000hr,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_wood_s1000hr,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+c_wood_r1000hr,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_wood_r1000hr,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_wood_r1000hr,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+c_wood_r10k,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_wood_r10k,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_wood_r10k,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+c_wood_s10k,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_wood_s10k,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_wood_s10k,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+c_wood_+s10k,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_wood_+s10k,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_wood_+s10k,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+c_wood_+r10k,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_wood_+r10k,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_wood_+r10k,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+c_stump_sound,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_stump_sound,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_stump_sound,residual,,,,,,,,,,,,,,,,,,,,
+c_stump_rotten,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_stump_rotten,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_stump_rotten,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+c_stump_lightered,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_stump_lightered,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_stump_lightered,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
+c_litter,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_litter,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_litter,residual,,,,,,,,,,,,,,,,,,,,
+c_lichen,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_lichen,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_lichen,residual,,,,,,,,,,,,,,,,,,,,
+c_moss,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+c_moss,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+c_moss,residual,,,,,,,,,,,,,,,,,,,,
+c_upperduff,flaming,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+c_upperduff,smoldering,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+c_upperduff,residual,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+c_lowerduff,flaming,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+c_lowerduff,smoldering,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+c_lowerduff,residual,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+c_ba,flaming,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+c_ba,smoldering,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+c_ba,residual,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+c_sm,flaming,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+c_sm,smoldering,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
+c_sm,residual,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8
