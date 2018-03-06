@@ -92,7 +92,9 @@ class CatPhase2EFGroupLoader(LoaderBase):
         self._data = {}
         for i, h in enumerate(self._headers):
             if h == 'consume_output_variable':
-                self._cat_phase_idx = i
+                self._cat_idx = i
+            elif h == 'phase':
+                self._phase_idx = i
             elif self.REGION_SPECIES_MATCHER.match(h):
                 reg, species = h.split(':')
                 self._region_species_idxs[i] = {
@@ -103,14 +105,18 @@ class CatPhase2EFGroupLoader(LoaderBase):
             # else, skip column
 
     def _process_row(self, row):
-        consume_cat = row[self._cat_phase_idx]
+        consume_cat = row[self._cat_idx]
+        phase = row[self._phase_idx]
         for idx, d in self._region_species_idxs.items():
-            self._data[d['region']][consume_cat] = {
+            self._data[d['region']][consume_cat] = self._data[d['region']].get(consume_cat, {})
+            self._data[d['region']][consume_cat][phase] = {
                 s: row[idx] for s in d['species'] if row[idx]
             }
 
     def _post_load(self):
         for reg in self._data:
+            for cat in self._data[reg]:
+                self._data[reg][cat] = {k: v for k, v in self._data[reg][cat].items() if v}
             self._data[reg] = {k: v for k, v in self._data[reg].items() if v}
 
     def get(self, region, cat_phase, species, default=None):
