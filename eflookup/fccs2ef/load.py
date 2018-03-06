@@ -61,7 +61,8 @@ class LoaderBase(object):
         pass
 
     def get(self, key=None, default=None):
-        return copy.deepcopy(self._data)
+        return copy.deepcopy(
+            self._data.get(key, default) if key else self._data)
 
 class Fccs2CoverTypeLoader(LoaderBase):
     FILE_NAME = os.path.dirname(__file__) + '/data/fccs2covertype.csv'
