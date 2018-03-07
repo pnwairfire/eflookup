@@ -165,6 +165,7 @@ WITHOUT_HAPS = {
         'VOC': 0.04902680000000001
     }
 }
+
 class TestLookup:
 
     def test_without_haps(self):
