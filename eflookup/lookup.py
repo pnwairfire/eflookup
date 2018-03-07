@@ -49,9 +49,6 @@ class BasicEFLookup(dict):
         >>> lu.get()
         >>> lu.get(phase='flaming')
         >>> lu.get(phase='flaming', species='CO')
-        >>> lu.get()
-        >>> lu.get(phase='flaming')
-        >>> lu.get(phase='flaming', species='CO')
         """
         phase = keys.get('phase')
         species = keys.get('species')

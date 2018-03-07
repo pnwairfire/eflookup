@@ -180,7 +180,7 @@ class LookUp(object):
 
         Lookup Keys:
          - fccs_fuelbed_id -- FCCS fuelbed id
-         - cover_type_id -- FCCS fuelbed id
+         - cover_type_id -- Cover Type id
          - phase -- emissions factor set identifier ('flaming', 'smoldering',
             'residual')
          - fuel_category -- fuel category (ex. '100-hr fuels',
