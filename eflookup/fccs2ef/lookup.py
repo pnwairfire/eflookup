@@ -52,13 +52,17 @@ class SingleCoverTypeEfLookup(dict):
     """
 
     def __init__(self, is_rx, ef_groups, cover_type_2_ef_group,
-            ef_group_2_ef_loader, ef_group_2_ef):
-        ################################ TEMP ################################
-        # WF data are bad; until they are replaced, use RX data for everything
-        # TODO: switch back to WF data once they are corrected
-        is_rx = True  #is_rx
-        ################################ TEMP ################################
+            cat_phase_2_ef_group, ef_group_2_ef_loader, ef_group_2_ef):
+        """Constructor
 
+        Args
+         - is_rx -- wether or not it's a prescribed burn
+         - ef_groups -
+         - cover_type_2_ef_group
+         - cat_phase_2_ef_group
+         - ef_group_2_ef_loader
+         - ef_group_2_ef
+        """
         self.update({
             Phase.RESIDUAL: {
                 FuelCategory.WOODY: ef_group_2_ef_loader.get_woody_rsc(),
@@ -72,6 +76,7 @@ class SingleCoverTypeEfLookup(dict):
                 Phase.FLAMING: ef_group_2_ef[ef_groups[ef_set_type]],
                 Phase.SMOLDERING: ef_group_2_ef[ef_groups[ef_set_type]]
             })
+        self._cat_phase_2_ef_group = cat_phase_2_ef_group
 
     def get(self, **keys):
         """Looks up and returns cover type specific emission factors
@@ -155,14 +160,15 @@ class LookUp(object):
          - ef_group_2_ef_file --
         """
         self.is_rx = is_rx
-        self._fccs_2_cover_type = Fccs2CoverTypeLoader(file_name=options.get(
-            'fccs_2_cover_type_file')).get()
-        self._cover_type_2_ef_group = CoverType2EfGroupLoader(file_name=options.get(
-            'cover_type_2_ef_group_file')).get()
-        self._ef_group_2_ef_loader = EfGroup2EfLoader(file_name=options.get(
-            'ef_group_2_ef_file'))
+        self._fccs_2_cover_type = Fccs2CoverTypeLoader(
+            file_name=options.get('fccs_2_cover_type_file')).get()
+        self._cover_type_2_ef_group = CoverType2EfGroupLoader(
+            file_name=options.get('cover_type_2_ef_group_file')).get()
+        self._cat_phase_2_ef_group = EfGroup2EfLoader(
+            file_name=options.get('ef_group_2_ef_file')).get()
+        self._ef_group_2_ef_loader = EfGroup2EfLoader(
+            file_name=options.get('ef_group_2_ef_file'))
         self._ef_group_2_ef = self._ef_group_2_ef_loader.get()
-
         self.cover_type_look_ups = {}
 
     def get(self, **keys):
@@ -216,9 +222,11 @@ class LookUp(object):
 
             if cover_type_id not in self.cover_type_look_ups:
                 self.cover_type_look_ups[cover_type_id] = SingleCoverTypeEfLookup(
-                    self.is_rx, ef_groups, self._cover_type_2_ef_group,
-                    self._ef_group_2_ef_loader, self._ef_group_2_ef
-                )
+                    self.is_rx, ef_groups,
+                    self._cover_type_2_ef_group,
+                    self._cat_phase_2_ef_group,
+                    self._ef_group_2_ef_loader,
+                    self._ef_group_2_ef)
 
         except KeyError:
             return None
