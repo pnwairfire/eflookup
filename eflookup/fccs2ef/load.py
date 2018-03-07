@@ -105,19 +105,20 @@ class CatPhase2EFGroupLoader(LoaderBase):
             # else, skip column
 
     def _process_row(self, row):
-        consume_cat = row[self._cat_idx]
+        cat, sub_cat = row[self._cat_idx].split(':')
         phase = row[self._phase_idx]
         for idx, d in self._region_species_idxs.items():
-            self._data[d['region']][consume_cat] = self._data[d['region']].get(consume_cat, {})
-            self._data[d['region']][consume_cat][phase] = {
+            self._data[d['region']][cat] = self._data[d['region']].get(cat, {})
+            self._data[d['region']][cat][sub_cat] = self._data[d['region']][cat].get(sub_cat, {})
+            self._data[d['region']][cat][sub_cat][phase] = {
                 s: row[idx] or None for s in d['species']
             }
 
-    def _post_load(self):
-        for reg in self._data:
-            for cat in self._data[reg]:
-                self._data[reg][cat] = {k: v for k, v in self._data[reg][cat].items()}
-            self._data[reg] = {k: v for k, v in self._data[reg].items()}
+    # def _post_load(self):
+    #     for reg in self._data:
+    #         for cat in self._data[reg]:
+    #             self._data[reg][cat] = {k: v for k, v in self._data[reg][cat].items()}
+    #         self._data[reg] = {k: v for k, v in self._data[reg].items()}
 
     def get(self, region, cat_phase, species, default=None):
         return copy.deepcopy(self._data.get(region, {}).get(
