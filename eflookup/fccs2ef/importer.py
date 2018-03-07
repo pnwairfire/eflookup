@@ -192,11 +192,11 @@ class CatPhase2EFGroupImporter(ImporterBase):
     NUMBER_RANGE_EXTRACTOR = m = re.compile('.*\(([0-9-]+)\)*')
     CONSUME_CATEGORY_PROCESSOR = re.compile('_[FSR]{1}$')
     def _process_value(self, idx, val):
-        # conver 'N/A' values to empty strings and strip
-        # number range out of values like "General (1-6)"
+        # convert 'N/A' values to empty strings
         if val == 'N/A':
             return ''
 
+        # strip number range out of values like "General (1-6)"
         if self._headers[idx] == 'generic_assignment':
             m = self.NUMBER_RANGE_EXTRACTOR.search(val.strip())
             if m:

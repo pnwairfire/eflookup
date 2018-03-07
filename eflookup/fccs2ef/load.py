@@ -110,14 +110,14 @@ class CatPhase2EFGroupLoader(LoaderBase):
         for idx, d in self._region_species_idxs.items():
             self._data[d['region']][consume_cat] = self._data[d['region']].get(consume_cat, {})
             self._data[d['region']][consume_cat][phase] = {
-                s: row[idx] for s in d['species'] if row[idx]
+                s: row[idx] or None for s in d['species']
             }
 
     def _post_load(self):
         for reg in self._data:
             for cat in self._data[reg]:
-                self._data[reg][cat] = {k: v for k, v in self._data[reg][cat].items() if v}
-            self._data[reg] = {k: v for k, v in self._data[reg].items() if v}
+                self._data[reg][cat] = {k: v for k, v in self._data[reg][cat].items()}
+            self._data[reg] = {k: v for k, v in self._data[reg].items()}
 
     def get(self, region, cat_phase, species, default=None):
         return copy.deepcopy(self._data.get(region, {}).get(

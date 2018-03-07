@@ -42,7 +42,8 @@ c_snagc3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
         '9-11': {
             'c_over_crown': {
                 'smoldering': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM25': '9', 'SO2': '9'},
-                'flaming': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM25': '9', 'SO2': '9'}
+                'flaming': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM25': '9', 'SO2': '9'},
+                'residual': {'CO': None, 'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
             },
             'c_mid_crown': {
                 'flaming': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM25': '9', 'SO2': '9'}
@@ -54,7 +55,8 @@ c_snagc3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
         '12-14': {
             'c_over_crown': {
                 'smoldering': {'NH3': '12', 'NOx': '12', 'PM25': '12', 'SO2': '12'},
-                'flaming': {'NH3': '12', 'NOx': '12', 'PM25': '12', 'SO2': '12'}
+                'flaming': {'NH3': '12', 'NOx': '12', 'PM25': '12', 'SO2': '12'},
+                'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
             },
             'c_mid_crown': {
                 'flaming': {'NH3': '12', 'NOx': '12', 'PM25': '12', 'SO2': '12'}
@@ -66,7 +68,8 @@ c_snagc3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
         '15-17': {
             'c_over_crown': {
                 'smoldering': {'NOx': '15', 'SO2': '15'},
-                'flaming': {'NOx': '15', 'SO2': '15'}
+                'flaming': {'NOx': '15', 'SO2': '15'},
+                'residual': {'NOx': None, 'SO2': None},
             },
             'c_mid_crown': {
                 'flaming': {'NOx': '15', 'SO2': '15'}
@@ -78,7 +81,8 @@ c_snagc3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
         '18-20': {
             'c_over_crown': {
                 'smoldering': {'NH3': '18', 'NOx': '18', 'PM25': '18', 'SO2': '18'},
-                'flaming': {'NH3': '18', 'NOx': '18', 'PM25': '18', 'SO2': '18'}
+                'flaming': {'NH3': '18', 'NOx': '18', 'PM25': '18', 'SO2': '18'},
+                'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
             },
             'c_mid_crown': {
                 'flaming': {'NH3': '18', 'NOx': '18', 'PM25': '18', 'SO2': '18'}
@@ -90,7 +94,8 @@ c_snagc3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
         '21-23': {
             'c_over_crown': {
                 'smoldering': {'NH3': '21', 'NOx': '21', 'SO2': '21'},
-                'flaming': {'NH3': '21', 'NOx': '21', 'SO2': '21'}
+                'flaming': {'NH3': '21', 'NOx': '21', 'SO2': '21'},
+                'residual': {'NH3': None, 'NOx': None, 'SO2': None},
             },
             'c_mid_crown': {
                 'flaming': {'NH3': '21', 'NOx': '21', 'SO2': '21'}
@@ -102,7 +107,8 @@ c_snagc3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
         '24-26': {
             'c_over_crown': {
                 'smoldering': {'NH3': '24', 'NOx': '24', 'PM25': '24', 'SO2': '24'},
-                'flaming': {'NH3': '24', 'NOx': '24', 'PM25': '24', 'SO2': '24'}
+                'flaming': {'NH3': '24', 'NOx': '24', 'PM25': '24', 'SO2': '24'},
+                'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
             },
             'c_mid_crown': {
                 'flaming': {'NH3': '24', 'NOx': '24', 'PM25': '24', 'SO2': '24'}
@@ -114,7 +120,8 @@ c_snagc3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
         '27-29': {
             'c_over_crown': {
                 'smoldering': {'NH3': '27', 'NOx': '27', 'SO2': '27'},
-                'flaming': {'NH3': '27', 'NOx': '27', 'SO2': '27'}
+                'flaming': {'NH3': '27', 'NOx': '27', 'SO2': '27'},
+                'residual': {'NH3': None, 'NOx': None, 'SO2': None},
             },
             'c_mid_crown': {
                 'flaming': {'NH3': '27', 'NOx': '27', 'SO2': '27'}
@@ -126,7 +133,8 @@ c_snagc3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
         '30-32': {
             'c_over_crown': {
                 'smoldering': {'NOx': '30', 'SO2': '30'},
-                'flaming': {'NOx': '30', 'SO2': '30'}
+                'flaming': {'NOx': '30', 'SO2': '30'},
+                'residual': {'NOx': None, 'SO2': None},
             },
             'c_mid_crown': {
                 'flaming': {'NOx': '30', 'SO2': '30'}
@@ -138,7 +146,8 @@ c_snagc3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
         '33-35': {
             'c_over_crown': {
                 'smoldering': {'CO': '34', 'CH4': '34', 'CO2': '34'},
-                'flaming': {'CO': '33', 'CH4': '33', 'CO2': '33'}
+                'flaming': {'CO': '33', 'CH4': '33', 'CO2': '33'},
+                'residual': {'CO': None, 'CH4': None, 'CO2': None},
             },
             'c_mid_crown': {
                 'flaming': {'CO': '33', 'CH4': '33', 'CO2': '33'}
