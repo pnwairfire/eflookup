@@ -21,24 +21,9 @@ from ..constants import CONSUME_FUEL_CATEGORY_TRANSLATIONS
 __all__ = [
     'Fccs2CoverTypeImporter',
     'CoverType2EfGroupImporter',
+    'CatPhase2EFGroupImporter',
     'EfGroup2EfImporter'
 ]
-
-
-class EFSetTypes(object):
-    """Enumeration representing ....
-
-    @note: only flaming/smoldering WF and Rx vary from cover type to cover type,
-    so only these two set types are specied here
-
-    @note: Future versions of python have an Enum class build in, added by
-    https://www.python.org/dev/peps/pep-0435/.  It's not worth requiring the
-    backport (https://pypi.python.org/pypi/enum34) here, though.
-    """
-    FLAME_SMOLD_WF = 1
-    FLAME_SMOLD_RX = 2
-    REGIONAL_RX = 3
-
 
 class ImporterBase(object):
 

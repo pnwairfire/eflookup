@@ -17,7 +17,6 @@ from .data import (
 )
 
 __all__ = [
-    'EFSetTypes',
     'Fccs2CoverType',
     'CoverType2EfGroup',
     'EfGroup2Ef'

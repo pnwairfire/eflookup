@@ -15,7 +15,6 @@ import abc
 
 from ..constants import Phase, CONSUME_FUEL_CATEGORY_TRANSLATIONS
 from .mappers import (
-    EFSetTypes,
     Fccs2CoverType,
     CoverType2EfGroup,
     CatPhase2EFGroup,
@@ -82,12 +81,12 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
             except KeyError:
                 raise ValueError("Invalid FCCS Id")
 
-        ef_set_type = EFSetTypes.FLAME_SMOLD_RX if is_rx else EFSetTypes.FLAME_SMOLD_WF
+        ef_set_type = 'rx' if is_rx else 'wf'
         cover_type_2_ef_group = CoverType2EfGroup()
         ef_groups = cover_type_2_ef_group.get(str(cover_type_id))
 
         self.ef_group = ef_groups[ef_set_type]
-        self.region = ef_groups[EFSetTypes.REGIONAL_RX]
+        self.region = ef_groups['regrx']
 
         self.ef_set = ef_group_2_ef_loader.get(self.ef_group)
         self.ef_set_residual_woody = ef_group_2_ef_loader.get_woody_rsc()
