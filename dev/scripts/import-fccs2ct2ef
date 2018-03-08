@@ -53,31 +53,6 @@ OPTIONAL_OPTIONS = [
         'help': "csv containing mappings of emission factor group to emission factors set",
         'metavar': "FILE",
         'default': "./input-data/orig-efgroup2ef.csv"
-    },
-    # output Files
-    {
-        'long': "--fccs-2-cover-type-output",
-        'help': "Name of new, pruned and encoded fccs-2-covert-type csv",
-        'metavar': "FILE",
-        'default': "./eflookup/fccs2ef/data/fccs2covertype.csv"
-    },
-    {
-        'long': "--cover-type-2-ef-group-output",
-        'help': "Name of new, pruned and encoded cover-type-2-ef-group csv",
-        'metavar': "FILE",
-        'default': "./eflookup/fccs2ef/data/covertype2efgroup.csv"
-    },
-    {
-        'long': "--cat-phase-2-ef-group-output",
-        'help': "Name of new ef-group-by-cat-phase csv",
-        'metavar': "FILE",
-        'default': "./eflookup/fccs2ef/data/catphase2efgroup.csv"
-    },
-    {
-        'long': "--ef-group-2-ef-output",
-        'help': "Name of new, pruned and encoded ef-group-2-ef csv",
-        'metavar': "FILE",
-        'default': "./eflookup/fccs2ef/data/efgroup2ef.csv"
     }
 ]
 EXAMPLES_STRING = """
@@ -90,14 +65,10 @@ def main():
         OPTIONAL_OPTIONS, epilog=EXAMPLES_STRING)
 
     try:
-        fccs2ct_import = Fccs2CoverTypeImporter(args.fccs_2_cover_type_input)
-        fccs2ct_import.write(args.fccs_2_cover_type_output)
-        ct2efg_importer = CoverType2EfGroupImporter(args.cover_type_2_ef_group_input)
-        ct2efg_importer.write(args.cover_type_2_ef_group_output)
-        efg2ef_importer = EfGroup2EfImporter(args.ef_group_2_ef_input)
-        efg2ef_importer.write(args.ef_group_2_ef_output)
-        catphase2efg_importer = CatPhase2EFGroupImporter(args.cat_phase_2_ef_group_input)
-        catphase2efg_importer.write(args.cat_phase_2_ef_group_output)
+        Fccs2CoverTypeImporter(args.fccs_2_cover_type_input).write()
+        CoverType2EfGroupImporter(args.cover_type_2_ef_group_input).write()
+        EfGroup2EfImporter(args.ef_group_2_ef_input).write()
+        CatPhase2EFGroupImporter(args.cat_phase_2_ef_group_input).write()
 
     except Exception as e:
         scripting_utils.exit_with_msg(str(e) + '\n\n' + traceback.format_exc())
