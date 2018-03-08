@@ -315,12 +315,17 @@ class EfGroup2EfImporter(ImporterBase):
         # skip second line, which looks like:
         #  ',,SE pine,Boreal,Rx NW Conifer,WF NW Conifer,W Shrub,Grass,Residual CWD,Residual Duff,SE grass F/S,SE Grass F,SE Grass S,SE Hdwd F/S,SE Hdwd F,SE Hdwd S,SE Pine F/S,SE Pine F,SE Pine S,SE Shrub F/S,SE Shrub F,SE Shrub S,W MC F/S,W MC F,W MC S,W Grass F/S,W Grass F,W Grass S,W Hdwd F/S,W Hdwd F,W Hdwd S,W Shrub F/S,W Shrub F,W Shrub S,Boreal F/S,Boreal F,Boreal S'
         next(csv_reader)
-        # leave the third line, which looks like:
+        # third line has hte headers we want
         #  'Pollutant,Formula,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35'
-        # since it's the header we want
+        self._headers = next(csv_reader)
+        for ef_group in self._headers[2:]:
+            self._data[ef_group] = {}
 
     def _process_row(self, row):
-        self._mappings.append([e.strip() for e in row])
+        species = row[1]
+        for i in range(2, len(self._headers)):
+            ef_group = self._headers[i]
+            self._data[ef_group][species] = row[i]
 
     def _default_file_name(self):
         return 'efgroup2ef.py'
