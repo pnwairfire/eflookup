@@ -95,7 +95,7 @@ __author__      = "Joel Dubowy"
 import copy
 import re
 
-from .lookup import Phase, FuelCategory, BasicEFLookup
+from .lookup import Phase, BasicEFLookup
 
 __all__ = [
     'FepsEFLookup'
