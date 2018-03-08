@@ -19,7 +19,6 @@ setup(
         'bin/fepsef',
     ],
     package_data={
-        'eflookup': ['fccs2ef/data/*.csv']
     },
     classifiers=[
         "Development Status :: 3 - Alpha",
