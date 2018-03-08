@@ -74,12 +74,18 @@ class SingleCoverTypeEfLookup(object):
          - ef_group_2_ef
         """
 
-        self.ef_groups = cover_type_2_ef_group[str(cover_type_id)]
-        self.ef_flame_smold_set_type = EFSetTypes.FLAME_SMOLD_RX if is_rx else EFSetTypes.FLAME_SMOLD_WF
-        self.ef_group_2_ef_loader = ef_group_2_ef_loader
+        ef_set_type = EFSetTypes.FLAME_SMOLD_RX if is_rx else EFSetTypes.FLAME_SMOLD_WF
+        ef_groups = cover_type_2_ef_group[str(cover_type_id)]
+        self.ef_group = ef_groups[ef_set_type]
+        self.region = ef_groups[EFSetTypes.REGIONAL_RX]
+
+        self.ef_set = ef_groups[self.ef_group]
+        self.ef_set_residual_woody = ef_group_2_ef_loader.get_woody_rsc()
+        self.ef_set_residual_duff = ef_group_2_ef_loader.get_duff_rsc()
+
+        self.ef_group_2_ef_loader =
         self.ef_group_2_ef = ef_group_2_ef
         self.cat_phase_2_ef_group = cat_phase_2_ef_group
-        self.region = self.ef_groups[EFSetTypes.REGIONAL_RX]
 
         # self.update({
         #     Phase.RESIDUAL: {
@@ -125,41 +131,55 @@ class SingleCoverTypeEfLookup(object):
             raise LookupError("Specify phase, fuel_category, "
                 "fuel_sub_category, and species")
 
-        ef_group = self.cat_phase_2_ef_group.get(phase, fuel_category,
-            fuel_sub_category, species, default=-1)
-        if ef_group = None:
-            # that indicates that there should be no emissions;
-            # so, return 0
-            return 0
-        elif ef == -1:
-            # Use non overrides
-            try:
+        override_ef_group = self.cat_phase_2_ef_group.get(phase,
+            fuel_category, fuel_sub_category, species, default=-1)
+
+        try:
+            if override_ef_group = None:
+                # 'None' is specified in overrides, which means indicates
+                # that there should be no emissions; so, return None
+                return None
+
+            elif override_ef_groupef_group == -1:
+                # Not specified in overrides. Use base assignment
                 if phase == Phase.RESIDUAL:
                     # TODO: return 0 unle it's woody or duff (based
                     #   on fuel catevory or sub category?) ???
-                    pass
+                    if self.is_woody(fuel_category, fuel_sub_category):
+                        return self.ef_set_residual_woody[species]
+                    elif self.is_duff(fuel_category, fuel_sub_category):
+                        return self.ef_set_residual_duff[species]
+                    else:
+                        return None
                 else:
-                    pass
-            except KeyError:
-                 return None
-        else:
-            try:
-                # return override value
-                return self.ef_group_2_ef[ef_group][species]
-            except KeyError:
-                 return None
+                    # flaming and smooldering use the saem EF
+                    self.ef_set[species]
 
+            else:
+                # return override value
+                return self.ef_groups[override_ef_group][species]
+
+        except KeyError:
+             return None
+
+    def is_woody(self, fuel_category, fuel_sub_category):
+        # TODO: implement
+        pass
+
+    def is_duff(self, fuel_category, fuel_sub_category):
+        # TODO: implement
+        pass
 
     def species(self, phase):
         # if phase not in self:
         #     return set()
 
         if phase == Phase.RESIDUAL:
-            woody_keys = self.ef_group_2_ef_loader.get_woody_rsc().keys()
-            duff_keys = self.ef_group_2_ef_loader.get_duff_rsc().keys()
+            woody_keys = self.ef_set_residual_woody.keys()
+            duff_keys = self.ef_set_residual_duff.keys()
             return set(woody_keys).union(duff_keys)
         else:
-            return set(self.ef_group_2_ef[ef_groups[ef_set_type]].keys())
+            return set(self.ef_set.keys())
 
 
 class BaseLookUp(object):
