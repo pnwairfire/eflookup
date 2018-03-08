@@ -11,13 +11,17 @@
 
 __author__      = "Joel Dubowy"
 
+import abc
+
 from ..constants import Phase, FuelCategory
 from .load import (
-    EFSetTypes, Fccs2CoverTypeLoader, CoverType2EfGroupLoader, EfGroup2EfLoader
+    EFSetTypes,
+    Fccs2CoverTypeLoader,
+    CoverType2EfGroupLoader,
+    EfGroup2EfLoader
 )
 
 __all__ = [
-    'LookUp',
     'Fccs2Ef',
     'CoverType2Ef'
 ]
@@ -143,7 +147,7 @@ class SingleCoverTypeEfLookup(dict):
             return set(self[phase].keys())
 
 
-class LookUp(object):
+class BaseLookUp(object):
     """Class for looking up emission factors for FCCS fuelbed types
     """
 
@@ -232,8 +236,56 @@ class LookUp(object):
 
         return self.cover_type_look_ups[cover_type_id].get(**keys)
 
+    @abc.abstractmethod
+    def get(self, identifier, phase=None, fuel_category=None,
+            fuel_sub_category=None, species=None):
+        pass
 
-class Fccs2Ef(LookUp):
+    # TODO: can we make this an abstract @property?
+    @abc.abstractmethod
+    def _top_level_mapping(self):
+        pass
+
+    def __getitem__(self, identifier):
+        """Enables bracket access, returning a dict containing emissions
+        factors information for the specified id (fccs_fuelbed_id
+        or cover_type_id, depending on the subclass).
+
+        The returned dict is of the form:
+
+            {
+                'flaming': {
+                    'shrub': {
+                        'secondary dead': {
+                            'CH3CH2OH': 123.23,
+                            ...
+                        },
+                        ...
+                    },
+                    ...
+                },
+                ...
+            }
+
+        Args:
+         - identifier -- FCCS fuelbed id or CoverType id
+
+        Example:
+        >>> LookUp()[118]
+        >>> LookUp()[121]['residual']['shrub']['secondary dead']['CO2']
+
+        Note: raises KeyError if cover_type_id is invalid.
+        """
+        key = str(cover_type_id)
+        if key not in self._top_level_mapping():
+            raise KeyError(key)
+        return self.get(key)
+
+
+class Fccs2Ef(BaseLookUp):
+
+    def _top_level_mapping(self):
+        return self._fccs_2_cover_type
 
     def get(self, fccs_fuelbed_id, phase=None, fuel_category=None,
             fuel_sub_category=None, species=None):
@@ -251,43 +303,14 @@ class Fccs2Ef(LookUp):
         Note: returns None if any of the arguments are invalid.
         """
         return super(Fccs2Ef, self).get(fccs_fuelbed_id=fccs_fuelbed_id,
-            phase=phase, fuel_category=fuel_category, species=species)
-
-    def __getitem__(self, fccs_fuelbed_id):
-        """Enables bracket access, returning a dict containing emissions
-        factors information for the specified fccs_fuelbed_id. The
-        returned dict is of the form:
-
-            {
-                'flaming': {
-                    'shrub': {
-                        'secondary dead': {
-                            'CH3CH2OH': 123.23,
-                            ...
-                        },
-                        ...
-                    },
-                    ...
-                },
-                ...
-            }
-
-        Args:
-         - fccs_fuelbed_id -- FCCS fuelbed id
-
-        Example:
-        >>> Fccs2Ef()[4]
-        >>> Fccs2Ef()[52]['residual']['shrub']['secondary dead']['CO2']
-
-        Note: raises KeyError if fccs_fuelbed_id is invalid.
-        """
-        key = str(fccs_fuelbed_id)
-        if key not in self._fccs_2_cover_type:
-            raise KeyError(key)
-        return self.get(key)
+            phase=phase, fuel_category=fuel_category,
+            fuel_sub_category=fuel_sub_category, species=species)
 
 
-class CoverType2Ef(LookUp):
+class CoverType2Ef(BaseLookUp):
+
+    def _top_level_mapping(self):
+        return self._cover_type_2_ef_group
 
     def get(self, cover_type_id, phase=None, fuel_category=None,
             fuel_sub_category=None, species=None):
@@ -305,37 +328,6 @@ class CoverType2Ef(LookUp):
         Note: returns None if any of the arguments are invalid.
         """
         return super(CoverType2Ef, self).get(cover_type_id=cover_type_id,
-            phase=phase, fuel_category=fuel_category, species=species)
+            phase=phase, fuel_category=fuel_category,
+            fuel_sub_category=fuel_sub_category, species=species)
 
-    def __getitem__(self, cover_type_id):
-        """Enables bracket access, returning a dict containing emissions
-        factors information for the specified covert_type_id. The
-        returned dict is of the form:
-
-            {
-                'flaming': {
-                    'shrub': {
-                        'secondary dead': {
-                            'CH3CH2OH': 123.23,
-                            ...
-                        },
-                        ...
-                    },
-                    ...
-                },
-                ...
-            }
-
-        Args:
-         - cover_type_id -- FCCS fuelbed id
-
-        Example:
-        >>> CoverType2Ef()[118]
-        >>> CoverType2Ef()[121]['residual']['shrub']['secondary dead']['CO2']
-
-        Note: raises KeyError if cover_type_id is invalid.
-        """
-        key = str(cover_type_id)
-        if key not in self._cover_type_2_ef_group:
-            raise KeyError(key)
-        return self.get(key)

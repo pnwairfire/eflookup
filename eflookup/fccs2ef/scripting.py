@@ -14,8 +14,6 @@ from afscripting import (
     utils as scripting_utils
 )
 
-from eflookup.fccs2ef.lookup import LookUp
-
 # Note: required parameters are specified as positional arguments
 
 OPTIONAL_OPTIONS = [
