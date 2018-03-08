@@ -16,10 +16,10 @@ import abc
 from ..constants import Phase, CONSUME_FUEL_CATEGORY_TRANSLATIONS
 from .load import (
     EFSetTypes,
-    Fccs2CoverTypeLoader,
-    CoverType2EfGroupLoader,
-    CatPhase2EFGroupLoader,
-    EfGroup2EfLoader
+    Fccs2CoverType,
+    CoverType2EfGroup,
+    CatPhase2EFGroup,
+    EfGroup2Ef
 )
 
 __all__ = [
@@ -60,24 +60,16 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
     """Class for looking up emission factors for FCCS fuelbed types
     """
 
-    def __init__(self, is_rx, **options):
+    def __init__(self, is_rx):
         """Constructor - reads FCCS-based emissions factors into dictionary
         for quick access.
 
         Args:
          - is_rx - set to True if a prescribed burn
-
-        Options:
-         - fccs_2_cover_type_file --
-         - cover_type_2_ef_group_file --
-         - cat_phase_2_ef_group_file --
-         - ef_group_2_ef_file --
         """
         self.is_rx = is_rx
-        self.cat_phase_2_ef_group = CatPhase2EFGroupLoader(
-            file_name=options.get('cat_phase_2_ef_group_file'))
-        ef_group_2_ef_loader = EfGroup2EfLoader(
-            file_name=options.get('ef_group_2_ef_file'))
+        self.cat_phase_2_ef_group = CatPhase2EFGroup()
+        ef_group_2_ef_loader = EfGroup2Ef()
 
         cover_type_id = getattr(self, 'cover_type_id', None)
         if not cover_type_id:
@@ -85,15 +77,13 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
                 # fccs_fuelbed_id should be a string, since it's not necessary
                 # numeric but cast to string in case user specified it as an integer
                 fccs_fuelbed_id = getattr(self, 'fccs_fuelbed_id')
-                fccs_2_cover_type = Fccs2CoverTypeLoader(
-                    file_name=options.get('fccs_2_cover_type_file'))
+                fccs_2_cover_type = Fccs2CoverType()
                 cover_type_id = fccs_2_cover_type.get(str(fccs_fuelbed_id))
             except KeyError:
                 raise ValueError("Invalid FCCS Id")
 
         ef_set_type = EFSetTypes.FLAME_SMOLD_RX if is_rx else EFSetTypes.FLAME_SMOLD_WF
-        cover_type_2_ef_group = CoverType2EfGroupLoader(
-            file_name=options.get('cover_type_2_ef_group_file'))
+        cover_type_2_ef_group = CoverType2EfGroup()
         ef_groups = cover_type_2_ef_group.get(str(cover_type_id))
 
         self.ef_group = ef_groups[ef_set_type]

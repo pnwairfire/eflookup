@@ -22,22 +22,6 @@ OPTIONAL_OPTIONS = [
         'help': "Is a prescribed burn",
         'action': 'store_true',
         'default': False
-    },
-    # Options to specify alternate data files
-    {
-        'long': '--fccs-2-cover-type-file',
-        'help': "csv containing mappings of FCCS fuelbed id to cover type id",
-        'metavar': "FILE"
-    },
-    {
-        'long': '--cover-type-2-ef-group-file',
-        'help': "csv containing mappings of cover type id to emission factor group",
-        'metavar': "FILE"
-    },
-    {
-        'long': "--ef-group-2-ef-file",
-        'help': "csv containing mappings of emission factor group to emission factors set",
-        'metavar': "FILE"
     }
 ]
 
