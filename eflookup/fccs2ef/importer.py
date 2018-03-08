@@ -68,7 +68,7 @@ class ImporterBase(object):
         # This is done so that the data python modules don't
         # change from one run of the import process to the next
         # when the underlying data hasn't changed
-        if isinstance(dict, data):
+        if isinstance(data, dict):
             for k in data:
                 data[k] = self._get_ordered_data(data[k])
             data = OrderedDict(sorted(data.items()))
