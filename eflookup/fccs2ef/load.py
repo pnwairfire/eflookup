@@ -29,6 +29,7 @@ class EFSetTypes(object):
     """
     FLAME_SMOLD_WF = 1
     FLAME_SMOLD_RX = 2
+    REGIONAL_RX = 3
 
 
 class LoaderBase(object):
@@ -85,7 +86,8 @@ class CoverType2EfGroupLoader(LoaderBase):
     def _process_row(self, row):
         self._data[row[0]] = {
             EFSetTypes.FLAME_SMOLD_WF: row[1],
-            EFSetTypes.FLAME_SMOLD_RX: row[2]
+            EFSetTypes.FLAME_SMOLD_RX: row[2],
+            EFSetTypes.REGIONAL_RX: row[2],
         }
 
 
