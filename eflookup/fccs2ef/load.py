@@ -9,10 +9,12 @@ import csv
 import os
 import re
 
-from .data.fccs2covertype import FCCS_2_COVERTYPE
-from .data.covertype2efgroup import COVERTYPE_2_EF_GROUP
-from .data.catphase2efgroup import CAT_PHASE_2_EF_GROUP
-from .data.catphase2efgroup import EF_GROUP_2_EF
+from .data import (
+    fccs2covertype,
+    covertype2efgroup,
+    catphase2efgroup,
+    efgroup2ef
+)
 
 __all__ = [
     'EFSetTypes',
@@ -21,7 +23,7 @@ __all__ = [
     'EfGroup2Ef'
 ]
 
-class MapperBase(object):
+class MapperBase(object, metaclass=abc.ABCMeta):
 
     def __init__(self):
         self._data = {}
@@ -37,23 +39,25 @@ class MapperBase(object):
 
 
 class Fccs2CoverType(MapperBase):
+
     def __init__(self):
-        self._data = FCCS_2_COVERTYPE
+        self._data = fccs2covertype.FCCS_2_COVERTYPE
 
 class CoverType2EfGroup(MapperBase):
+
     def __init__(self):
-        self._data = COVERTYPE_2_EF_GROUP
+        self._data = covertype2efgroup.COVERTYPE_2_EF_GROUP
 
 
 class CatPhase2EFGroup(MapperBase):
     def __init__(self):
-        self._data = CAT_PHASE_2_EF_GROUP
+        self._data = catphase2efgroup.CAT_PHASE_2_EF_GROUP
 
 
 class EfGroup2Ef(MapperBase):
 
     def __init__(self):
-        self._data = EF_GROUP_2_EF
+        self._data = efgroup2ef.EF_GROUP_2_EF
 
     WOODY_RSC_IDX = '7'
     DUFF_RSC_IDX = '8'
