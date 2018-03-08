@@ -55,40 +55,59 @@ _categorie_tuples = [
 VALID_FUEL_CATEGORIES = [e[0] for e in _categorie_tuples]
 VALID_FUEL_SUB_CATEGORIES = [e[1] for e in _categorie_tuples]
 
-class SingleCoverTypeEfLookup(object):
-    """Lookup class containing EFs for a single FCCS or cover type id
 
-    Objects of this class are passed to emissions
+class BaseLookUp(object, metaclass=abc.ABCMeta):
+    """Class for looking up emission factors for FCCS fuelbed types
     """
 
-    def __init__(self, cover_type_id, is_rx, cover_type_2_ef_group,
-            cat_phase_2_ef_group, ef_group_2_ef_loader):
-        """Constructor
+    def __init__(self, is_rx, **options):
+        """Constructor - reads FCCS-based emissions factors into dictionary
+        for quick access.
 
-        Args
-         - cover_type_id
-         - is_rx -- wether or not it's a prescribed burn
-         - cover_type_2_ef_group
-         - cat_phase_2_ef_group
-         - ef_group_2_ef_loader
+        Args:
+         - is_rx - set to True if a prescribed burn
+
+        Options:
+         - fccs_2_cover_type_file --
+         - cover_type_2_ef_group_file --
+         - cat_phase_2_ef_group_file --
+         - ef_group_2_ef_file --
         """
+        self.is_rx = is_rx
+        self.cat_phase_2_ef_group = CatPhase2EFGroupLoader(
+            file_name=options.get('cat_phase_2_ef_group_file'))
+        ef_group_2_ef_loader = EfGroup2EfLoader(
+            file_name=options.get('ef_group_2_ef_file'))
+
+        cover_type_id = getattr(self, 'cover_type_id', None)
+        if not cover_type_id:
+            try:
+                # fccs_fuelbed_id should be a string, since it's not necessary
+                # numeric but cast to string in case user specified it as an integer
+                fccs_fuelbed_id = getattr(self, 'fccs_fuelbed_id')
+                fccs_2_cover_type = Fccs2CoverTypeLoader(
+                    file_name=options.get('fccs_2_cover_type_file'))
+                cover_type_id = fccs_2_cover_type.get(str(fccs_fuelbed_id))
+            except KeyError:
+                raise ValueError("Invalid FCCS Id")
 
         ef_set_type = EFSetTypes.FLAME_SMOLD_RX if is_rx else EFSetTypes.FLAME_SMOLD_WF
-        ef_groups = cover_type_2_ef_group[str(cover_type_id)]
+        cover_type_2_ef_group = CoverType2EfGroupLoader(
+            file_name=options.get('cover_type_2_ef_group_file'))
+        ef_groups = cover_type_2_ef_group.get(str(cover_type_id))
 
         self.ef_group = ef_groups[ef_set_type]
         self.region = ef_groups[EFSetTypes.REGIONAL_RX]
 
-        self.ef_set = self._ef_group_2_ef_loader.get(self.ef_group)
+        self.ef_set = ef_group_2_ef_loader.get(self.ef_group)
         self.ef_set_residual_woody = ef_group_2_ef_loader.get_woody_rsc()
         self.ef_set_residual_duff = ef_group_2_ef_loader.get_duff_rsc()
 
-        self.cat_phase_2_ef_group = cat_phase_2_ef_group
 
-    def get(self, phase, fuel_category, fuel_sub_category, species):
+    def get(self, **kwargs):
         """Looks up and returns cover type specific emission factors
 
-        Lookup Keys:
+        Kwargs:
          - phase -- emissions factor set identifier ('flaming', 'smoldering',
             'residual')
          - fuel_category -- fuel category (ex. 'woody fuels', 'canopy', etc.)
@@ -105,13 +124,18 @@ class SingleCoverTypeEfLookup(object):
          - returns None if any of the arguments are invalid.
 
         Examples:
-        >>> lu = LookUp()
+        >>> lu = Fccs2Ef(52)
         >>> lu.get(phase='residual', fuel_category='canopy',
                 fuel_sub_category='overstory', species='CO2')
         """
-        if any([not e for e in (phase, fuel_category, fuel_sub_category, species)]):
+        if any([not kwargs.get(e) for e in ('phase', 'fuel_category', 'fuel_sub_category', 'species')]):
             raise LookupError("Specify phase, fuel_category, "
                 "fuel_sub_category, and species")
+
+        phase = kwargs.get('phase')
+        fuel_category = kwargs.get('fuel_category')
+        fuel_sub_category = kwargs.get('fuel_sub_category')
+        species = kwargs.get('species')
 
         override_ef_group = self.cat_phase_2_ef_group.get(phase,
             fuel_category, fuel_sub_category, species, default=-1)
@@ -122,7 +146,7 @@ class SingleCoverTypeEfLookup(object):
                 # that there should be no emissions; so, return None
                 return None
 
-            elif override_ef_groupef_group == -1:
+            elif override_ef_group == -1:
                 # Not specified in overrides. Use base assignment
                 if phase == Phase.RESIDUAL:
                     # TODO: return 0 unle it's woody or duff (based
@@ -162,77 +186,6 @@ class SingleCoverTypeEfLookup(object):
             return set(woody_keys).union(duff_keys)
         else:
             return set(self.ef_set.keys())
-
-class BaseLookUp(object, metaclass=abc.ABCMeta):
-    """Class for looking up emission factors for FCCS fuelbed types
-    """
-
-    def __init__(self, is_rx, **options):
-        """Constructor - reads FCCS-based emissions factors into dictionary
-        for quick access.
-
-        Args:
-         - is_rx - set to True if a prescribed burn
-
-        Options:
-         - fccs_2_cover_type_file --
-         - cover_type_2_ef_group_file --
-         - cat_phase_2_ef_group_file --
-         - ef_group_2_ef_file --
-        """
-        self.is_rx = is_rx
-        self._fccs_2_cover_type = Fccs2CoverTypeLoader(
-            file_name=options.get('fccs_2_cover_type_file')).get()
-        self._cover_type_2_ef_group = CoverType2EfGroupLoader(
-            file_name=options.get('cover_type_2_ef_group_file')).get()
-        self._cat_phase_2_ef_group = CatPhase2EFGroupLoader(
-            file_name=options.get('cat_phase_2_ef_group_file')).get()
-        self._ef_group_2_ef_loader = EfGroup2EfLoader(
-            file_name=options.get('ef_group_2_ef_file'))
-        self.cover_type_look_ups = {}
-
-    def get(self, **keys):
-        """Looks up and returns emissions factor info for the fccs fuelbed type
-        or cover type.
-
-        Delegates to SingleCoverTypeEfLookup, instantiated and memoized per
-        distinct cover type, to do most of the work.
-
-        Lookup Keys:
-
-        phase, fuel_category, fuel_sub_category, and species kwargs
-        are all required. They are specified as **keys to conform to
-        the eflookup..lookup.BasicEFLookup interface
-
-        Notes:
-         - returns None if any of the arguments are invalid.
-
-        Examples:
-        >>> lu = Fccs2Ef(52)
-        >>> lu.get(phase='residual', fuel_category='woody fuels',
-                fuel_sub_category='1-hr fuels' species='CO2')
-        """
-        try:
-            cover_type_id = getattr(self, 'cover_type_id', None)
-            if not cover_type_id:
-                # fccs_fuelbed_id should be a string, since it's not necessary
-                # numeric but cast to string in case user specified it as an integer
-                fccs_fuelbed_id = getattr(self, 'fccs_fuelbed_id')
-                cover_type_id = self._fccs_2_cover_type[str(fccs_fuelbed_id)]
-
-
-            if cover_type_id not in self.cover_type_look_ups:
-                self.cover_type_look_ups[cover_type_id] = SingleCoverTypeEfLookup(
-                    cover_type_id,
-                    self.is_rx,
-                    self._cover_type_2_ef_group,
-                    self._cat_phase_2_ef_group,
-                    self._ef_group_2_ef_loader)
-
-        except KeyError:
-            return None
-
-        return self.cover_type_look_ups[cover_type_id].get(**keys)
 
 
 class Fccs2Ef(BaseLookUp):
