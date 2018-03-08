@@ -3,7 +3,7 @@
 
 __author__      = "Joel Dubowy"
 
-from eflookup.fccs2ef.lookup import LookUp, Fccs2Ef, CoverType2Ef
+from eflookup.fccs2ef.lookup import BaseLookUp, Fccs2Ef, CoverType2Ef
 from py.test import raises
 
 FCCS_2_COVER_TYPE_DATA="""fccs_id,cover_type_id
@@ -265,8 +265,8 @@ class Fccs2EfAndCoverType2EfBase(LookUpTestBase):
 ## Actual Tests
 ##
 
-class TestLookUp(LookUpTestBase):
-    LOOKUP_CLASS = LookUp
+class TestBaseLookUp(LookUpTestBase):
+    LOOKUP_CLASS = BaseLookUp
 
     def _test_load_and_get(self, tmpdir, lu, f_s_r_expected):
 
