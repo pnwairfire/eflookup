@@ -3,6 +3,8 @@ scientists and writes data files formatted to be included in the package
 distributions
 """
 
+import re
+
 __author__      = "Joel Dubowy"
 
 from eflookup.fccs2ef.importer import (
@@ -19,10 +21,14 @@ def run_test(tmpdir, input_content, importer_class, expected_output):
     input_file.write(input_content)
     input_filename = str(input_file)
     output_filename = input_filename.replace('input', 'output')
-    importer_class(input_filename).write(output_filename)
+    importer_class(input_filename).write(output_file_name=output_filename)
     assert len(tmpdir.listdir()) == 2
     # TODO: assert that output_filename exists
-    assert expected_output == open(output_filename, 'r').read()
+    output_content = open(output_filename, 'r').read()
+    var_name = re.compile('([^=]+)=').search(output_content).group(1).strip()
+    exec(output_content)
+    output = locals()[var_name]
+    assert expected_output == output
 
 
 class TestFccs2CoverTypeImporter(object):
@@ -36,13 +42,13 @@ class TestFccs2CoverTypeImporter(object):
 3,136,,,
 4,118,,,
 """
-    EXPECTED_OUTPUT = """fccs_id,cover_type_id
-0,404
-1,13
-2,131
-3,136
-4,118
-"""
+    EXPECTED_OUTPUT = {
+        "0":"404",
+        "1":"13",
+        "2":"131",
+        "3":"136",
+        "4":"118"
+    }
 
     def test_import(self, tmpdir):
         run_test(tmpdir, self.INPUT_CONTENT, Fccs2CoverTypeImporter,
@@ -64,15 +70,15 @@ class TestCoverType2EfGroupImporter(object):
 """
 
     # Note: the output is ordered by FCCS Id
-    EXPECTED_OUTPUT = """cover_type_id,wf,rx,regionalrx
-1,6,6,24-26
-2,6,6,24-26
-3,6,6,24-26
-4,6,6,24-26
-5,6,6,24-26
-6,6,6,24-26
-7,5,5,30-32
-"""
+    EXPECTED_OUTPUT = {
+        "1": {"wf": "6", "rx": "6", "regrx": "24-26"},
+        "2": {"wf": "6", "rx": "6", "regrx": "24-26"},
+        "3": {"wf": "6", "rx": "6", "regrx": "24-26"},
+        "4": {"wf": "6", "rx": "6", "regrx": "24-26"},
+        "5": {"wf": "6", "rx": "6", "regrx": "24-26"},
+        "6": {"wf": "6", "rx": "6", "regrx": "24-26"},
+        "7": {"wf": "5", "rx": "5", "regrx": "30-32"}
+    }
 
     def test_import(self, tmpdir):
         run_test(tmpdir, self.INPUT_CONTENT, CoverType2EfGroupImporter,
@@ -96,13 +102,188 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
 ,,,CWD,C_snagc3_R,Class 3 snag wood,Residual,Woody RSC (7),7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,,"SE Hdwd (F, S)","CO2, CO, CH4",,Shrub,,,,,,,,,,,,,,,,,,
 """
 
-    EXPECTED_OUTPUT = """consume_output_variable,phase,generic_assignment,"9-11:CO2,CH4","9-11:CO,NOx,NH3,SO2,PM25","12-14:CO2,CO,CH4","12-14:NOx,NH3,SO2,PM25","15-17:CO2,CO,CH4,NH3,PM2.5","15-17:NOx,SO2","18-20:CO2,CO,CH4","18-20:NOx,NH3,SO2,PM25","21-23:CO2,CO,CH4,PM2.5","21-23:NOx,NH3,SO2","24-26:CO2,CO,CH4","24-26:NOx,NH3,SO2,PM25","27-29:CO2,CO,CH4,PM25","27-29:NOx,NH3,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","33-35:CO2,CO,CH4"
-canopy:overstory,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-canopy:overstory,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-canopy:overstory,residual,,,,,,,,,,,,,,,,,,,,
-canopy:midstory,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-canopy:snags class 3,residual,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7
-"""
+    EXPECTED_OUTPUT = {
+        '9-11': {
+            'canopy': {
+                'overstory': {
+                    'smoldering': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM25': '9', 'SO2': '9'},
+                    'flaming': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM25': '9', 'SO2': '9'},
+                    'residual': {'CO': None, 'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
+                },
+                'midstory': {
+                    'flaming': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM25': '9', 'SO2': '9'}
+                },
+                'snags class 3': {
+                    'residual': {'CO': '7', 'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                }
+            },
+            'nonwoody': {
+                'primary live': {
+                    'residual': {'CO': '7', 'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                }
+            }
+        },
+        '12-14': {
+            'canopy': {
+                'overstory': {
+                    'smoldering': {'NH3': '12', 'NOx': '12', 'PM25': '12', 'SO2': '12'},
+                    'flaming': {'NH3': '12', 'NOx': '12', 'PM25': '12', 'SO2': '12'},
+                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
+                },
+                'midstory': {
+                    'flaming': {'NH3': '12', 'NOx': '12', 'PM25': '12', 'SO2': '12'}
+                },
+                'snags class 3': {
+                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                }
+            },
+            'nonwoody': {
+                'primary live': {
+                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                }
+            }
+        },
+        '15-17': {
+            'canopy': {
+                'overstory': {
+                    'smoldering': {'NOx': '15', 'SO2': '15'},
+                    'flaming': {'NOx': '15', 'SO2': '15'},
+                    'residual': {'NOx': None, 'SO2': None},
+                },
+                'midstory': {
+                    'flaming': {'NOx': '15', 'SO2': '15'}
+                },
+                'snags class 3': {
+                    'residual': {'NOx': '7', 'SO2': '7'}
+                }
+            },
+            'nonwoody': {
+                'primary live': {
+                    'residual': {'NOx': '7', 'SO2': '7'}
+                }
+            }
+        },
+        '18-20': {
+            'canopy': {
+                'overstory': {
+                    'smoldering': {'NH3': '18', 'NOx': '18', 'PM25': '18', 'SO2': '18'},
+                    'flaming': {'NH3': '18', 'NOx': '18', 'PM25': '18', 'SO2': '18'},
+                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
+                },
+                'midstory': {
+                    'flaming': {'NH3': '18', 'NOx': '18', 'PM25': '18', 'SO2': '18'}
+                },
+                'snags class 3': {
+                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                }
+            },
+            'nonwoody': {
+                'primary live': {
+                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                }
+            }
+        },
+        '21-23': {
+            'canopy': {
+                'overstory': {
+                    'smoldering': {'NH3': '21', 'NOx': '21', 'SO2': '21'},
+                    'flaming': {'NH3': '21', 'NOx': '21', 'SO2': '21'},
+                    'residual': {'NH3': None, 'NOx': None, 'SO2': None},
+                },
+                'midstory': {
+                    'flaming': {'NH3': '21', 'NOx': '21', 'SO2': '21'}
+                },
+                'snags class 3': {
+                    'residual': {'NH3': '7', 'NOx': '7', 'SO2': '7'}
+                }
+            },
+            'nonwoody': {
+                'primary live': {
+                    'residual': {'NH3': '7', 'NOx': '7', 'SO2': '7'}
+                }
+            }
+        },
+        '24-26': {
+            'canopy': {
+                'overstory': {
+                    'smoldering': {'NH3': '24', 'NOx': '24', 'PM25': '24', 'SO2': '24'},
+                    'flaming': {'NH3': '24', 'NOx': '24', 'PM25': '24', 'SO2': '24'},
+                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
+                },
+                'midstory': {
+                    'flaming': {'NH3': '24', 'NOx': '24', 'PM25': '24', 'SO2': '24'}
+                },
+                'snags class 3': {
+                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                }
+            },
+            'nonwoody': {
+                'primary live': {
+                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                }
+            }
+        },
+        '27-29': {
+            'canopy': {
+                'overstory': {
+                    'smoldering': {'NH3': '27', 'NOx': '27', 'SO2': '27'},
+                    'flaming': {'NH3': '27', 'NOx': '27', 'SO2': '27'},
+                    'residual': {'NH3': None, 'NOx': None, 'SO2': None},
+                },
+                'midstory': {
+                    'flaming': {'NH3': '27', 'NOx': '27', 'SO2': '27'}
+                },
+                'snags class 3': {
+                    'residual': {'NH3': '7', 'NOx': '7', 'SO2': '7'}
+                }
+            },
+            'nonwoody': {
+                'primary live': {
+                    'residual': {'NH3': '7', 'NOx': '7', 'SO2': '7'}
+                }
+            }
+        },
+        '30-32': {
+            'canopy': {
+                'overstory': {
+                    'smoldering': {'NOx': '30', 'SO2': '30'},
+                    'flaming': {'NOx': '30', 'SO2': '30'},
+                    'residual': {'NOx': None, 'SO2': None},
+                },
+                'midstory': {
+                    'flaming': {'NOx': '30', 'SO2': '30'}
+                },
+                'snags class 3': {
+                    'residual': {'NOx': '7', 'SO2': '7'}
+                }
+            },
+            'nonwoody': {
+                'primary live': {
+                    'residual': {'NOx': '7', 'SO2': '7'}
+                }
+            }
+        },
+        '33-35': {
+            'canopy': {
+                'overstory': {
+                    'smoldering': {'CO': '34', 'CH4': '34', 'CO2': '34'},
+                    'flaming': {'CO': '33', 'CH4': '33', 'CO2': '33'},
+                    'residual': {'CO': None, 'CH4': None, 'CO2': None},
+                },
+                'midstory': {
+                    'flaming': {'CO': '33', 'CH4': '33', 'CO2': '33'}
+                },
+                'snags class 3': {
+                    'residual': {'CO': '7', 'CH4': '7', 'CO2': '7'}
+                }
+            },
+            'nonwoody': {
+                'primary live': {
+                    'residual': {'CO': '7', 'CH4': '7', 'CO2': '7'}
+                }
+            }
+        }
+    }
 
     def test_import(self, tmpdir):
         run_test(tmpdir, self.INPUT_CONTENT, CatPhase2EFGroupImporter,

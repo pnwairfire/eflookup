@@ -226,6 +226,36 @@ class CatPhase2EFGroupImporter(ImporterBase):
                     ':', self._second_row[i])
                 self._headers.append(second_row_val + self._first_row_val)
 
+    # From old loader class
+    # REGION_SPECIES_MATCHER = re.compile('^[0-9-]+:.*$')
+    # def _process_headers(self, csv_reader):
+    #     self._headers = next(csv_reader)
+    #     self._region_species_idxs = {}
+    #     self._data = {}
+    #     for i, h in enumerate(self._headers):
+    #         if h == 'consume_output_variable':
+    #             self._cat_idx = i
+    #         elif h == 'phase':
+    #             self._phase_idx = i
+    #         elif self.REGION_SPECIES_MATCHER.match(h):
+    #             reg, species = h.split(':')
+    #             self._region_species_idxs[i] = {
+    #                 'region': reg,
+    #                 'species': species.split(',')
+    #             }
+    #             self._data[reg] = {}
+    #         # else, skip column
+
+    # def _process_row(self, row):
+    #     cat, sub_cat = row[self._cat_idx].split(':')
+    #     phase = row[self._phase_idx]
+    #     for idx, d in self._region_species_idxs.items():
+    #         self._data[d['region']][cat] = self._data[d['region']].get(cat, {})
+    #         self._data[d['region']][cat][sub_cat] = self._data[d['region']][cat].get(sub_cat, {})
+    #         self._data[d['region']][cat][sub_cat][phase] = {
+    #             s: row[idx] or None for s in d['species']
+    #         }
+
     def _process_headers(self, csv_reader):
         i = 0
         while i < self.FIRST_HEADER_ROW_IDX:
@@ -240,7 +270,7 @@ class CatPhase2EFGroupImporter(ImporterBase):
         self._combine_header_rows()
 
     def _process_row(self, row):
-        self._mappings.append([row[i]
+        self._mappings.append([self._process_value(i-self.FIRST_COL_IDX, row[i])
             for i in range(self.FIRST_COL_IDX, self._num_headers+self.FIRST_COL_IDX)
                 if i-self.FIRST_COL_IDX not in self._col_idxs_to_skip])
 
@@ -265,14 +295,12 @@ class CatPhase2EFGroupImporter(ImporterBase):
 
         return val.lower()
 
-    def write(self, output_file_name):
-        with open(output_file_name, 'wt') as csvfile:
-            csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
-                quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-            csv_writer.writerow(self._headers)
-            for m in self._mappings:
-                m = [self._process_value(i, e) for i, e in enumerate(m)]
-                csv_writer.writerow(m)
+
+    def _default_file_name(self):
+        return 'catphase2efgroup.py'
+
+    def _data_variable_name(self):
+        return 'CAT_PHASE_2_EF_GROUP'
 
 
 ##
@@ -295,16 +323,10 @@ class EfGroup2EfImporter(ImporterBase):
         # since it's the header we want
 
     def _process_row(self, row):
-        self._mappings.append(row)
+        self._mappings.append([e.strip() for e in row])
 
-    def write(self, output_file_name):
-        with open(output_file_name, 'wt') as csvfile:
-            csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
-                quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-            for m in self._mappings:
-                m = [e.strip() for e in m]
-                # TODO: confirm that the EFs are already in lbs/ton;
-                #   otherwise, convert from g/kg to lbs/ton by
-                #   multiplying by 2  (since 1 g/kg == 2 lbs/ton)
-                #      m[2:] = [str(float(e) * 2.0) for e in m[2:]]
-                csv_writer.writerow(m)
+    def _default_file_name(self):
+        return 'efgroup2ef.py'
+
+    def _data_variable_name(self):
+        return 'EF_GROUP_2_EF'
