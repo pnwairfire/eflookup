@@ -6,36 +6,32 @@ __author__      = "Joel Dubowy"
 from eflookup.fccs2ef.lookup import BaseLookUp, Fccs2Ef, CoverType2Ef
 from py.test import raises
 
-FCCS_2_COVER_TYPE_DATA="""fccs_id,cover_type_id
-0,0
+FCCS_2_COVER_TYPE_DATA = """fccs_id,cover_type_id
+0,404
 1,13
 10,130
-71,232
 100,307
-101,104
-102,104
-103,104
-104,104
-105,104
 """
 
-COVER_TYPE_2_EF_GROUP_DATA="""cover_type_id,wf,rx
-13,6,6
-130,6,5
-307,4,3
-104,1,1
-232,,
+COVER_TYPE_2_EF_GROUP_DATA = """cover_type_id,wf,rx,regionalrx
+1,6,6,24-26
+10,6,6,24-26
+100,4,3,15-17
+101,1,1,12-14
+102,1,1,12-14
+130,4,3,21-23
 """
 
-EF_GROUP_2_EF_DATA="""Pollutant,Formula,1,2,3,4,5,6,7,8
-Carbon Dioxide,CO2,,3282.0000,3196.0000,3200.0000,3348.0000,3410.0000,,2742.0000
-Methane,CH4,4.6400,6.7600,9.7200,14.6400,7.3800,3.9000,27.8800,15.8900
-Nitrogen Oxides,NOx,3.4000,2.0000,4.1200,4.0000,4.3600,4.3600,0.0000,1.3400
-Sulfur Dioxide,SO2,2.1200,2.1200,2.1200,2.1200,1.3600,1.3600,0.0000,3.5200
-PM2.5,PM2.5,25.1600,43.0000,35.1400,46.4000,14.1200,17.0200,66.0000,70.6000
-Total non-methane VOCs,NMOC,32.0920,46.3040,53.9500,67.7480,34.9976,35.2902,90.3500,123.3910
-MethylCyclopentadiene_i1,isomer1_C6H8,0.0120,0.0160,0.0200,0.0260,0.0115,0.0115,0.0380,0.0560
-"1,3,5-Trimethylbenzene",C9H12,0.0400,0.0060,0.0300,0.0400,0.0286,0.0286,0.0500,0.0420
+CAT_PHASE_2_EF_GROUP_DATA = """consume_output_variable,phase,generic_assignment,"9-11:CO2,CH4","9-11:CO,NOx,NH3,SO2,PM25","12-14:CO2,CO,CH4","12-14:NOx,NH3,SO2,PM25","15-17:CO2,CO,CH4,NH3,PM2.5","15-17:NOx,SO2","18-20:CO2,CO,CH4","18-20:NOx,NH3,SO2,PM25","21-23:CO2,CO,CH4,PM2.5","21-23:NOx,NH3,SO2","24-26:CO2,CO,CH4","24-26:NOx,NH3,SO2,PM25","27-29:CO2,CO,CH4,PM25","27-29:NOx,NH3,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","33-35:CO2,CO,CH4"
+canopy:overstory,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
+canopy:overstory,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
+canopy:overstory,residual,,,,,,,,,,,,,,,,,,,,
+"""
+
+EF_GROUP_2_EF_DATA = """Pollutant,Formula,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35
+Carbon Dioxide,CO2,1703,1641,1598,1454,1674,1705,1408,1371,1700,1710,1538,1688,1702,1580,1606,1677,1530,1703,1743,1461,1603.16,1665.93,1592.10,1531,1638,1102,1577,1711,1489,1570,1696,1549,1606,1690,1570
+PM2.5,PM2.5,12.58,21.5,17.57,26,7.06,8.51,33,35.3,12.08,,,14.32,,,29.43,17.56,49.72,12.03,,,15.30,13.73,25.38,9.89,,,10.77,6.36,11.54,7.99,6.97,9.39,21.5,,
+PM10,PM10,14.8444,25.37,20.7326,27.376,8.3308,10.0418,38.94,41.654,,,,,,,,,,,,,,,,,,,,,,,,,,,
 """
 
 ##
@@ -161,12 +157,15 @@ class LookUpTestBase(object):
         f2c.write(FCCS_2_COVER_TYPE_DATA)
         ct2efg = tmpdir.join("ct2efg.csv")
         ct2efg.write(COVER_TYPE_2_EF_GROUP_DATA)
+        cp2efg = tmpdir.join("cp2efg.csv")
+        cp2efg.write(CAT_PHASE_2_EF_GROUP_DATA)
         efg2ef = tmpdir.join("efg2ef.csv")
         efg2ef.write(EF_GROUP_2_EF_DATA)
         return look_up_class(
             is_rx,
             fccs_2_cover_type_file=str(f2c),
             cover_type_2_ef_group_file=str(ct2efg),
+            cat_phase_2_ef_group_file=str(cp2efg),
             ef_group_2_ef_file=str(efg2ef)
         )
 
@@ -265,7 +264,7 @@ class Fccs2EfAndCoverType2EfBase(LookUpTestBase):
 ## Actual Tests
 ##
 
-class TestBaseLookUp(LookUpTestBase):
+class LookUpTestBaseLookUp(LookUpTestBase):
     LOOKUP_CLASS = BaseLookUp
 
     def _test_load_and_get(self, tmpdir, lu, f_s_r_expected):
@@ -369,15 +368,9 @@ class TestCoverType2Ef(Fccs2EfAndCoverType2EfBase):
 class TestSpecies(LookUpTestBase):
 
     def test_wf_species(self, tmpdir):
-        expected_flaming = {
-            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
-        }
-        expected_smoldering = {
-            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
-        }
-        expected_residual = {
-            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
-        }
+        expected_flaming = {'CO2','PM2.5','PM10'}
+        expected_smoldering = {'CO2','PM2.5','PM10'}
+        expected_residual = {'CO2','PM2.5','PM10'}
 
         lu = self.create_look_up_object(tmpdir, Fccs2Ef, False)
         assert expected_flaming == lu[10].species('flaming')
@@ -390,15 +383,9 @@ class TestSpecies(LookUpTestBase):
         assert expected_residual == lu[130].species('residual')
 
     def test_rx_species(self, tmpdir):
-        expected_flaming = {
-            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
-        }
-        expected_smoldering = {
-            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
-        }
-        expected_residual = {
-            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
-        }
+        expected_flaming = {'CO2','PM2.5','PM10'}
+        expected_smoldering = {'CO2','PM2.5','PM10'}
+        expected_residual = {'CO2','PM2.5','PM10'}
 
         lu = self.create_look_up_object(tmpdir, Fccs2Ef, True)
         assert expected_flaming == lu[10].species('flaming')
@@ -413,9 +400,7 @@ class TestSpecies(LookUpTestBase):
     def test_residual_only_species(self, tmpdir):
         expected_flaming = set()
         expected_smoldering = set()
-        expected_residual = {
-            'CO2','CH4','NOx','SO2','PM2.5','NMOC',"isomer1_C6H8","C9H12"
-        }
+        expected_residual = {'CO2','PM2.5','PM10'}
 
         lu = self.create_look_up_object(tmpdir, Fccs2Ef, True)
         assert expected_flaming == lu[71].species('flaming')
