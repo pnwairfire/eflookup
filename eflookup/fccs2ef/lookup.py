@@ -183,11 +183,13 @@ class LookUp(object):
          - cover_type_id -- Cover Type id
          - phase -- emissions factor set identifier ('flaming', 'smoldering',
             'residual')
-         - fuel_category -- fuel category (ex. '100-hr fuels',
-            'stumps rotten', etc.); only relevant if phase is 'residual';
+         - fuel_category -- fuel category (ex. 'woody fuels', 'canopy', etc.)
             phase must also be defined
-         - species -- chemical species; phase (and fuel_category if phase is
-            'residual') must also be defined
+         - fuel_sub_category -- fuel sub-category (ex. '100-hr fuels',
+            'stumps rotten', etc.); phase and fuel_category must also be
+            defined
+         - species -- chemical species; phase, fuel_category, and
+            if fuel_sub_category must also be defined
 
         Notes:
          - Either 'fccs_fuelbed_id' or 'cover_type_id' must be specified, but
@@ -199,10 +201,7 @@ class LookUp(object):
         Examples:
         >>> lu = LookUp
         >>> lu.get(fccs_fuelbed_id=4)
-        >>> lu.get(cover_type_id=118)
-        >>> lu.get(fccs_fuelbed_id=4, phase='flaming')
-        >>> lu.get(cover_type_id=118, phase='flaming', species='CO2')
-        >>> lu.get(fccs_fuelbed_id=4, phase='residual', fuel_category='woody', species='CO2')
+        >>> lu.get(cover_type_id=118, phase='residual', fuel_category='woody', species='CO2')
         """
         fccs_fuelbed_id = keys.get('fccs_fuelbed_id')
         cover_type_id = keys.get('cover_type_id')
@@ -233,28 +232,21 @@ class LookUp(object):
 
         return self.cover_type_look_ups[cover_type_id].get(**keys)
 
+
 class Fccs2Ef(LookUp):
-    def get(self, fccs_fuelbed_id, phase=None, fuel_category=None, species=None):
+
+    def get(self, fccs_fuelbed_id, phase=None, fuel_category=None,
+            fuel_sub_category=None, species=None):
         """Looks up and returns emissions factor info for the fccs fuelbed type
 
         Args:
          - fccs_fuelbed_id -- FCCS fuelbed id
         Optional Args
-         - phase -- emissions factor set identifier ('flaming', 'smoldering',
-            'residual')
-         - fuel_category -- fuel category (ex. '100-hr fuels',
-            'stumps rotten', etc.); only relevant if phase is 'residual';
-            phase must also be defined
-         - species -- chemical species; phase (and fuel_category if phase is
-            'residual') must also be defined
+         (See LookUp.get helpstring, above.)
 
         Examples:
-        >>> LookUp().get(fccs_fuelbed_id=4)
-        >>> LookUp().get(fccs_fuelbed_id=4, 'flaming')
-        >>> LookUp().get(fccs_fuelbed_id=4, 'flaming', 'duff upper')
-        >>> LookUp().get(fccs_fuelbed_id=4, 'flaming', species='CO2')
-        >>> LookUp().get(fccs_fuelbed_id=4, 'flaming', 'duff upper', 'CO2')
-        >>> LookUp().get(fccs_fuelbed_id=4, 'flaming', 'CO2')
+        >>> Fccs2Ef().get(4)
+        >>> Fccs2Ef().get(4, 'flaming', 'shrub', 'secondary dead', 'CO2')
 
         Note: returns None if any of the arguments are invalid.
         """
@@ -266,25 +258,26 @@ class Fccs2Ef(LookUp):
         factors information for the specified fccs_fuelbed_id. The
         returned dict is of the form:
 
-        {
-            'flaming': { 'CH3CH2OH': 123.23, ... },
-            'smoldering': {...},
-            'residual': {
-                'woody': {...},
-                'duff': {...}
+            {
+                'flaming': {
+                    'shrub': {
+                        'secondary dead': {
+                            'CH3CH2OH': 123.23,
+                            ...
+                        },
+                        ...
+                    },
+                    ...
+                },
+                ...
             }
-        }
 
         Args:
          - fccs_fuelbed_id -- FCCS fuelbed id
 
         Example:
-        >>> LookUp()[4]
-        >>> LookUp()[4]['flaming']
-        >>> LookUp()[4]['flaming']['CO2']
-        >>> LookUp()[118]['residual']
-        >>> LookUp()[118]['residual']['woody']
-        >>> LookUp()[118]['residual']['woody']['CO2']
+        >>> Fccs2Ef()[4]
+        >>> Fccs2Ef()[52]['residual']['shrub']['secondary dead']['CO2']
 
         Note: raises KeyError if fccs_fuelbed_id is invalid.
         """
@@ -295,26 +288,19 @@ class Fccs2Ef(LookUp):
 
 
 class CoverType2Ef(LookUp):
-    def get(self, cover_type_id, phase=None, fuel_category=None, species=None):
+
+    def get(self, cover_type_id, phase=None, fuel_category=None,
+            fuel_sub_category=None, species=None):
         """Looks up and returns emissions factor info for the cover type
 
         Args:
          - cover_type_id -- cover type id
         Optional Args
-         - phase -- emissions factor set identifier ('flaming', 'smoldering',
-            'residual')
-         - fuel_category -- fuel category (ex. '100-hr fuels',
-            'stumps rotten', etc.); only relevant if phase is 'residual';
-            phase must also be defined
-         - species -- chemical species; phase (and fuel_category if phase is
-            'residual') must also be defined
+         (See LookUp.get helpstring, above.)
 
         Examples:
-        >>> LookUp().get(cover_type_id=118)
-        >>> LookUp().get(cover_type_id=118, 'flaming')
-        >>> LookUp().get(cover_type_id=118, 'flaming', 'duff upper')
-        >>> LookUp().get(cover_type_id=118, 'flaming', species='CO2')
-        >>> LookUp().get(cover_type_id=118, 'flaming', 'duff upper', 'CO2')
+        >>> CoverType2Ef().get(118)
+        >>> CoverType2Ef().get(121, 'flaming', 'shrub', 'secondary dead', 'CO2')
 
         Note: returns None if any of the arguments are invalid.
         """
@@ -326,25 +312,26 @@ class CoverType2Ef(LookUp):
         factors information for the specified covert_type_id. The
         returned dict is of the form:
 
-        {
-            'flaming': { 'CH3CH2OH': 123.23, ... },
-            'smoldering': {...},
-            'residual': {
-                'woody': {...},
-                'duff': {...}
+            {
+                'flaming': {
+                    'shrub': {
+                        'secondary dead': {
+                            'CH3CH2OH': 123.23,
+                            ...
+                        },
+                        ...
+                    },
+                    ...
+                },
+                ...
             }
-        }
 
         Args:
          - cover_type_id -- FCCS fuelbed id
 
         Example:
-        >>> LookUp()[118]
-        >>> LookUp()[118]['flaming']
-        >>> LookUp()[118]['flaming']['CO2']
-        >>> LookUp()[118]['residual']
-        >>> LookUp()[118]['residual']['woody']
-        >>> LookUp()[118]['residual']['woody']['CO2']
+        >>> CoverType2Ef()[118]
+        >>> CoverType2Ef()[121]['residual']['shrub']['secondary dead']['CO2']
 
         Note: raises KeyError if cover_type_id is invalid.
         """
