@@ -14,7 +14,7 @@ __author__      = "Joel Dubowy"
 import abc
 
 from ..constants import Phase, CONSUME_FUEL_CATEGORY_TRANSLATIONS
-from .load import (
+from .mappers import (
     EFSetTypes,
     Fccs2CoverType,
     CoverType2EfGroup,

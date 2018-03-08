@@ -1,6 +1,6 @@
 __author__      = "Joel Dubowy"
 
-from eflookup.fccs2ef.load import (
+from eflookup.fccs2ef.mappers import (
     Fccs2CoverType, CoverType2EfGroup,
     EfGroup2Ef, CatPhase2EFGroup
 )
