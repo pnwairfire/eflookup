@@ -42,6 +42,7 @@ CONSUME_FUEL_CATEGORY_TRANSLATIONS = {
     "c_wood_s10k": "woody fuels:10000-hr fuels rotten",
     "c_wood_+s10k": "woody fuels:10k+-hr fuels sound",
     "c_wood_+r10k": "woody fuels:10k+-hr fuels rotten",
+    "c_piles": "woody fuels:piles",
     "c_stump_sound": "woody fuels:stumps sound",
     "c_stump_rotten": "woody fuels:stumps rotten",
     "c_stump_lightered": "woody fuels:stumps lightered",
