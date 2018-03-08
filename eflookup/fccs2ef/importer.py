@@ -15,6 +15,7 @@ import json
 import logging
 import os
 import re
+from collections import OrderedDict
 
 from ..constants import CONSUME_FUEL_CATEGORY_TRANSLATIONS
 
@@ -63,12 +64,23 @@ class ImporterBase(object):
     def _data_variable_name(self):
         pass
 
+    def _get_ordered_data(self, data):
+        # This is done so that the data python modules don't
+        # change from one run of the import process to the next
+        # when the underlying data hasn't changed
+        if isinstance(dict, data):
+            for k in data:
+                data[k] = self._get_ordered_data(data[k])
+            data = OrderedDict(sorted(data.items()))
+        return data
+
     def write(self, output_file_name=None):
         output_file_name = output_file_name or os.path.join(
             os.path.dirname(__file__), 'data', self._default_file_name())
         with open(output_file_name, 'wt') as f:
+            data = OrderedDict
             f.write('{} = {}'.format(self._data_variable_name(),
-                json.dumps(self._data)))
+                json.dumps(self._get_ordered_data(self._data))))
 
 ##
 ## Fccs2CoverType
