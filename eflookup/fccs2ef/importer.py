@@ -1,15 +1,19 @@
 """eflookup.fccs2ef.importer: Module for importing FCCS, covert type, and
 emission factors data into format required by fccs2ef module.
 
-Note that this module is only useful for a) creating the data files included
-in this module, or b) creating custom data files.
+Notes:
+ - this module is only useful for a) creating the data files included
+   in this module, or b) creating custom data files.
+ - output_file_name is only specified in the calls to write in unit tests
 """
 
 __author__      = "Joel Dubowy"
 
 import abc
 import csv
+import json
 import logging
+import os
 import re
 
 from ..constants import CONSUME_FUEL_CATEGORY_TRANSLATIONS
@@ -24,15 +28,16 @@ class ImporterBase(object):
 
     def __init__(self, input_file_name):
         self._unrecognized = set()
+        self._data = {}
         self._load(input_file_name)
 
     def _load(self, input_file_name):
-        self._mappings = []
         with open(input_file_name, 'rt') as csvfile:
             csv_reader = csv.reader(csvfile, delimiter=',', skipinitialspace=True)
             self._process_headers(csv_reader)
             for row in csv_reader:
                 self._process_row(row)
+        self._post_process()
 
     def _process_headers(self, csv_reader):
         # Default is to through away header information
@@ -46,10 +51,23 @@ class ImporterBase(object):
     def _process_row(self, row):
         pass
 
-    @abc.abstractmethod
-    def write(self, output_file_name):
+    def _post_process(self):
         pass
 
+    @abc.abstractmethod
+    def _default_file_name(self):
+        pass
+
+    @abc.abstractmethod
+    def _data_variable_name(self):
+        pass
+
+    def write(self, output_file_name=None):
+        output_file_name = output_file_name or os.path.join(
+            os.path.dirname(__file__), 'data', self._default_file_name())
+        with open(output_file_name, 'wt') as f:
+            f.write('{} = {}'.format(self._data_variable_name(),
+                json.dumps(self._data)))
 
 ##
 ## Fccs2CoverType
@@ -72,22 +90,15 @@ class Fccs2CoverTypeImporter(ImporterBase):
         self._headers = dict([(header_row[i], i) for i in range(len(header_row))])
 
     def _process_row(self, row):
-        m = (
-            row[self._headers[self.FCCS_ID_COLUMN_HEADER]],
-            row[self._headers[self.COVER_TYPE_COLUMN_HEADER]],
-        )
-        self._mappings.append(m)
+        k = row[self._headers[self.FCCS_ID_COLUMN_HEADER]]
+        v = row[self._headers[self.COVER_TYPE_COLUMN_HEADER]]
+        self._data[k] = v
 
-    def write(self, output_file_name):
-        with open(output_file_name, 'wt') as csvfile:
-            csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
-                quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-            csv_writer.writerow([
-                "fccs_id", "cover_type_id"
-            ])
-            for m in sorted(self._mappings, key=lambda a: a[0]):
-                #logging.debug(str(m))
-                csvfile.write("%s\n" % (','.join(m)))
+    def _default_file_name(self):
+        return 'fccs2covertype.py'
+
+    def _data_variable_name(self):
+        return 'FCCS_2_COVERTYPE'
 
 
 ##
