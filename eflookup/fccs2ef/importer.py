@@ -138,7 +138,9 @@ class CatPhase2EFGroupImporter(ImporterBase):
         "Generic Assignment": "generic_assignment"
     }
 
-
+    FIRST_HEADER_ROW_IDX = 0
+    SECOND_HEADER_ROW_IDX = 5
+    FIRST_COL_IDX = 4
 
     SECOND_ROW_HEADER_PROCESSOR = re.compile(':.*$')
 
@@ -147,7 +149,7 @@ class CatPhase2EFGroupImporter(ImporterBase):
         #  'Note: This mapping should be used along with EF Group by FB to assign EFs.,,,,"CO2, CH4","CO, NOx, NH3, SO2, PM25","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, NH3, PM2.5","NOx, SO2","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, PM2.5","NOx, NH3, SO2","CO2, CO, CH4","NOx, NH3, SO2, PM25","CO2, CO, CH4, PM25","NOx, NH3, SO2","CO2, CO, CH4, NH3, PM25","NOx, SO2","CO2, CO, CH4, NH3, PM25","NOx, SO2","CO2, CO, CH4",,"Most of the time, the emissions module will use these rules (but see exceptions)",,,These are just for reference purposes.,,,,,,,,,,EF Group,CO2,CO,CH4,NOx,NH3,SO2,PM2.5,'
         self._first_row = []
         self._first_chem_species_set_idx = None
-        for i, e in enumerate(next(csv_reader)):
+        for i, e in enumerate(next(csv_reader)[self.FIRST_COL_IDX:]):
             if i == 0:
                 # don't record the 'Note: ...'
                 self._first_row.append('')
@@ -166,7 +168,7 @@ class CatPhase2EFGroupImporter(ImporterBase):
     def _process_second_header_row(self, csv_reader):
         # grab the same number of columns from second row
         #  'Consume output variable,Category,CombustionPhase,Generic Assignment,9-11: SE Grass,9-11: SE Grass,12-14: SE Hdwd,12-14: SE Hdwd,15-17: SE Pine,15-17: SE Pine,18-20: SE Shrub,18-20: SE Shrub,21-23: W MC,21-23: W MC,24-26: W Grass,24-26: W Grass,27-29: W Hdwd,27-29: W Hdwd,30-32: W Shrub,30-32: W Shrub,30-32: W Shrub,30-32: W Shrub,33-35: Boreal,,Simplified Rules,EF Group,,Group #,# Cover Type,Note,,,,,,,SE grass F/S,9,1700,70.2,2.67,3.26,1.2,0.97,12.08,'
-        self._second_row = next(csv_reader)[:self._num_headers]
+        self._second_row = next(csv_reader)[self.FIRST_COL_IDX:self._num_headers+self.FIRST_COL_IDX]
 
     def _combine_header_rows(self):
         # combine the two rows into single set of column headers
@@ -198,13 +200,22 @@ class CatPhase2EFGroupImporter(ImporterBase):
                 self._headers.append(second_row_val + self._first_row_val)
 
     def _process_headers(self, csv_reader):
+        i = 0
+        while i < self.FIRST_HEADER_ROW_IDX:
+            next(csv_reader)
+            i += 1
         self._process_first_header_row(csv_reader)
+        i += 1
+        while i < self.SECOND_HEADER_ROW_IDX:
+            next(csv_reader)
+            i += 1
         self._process_second_header_row(csv_reader)
         self._combine_header_rows()
 
     def _process_row(self, row):
-        self._mappings.append([row[i] for i in range(self._num_headers)
-            if i not in self._col_idxs_to_skip])
+        self._mappings.append([row[i]
+            for i in range(self.FIRST_COL_IDX, self._num_headers+self.FIRST_COL_IDX)
+                if i-self.FIRST_COL_IDX not in self._col_idxs_to_skip])
 
     # extracts number range (e.g. "General (1-6)" -> '1-6')
     # and scalar number values (e.g. 'Woody RSC (7)' -> '7')
