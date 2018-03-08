@@ -13,11 +13,12 @@ __author__      = "Joel Dubowy"
 
 import abc
 
-from ..constants import Phase, FuelCategory
+from ..constants import Phase, CONSUME_FUEL_CATEGORY_TRANSLATIONS
 from .load import (
     EFSetTypes,
     Fccs2CoverTypeLoader,
     CoverType2EfGroupLoader,
+    CatPhase2EFGroupLoader,
     EfGroup2EfLoader
 )
 
@@ -26,28 +27,33 @@ __all__ = [
     'CoverType2Ef'
 ]
 
-RSC_KEYS = {
-    # Accept 'woody' and 'duff' to be explicitly selected
-    "woody": FuelCategory.WOODY,
-    "duff": FuelCategory.DUFF,
-    # Consume fuel categories with residual emissions
-    # TODO: check these!!!
-    # TODO: expect different keys???
-    "100-hr fuels": FuelCategory.WOODY,
-    "1000-hr fuels sound": FuelCategory.WOODY,
-    "1000-hr fuels rotten": FuelCategory.WOODY,
-    "10k+-hr fuels rotten": FuelCategory.WOODY,
-    "10k+-hr fuels sound": FuelCategory.WOODY,
-    "10000-hr fuels rotten": FuelCategory.WOODY,
-    "-hr fuels sound": FuelCategory.WOODY,
-    "stumps rotten": FuelCategory.WOODY,
-    "stumps lightered": FuelCategory.WOODY,
-    "duff lower": FuelCategory.DUFF,
-    "duff upper": FuelCategory.DUFF,
-    "basal accumulations": FuelCategory.DUFF,
-    "squirrel middens": FuelCategory.DUFF
-}
+# RSC_KEYS = {
+#     # Accept 'woody' and 'duff' to be explicitly selected
+#     "woody": FuelCategory.WOODY,
+#     "duff": FuelCategory.DUFF,
+#     # Consume fuel categories with residual emissions
+#     # TODO: check these!!!
+#     # TODO: expect different keys???
+#     "100-hr fuels": FuelCategory.WOODY,
+#     "1000-hr fuels sound": FuelCategory.WOODY,
+#     "1000-hr fuels rotten": FuelCategory.WOODY,
+#     "10k+-hr fuels rotten": FuelCategory.WOODY,
+#     "10k+-hr fuels sound": FuelCategory.WOODY,
+#     "10000-hr fuels rotten": FuelCategory.WOODY,
+#     "-hr fuels sound": FuelCategory.WOODY,
+#     "stumps rotten": FuelCategory.WOODY,
+#     "stumps lightered": FuelCategory.WOODY,
+#     "duff lower": FuelCategory.DUFF,
+#     "duff upper": FuelCategory.DUFF,
+#     "basal accumulations": FuelCategory.DUFF,
+#     "squirrel middens": FuelCategory.DUFF
+# }
 
+_categorie_tuples = [
+    e.split(':') for e in CONSUME_FUEL_CATEGORY_TRANSLATIONS.values()
+]
+VALID_FUEL_CATEGORIES = [e[0] for e in _categorie_tuples]
+VALID_FUEL_SUB_CATEGORIES = [e[1] for e in _categorie_tuples]
 
 class SingleCoverTypeEfLookup(dict):
     """Lookup class containing EFs for a single FCCS or cover type id
@@ -88,11 +94,13 @@ class SingleCoverTypeEfLookup(dict):
         Lookup Keys:
          - phase -- emissions factor set identifier ('flaming', 'smoldering',
             'residual')
-         - fuel_category -- fuel category (ex. '100-hr fuels',
-            'stumps rotten', etc.); only relevant if phase is 'residual';
+         - fuel_category -- fuel category (ex. 'woody fuels', 'canopy', etc.)
             phase must also be defined
-         - species -- chemical species; phase (and fuel_category if phase is
-            'residual') must also be defined
+         - fuel_sub_category -- fuel sub-category (ex. '100-hr fuels',
+            'stumps rotten', etc.); phase and fuel_category must also be
+            defined
+         - species -- chemical species; phase, fuel_category, and
+            if fuel_sub_category must also be defined
 
         Notes:
          - fuel_category is effectively ignored for 'flaming' and 'smoldering'
@@ -103,37 +111,36 @@ class SingleCoverTypeEfLookup(dict):
         >>> lu = LookUp
         >>> lu.get()
         >>> lu.get(phase='flaming')
-        >>> lu.get(phase='flaming', species='CO2')
-        >>> lu.get(phase='residual', fuel_category='woody')
-        >>> lu.get(phase='residual', fuel_category='woody', species='CO2')
+        >>> lu.get(phase='residual', fuel_category='canopy',
+                fuel_sub_category='overstory', species='CO2')
         """
         phase = keys.get('phase')
         fuel_category = keys.get('fuel_category')
+        fuel_sub_category = keys.get('fuel_sub_category')
         species = keys.get('species')
 
-        if not phase and (fuel_category or species):
-            raise LookupError("Specify phase when also specifying fuel_category or species")
-        if not fuel_category and species and Phase.RESIDUAL == phase:
-            raise LookupError("Specify fuel_category when also specifying species if phase is 'residual'")
+        if not phase and (fuel_category or fuel_sub_category or species):
+            raise LookupError("Specify phase when also specifying "
+                "fuel_category, fuel_sub_category, or species")
+        if not fuel_category and (fuel_sub_category or species):
+            raise LookupError("Specify fuel_category when also "
+                "specifying fuel_sub_category or species")
+        if not fuel_sub_category and species:
+            raise LookupError("Specify fuel_sub_category when also "
+                "specifying species")
 
         try:
             if phase:
-                if Phase.RESIDUAL == phase and fuel_category:
-                    rsc_k = RSC_KEYS[fuel_category]
-                    if species:
-                        return self[phase][rsc_k][species]
-                    else:
-                        return self[phase][rsc_k]
-                else:
-                    if species:
-                        return self[phase][species]
-                    else:
-                        return self[phase]
-            else:
-                return self
+                if fuel_category:
+                    if fuel_sub_category:
+                        if species:
+                            return self[phase][fuel_category][fuel_sub_category][species]
+                        return self[phase][fuel_category][fuel_sub_category]
+                    return self[phase][fuel_category]
+                return self[phase]
+            return self
         except KeyError:
             return None
-
 
     def species(self, phase):
         if phase not in self:
@@ -161,6 +168,7 @@ class BaseLookUp(object):
         Options:
          - fccs_2_cover_type_file --
          - cover_type_2_ef_group_file --
+         - cat_phase_2_ef_group_file --
          - ef_group_2_ef_file --
         """
         self.is_rx = is_rx
@@ -168,8 +176,8 @@ class BaseLookUp(object):
             file_name=options.get('fccs_2_cover_type_file')).get()
         self._cover_type_2_ef_group = CoverType2EfGroupLoader(
             file_name=options.get('cover_type_2_ef_group_file')).get()
-        self._cat_phase_2_ef_group = EfGroup2EfLoader(
-            file_name=options.get('ef_group_2_ef_file')).get()
+        self._cat_phase_2_ef_group = CatPhase2EFGroupLoader(
+            file_name=options.get('cat_phase_2_ef_group_file')).get()
         self._ef_group_2_ef_loader = EfGroup2EfLoader(
             file_name=options.get('ef_group_2_ef_file'))
         self._ef_group_2_ef = self._ef_group_2_ef_loader.get()
@@ -185,21 +193,11 @@ class BaseLookUp(object):
         Lookup Keys:
          - fccs_fuelbed_id -- FCCS fuelbed id
          - cover_type_id -- Cover Type id
-         - phase -- emissions factor set identifier ('flaming', 'smoldering',
-            'residual')
-         - fuel_category -- fuel category (ex. 'woody fuels', 'canopy', etc.)
-            phase must also be defined
-         - fuel_sub_category -- fuel sub-category (ex. '100-hr fuels',
-            'stumps rotten', etc.); phase and fuel_category must also be
-            defined
-         - species -- chemical species; phase, fuel_category, and
-            if fuel_sub_category must also be defined
+         (see SingleCoverTypeEfLookup.get helpstring for other lookup keys)
 
         Notes:
          - Either 'fccs_fuelbed_id' or 'cover_type_id' must be specified, but
             not both
-         - fuel_category is effectively ignored for 'flaming' and 'smoldering'
-            (since the same EFs are used accross all fuel categories)
          - returns None if any of the arguments are invalid.
 
         Examples:

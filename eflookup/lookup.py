@@ -12,10 +12,6 @@ class Phase:
     RESIDUAL = 'residual'
     ALL = set([FLAMING, SMOLDERING, RESIDUAL])
 
-class FuelCategory:
-    WOODY = 'woody'
-    DUFF = 'duff'
-
 class BasicEFLookup(dict):
     """Look-up object for arbitrary, phase specific emission factors
     """
