@@ -16,6 +16,7 @@ __all__ = [
     'EfGroup2EfLoader'
 ]
 
+
 class EFSetTypes(object):
     """Enumeration representing ....
 
@@ -28,6 +29,7 @@ class EFSetTypes(object):
     """
     FLAME_SMOLD_WF = 1
     FLAME_SMOLD_RX = 2
+
 
 class LoaderBase(object):
     def __init__(self, **kwargs):
@@ -60,15 +62,22 @@ class LoaderBase(object):
         # override if there's any logic to execut after loading
         pass
 
-    def get(self, key=None, default=None):
-        return copy.deepcopy(
-            self._data.get(key, default) if key else self._data)
+    def get(self, *keys, default=None):
+        d = self._data
+        for i, k in enumerate(keys):
+            if i == len(keys) - 1:
+                d = d.get(k, default)
+            else:
+                d = d.get(k, {})
+        return copy.deepcopy(d)
+
 
 class Fccs2CoverTypeLoader(LoaderBase):
     FILE_NAME = os.path.dirname(__file__) + '/data/fccs2covertype.csv'
 
     def _process_row(self, row):
         self._data[row[0]] = row[1]
+
 
 class CoverType2EfGroupLoader(LoaderBase):
     FILE_NAME = os.path.dirname(__file__) + '/data/covertype2efgroup.csv'
@@ -78,6 +87,7 @@ class CoverType2EfGroupLoader(LoaderBase):
             EFSetTypes.FLAME_SMOLD_WF: row[1],
             EFSetTypes.FLAME_SMOLD_RX: row[2]
         }
+
 
 class CatPhase2EFGroupLoader(LoaderBase):
     """Loads ef group assignment overrides, specific to
@@ -119,10 +129,6 @@ class CatPhase2EFGroupLoader(LoaderBase):
     #         for cat in self._data[reg]:
     #             self._data[reg][cat] = {k: v for k, v in self._data[reg][cat].items()}
     #         self._data[reg] = {k: v for k, v in self._data[reg].items()}
-
-    def get(self, region, cat_phase, species, default=None):
-        return copy.deepcopy(self._data.get(region, {}).get(
-            cat_phase).get(species, None))
 
 
 class EfGroup2EfLoader(LoaderBase):
