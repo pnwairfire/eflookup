@@ -24,6 +24,22 @@ __all__ = [
     'EfGroup2EfImporter'
 ]
 
+
+class EFSetTypes(object):
+    """Enumeration representing ....
+
+    @note: only flaming/smoldering WF and Rx vary from cover type to cover type,
+    so only these two set types are specied here
+
+    @note: Future versions of python have an Enum class build in, added by
+    https://www.python.org/dev/peps/pep-0435/.  It's not worth requiring the
+    backport (https://pypi.python.org/pypi/enum34) here, though.
+    """
+    FLAME_SMOLD_WF = 1
+    FLAME_SMOLD_RX = 2
+    REGIONAL_RX = 3
+
+
 class ImporterBase(object):
 
     def __init__(self, input_file_name):
@@ -118,17 +134,17 @@ class CoverType2EfGroupImporter(ImporterBase):
         wf = self._extract_ef_group_id(row[2])
         rx = self._extract_ef_group_id(row[3])
         regionalrx = self._extract_ef_group_id(row[4])
-        self._mappings.append((row[0], wf, rx, regionalrx))
+        self._data[row[0]] = {
+            "wf": wf,
+            'rx': rx,
+            'regrx': regionalrx,
+        }
 
-    def write(self, output_file_name):
-        with open(output_file_name, 'wt') as csvfile:
-            csv_writer = csv.writer(csvfile, delimiter=',', quotechar='"',
-                quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
-            csv_writer.writerow([
-                'cover_type_id','wf','rx', 'regionalrx'
-            ])
-            for m in sorted(self._mappings, key=lambda a: a[0]):
-                csvfile.write("%s\n" % (','.join([e or '' for e in m])))
+    def _default_file_name(self):
+        return 'covertype2efgroup.py'
+
+    def _data_variable_name(self):
+        return 'COVERTYPE_2_EF_GROUP'
 
 
 ##
