@@ -9,7 +9,7 @@ from eflookup.fccs2ef import scripting, lookup
 
 EXAMPLES_STRING = """
 Example calls:
- > ./bin/fccs2ef 1
+ > ./bin/fccs2ef 52 flaming 'woody fuels' '1-hr fuels' PM2.5 --log-level=DEBUG
 """
 
 if __name__ == "__main__":

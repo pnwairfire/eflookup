@@ -15,23 +15,8 @@ from afscripting import (
 )
 
 # Note: required parameters are specified as positional arguments
-
+REQUIRED_OPTIONS = []
 OPTIONAL_OPTIONS = [
-    {
-        'short': '-p',
-        'long': '--phase',
-        'help': "combustion phase ('flaming','smoldering','residual')"
-    },
-    {
-        'short': '-f',
-        'long': '--fuel-category',
-        'help': "fuel category (ex. '100-hr fuels', 'stumps rotten', etc.)"
-    },
-    {
-        'short': '-s',
-        'long': '--species',
-        'help': "emissions species (e.g. 'CO2', 'PM2.5')"
-    },
     {
         'long': '--rx',
         'help': "Is a prescribed burn",
@@ -59,12 +44,27 @@ OPTIONAL_OPTIONS = [
 POSITIONAL_ARGS = [
     {
         'long': 'id',
-        'nargs': '*'
+    },
+    {
+        'long': 'phase',
+        'help': "combustion phase ('flaming','smoldering','residual')"
+    },
+    {
+        'long': 'fuel_category',
+        'help': "fuel category (ex. 'woody fuels', 'ground fuels')"
+    },
+    {
+        'long': 'fuel_sub_category',
+        'help': "fuel sub-category (ex. '100-hr fuels', 'stumps rotten', etc.)"
+    },
+    {
+        'long': 'species',
+        'help': "emissions species (e.g. 'CO2', 'PM2.5')"
     }
 ]
 
 def run(lookup_class, examples_string=None):
-    parser, args = scripting_args.parse_args([], OPTIONAL_OPTIONS,
+    parser, args = scripting_args.parse_args(REQUIRED_OPTIONS, OPTIONAL_OPTIONS,
         positional_args=POSITIONAL_ARGS, epilog=examples_string)
     if len(args.id) == 0:
 
@@ -73,26 +73,18 @@ def run(lookup_class, examples_string=None):
             extra_output=lambda: parser.print_help())
 
     try:
-        look_up = lookup_class(
-            args.rx,
+        look_up = lookup_class(args.id,args.rx,
             fccs_2_cover_type_file=args.fccs_2_cover_type_file,
             cover_type_2_ef_group_file=args.cover_type_2_ef_group_file,
             ef_group_2_ef_file=args.ef_group_2_ef_file
         )
-        data = {}
-        for a in args.id:
-            r = look_up.get(args.id[0], phase=args.phase,
-                fuel_category=args.fuel_category, species=args.species)
-            if args.phase is not None:
-                if args.fuel_category is not None:
-                    if args.species is not None:
-                        r = {args.species: r}
-                    r = {args.fuel_category: r}
-                elif args.species: # non-residual
-                    r = {args.species: r}
-                r = {args.phase: r}
-            data.update({a: r})
-        sys.stdout.write(json.dumps(data))
+        r = look_up.get(
+            phase=args.phase,
+            fuel_category=args.fuel_category,
+            fuel_sub_category=args.fuel_sub_category,
+            species=args.species)
+
+        sys.stdout.write(json.dumps(r))
 
     except Exception as e:
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
