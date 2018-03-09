@@ -3,411 +3,162 @@
 
 __author__      = "Joel Dubowy"
 
-from eflookup.fccs2ef.lookup import BaseLookUp, Fccs2Ef, CoverType2Ef
+from eflookup.fccs2ef.lookup import Fccs2Ef, CoverType2Ef
+from eflookup.fccs2ef.data import (
+    catphase2efgroup,
+    covertype2efgroup,
+    efgroup2ef,
+    fccs2covertype,
+)
 from py.test import raises
 
-FCCS_2_COVER_TYPE_DATA = """fccs_id,cover_type_id
-0,404
-1,13
-10,130
-100,307
-"""
+FCCS_2_COVERTYPE = {
+    "213":"1",
+    "222":"10",
+}
 
-COVER_TYPE_2_EF_GROUP_DATA = """cover_type_id,wf,rx,regionalrx
-1,6,6,24-26
-10,6,6,24-26
-100,4,3,15-17
-101,1,1,12-14
-102,1,1,12-14
-130,4,3,21-23
-"""
+COVERTYPE_2_EF_GROUP = {
+    "1":{"regrx":"24-26","rx":"6","wf":"5",},
+    "10":{"regrx":"24-26","rx":"6","wf":"5",}
+}
 
-CAT_PHASE_2_EF_GROUP_DATA = """consume_output_variable,phase,generic_assignment,"9-11:CO2,CH4","9-11:CO,NOx,NH3,SO2,PM25","12-14:CO2,CO,CH4","12-14:NOx,NH3,SO2,PM25","15-17:CO2,CO,CH4,NH3,PM2.5","15-17:NOx,SO2","18-20:CO2,CO,CH4","18-20:NOx,NH3,SO2,PM25","21-23:CO2,CO,CH4,PM2.5","21-23:NOx,NH3,SO2","24-26:CO2,CO,CH4","24-26:NOx,NH3,SO2,PM25","27-29:CO2,CO,CH4,PM25","27-29:NOx,NH3,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","30-32:CO2,CO,CH4,NH3,PM25","30-32:NOx,SO2","33-35:CO2,CO,CH4"
-canopy:overstory,flaming,1-6,10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33
-canopy:overstory,smoldering,1-6,11,9,14,12,17,15,20,18,23,21,26,24,29,27,32,30,32,30,34
-canopy:overstory,residual,,,,,,,,,,,,,,,,,,,,
-"""
+CAT_PHASE_2_EF_GROUP = {
+    "24-26": {
+        "canopy":{
+            "ladder fuels":{
+                "flaming":{"NH3":"24","NOx":"24","PM25":"24","SO2":"24",},
+                "residual":{"NH3":None,"NOx":"25","PM25":None,"SO2":None,},
+                "smoldering":{"NH3":"24","NOx":"24","PM25":"24","SO2":"24",},
+            }
+        }
+    }
+}
 
-EF_GROUP_2_EF_DATA = """Pollutant,Formula,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35
-Carbon Dioxide,CO2,1703,1641,1598,1454,1674,1705,1408,1371,1700,1710,1538,1688,1702,1580,1606,1677,1530,1703,1743,1461,1603.16,1665.93,1592.10,1531,1638,1102,1577,1711,1489,1570,1696,1549,1606,1690,1570
-PM2.5,PM2.5,12.58,21.5,17.57,26,7.06,8.51,33,35.3,12.08,,,14.32,,,29.43,17.56,49.72,12.03,,,15.30,13.73,25.38,9.89,,,10.77,6.36,11.54,7.99,6.97,9.39,21.5,,
-PM10,PM10,14.8444,25.37,20.7326,27.376,8.3308,10.0418,38.94,41.654,,,,,,,,,,,,,,,,,,,,,,,,,,,
-"""
+EF_GROUP_2_EF = {
+    "5": {
+        "CH4":"2.95",
+        "CO":"62",
+        "CO2":"170",
+        "PM10":"1.0418",
+        "PM2.5":"9.51"
+    },
+    "6": {
+        "CH4":"1.95",
+        "CO":"61",
+        "CO2":"1705",
+        "PM10":"10.0418",
+        "PM2.5":"8.51"
+    },
+    "7": {
+        "CH4":"3",
+        "CO":"2",
+        "CO2":"1",
+        "PM10":"10.1",
+        "PM2.5":"12.51"
+    },
+    "8": {
+        "CH4":"3",
+        "CO":"2",
+        "CO2":"1",
+        "PM10":"10.1",
+        "PM2.5":"12.51"
+    },
+    "24":{
+        "CH4":"1.98",
+        "CO":"55.8",
+        "CO2":"1531",
+        "PM10":"",
+        "PM2.5":"9.89"
+    },
+    "25":{
+        "CH4":"4",
+        "CO":"3",
+        "CO2":"2",
+        "PM10":"1",
+        "PM2.5":""
+    },
+}
 
 ##
 ## Base Classes
 ##
 
-class LookUpTestBase(object):
-    EXPECTED_FCCS_10_CT_130_WF = {
-        'flaming': {  # 9
-            'CO2': 3410.0000,
-            'CH4': 3.9000,
-            'NOx': 4.3600,
-            'SO2': 1.3600,
-            'PM2.5': 17.0200,
-            'NMOC': 35.2902,
-            "isomer1_C6H8": 0.0115,
-            "C9H12": 0.0286
-        },
-        'smoldering': {  # 9
-            'CO2': 3410.0000,
-            'CH4': 3.9000,
-            'NOx': 4.3600,
-            'SO2': 1.3600,
-            'PM2.5': 17.0200,
-            'NMOC': 35.2902,
-            "isomer1_C6H8": 0.0115,
-            "C9H12": 0.0286
-        },
-        'residual': {
-            'woody': {  # 3
-                'CO2': None,
-                'CH4': 27.8800,
-                'NOx': 0.0000,
-                'SO2': 0.0000,
-                'PM2.5': 66.0000,
-                'NMOC': 90.3500,
-                "isomer1_C6H8": 0.0380,
-                "C9H12": 0.0500
-            },
-            'duff': {  # 10
-                'CO2': 2742.0000,
-                'CH4': 15.8900,
-                'NOx': 1.3400,
-                'SO2': 3.5200,
-                'PM2.5': 70.6000,
-                'NMOC': 123.3910,
-                "isomer1_C6H8": 0.0560,
-                "C9H12": 0.0420
-            }
-        }
-    }
-    EXPECTED_FCCS_10_CT_130_RX = {
-        'flaming': {  # 5
-            'CO2': 3348.0000,
-            'CH4': 7.3800,
-            'NOx': 4.3600,
-            'SO2': 1.3600,
-            'PM2.5': 14.1200,
-            'NMOC': 34.9976,
-            "isomer1_C6H8": 0.0115,
-            "C9H12": 0.0286,
-        },
-        'smoldering': {  # 5
-            'CO2': 3348.0000,
-            'CH4': 7.3800,
-            'NOx': 4.3600,
-            'SO2': 1.3600,
-            'PM2.5': 14.1200,
-            'NMOC': 34.9976,
-            "isomer1_C6H8": 0.0115,
-            "C9H12": 0.0286,
-        },
-        'residual': {
-            'woody': {  # 3
-                'CO2': None,
-                'CH4': 27.8800,
-                'NOx': 0.0000,
-                'SO2': 0.0000,
-                'PM2.5': 66.0000,
-                'NMOC': 90.3500,
-                "isomer1_C6H8": 0.0380,
-                "C9H12": 0.0500
-            },
-            'duff': {  # 10
-                'CO2': 2742.0000,
-                'CH4': 15.8900,
-                'NOx': 1.3400,
-                'SO2': 3.5200,
-                'PM2.5': 70.6000,
-                'NMOC': 123.3910,
-                "isomer1_C6H8": 0.0560,
-                "C9H12": 0.0420
-            }
-        }
-    }
-    EXPECTED_FCCS_71_CT_232 = {
-        'residual': {
-            'woody': {  # 3
-                'CO2': None,
-                'CH4': 27.8800,
-                'NOx': 0.0000,
-                'SO2': 0.0000,
-                'PM2.5': 66.0000,
-                'NMOC': 90.3500,
-                "isomer1_C6H8": 0.0380,
-                "C9H12": 0.0500
-            },
-            'duff': {  # 10
-                'CO2': 2742.0000,
-                'CH4': 15.8900,
-                'NOx': 1.3400,
-                'SO2': 3.5200,
-                'PM2.5': 70.6000,
-                'NMOC': 123.3910,
-                "isomer1_C6H8": 0.0560,
-                "C9H12": 0.0420
-            }
-        }
-    }
+class TestFccs2EfAndCovertype2EF(object):
 
-    def create_look_up_object(self, tmpdir, look_up_class, is_rx):
-        f2c = tmpdir.join("f2c.csv")
-        f2c.write(FCCS_2_COVER_TYPE_DATA)
-        ct2efg = tmpdir.join("ct2efg.csv")
-        ct2efg.write(COVER_TYPE_2_EF_GROUP_DATA)
-        cp2efg = tmpdir.join("cp2efg.csv")
-        cp2efg.write(CAT_PHASE_2_EF_GROUP_DATA)
-        efg2ef = tmpdir.join("efg2ef.csv")
-        efg2ef.write(EF_GROUP_2_EF_DATA)
-        return look_up_class(
-            is_rx,
-            fccs_2_cover_type_file=str(f2c),
-            cover_type_2_ef_group_file=str(ct2efg),
-            cat_phase_2_ef_group_file=str(cp2efg),
-            ef_group_2_ef_file=str(efg2ef)
-        )
+    def setup(self):
+        fccs2covertype.FCCS_2_COVERTYPE = FCCS_2_COVERTYPE
+        efgroup2ef.EF_GROUP_2_EF = EF_GROUP_2_EF
+        covertype2efgroup.COVERTYPE_2_EF_GROUP = COVERTYPE_2_EF_GROUP
+        catphase2efgroup.CAT_PHASE_2_EF_GROUP = CAT_PHASE_2_EF_GROUP
 
-    def raises_key_error(self, l):
-        with raises(KeyError):
-            l()
+        self.fccs2ef_213_rx = Fccs2Ef('213', True)
+        self.fccs2ef_213_wf = Fccs2Ef('213', False)
+        self.ct2ef_213_rx = CoverType2Ef('1', True)
+        self.ct2ef_213_wf = CoverType2Ef('10', False)
 
-class Fccs2EfAndCoverType2EfBase(LookUpTestBase):
+    def test_invalid_get(self):
+        # fccs id 1 isn't in ou
+        with raises(KeyError) as e_info:
+            Fccs2Ef("1", True)
+        with raises(KeyError) as e_info:
+            Fccs2Ef("1", False)
+        with raises(KeyError) as e_info:
+            CoverType2Ef("2", True)
+        with raises(KeyError) as e_info:
+            CoverType2Ef("2", False)
 
-    def _test_load_and_getitem(self, tmpdir, lu, f_s_r_expected, f_s_r_id, r_id):
-        # cases where FCCS id doesn't exist
-        self.raises_key_error(lambda: lu[999])
-        self.raises_key_error(lambda: lu[999]['flaming'])
-        self.raises_key_error(lambda: lu[999]['flaming']['CO2'])
-        # cases where phase doesn't exist
-        self.raises_key_error(lambda: lu[f_s_r_id]['flamsdflkjsdf'])
-        self.raises_key_error(lambda: lu[f_s_r_id]['flamsdflkjsdf']['CO2'])
-        # residual cases where fuel category doesn't exist or doesn't have residual EFs
-        self.raises_key_error(lambda: lu[f_s_r_id]['residual']['foo_bar'])
-        # cases where chemical species doesn't exist
-        self.raises_key_error(lambda: lu[f_s_r_id]['flaming']['sdfsdf'])
-        # cases where ef set type isn't defined
-        self.raises_key_error(lambda: lu[r_id]['flaming'])
-        self.raises_key_error(lambda: lu[r_id]['flaming']['CO2'])
-        # cases where species isn't defined
-        assert None == lu[f_s_r_id]['residual']['woody']['CO2']
+        with raises(LookupError) as e_info:
+            self.fccs2ef_213_rx.get()
+        with raises(LookupError) as e_info:
+            self.fccs2ef_213_wf.get()
+        with raises(LookupError) as e_info:
+            self.ct2ef_213_rx.get()
+        with raises(LookupError) as e_info:
+            self.ct2ef_213_wf.get()
+        with raises(LookupError) as e_info:
+            self.fccs2ef_213_rx.get(phase='phase')
+        with raises(LookupError) as e_info:
+            self.fccs2ef_213_wf.get(phase='phase')
+        with raises(LookupError) as e_info:
+            self.ct2ef_213_rx.get(phase='phase')
+        with raises(LookupError) as e_info:
+            self.ct2ef_213_wf.get(phase='phase')
+        with raises(LookupError) as e_info:
+            self.fccs2ef_213_rx.get(phase='phase', fuel_category='cat')
+        with raises(LookupError) as e_info:
+            self.fccs2ef_213_wf.get(phase='phase', fuel_category='cat')
+        with raises(LookupError) as e_info:
+            self.ct2ef_213_rx.get(phase='phase', fuel_category='cat')
+        with raises(LookupError) as e_info:
+            self.ct2ef_213_wf.get(phase='phase', fuel_category='cat')
+        with raises(LookupError) as e_info:
+            self.fccs2ef_213_rx.get(phase='phase', fuel_category='cat',
+                fuel_sub_category='subcat')
+        with raises(LookupError) as e_info:
+            self.fccs2ef_213_wf.get(phase='phase', fuel_category='cat',
+                fuel_sub_category='subcat')
+        with raises(LookupError) as e_info:
+            self.ct2ef_213_rx.get(phase='phase', fuel_category='cat',
+                fuel_sub_category='subcat')
+        with raises(LookupError) as e_info:
+            self.ct2ef_213_wf.get(phase='phase', fuel_category='cat',
+                fuel_sub_category='subcat')
 
-        assert f_s_r_expected == lu[f_s_r_id]
-        assert f_s_r_expected['flaming'] == lu[f_s_r_id]['smoldering']
-        assert f_s_r_expected['residual'] == lu[f_s_r_id]['residual']
-        assert f_s_r_expected['residual']['duff'] == lu[f_s_r_id]['residual']['duff']
-        assert f_s_r_expected['residual']['duff']['PM2.5'] == lu[f_s_r_id]['residual']['duff']['PM2.5']
-        assert self.EXPECTED_FCCS_71_CT_232 == lu[r_id]
-        assert self.EXPECTED_FCCS_71_CT_232['residual'] == lu[r_id]['residual']
-        assert self.EXPECTED_FCCS_71_CT_232['residual']['duff'] == lu[r_id]['residual']['duff']
-        assert self.EXPECTED_FCCS_71_CT_232['residual']['duff']['PM2.5'] == lu[r_id]['residual']['duff']['PM2.5']
+    def test_nonexisting_get(self):
+        assert None == self.fccs2ef_213_rx.get(phase='phase',
+            fuel_category='cat', fuel_sub_category='subcat', species='species')
+        assert None == self.fccs2ef_213_wf.get(phase='phase',
+            fuel_category='cat', fuel_sub_category='subcat', species='species')
+        assert None == self.ct2ef_213_rx.get(phase='phase',
+            fuel_category='cat', fuel_sub_category='subcat', species='species')
+        assert None == self.ct2ef_213_wf.get(phase='phase',
+            fuel_category='cat', fuel_sub_category='subcat', species='species')
 
-    def _test_load_and_get(self, tmpdir, lu, f_s_r_expected, f_s_r_id, r_id):
-        # cases where FCCS id doesn't exist
-        assert None == lu.get(999)
-        assert None == lu.get(999, phase='flaming')
-        assert None == lu.get(999, phase='flaming', species='CO2')
-        # cases where ef group type doesn't exist
-        assert None == lu.get(f_s_r_id, phase='flamsdflkjsdf')
-        assert None == lu.get(f_s_r_id, phase='flamsdflkjsdf', species='CO2')
-        # residual cases where fuel category doesn't exist or doesn't have residual EFs
-        assert None == lu.get(f_s_r_id, phase='residual', fuel_category='foo_bar')
-        assert None == lu.get(f_s_r_id, phase='residual', fuel_category='foo_bar', species='PM2.5')
-        # cases where chemical species doesn't exist
-        assert None == lu.get(f_s_r_id, phase='flaming', species='sdfsdf')
-        # cases where ef set type isn't defined
-        assert None == lu.get(r_id, phase='flaming')
-        assert None == lu.get(r_id, phase='flaming', species='CO2')
-        # cases where species isn't defined
-        assert None == lu.get(f_s_r_id, phase='residual', fuel_category="woody", species='CO2')
+    def test_get(self):
+        # No override specified
+        # 'None' override
+        # float value override
+        pass
 
-        assert f_s_r_expected == lu.get(f_s_r_id)
-        assert f_s_r_expected['flaming'] == lu.get(f_s_r_id, phase='flaming')
-        assert f_s_r_expected['residual'] == lu.get(f_s_r_id, phase='residual')
-        assert f_s_r_expected['residual']['duff'] == lu.get(f_s_r_id, phase='residual', fuel_category='duff')
-        assert f_s_r_expected['residual']['duff']['PM2.5'] == lu.get(f_s_r_id, phase='residual', fuel_category='duff', species='PM2.5')
-        assert self.EXPECTED_FCCS_71_CT_232 == lu.get(r_id)
-        assert self.EXPECTED_FCCS_71_CT_232['residual'] == lu.get(r_id, phase='residual')
-        assert self.EXPECTED_FCCS_71_CT_232['residual']['duff'] == lu.get(r_id, phase='residual', fuel_category='duff')
-        assert self.EXPECTED_FCCS_71_CT_232['residual']['duff']['PM2.5'] == lu.get(r_id, phase='residual', fuel_category='duff', species='PM2.5')
-
-    def test_load_and_getitem_wf(self, tmpdir):
-        lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, False)
-        ################################ TEMP ################################
-        # WF data are bad; until they are replaced, use RX data for everything
-        # TODO: switch back to WF data once they are corrected
-        self._test_load_and_getitem(tmpdir, lu,
-            self.EXPECTED_FCCS_10_CT_130_RX, #self.EXPECTED_FCCS_10_CT_130_WF,
-            self.F_S_R_ID, self.R_ID)
-        ################################ TEMP ################################
-
-    def test_load_and_getitem_rx(self, tmpdir):
-        lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, True)
-        self._test_load_and_getitem(tmpdir, lu, self.EXPECTED_FCCS_10_CT_130_RX, self.F_S_R_ID, self.R_ID)
-
-    def test_load_and_get_wf(self, tmpdir):
-        lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, False)
-        ################################ TEMP ################################
-        # WF data are bad; until they are replaced, use RX data for everything
-        # TODO: switch back to WF data once they are corrected
-        self._test_load_and_get(tmpdir, lu,
-            self.EXPECTED_FCCS_10_CT_130_RX, #self.EXPECTED_FCCS_10_CT_130_WF,
-            self.F_S_R_ID, self.R_ID)
-        ################################ TEMP ################################
-
-    def test_load_and_get_rx(self, tmpdir):
-        lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, True)
-        self._test_load_and_get(tmpdir, lu, self.EXPECTED_FCCS_10_CT_130_RX, self.F_S_R_ID, self.R_ID)
-
-##
-## Actual Tests
-##
-
-class LookUpTestBaseLookUp(LookUpTestBase):
-    LOOKUP_CLASS = BaseLookUp
-
-    def _test_load_and_get(self, tmpdir, lu, f_s_r_expected):
-
-        # Neither fccs_fuelbed_id nor cover_type_id is specified
-        with raises(LookupError):
-            lu.get()
-        # both fccs_fuelbed_id and cover_type_id is specified
-        with raises(LookupError):
-            lu.get(fccs_fuelbed_id=10, cover_type_id=130)
-
-        # fuel category is specified without phase
-        with raises(LookupError):
-            lu.get(fuel_category='woody')
-        # species is specified without phase
-        with raises(LookupError):
-            lu.get(species='CO2')
-        # fuel category and species are specified without phase
-        with raises(LookupError):
-            lu.get(fuel_category='woody', species='CO2')
-        # species is specified without fuel_category for residual phase
-        with raises(LookupError):
-            lu.get(phase='residual', species='CO2')
-
-        # cases where FCCS id or cover type doesn't exist
-        assert None == lu.get(fccs_fuelbed_id=999)
-        assert None == lu.get(cover_type_id=999)
-        assert None == lu.get(fccs_fuelbed_id=999, phase='flaming')
-        assert None == lu.get(cover_type_id=999, phase='flaming')
-        assert None == lu.get(fccs_fuelbed_id=999, phase='flaming', species='CO2')
-        assert None == lu.get(cover_type_id=999, phase='flaming', species='CO2')
-        # cases where phase type doesn't exist
-        assert None == lu.get(fccs_fuelbed_id=10, phase='foo_bar_phase')
-        assert None == lu.get(cover_type_id=130, phase='foo_bar_phase')
-        assert None == lu.get(fccs_fuelbed_id=10, phase='foo_bar_phase', species='CO2')
-        assert None == lu.get(cover_type_id=130, phase='foo_bar_phase', species='CO2')
-        # residual cases where fuel category doesn't exist or doesn't have residual EFs
-        assert None == lu.get(fccs_fuelbed_id=10, phase='residual', fuel_category='foo_bar')
-        assert None == lu.get(cover_type_id=130, phase='residual', fuel_category='foo_bar')
-        assert None == lu.get(fccs_fuelbed_id=10, phase='residual', fuel_category='foo_bar', species='CO2')
-        assert None == lu.get(cover_type_id=130, phase='residual', fuel_category='foo_bar', species='CO2')
-        # cases where chemical species doesn't exist
-        assert None == lu.get(fccs_fuelbed_id=10, phase='flaming', species='sdfsdf')
-        assert None == lu.get(cover_type_id=130, phase='flaming', species='sdfsdf')
-        assert None == lu.get(fccs_fuelbed_id=10, phase='residual', fuel_category="duff", species='sdfsdf')
-        assert None == lu.get(cover_type_id=130, phase='residual', fuel_category="duff", species='sdfsdf')
-        # cases where ef set type isn't defined
-        assert None == lu.get(fccs_fuelbed_id=71, phase='flaming')
-        assert None == lu.get(cover_type_id=232, phase='flaming')
-        assert None == lu.get(fccs_fuelbed_id=71, phase='flaming', species='CO2')
-        assert None == lu.get(cover_type_id=232, phase='flaming', species='CO2')
-        # cases where species isn't defined
-        assert None == lu.get(fccs_fuelbed_id=10, phase='residual', fuel_category="woody", species='CO2')
-        assert None == lu.get(cover_type_id=130, phase='residual', fuel_category="woody", species='CO2')
-
-        assert f_s_r_expected == lu.get(fccs_fuelbed_id=10)
-        assert f_s_r_expected == lu.get(cover_type_id=130)
-        assert f_s_r_expected['flaming'] == lu.get(fccs_fuelbed_id=10, phase='flaming')
-        assert f_s_r_expected['flaming'] == lu.get(cover_type_id=130, phase='flaming')
-        assert f_s_r_expected['residual'] == lu.get(fccs_fuelbed_id=10, phase='residual')
-        assert f_s_r_expected['residual'] == lu.get(cover_type_id=130, phase='residual')
-        assert f_s_r_expected['residual']['duff'] == lu.get(fccs_fuelbed_id=10, phase='residual', fuel_category='duff')
-        assert f_s_r_expected['residual']['duff'] == lu.get(cover_type_id=130, phase='residual', fuel_category='duff')
-        assert f_s_r_expected['residual']['duff']['PM2.5'] == lu.get(fccs_fuelbed_id=10, phase='residual', fuel_category='duff', species='PM2.5')
-        assert f_s_r_expected['residual']['duff']['PM2.5'] == lu.get(cover_type_id=130, phase='residual', fuel_category='duff', species='PM2.5')
-        assert self.EXPECTED_FCCS_71_CT_232 == lu.get(fccs_fuelbed_id=71)
-        assert self.EXPECTED_FCCS_71_CT_232 == lu.get(cover_type_id=232)
-        assert self.EXPECTED_FCCS_71_CT_232['residual'] == lu.get(fccs_fuelbed_id=71, phase='residual')
-        assert self.EXPECTED_FCCS_71_CT_232['residual'] == lu.get(cover_type_id=232, phase='residual')
-        assert self.EXPECTED_FCCS_71_CT_232['residual']['duff'] == lu.get(fccs_fuelbed_id=71, phase='residual', fuel_category='duff')
-        assert self.EXPECTED_FCCS_71_CT_232['residual']['duff'] == lu.get(cover_type_id=232, phase='residual', fuel_category='duff')
-        assert self.EXPECTED_FCCS_71_CT_232['residual']['duff']['PM2.5'] == lu.get(fccs_fuelbed_id=71, phase='residual', fuel_category='duff', species='PM2.5')
-        assert self.EXPECTED_FCCS_71_CT_232['residual']['duff']['PM2.5'] == lu.get(cover_type_id=232, phase='residual', fuel_category='duff', species='PM2.5')
-
-    def test_load_and_get_wf(self, tmpdir):
-        lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, False)
-        ################################ TEMP ################################
-        # WF data are bad; until they are replaced, use RX data for everything
-        # TODO: switch back to WF data once they are corrected
-        self._test_load_and_get(tmpdir, lu,
-            self.EXPECTED_FCCS_10_CT_130_RX) #self.EXPECTED_FCCS_10_CT_130_WF)
-        ################################ TEMP ################################
-
-    def test_load_and_get_rx(self, tmpdir):
-        lu = self.create_look_up_object(tmpdir, self.LOOKUP_CLASS, True)
-        self._test_load_and_get(tmpdir, lu, self.EXPECTED_FCCS_10_CT_130_RX)
-
-class TestFccs2Ef(Fccs2EfAndCoverType2EfBase):
-    # Fccs2EfAndCoverType2EfBase contains all of the test code, which uses
-    # LOOKUP_CLASS and F_S_R_ID to trigger the correct test logic
-    LOOKUP_CLASS = Fccs2Ef
-    F_S_R_ID = 10
-    R_ID = 71
-
-class TestCoverType2Ef(Fccs2EfAndCoverType2EfBase):
-    LOOKUP_CLASS = CoverType2Ef
-    F_S_R_ID = 130
-    R_ID = 232
-
-
-class TestSpecies(LookUpTestBase):
-
-    def test_wf_species(self, tmpdir):
-        expected_flaming = {'CO2','PM2.5','PM10'}
-        expected_smoldering = {'CO2','PM2.5','PM10'}
-        expected_residual = {'CO2','PM2.5','PM10'}
-
-        lu = self.create_look_up_object(tmpdir, Fccs2Ef, False)
-        assert expected_flaming == lu[10].species('flaming')
-        assert expected_smoldering == lu[10].species('smoldering')
-        assert expected_residual == lu[10].species('residual')
-
-        lu = self.create_look_up_object(tmpdir, CoverType2Ef, False)
-        assert expected_flaming == lu[130].species('flaming')
-        assert expected_smoldering == lu[130].species('smoldering')
-        assert expected_residual == lu[130].species('residual')
-
-    def test_rx_species(self, tmpdir):
-        expected_flaming = {'CO2','PM2.5','PM10'}
-        expected_smoldering = {'CO2','PM2.5','PM10'}
-        expected_residual = {'CO2','PM2.5','PM10'}
-
-        lu = self.create_look_up_object(tmpdir, Fccs2Ef, True)
-        assert expected_flaming == lu[10].species('flaming')
-        assert expected_smoldering == lu[10].species('smoldering')
-        assert expected_residual == lu[10].species('residual')
-
-        lu = self.create_look_up_object(tmpdir, CoverType2Ef, True)
-        assert expected_flaming == lu[130].species('flaming')
-        assert expected_smoldering == lu[130].species('smoldering')
-        assert expected_residual == lu[130].species('residual')
-
-    def test_residual_only_species(self, tmpdir):
-        expected_flaming = set()
-        expected_smoldering = set()
-        expected_residual = {'CO2','PM2.5','PM10'}
-
-        lu = self.create_look_up_object(tmpdir, Fccs2Ef, True)
-        assert expected_flaming == lu[71].species('flaming')
-        assert expected_smoldering == lu[71].species('smoldering')
-        assert expected_residual == lu[71].species('residual')
-
-        lu = self.create_look_up_object(tmpdir, CoverType2Ef, True)
-        assert expected_flaming == lu[232].species('flaming')
-        assert expected_smoldering == lu[232].species('smoldering')
-        assert expected_residual == lu[232].species('residual')
+    def test_species(self):
+        pass
