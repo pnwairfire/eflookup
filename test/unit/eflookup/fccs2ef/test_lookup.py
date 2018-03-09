@@ -96,16 +96,18 @@ class TestFccs2EfAndCovertype2EF(object):
         self.ct2ef_213_rx = CoverType2Ef('1', True)
         self.ct2ef_213_wf = CoverType2Ef('10', False)
 
-    def test_invalid_get(self):
+    def test_invalid_fccs_and_covertype_ids(self):
         # fccs id 1 isn't in ou
-        with raises(KeyError) as e_info:
+        with raises(ValueError) as e_info:
             Fccs2Ef("1", True)
-        with raises(KeyError) as e_info:
+        with raises(ValueError) as e_info:
             Fccs2Ef("1", False)
-        with raises(KeyError) as e_info:
+        with raises(ValueError) as e_info:
             CoverType2Ef("2", True)
-        with raises(KeyError) as e_info:
+        with raises(ValueError) as e_info:
             CoverType2Ef("2", False)
+
+    def test_invalid_get(self):
 
         with raises(LookupError) as e_info:
             self.fccs2ef_213_rx.get()

@@ -72,18 +72,20 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
 
         cover_type_id = getattr(self, 'cover_type_id', None)
         if not cover_type_id:
-            try:
-                # fccs_fuelbed_id should be a string, since it's not necessary
-                # numeric but cast to string in case user specified it as an integer
-                fccs_fuelbed_id = getattr(self, 'fccs_fuelbed_id')
-                fccs_2_cover_type = Fccs2CoverType()
-                cover_type_id = fccs_2_cover_type.get(str(fccs_fuelbed_id))
-            except KeyError:
-                raise ValueError("Invalid FCCS Id")
+            # fccs_fuelbed_id should be a string, since it's not necessary
+            # numeric but cast to string in case user specified it as an integer
+            fccs_fuelbed_id = getattr(self, 'fccs_fuelbed_id')
+            fccs_2_cover_type = Fccs2CoverType()
+            cover_type_id = fccs_2_cover_type.get(str(fccs_fuelbed_id))
+            if not cover_type_id:
+                raise ValueError("Invalid FCCS Id".format(fccs_fuelbed_id))
+
 
         ef_set_type = 'rx' if is_rx else 'wf'
         cover_type_2_ef_group = CoverType2EfGroup()
         ef_groups = cover_type_2_ef_group.get(str(cover_type_id))
+        if not ef_groups:
+            raise ValueError("Invalid Covertype Id {}".format(cover_type_id))
 
         self.ef_group = ef_groups[ef_set_type]
         self.region = ef_groups['regrx']
