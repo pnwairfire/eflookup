@@ -107,40 +107,40 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
         '9-11': {
             'canopy': {
                 'overstory': {
-                    'smoldering': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM25': '9', 'SO2': '9'},
-                    'flaming': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM25': '9', 'SO2': '9'},
-                    'residual': {'CO': None, 'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
+                    'smoldering': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM2.5': '9', 'SO2': '9'},
+                    'flaming': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM2.5': '9', 'SO2': '9'},
+                    'residual': {'CO': None, 'NH3': None, 'NOx': None, 'PM2.5': None, 'SO2': None},
                 },
                 'midstory': {
-                    'flaming': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM25': '9', 'SO2': '9'}
+                    'flaming': {'CO': '9', 'NH3': '9', 'NOx': '9', 'PM2.5': '9', 'SO2': '9'}
                 },
                 'snags class 3': {
-                    'residual': {'CO': '7', 'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                    'residual': {'CO': '7', 'NH3': '7', 'NOx': '7', 'PM2.5': '7', 'SO2': '7'}
                 }
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'CO': None, 'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None}
+                    'residual': {'CO': None, 'NH3': None, 'NOx': None, 'PM2.5': None, 'SO2': None}
                 }
             }
         },
         '12-14': {
             'canopy': {
                 'overstory': {
-                    'smoldering': {'NH3': '12', 'NOx': '12', 'PM25': '12', 'SO2': '12'},
-                    'flaming': {'NH3': '12', 'NOx': '12', 'PM25': '12', 'SO2': '12'},
-                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
+                    'smoldering': {'NH3': '12', 'NOx': '12', 'PM2.5': '12', 'SO2': '12'},
+                    'flaming': {'NH3': '12', 'NOx': '12', 'PM2.5': '12', 'SO2': '12'},
+                    'residual': {'NH3': None, 'NOx': None, 'PM2.5': None, 'SO2': None},
                 },
                 'midstory': {
-                    'flaming': {'NH3': '12', 'NOx': '12', 'PM25': '12', 'SO2': '12'}
+                    'flaming': {'NH3': '12', 'NOx': '12', 'PM2.5': '12', 'SO2': '12'}
                 },
                 'snags class 3': {
-                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                    'residual': {'NH3': '7', 'NOx': '7', 'PM2.5': '7', 'SO2': '7'}
                 }
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None}
+                    'residual': {'NH3': None, 'NOx': None, 'PM2.5': None, 'SO2': None}
                 }
             }
         },
@@ -167,20 +167,20 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
         '18-20': {
             'canopy': {
                 'overstory': {
-                    'smoldering': {'NH3': '18', 'NOx': '18', 'PM25': '18', 'SO2': '18'},
-                    'flaming': {'NH3': '18', 'NOx': '18', 'PM25': '18', 'SO2': '18'},
-                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
+                    'smoldering': {'NH3': '18', 'NOx': '18', 'PM2.5': '18', 'SO2': '18'},
+                    'flaming': {'NH3': '18', 'NOx': '18', 'PM2.5': '18', 'SO2': '18'},
+                    'residual': {'NH3': None, 'NOx': None, 'PM2.5': None, 'SO2': None},
                 },
                 'midstory': {
-                    'flaming': {'NH3': '18', 'NOx': '18', 'PM25': '18', 'SO2': '18'}
+                    'flaming': {'NH3': '18', 'NOx': '18', 'PM2.5': '18', 'SO2': '18'}
                 },
                 'snags class 3': {
-                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                    'residual': {'NH3': '7', 'NOx': '7', 'PM2.5': '7', 'SO2': '7'}
                 }
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None}
+                    'residual': {'NH3': None, 'NOx': None, 'PM2.5': None, 'SO2': None}
                 }
             }
         },
@@ -207,20 +207,20 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
         '24-26': {
             'canopy': {
                 'overstory': {
-                    'smoldering': {'NH3': '24', 'NOx': '24', 'PM25': '24', 'SO2': '24'},
-                    'flaming': {'NH3': '24', 'NOx': '24', 'PM25': '24', 'SO2': '24'},
-                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None},
+                    'smoldering': {'NH3': '24', 'NOx': '24', 'PM2.5': '24', 'SO2': '24'},
+                    'flaming': {'NH3': '24', 'NOx': '24', 'PM2.5': '24', 'SO2': '24'},
+                    'residual': {'NH3': None, 'NOx': None, 'PM2.5': None, 'SO2': None},
                 },
                 'midstory': {
-                    'flaming': {'NH3': '24', 'NOx': '24', 'PM25': '24', 'SO2': '24'}
+                    'flaming': {'NH3': '24', 'NOx': '24', 'PM2.5': '24', 'SO2': '24'}
                 },
                 'snags class 3': {
-                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                    'residual': {'NH3': '7', 'NOx': '7', 'PM2.5': '7', 'SO2': '7'}
                 }
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None}
+                    'residual': {'NH3': None, 'NOx': None, 'PM2.5': None, 'SO2': None}
                 }
             }
         },
