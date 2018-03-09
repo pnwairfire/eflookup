@@ -11,7 +11,6 @@ __author__      = "Joel Dubowy"
 
 import abc
 import csv
-import json
 import logging
 import os
 import re
@@ -71,16 +70,17 @@ class ImporterBase(object):
         if isinstance(data, dict):
             for k in data:
                 data[k] = self._get_ordered_data(data[k])
-            data = OrderedDict(sorted(data.items()))
+            data = dict(OrderedDict(sorted(data.items())))
         return data
 
     def write(self, output_file_name=None):
         output_file_name = output_file_name or os.path.join(
             os.path.dirname(__file__), 'data', self._default_file_name())
         with open(output_file_name, 'wt') as f:
-            data = OrderedDict
+            # Note: we don't use json.dumps, since that converts
+            #  `None` values to `null`
             f.write('{} = {}'.format(self._data_variable_name(),
-                json.dumps(self._get_ordered_data(self._data))))
+                self._get_ordered_data(self._data)))
 
 ##
 ## Fccs2CoverType
@@ -236,9 +236,10 @@ class CatPhase2EFGroupImporter(ImporterBase):
         self._combine_header_rows()
 
     def _process_row(self, row):
-        row = [self._process_value(i, row[i+self.FIRST_COL_IDX])
-            for i in range(len(self._headers))
-                if i-self.FIRST_COL_IDX not in self._col_idxs_to_skip]
+        row = [row[i+self.FIRST_COL_IDX]
+            for i in range(len(self._headers)+len(self._col_idxs_to_skip))
+                if i not in self._col_idxs_to_skip]
+        row = [self._process_value(i,e) for i,e in enumerate(row)]
         cat = sub_cat = phase = None
         for i, h in enumerate(self._headers):
             if h == 'consume_output_variable':
@@ -254,9 +255,8 @@ class CatPhase2EFGroupImporter(ImporterBase):
                 self._data[reg][cat] = self._data[reg].get(cat, {})
                 self._data[reg][cat][sub_cat] = self._data[reg][cat].get(
                     sub_cat, {})
-                import pdb;pdb.set_trace()
                 self._data[reg][cat][sub_cat][phase] = {
-                    s: row[i] for s in species
+                    s: row[i] or None for s in species
                 }
 
     # extracts number range (e.g. "General (1-6)" -> '1-6')

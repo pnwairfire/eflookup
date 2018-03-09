@@ -100,6 +100,7 @@ C_over_crown,canopy,overstory,,C_over_crown_F,Overstory tree crowns,Flaming,Gene
 ,,,,C_over_crown_R,Overstory tree crowns,Residual,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,,C_wood_S1000hr_R,Woody RSC (7),,3,Western Forest - Rx,Assigned by fuelbed and burn type (prescribed or wildfire),,,,,,,SE Hdwd F/S,12,1688,78.9,2.42,2.43,1.79,0.63,14.32,
 C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General (1-6),10,9,13,12,16,15,19,18,22,21,25,24,28,27,31,30,31,30,33,,C_wood_R1000hr_R,Woody RSC (7),,4,Western Forest - WF,Assigned by fuelbed and burn type (prescribed or wildfire),,,,,,,SE Hdwd F,13,1702,68.6,1.92,,,,,
 ,,,CWD,C_snagc3_R,Class 3 snag wood,Residual,Woody RSC (7),7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,,"SE Hdwd (F, S)","CO2, CO, CH4",,Shrub,,,,,,,,,,,,,,,,,,
+,,,,C_herb_1live_R,Herbs - live primary layer,Residual,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,,,,,LLM,,,,,,,,,,,,,,,,,,
 """
 
     EXPECTED_OUTPUT = {
@@ -119,7 +120,7 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'CO': '7', 'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                    'residual': {'CO': None, 'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None}
                 }
             }
         },
@@ -139,7 +140,7 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None}
                 }
             }
         },
@@ -159,7 +160,7 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'NOx': '7', 'SO2': '7'}
+                    'residual': {'NOx': None, 'SO2': None}
                 }
             }
         },
@@ -179,7 +180,7 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None}
                 }
             }
         },
@@ -199,7 +200,7 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'NH3': '7', 'NOx': '7', 'SO2': '7'}
+                    'residual': {'NH3': None, 'NOx': None, 'SO2': None}
                 }
             }
         },
@@ -219,7 +220,7 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'NH3': '7', 'NOx': '7', 'PM25': '7', 'SO2': '7'}
+                    'residual': {'NH3': None, 'NOx': None, 'PM25': None, 'SO2': None}
                 }
             }
         },
@@ -239,7 +240,7 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'NH3': '7', 'NOx': '7', 'SO2': '7'}
+                    'residual': {'NH3': None, 'NOx': None, 'SO2': None}
                 }
             }
         },
@@ -259,7 +260,7 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'NOx': '7', 'SO2': '7'}
+                    'residual': {'NOx': None, 'SO2': None}
                 }
             }
         },
@@ -279,7 +280,7 @@ C_mid_crown,canopy,midstory,,C_mid_crown_F,Midstory tree crowns,Flaming,General 
             },
             'nonwoody': {
                 'primary live': {
-                    'residual': {'CO': '7', 'CH4': '7', 'CO2': '7'}
+                    'residual': {'CO': None, 'CH4': None, 'CO2': None}
                 }
             }
         }
