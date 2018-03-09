@@ -68,7 +68,7 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
         """
         self.is_rx = is_rx
         self.cat_phase_2_ef_group = CatPhase2EFGroup()
-        ef_group_2_ef_loader = EfGroup2Ef()
+        self.ef_group_2_ef_loader = EfGroup2Ef()
 
         cover_type_id = getattr(self, 'cover_type_id', None)
         if not cover_type_id:
@@ -90,9 +90,9 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
         self.ef_group = ef_groups[ef_set_type]
         self.region = ef_groups['regrx']
 
-        self.ef_set = ef_group_2_ef_loader.get(self.ef_group)
-        self.ef_set_residual_woody = ef_group_2_ef_loader.get_woody_rsc()
-        self.ef_set_residual_duff = ef_group_2_ef_loader.get_duff_rsc()
+        self.ef_set = self.ef_group_2_ef_loader.get(self.ef_group)
+        self.ef_set_residual_woody = self.ef_group_2_ef_loader.get_woody_rsc()
+        self.ef_set_residual_duff = self.ef_group_2_ef_loader.get_duff_rsc()
 
 
     def get(self, **kwargs):
@@ -127,8 +127,12 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
         fuel_category = kwargs.get('fuel_category')
         fuel_sub_category = kwargs.get('fuel_sub_category')
         species = kwargs.get('species')
-        override_ef_group = self.cat_phase_2_ef_group.get(phase,
-            fuel_category, fuel_sub_category, species, default=-1)
+
+        # TODO: should regional overrides only be considered for Rx?
+        # Note: phase is nested under fuel category and sub-category in
+        #   cat_phase_2_ef_group mapping data
+        override_ef_group = self.cat_phase_2_ef_group.get(self.region,
+            fuel_category, fuel_sub_category, phase, species, default=-1)
 
         try:
             if override_ef_group == None:
@@ -156,7 +160,7 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
             else:
                 # return override value
                 logging.debug("Using regional override")
-                return self.ef_groups[override_ef_group][species]
+                return float(self.ef_group_2_ef_loader.get(override_ef_group)[species])
 
         except KeyError:
              return None
