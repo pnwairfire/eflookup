@@ -63,15 +63,24 @@ class ImporterBase(object):
     def _data_variable_name(self):
         pass
 
-    def _get_ordered_data(self, data):
+    def _write_ordered_data(self, data, f):
         # This is done so that the data python modules don't
         # change from one run of the import process to the next
         # when the underlying data hasn't changed
         if isinstance(data, dict):
-            for k in data:
-                data[k] = self._get_ordered_data(data[k])
-            data = dict(OrderedDict(sorted(data.items())))
-        return data
+            f.write('{')
+            for k in sorted(data):
+                f.write('"{}":'.format(k))
+                self._write_ordered_data(data[k], f)
+                # don't worry about trailing ',', since we're writing python
+                f.write(',')
+            f.write('}')
+        else:
+            if data is None:
+                f.write('None'.format(data))
+            else:
+                f.write('"{}"'.format(data))
+
 
     def write(self, output_file_name=None):
         output_file_name = output_file_name or os.path.join(
@@ -79,8 +88,8 @@ class ImporterBase(object):
         with open(output_file_name, 'wt') as f:
             # Note: we don't use json.dumps, since that converts
             #  `None` values to `null`
-            f.write('{} = {}'.format(self._data_variable_name(),
-                self._get_ordered_data(self._data)))
+            f.write('{} = '.format(self._data_variable_name()))
+            self._write_ordered_data(self._data, f)
 
 ##
 ## Fccs2CoverType
