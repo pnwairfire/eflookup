@@ -161,12 +161,24 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
         except KeyError:
              return None
 
+    WOODY_CATEGORIES = ('canopy', 'woody fuels')
+    WOODY_SUB_CATEGORIES = (
+        "snags class 2",
+        "snags class 3",
+        "1000-hr fuels sound",
+        "1000-hr fuels rotten",
+        "10000-hr fuels sound",
+        "10000-hr fuels rotten",
+        "10k+-hr fuels sound",
+        "10k+-hr fuels rotten",
+        "stumps rotten",
+        "stumps lightered"
+    )
     def is_woody(self, fuel_category, fuel_sub_category):
-        # TODO: is this correct?
-        return fuel_category == 'woody fuels'
+        return (fuel_category in self.WOODY_CATEGORIES
+            and fuel_sub_category in self.WOODY_SUB_CATEGORIES)
 
     def is_duff(self, fuel_category, fuel_sub_category):
-        # TODO: is this correct?
         return fuel_category == 'ground fuels'
 
     def species(self, phase):
