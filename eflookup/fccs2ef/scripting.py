@@ -64,7 +64,7 @@ def run(lookup_class, examples_string=None):
             fuel_sub_category=args.fuel_sub_category,
             species=args.species)
 
-        sys.stdout.write(json.dumps(r))
+        sys.stdout.write(json.dumps(r) + '\n')
 
     except Exception as e:
         if logging.getLogger().getEffectiveLevel() <= logging.DEBUG:
