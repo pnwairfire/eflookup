@@ -12,6 +12,7 @@
 __author__      = "Joel Dubowy"
 
 import abc
+import logging
 
 from ..constants import Phase, CONSUME_FUEL_CATEGORY_TRANSLATIONS
 from .mappers import (
@@ -123,17 +124,18 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
         fuel_category = kwargs.get('fuel_category')
         fuel_sub_category = kwargs.get('fuel_sub_category')
         species = kwargs.get('species')
-
         override_ef_group = self.cat_phase_2_ef_group.get(phase,
             fuel_category, fuel_sub_category, species, default=-1)
 
         try:
             if override_ef_group == None:
+                logging.debug("Using regional override - zero emissions")
                 # 'None' is specified in overrides, which means indicates
                 # that there should be no emissions; so, return None
                 return None
 
             elif override_ef_group == -1:
+                logging.debug("No Regional override")
                 # Not specified in overrides. Use base assignment
                 if phase == Phase.RESIDUAL:
                     # TODO: return 0 unle it's woody or duff (based
@@ -150,6 +152,7 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
 
             else:
                 # return override value
+                logging.debug("Using regional override")
                 return self.ef_groups[override_ef_group][species]
 
         except KeyError:
