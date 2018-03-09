@@ -48,9 +48,7 @@ __all__ = [
 #     "squirrel middens": FuelCategory.DUFF
 # }
 
-_categorie_tuples = [
-    e.split(':') for e in CONSUME_FUEL_CATEGORY_TRANSLATIONS.values()
-]
+_categorie_tuples = CONSUME_FUEL_CATEGORY_TRANSLATIONS.values()
 VALID_FUEL_CATEGORIES = [e[0] for e in _categorie_tuples]
 VALID_FUEL_SUB_CATEGORIES = [e[1] for e in _categorie_tuples]
 

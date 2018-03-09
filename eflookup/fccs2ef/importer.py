@@ -187,18 +187,16 @@ class CatPhase2EFGroupImporter(ImporterBase):
             if e and not self._first_chem_species_set_idx:
                 self._first_chem_species_set_idx = i
 
-        self._num_headers = len(self._first_row)
-
     def _process_second_header_row(self, csv_reader):
         # grab the same number of columns from second row
         #  'Consume output variable,Category,CombustionPhase,Generic Assignment,9-11: SE Grass,9-11: SE Grass,12-14: SE Hdwd,12-14: SE Hdwd,15-17: SE Pine,15-17: SE Pine,18-20: SE Shrub,18-20: SE Shrub,21-23: W MC,21-23: W MC,24-26: W Grass,24-26: W Grass,27-29: W Hdwd,27-29: W Hdwd,30-32: W Shrub,30-32: W Shrub,30-32: W Shrub,30-32: W Shrub,33-35: Boreal,,Simplified Rules,EF Group,,Group #,# Cover Type,Note,,,,,,,SE grass F/S,9,1700,70.2,2.67,3.26,1.2,0.97,12.08,'
-        self._second_row = next(csv_reader)[self.FIRST_COL_IDX:self._num_headers+self.FIRST_COL_IDX]
+        self._second_row = next(csv_reader)[self.FIRST_COL_IDX:len(self._first_row)+self.FIRST_COL_IDX]
 
     def _combine_header_rows(self):
         # combine the two rows into single set of column headers
         self._headers = []
         self._col_idxs_to_skip = []
-        for i in range(self._num_headers):
+        for i in range(len(self._first_row)):
 
             if i < self._first_chem_species_set_idx:
                 val = self._second_row[i]
@@ -220,38 +218,9 @@ class CatPhase2EFGroupImporter(ImporterBase):
                 # like "9-11: SE Grass"
                 self._first_row_val = self._first_row[i].replace(' ', '')
                 second_row_val = self.SECOND_ROW_HEADER_PROCESSOR.sub(
-                    ':', self._second_row[i])
-                self._headers.append(second_row_val + self._first_row_val)
+                    '', self._second_row[i])
+                self._headers.append((second_row_val, self._first_row_val.split(',')))
 
-    # From old loader class
-    # REGION_SPECIES_MATCHER = re.compile('^[0-9-]+:.*$')
-    # def _process_headers(self, csv_reader):
-    #     self._headers = next(csv_reader)
-    #     self._region_species_idxs = {}
-    #     self._data = {}
-    #     for i, h in enumerate(self._headers):
-    #         if h == 'consume_output_variable':
-    #             self._cat_idx = i
-    #         elif h == 'phase':
-    #             self._phase_idx = i
-    #         elif self.REGION_SPECIES_MATCHER.match(h):
-    #             reg, species = h.split(':')
-    #             self._region_species_idxs[i] = {
-    #                 'region': reg,
-    #                 'species': species.split(',')
-    #             }
-    #             self._data[reg] = {}
-    #         # else, skip column
-
-    # def _process_row(self, row):
-    #     cat, sub_cat = row[self._cat_idx].split(':')
-    #     phase = row[self._phase_idx]
-    #     for idx, d in self._region_species_idxs.items():
-    #         self._data[d['region']][cat] = self._data[d['region']].get(cat, {})
-    #         self._data[d['region']][cat][sub_cat] = self._data[d['region']][cat].get(sub_cat, {})
-    #         self._data[d['region']][cat][sub_cat][phase] = {
-    #             s: row[idx] or None for s in d['species']
-    #         }
 
     def _process_headers(self, csv_reader):
         i = 0
@@ -267,9 +236,28 @@ class CatPhase2EFGroupImporter(ImporterBase):
         self._combine_header_rows()
 
     def _process_row(self, row):
-        self._mappings.append([self._process_value(i-self.FIRST_COL_IDX, row[i])
-            for i in range(self.FIRST_COL_IDX, self._num_headers+self.FIRST_COL_IDX)
-                if i-self.FIRST_COL_IDX not in self._col_idxs_to_skip])
+        row = [self._process_value(i, row[i+self.FIRST_COL_IDX])
+            for i in range(len(self._headers))
+                if i-self.FIRST_COL_IDX not in self._col_idxs_to_skip]
+        cat = sub_cat = phase = None
+        for i, h in enumerate(self._headers):
+            if h == 'consume_output_variable':
+                cat, sub_cat = row[i]
+            elif h == 'phase':
+                phase = row[i]
+            elif h == 'generic_assignment':
+                # skip
+                continue
+            else:
+                reg, species = h
+                self._data[reg] = self._data.get(reg, {})
+                self._data[reg][cat] = self._data[reg].get(cat, {})
+                self._data[reg][cat][sub_cat] = self._data[reg][cat].get(
+                    sub_cat, {})
+                import pdb;pdb.set_trace()
+                self._data[reg][cat][sub_cat][phase] = {
+                    s: row[i] for s in species
+                }
 
     # extracts number range (e.g. "General (1-6)" -> '1-6')
     # and scalar number values (e.g. 'Woody RSC (7)' -> '7')
