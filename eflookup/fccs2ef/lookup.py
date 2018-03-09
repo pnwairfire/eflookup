@@ -181,13 +181,13 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
 
 class Fccs2Ef(BaseLookUp):
 
-    def __init__(self, fccs_fuelbed_id, is_rx, **options):
-        self.fccs_fuelbed_id = fccs_fuelbed_id
-        super(Fccs2Ef, self).__init__(is_rx, **options)
+    def __init__(self, fccs_fuelbed_id, is_rx):
+        self.fccs_fuelbed_id = str(fccs_fuelbed_id)
+        super(Fccs2Ef, self).__init__(is_rx)
 
 
 class CoverType2Ef(BaseLookUp):
 
-    def __init__(self, cover_type_id, is_rx, **options):
-        self.cover_type_id = cover_type_id
-        super(CoverType2Ef, self).__init__(is_rx, **options)
+    def __init__(self, cover_type_id, is_rx):
+        self.cover_type_id = str(cover_type_id)
+        super(CoverType2Ef, self).__init__(is_rx)
