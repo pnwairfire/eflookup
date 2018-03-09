@@ -148,9 +148,9 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
                     # TODO: return 0 unle it's woody or duff (based
                     #   on fuel catevory or sub category?) ???
                     if self.is_woody(fuel_category, fuel_sub_category):
-                        return self.ef_set_residual_woody[species]
+                        return float(self.ef_set_residual_woody[species])
                     elif self.is_duff(fuel_category, fuel_sub_category):
-                        return self.ef_set_residual_duff[species]
+                        return float(self.ef_set_residual_duff[species])
                     else:
                         return None
                 else:
