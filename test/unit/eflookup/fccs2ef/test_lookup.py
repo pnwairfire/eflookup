@@ -26,9 +26,9 @@ CAT_PHASE_2_EF_GROUP = {
     "24-26": {
         "canopy":{
             "ladder fuels":{
-                "flaming":{"NH3":"24","PM25":"24"},
-                "residual":{"NH3":None,"PM25":None},
-                "smoldering":{"NH3":"24","PM25":"24"},
+                "flaming":{"NH3":"24","PM2.5":"24"},
+                "residual":{"NH3":None,"PM2.5":None},
+                "smoldering":{"NH3":"24","PM2.5":"24"},
             }
         }
     }
@@ -147,7 +147,7 @@ class TestFccs2EfAndCovertype2EF(object):
         assert 8.51 == self.lookups['ct2ef_1_rx'].get(phase='flaming', fuel_category='nonwoody', fuel_sub_category='primary live', species='PM2.5')
         # ef is EFG 5
         assert 9.51 == self.lookups['fccs2ef_213_wf'].get(phase='flaming', fuel_category='nonwoody', fuel_sub_category='primary live', species='PM2.5')
-        assert 9.51 == self.lookups['ct2ef_1_wf'].get(phase='flaming', fuel_category='nonwoody', fuel_sub_category='primary live', species='PM2.5')
+        assert 9.51 == self.lookups['ct2ef_10_wf'].get(phase='flaming', fuel_category='nonwoody', fuel_sub_category='primary live', species='PM2.5')
 
         ## 'canopy' is in overrides, but 'overstory' isn't
         for l in self.lookups.values():
@@ -158,7 +158,7 @@ class TestFccs2EfAndCovertype2EF(object):
         assert 8.51 == self.lookups['ct2ef_1_rx'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='overstory', species='PM2.5')
         # ef is EFG 5
         assert 9.51 == self.lookups['fccs2ef_213_wf'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='overstory', species='PM2.5')
-        assert 9.51 == self.lookups['ct2ef_1_wf'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='overstory', species='PM2.5')
+        assert 9.51 == self.lookups['ct2ef_10_wf'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='overstory', species='PM2.5')
 
         ## 'ladder fuels' is in overrides, but woody fuels isn't
         for l in self.lookups.values():
@@ -168,7 +168,7 @@ class TestFccs2EfAndCovertype2EF(object):
         assert 8.51 == self.lookups['ct2ef_1_rx'].get(phase='flaming', fuel_category='woody fuels', fuel_sub_category='ladder fuels', species='PM2.5') # woody fuels > ladder fuels would never really happen
         # wf is EFG 5
         assert 9.51 == self.lookups['fccs2ef_213_wf'].get(phase='flaming', fuel_category='woody fuels', fuel_sub_category='ladder fuels', species='PM2.5') # woody fuels > ladder fuels would never really happen
-        assert 9.51 == self.lookups['ct2ef_1_wf'].get(phase='flaming', fuel_category='woody fuels', fuel_sub_category='ladder fuels', species='PM2.5') # woody fuels > ladder fuels would never really happen
+        assert 9.51 == self.lookups['ct2ef_10_wf'].get(phase='flaming', fuel_category='woody fuels', fuel_sub_category='ladder fuels', species='PM2.5') # woody fuels > ladder fuels would never really happen
 
         ## 'canopy' > 'ladder fuels' is in overrides, but C02 isn't
         for l in self.lookups.values():
@@ -178,12 +178,12 @@ class TestFccs2EfAndCovertype2EF(object):
         assert 1705 == self.lookups['ct2ef_1_rx'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO2')
         # wf is EFG 5
         assert 170 == self.lookups['fccs2ef_213_wf'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO2')
-        assert 170 == self.lookups['ct2ef_1_wf'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO2')
+        assert 170 == self.lookups['ct2ef_10_wf'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO2')
 
         ## Other
         for l in self.lookups.values():
             assert None == l.get(phase='residual', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO2') # no residual emissions
-            assert 1 == l.get(phase='residual', fuel_category='ground fuels', fuel_sub_category='duff upper', species='CO2') #CWD - EFG 7
+            assert 1 == l.get(phase='residual', fuel_category='woody fuels', fuel_sub_category='1000-hr fuels rotten', species='CO2') #CWD - EFG 7
             assert 11 == l.get(phase='residual', fuel_category='ground fuels', fuel_sub_category='duff upper', species='CO2') #duff - EFG 8
 
     def test_get_existing_w_None_override(self):
