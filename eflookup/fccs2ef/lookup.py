@@ -148,7 +148,7 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
                         return None
                 else:
                     # flaming and smooldering use the saem EF
-                    self.ef_set[species]
+                    return float(self.ef_set[species])
 
             else:
                 # return override value
