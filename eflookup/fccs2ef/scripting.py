@@ -57,11 +57,7 @@ def run(lookup_class, examples_string=None):
             extra_output=lambda: parser.print_help())
 
     try:
-        look_up = lookup_class(args.id,args.rx,
-            fccs_2_cover_type_file=args.fccs_2_cover_type_file,
-            cover_type_2_ef_group_file=args.cover_type_2_ef_group_file,
-            ef_group_2_ef_file=args.ef_group_2_ef_file
-        )
+        look_up = lookup_class(args.id, args.rx)
         r = look_up.get(
             phase=args.phase,
             fuel_category=args.fuel_category,
