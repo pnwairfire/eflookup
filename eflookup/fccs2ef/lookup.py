@@ -14,7 +14,8 @@ __author__      = "Joel Dubowy"
 import abc
 import logging
 
-from ..constants import Phase, CONSUME_FUEL_CATEGORY_TRANSLATIONS
+from .. import Phase
+from .constants import CONSUME_FUEL_CATEGORY_TRANSLATIONS
 from .mappers import (
     Fccs2CoverType,
     CoverType2EfGroup,

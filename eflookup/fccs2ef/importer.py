@@ -16,7 +16,7 @@ import os
 import re
 from collections import OrderedDict
 
-from ..constants import CONSUME_FUEL_CATEGORY_TRANSLATIONS
+from .constants import CONSUME_FUEL_CATEGORY_TRANSLATIONS
 
 __all__ = [
     'Fccs2CoverTypeImporter',

@@ -6,11 +6,7 @@ TODO: Make these immutable
 
 __author__      = "Joel Dubowy"
 
-class Phase:
-    FLAMING = 'flaming'
-    SMOLDERING = 'smoldering'
-    RESIDUAL = 'residual'
-    ALL = set([FLAMING, SMOLDERING, RESIDUAL])
+from . import Phase
 
 class BasicEFLookup(dict):
     """Look-up object for arbitrary, phase specific emission factors

@@ -1,19 +1,6 @@
-"""eflookup.constants: defines constants used throughout eflookup package
-
-TODO: Make these immutable
-"""
-
-__author__      = "Joel Dubowy"
-
 __all__ = [
-    'Phase',
     'CONSUME_FUEL_CATEGORY_TRANSLATIONS'
 ]
-
-class Phase:
-    FLAMING = 'flaming'
-    SMOLDERING = 'smoldering'
-    RESIDUAL = 'residual'
 
 CONSUME_FUEL_CATEGORY_TRANSLATIONS = {
     "c_over_crown": ("canopy", "overstory"),
