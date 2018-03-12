@@ -140,10 +140,12 @@ class CoverType2EfGroupImporter(ImporterBase):
         wf = self._extract_ef_group_id(row[2])
         rx = self._extract_ef_group_id(row[3])
         regionalrx = self._extract_ef_group_id(row[4])
+        regionalwf = self._extract_ef_group_id(row[5])
         self._data[row[0]] = {
             "wf": wf,
             'rx': rx,
             'regrx': regionalrx,
+            'regwf': regionalwf,
         }
 
     def _default_file_name(self):

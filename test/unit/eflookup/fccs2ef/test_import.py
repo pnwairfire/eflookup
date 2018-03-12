@@ -59,25 +59,27 @@ class TestCoverType2EfGroupImporter(object):
     """Top level functional test for importing cover type to ef group mappings
     """
 
-    INPUT_CONTENT = """MapID,Cover type,WF,Rx,RegionalRx
-1,SRM 101: Bluebunch Wheatgrass,6: Grass,6: Grass,24-26: W Grass
-2,SRM 102: Idaho Fescue,6: Grass,6: Grass,24-26: W Grass
-3,SRM 103: Green Fescue,6: Grass,6: Grass,24-26: W Grass
-4,SRM 104: Antelope Bitterbrush-Bluebunch Wheatgrass,6: Grass,6: Grass,24-26: W Grass
-5,SRM 105: Antelope Bitterbrush-Idaho Fescue,6: Grass,6: Grass,24-26: W Grass
-6,SRM 106: Bluegrass Scabland,6: Grass,6: Grass,24-26: W Grass
-7,SRM 107: Western Juniper-Big Sagebrush-Bluebunch Wheatgrass,5: Shrub,5: Shrub,30-32: W Shrub
+    INPUT_CONTENT = """MapID,Cover type,WF,Rx,RegionalRx,RegionalWF
+1,SRM 101: Bluebunch Wheatgrass,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
+2,SRM 102: Idaho Fescue,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
+3,SRM 103: Green Fescue,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
+4,SRM 104: Antelope Bitterbrush-Bluebunch Wheatgrass,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
+5,SRM 105: Antelope Bitterbrush-Idaho Fescue,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
+6,SRM 106: Bluegrass Scabland,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
+7,SRM 107: Western Juniper-Big Sagebrush-Bluebunch Wheatgrass,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
+13,SRM 203: Riparian Woodland,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
 """
 
     # Note: the output is ordered by FCCS Id
     EXPECTED_OUTPUT = {
-        "1": {"wf": "6", "rx": "6", "regrx": "24-26"},
-        "2": {"wf": "6", "rx": "6", "regrx": "24-26"},
-        "3": {"wf": "6", "rx": "6", "regrx": "24-26"},
-        "4": {"wf": "6", "rx": "6", "regrx": "24-26"},
-        "5": {"wf": "6", "rx": "6", "regrx": "24-26"},
-        "6": {"wf": "6", "rx": "6", "regrx": "24-26"},
-        "7": {"wf": "5", "rx": "5", "regrx": "30-32"}
+        "1": {"wf": "6", "rx": "6", "regrx": "24-26", "regwf": "24-26"},
+        "2": {"wf": "6", "rx": "6", "regrx": "24-26", "regwf": "24-26"},
+        "3": {"wf": "6", "rx": "6", "regrx": "24-26", "regwf": "24-26"},
+        "4": {"wf": "6", "rx": "6", "regrx": "24-26", "regwf": "24-26"},
+        "5": {"wf": "6", "rx": "6", "regrx": "24-26", "regwf": "24-26"},
+        "6": {"wf": "6", "rx": "6", "regrx": "24-26", "regwf": "24-26"},
+        "7": {"wf": "5", "rx": "5", "regrx": "30-32", "regwf": "30-32"},
+        "13": {"wf": "4", "rx": "3", "regrx": "27-29", "regwf": None},
     }
 
     def test_import(self, tmpdir):
