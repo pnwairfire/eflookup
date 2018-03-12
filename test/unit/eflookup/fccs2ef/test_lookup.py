@@ -18,8 +18,8 @@ FCCS_2_COVERTYPE = {
 }
 
 COVERTYPE_2_EF_GROUP = {
-    "1":{"regrx":"24-26","rx":"6","wf":"5",},
-    "10":{"regrx":"24-26","rx":"6","wf":"5",}
+    "1":{"regrx":"24-26","rx":"6","wf":"5", "regwf": None},
+    "10":{"regrx":"24-26","rx":"6","wf":"5", "regwf": "21-23"}
 }
 
 CAT_PHASE_2_EF_GROUP = {
@@ -27,6 +27,15 @@ CAT_PHASE_2_EF_GROUP = {
         "canopy":{
             "ladder fuels":{
                 "flaming":{"NH3":"24","PM2.5":"24"},
+                "residual":{"NH3":None,"PM2.5":None},
+                "smoldering":{"NH3":"24","PM2.5":"24"},
+            }
+        }
+    },
+    "21-23": {
+        "canopy":{
+            "ladder fuels":{
+                "flaming":{"NH3":"24","PM2.5":"25"},
                 "residual":{"NH3":None,"PM2.5":None},
                 "smoldering":{"NH3":"24","PM2.5":"24"},
             }
@@ -190,9 +199,11 @@ class TestFccs2EfAndCovertype2EF(object):
         for l in self.lookups.values():
             assert None == l.get(phase='residual', fuel_category='canopy', fuel_sub_category='ladder fuels', species='NH3')
 
-    def test_get_existing_w_float_override(self):
-        for l in self.lookups.values():
-            assert 9.89 == l.get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='PM2.5')
+    def test_get_existing_w_float_override_for_rx_only(self):
+        assert 9.89 == self.lookups['fccs2ef_213_rx'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='PM2.5')
+        assert 9.51 == self.lookups['fccs2ef_213_wf'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='PM2.5')
+        assert 9.89 == self.lookups['ct2ef_1_rx'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='PM2.5')
+        assert None == self.lookups['ct2ef_10_wf'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='PM2.5')
 
     def test_species(self):
         pass

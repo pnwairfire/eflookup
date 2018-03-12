@@ -88,7 +88,7 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
             raise ValueError("Invalid Covertype Id {}".format(cover_type_id))
 
         self.ef_group = ef_groups[ef_set_type]
-        self.region = ef_groups['regrx']
+        self.region = ef_groups['regrx' if is_rx else 'regwf']
 
         self.ef_set = self.ef_group_2_ef_loader.get(self.ef_group)
         self.ef_set_residual_woody = self.ef_group_2_ef_loader.get_woody_rsc()
@@ -128,11 +128,12 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
         fuel_sub_category = kwargs.get('fuel_sub_category')
         species = kwargs.get('species')
 
-        # TODO: should regional overrides only be considered for Rx?
-        # Note: phase is nested under fuel category and sub-category in
-        #   cat_phase_2_ef_group mapping data
-        override_ef_group = self.cat_phase_2_ef_group.get(self.region,
-            fuel_category, fuel_sub_category, phase, species, default=-1)
+        override_ef_group = -1
+        if self.region:
+            # Note: phase is nested under fuel category and sub-category in
+            #   cat_phase_2_ef_group mapping data
+            override_ef_group = self.cat_phase_2_ef_group.get(self.region,
+                fuel_category, fuel_sub_category, phase, species, default=-1)
 
         try:
             if override_ef_group == None:
