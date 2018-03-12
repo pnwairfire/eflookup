@@ -37,10 +37,10 @@ OPTIONAL_OPTIONS = [
 ]
 EXAMPLES_STRING = """
 Example calls:
- $ ./bin/fepsef
- $ ./bin/fepsef -p residual
- $ ./bin/fepsef -p flaming -s CO2
- """
+ $ {script_name}
+ $ {script_name} -p residual
+ $ {script_name} -p flaming -s CO2
+ """.format(script_name=sys.argv[0])
 
 def main():
     parser, args = scripting_args.parse_args([], OPTIONAL_OPTIONS,
