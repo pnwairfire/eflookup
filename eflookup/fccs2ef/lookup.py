@@ -154,8 +154,9 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
                     else:
                         return None
                 else:
-                    # flaming and smooldering use the saem EF
-                    return float(self.ef_set[species])
+                    # flaming and smooldering use the same EF
+                    # Note: if ef is not specified or empty string, use 0
+                    return float(self.ef_set[species] or 0)
 
             else:
                 # return override value
