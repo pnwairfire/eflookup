@@ -329,7 +329,8 @@ class EfGroup2EfImporter(ImporterBase):
         if species:
             for i in range(2, len(self._headers)):
                 ef_group = self._headers[i]
-                self._data[ef_group][species] = row[i]
+                if row[i]:
+                    self._data[ef_group][species] = row[i]
         # else, skip
 
     def _default_file_name(self):

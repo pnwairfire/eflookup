@@ -53,7 +53,6 @@ EF_GROUP_2_EF = {
     },
     "6": {
         "CH4":"1.95",
-        "CO":"61",
         "CO2":"1705",
         "PM10":"10.0418",
         "PM2.5":"8.51"
@@ -76,15 +75,13 @@ EF_GROUP_2_EF = {
         "CH4":"1.98",
         "CO":"55.8",
         "CO2":"1531",
-        "PM10":"",
         "PM2.5":"9.89"
     },
     "25":{
         "CH4":"4",
         "CO":"3",
         "CO2":"2",
-        "PM10":"1",
-        "PM2.5":""
+        "PM10":"1"
     },
 }
 
@@ -185,6 +182,7 @@ class TestFccs2EfAndCovertype2EF(object):
         # rx is EFG 6
         assert 1705 == self.lookups['fccs2ef_213_rx'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO2')
         assert 1705 == self.lookups['ct2ef_1_rx'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO2')
+        assert None == self.lookups['ct2ef_1_rx'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO')
         # wf is EFG 5
         assert 170 == self.lookups['fccs2ef_213_wf'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO2')
         assert 170 == self.lookups['ct2ef_10_wf'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO2')

@@ -135,7 +135,8 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
             override_ef_group = self.cat_phase_2_ef_group.get(self.region,
                 fuel_category, fuel_sub_category, phase, species, default=-1)
 
-        def ef_or_none(ef):
+        def ef_or_none(ef_set, species):
+            ef = ef_set.get(species)
             return float(ef) if ef else None
 
         try:
@@ -152,20 +153,20 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
                     # TODO: return 0 unle it's woody or duff (based
                     #   on fuel catevory or sub category?) ???
                     if self.is_woody(fuel_category, fuel_sub_category):
-                        return ef_or_none(self.ef_set_residual_woody[species])
+                        return ef_or_none(self.ef_set_residual_woody, species)
                     elif self.is_duff(fuel_category, fuel_sub_category):
-                        return ef_or_none(self.ef_set_residual_duff[species])
+                        return ef_or_none(self.ef_set_residual_duff, species)
                     else:
                         return None
                 else:
                     # flaming and smooldering use the same EF
                     # Note: if ef is not specified or empty string, use 0
-                    return ef_or_none(self.ef_set[species])
+                    return ef_or_none(self.ef_set, species)
 
             else:
                 # return override value
                 logging.debug("Using regional override")
-                return ef_or_none(self.ef_group_2_ef_loader.get(override_ef_group)[species])
+                return ef_or_none(self.ef_group_2_ef_loader.get(override_ef_group), species)
 
         except KeyError:
              return None
