@@ -141,13 +141,11 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
 
         try:
             if override_ef_group == None:
-                logging.debug("Using regional override - zero emissions")
                 # 'None' is specified in overrides, which means indicates
                 # that there should be no emissions; so, return None
                 return None
 
             elif override_ef_group == -1:
-                logging.debug("No Regional override")
                 # Not specified in overrides. Use base assignment
                 if phase == Phase.RESIDUAL:
                     # TODO: return 0 unle it's woody or duff (based
@@ -165,7 +163,6 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
 
             else:
                 # return override value
-                logging.debug("Using regional override")
                 return ef_or_none(self.ef_group_2_ef_loader.get(override_ef_group), species)
 
         except KeyError:
