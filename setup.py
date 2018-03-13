@@ -32,7 +32,7 @@ setup(
     url='https://github.com/pnwairfire/eflookup/',
     description='Package supporting the look-up of emissions factors used to compute emissions from wildland fires.',
     install_requires=[
-        "afscripting>=1.0.2,<2.0.0",
+        "afscripting>=1.1.2,<2.0.0",
     ],
     dependency_links=[
         "https://pypi.smoke.airfire.org/simple/afscripting/"
