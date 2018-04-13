@@ -32,7 +32,7 @@ or http:
 
 Run the following to install dependencies:
 
-    pip install --trusted-host pypi.smoke.airfire.org -r requirements.txt
+    pip install -r requirements.txt
 
 Run the following to install packages required for development and testing:
 
@@ -78,7 +78,7 @@ First, install pip (with sudo if necessary):
 Then, to install, for example, v3.1.1, use the following (with
 sudo if necessary):
 
-    pip install --trusted-host pypi.smoke.airfire.org -i http://pypi.smoke.airfire.org/simple eflookup==3.1.1
+    pip install --extra-index https://pypi.airfire.org/simple eflookup==3.1.1
 
 See the Development > Install Dependencies > Notes section, above, for
 notes on resolving pip and gdal issues.
