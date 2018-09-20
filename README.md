@@ -3,7 +3,7 @@
 This package supports the look-up of emissions factors used to compute
 emissions from wildland fires.  Multiple sets of EF are supported, including:
 
- - FCCS specific EFs, based on **Urbanski, S., 2014. Wildland fire emissions, carbon, and climate: Emission factors. Forest Ecology and Management. 31, 51-60.
+ - FCCS specific EFs, based on Prichard, S.J. and O'Neill, S. In prep. Wildland fire EFs in North America: summary of existing data, measurement needs and management applications. International Journal of Wildland Fire.
  - FEPS style EFs
 
 ***This software is provided for research purposes only. It's output may
