@@ -11,7 +11,7 @@ MapID,Cover type,WF,Rx,RegionalRx,RegionalWF
 10,SRM 110: Ponderosa Pine - Grassland,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
 11,SRM 201: Blue Oak Woodland,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
 12,SRM 202: Coast Live Oak Woodland,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
-13,SRM 203: Riparian Woodland,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
+13,SRM 203: Riparian Woodland,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
 14,SAF 1: Jack Pine,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 15,SAF 5: Balsam Fir,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 16,SAF 12: Black Spruce,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
@@ -19,7 +19,7 @@ MapID,Cover type,WF,Rx,RegionalRx,RegionalWF
 18,SAF 107: White Spruce,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 19,SAF 38: Tamarack,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 20,SAF 16: Aspen (Eastern),2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
-21,SAF 17: Pin Cherry,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
+21,SAF 17: Pin Cherry,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
 22,SAF 18: Paper Birch,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 23,SAF 32: Red Spruce,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 24,SAF 33: Red Spruce-Balsam Fir,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
@@ -29,79 +29,79 @@ MapID,Cover type,WF,Rx,RegionalRx,RegionalWF
 28,SAF 35: Paper Birch-Red Spruce-Balsam Fir,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 29,SAF 37: Northern White Cedar,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 30,SAF 15: Red Pine,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
-31,SAF 21: Eastern White Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-32,SAF 22: White Pine-Hemlock,1: SE Pine,1: SE pine,15-17: SE Pine,
-33,SAF 23: Eastern Hemlock,1: SE Pine,1: SE pine,15-17: SE Pine,
-34,SAF 20: White Pine-Northern Red Oak-Red Maple,1: SE Pine,1: SE pine,15-17: SE Pine,
-35,SAF 51: White Pine-Chestnut Oak,1: SE Pine,1: SE pine,15-17: SE Pine,
-36,SAF 24: Hemlock-Yellow Birch,1: SE Pine,1: SE pine,15-17: SE Pine,
-37,SAF 27: Sugar Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-38,SAF 25: Sugar Maple-Beech-Yellow Birch,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-39,SAF 26: Sugar Maple-Basswood,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-40,SAF 28: Black Cherry-Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-41,SAF 60: Beech-Sugar Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-42,SAF 108: Red Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-43,SAF 14: Northern Pin Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-44,SAF 19: Gray Birch-Red Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-45,SAF 39: Black Ash-American Elm-Red Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-46,SAF 109: Hawthorn,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-47,SAF 40: Post Oak-Blackjack Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-48,SAF 42: Bur Oak (Eastern),1: SE Pine,1: SE pine,12-14: SE Hdwd,
+31,SAF 21: Eastern White Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+32,SAF 22: White Pine-Hemlock,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+33,SAF 23: Eastern Hemlock,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+34,SAF 20: White Pine-Northern Red Oak-Red Maple,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+35,SAF 51: White Pine-Chestnut Oak,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+36,SAF 24: Hemlock-Yellow Birch,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+37,SAF 27: Sugar Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+38,SAF 25: Sugar Maple-Beech-Yellow Birch,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+39,SAF 26: Sugar Maple-Basswood,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+40,SAF 28: Black Cherry-Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+41,SAF 60: Beech-Sugar Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+42,SAF 108: Red Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+43,SAF 14: Northern Pin Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+44,SAF 19: Gray Birch-Red Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+45,SAF 39: Black Ash-American Elm-Red Maple,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+46,SAF 109: Hawthorn,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+47,SAF 40: Post Oak-Blackjack Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+48,SAF 42: Bur Oak (Eastern),1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
 49,SAF 43: Bear Oak,5: Shrub,5: Shrub,12-14: SE Hdwd,12-14: SE Hdwd
-50,SAF 44: Chestnut Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-51,SAF 52: White Oak-Black Oak-Northern Red Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-52,SAF 53: White Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-53,SAF 110: Black Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-54,SAF 55: Northern Red Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-55,SAF 50: Black Locust,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-56,SAF 57: Yellow-Poplar,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-57,SAF 58: Yellow-Poplar-Eastern Hemlock,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-58,SAF 59: Yellow-Poplar-White Oak-Northern Red Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-59,SAF 61: River Birch-Sycamore,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-60,SAF 62: Silver Maple-American Elm,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-61,SAF 64: Sassafras-Persimmon,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-62,SAF 65: Pin Oak-Sweetgum,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-63,SAF 45: Pitch Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-64,SAF 46: Eastern Redcedar,1: SE Pine,1: SE pine,15-17: SE Pine,
-65,SAF 69: Sand Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-66,SAF 70: Longleaf Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-67,SAF 83: Longleaf Pine-Slash Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-68,SAF 75: Shortleaf Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-69,SAF 79: Virginia Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-70,SAF 81: Loblolly Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-71,SAF 80: Loblolly Pine-Shortleaf Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-72,SAF 84: Slash Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-73,SAF 111: South Florida Slash Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-74,SAF 98: Pond Pine,1: SE Pine,1: SE pine,15-17: SE Pine,
-75,SAF 71: Longleaf Pine-Scrub Oak,1: SE Pine,1: SE pine,15-17: SE Pine,
-76,SAF 76: Shortleaf Pine-Oak,1: SE Pine,1: SE pine,15-17: SE Pine,
-77,SAF 78: Virginia Pine-Oak,1: SE Pine,1: SE pine,15-17: SE Pine,
-78,SAF 82: Loblolly Pine-Hardwood,1: SE Pine,1: SE pine,15-17: SE Pine,
-79,SAF 85: Slash Pine-Hardwood,1: SE Pine,1: SE pine,15-17: SE Pine,
-80,SAF 63: Cottonwood,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-81,SAF 88: Willow Oak-Water Oak-Diamondleaf Oak,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,
-82,SAF 89: Live Oak,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,
-83,SAF 91: Swamp Chestnut Oak-Cherrybark oak,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,
-84,SAF 92: Sweetgum-Willow Oak,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,
-85,SAF 93: Sugarberry-American Elm-Green Ash,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,
-86,SAF 94: Sycamore-Sweetgum-American Elm,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,
-87,SAF 95: Black Willow,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,
-88,SAF 96: Overcup Oak-Water Hickory,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,
-89,SAF 101: Baldcypress,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-90,SAF 102: Baldcypress-Tupelo,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-91,SAF 103: Water Tupelo-Swamp Tupelo,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-92,SAF 104: Sweetbay-Swamp Tupelo-Redbay,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-93,SAF 66: Ashe Juniper-Redberry (Pinchot) Juniper,4: WF NW Conifer,3: Rx NW Conifer,30-32: W Shrub,
-94,SAF 67: Mohr's ,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-95,SAF 68: Mesquite,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-96,SAF 72: Southern Scrub Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-97,SAF 73: Southern Redcedar,1: SE Pine,1: SE pine,15-17: SE Pine,
-98,SAF 74: Cabbage Palmetto,1: SE Pine,1: SE pine,15-17: SE Pine,
-99,SAF 87: Sweetgum-Yellow-Poplar,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,
-100,SAF 97: Atlantic White-Cedar,4: WF NW Conifer,3: Rx NW Conifer,15-17: SE Pine,
-101,SAF 100: Pondcypress,1: SE Pine,1: SE pine,12-14: SE Hdwd,
-102,SAF 105: Tropical Hardwoods (Florida),1: SE Pine,1: SE pine,12-14: SE Hdwd,
-103,SAF 106: Mangrove,1: SE Pine,1: SE pine,12-14: SE Hdwd,
+50,SAF 44: Chestnut Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+51,SAF 52: White Oak-Black Oak-Northern Red Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+52,SAF 53: White Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+53,SAF 110: Black Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+54,SAF 55: Northern Red Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+55,SAF 50: Black Locust,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+56,SAF 57: Yellow-Poplar,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+57,SAF 58: Yellow-Poplar-Eastern Hemlock,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+58,SAF 59: Yellow-Poplar-White Oak-Northern Red Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+59,SAF 61: River Birch-Sycamore,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+60,SAF 62: Silver Maple-American Elm,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+61,SAF 64: Sassafras-Persimmon,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+62,SAF 65: Pin Oak-Sweetgum,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+63,SAF 45: Pitch Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+64,SAF 46: Eastern Redcedar,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+65,SAF 69: Sand Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+66,SAF 70: Longleaf Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+67,SAF 83: Longleaf Pine-Slash Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+68,SAF 75: Shortleaf Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+69,SAF 79: Virginia Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+70,SAF 81: Loblolly Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+71,SAF 80: Loblolly Pine-Shortleaf Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+72,SAF 84: Slash Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+73,SAF 111: South Florida Slash Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+74,SAF 98: Pond Pine,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+75,SAF 71: Longleaf Pine-Scrub Oak,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+76,SAF 76: Shortleaf Pine-Oak,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+77,SAF 78: Virginia Pine-Oak,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+78,SAF 82: Loblolly Pine-Hardwood,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+79,SAF 85: Slash Pine-Hardwood,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+80,SAF 63: Cottonwood,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+81,SAF 88: Willow Oak-Water Oak-Diamondleaf Oak,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,12-14: SE Hdwd
+82,SAF 89: Live Oak,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,12-14: SE Hdwd
+83,SAF 91: Swamp Chestnut Oak-Cherrybark oak,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,12-14: SE Hdwd
+84,SAF 92: Sweetgum-Willow Oak,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,12-14: SE Hdwd
+85,SAF 93: Sugarberry-American Elm-Green Ash,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,12-14: SE Hdwd
+86,SAF 94: Sycamore-Sweetgum-American Elm,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,12-14: SE Hdwd
+87,SAF 95: Black Willow,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,12-14: SE Hdwd
+88,SAF 96: Overcup Oak-Water Hickory,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,12-14: SE Hdwd
+89,SAF 101: Baldcypress,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+90,SAF 102: Baldcypress-Tupelo,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+91,SAF 103: Water Tupelo-Swamp Tupelo,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+92,SAF 104: Sweetbay-Swamp Tupelo-Redbay,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+93,SAF 66: Ashe Juniper-Redberry (Pinchot) Juniper,4: WF NW Conifer,3: Rx NW Conifer,30-32: W Shrub,30-32: W Shrub
+94,SAF 67: Mohr's ,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+95,SAF 68: Mesquite,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+96,SAF 72: Southern Scrub Oak,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+97,SAF 73: Southern Redcedar,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+98,SAF 74: Cabbage Palmetto,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+99,SAF 87: Sweetgum-Yellow-Poplar,4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,12-14: SE Hdwd
+100,SAF 97: Atlantic White-Cedar,4: WF NW Conifer,3: Rx NW Conifer,15-17: SE Pine,15-17: SE Pine
+101,SAF 100: Pondcypress,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+102,SAF 105: Tropical Hardwoods (Florida),1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
+103,SAF 106: Mangrove,1: SE Pine,1: SE pine,12-14: SE Hdwd,12-14: SE Hdwd
 104,SAF 201: White Spruce,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 105,SAF 251: White Spruce-Aspen,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 106,SAF 202: White Spruce-Paper Birch,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
@@ -110,53 +110,53 @@ MapID,Cover type,WF,Rx,RegionalRx,RegionalWF
 109,SAF 204: Black Spruce,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 110,SAF 253: Black Spruce-White Spruce,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
 111,SAF 254: Black Spruce-Paper Birch,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
-112,SAF 205: Mountain Hemlock,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-113,SAF 206: Engelmann Spruce-Subalpine Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-114,SAF 207: Red Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-115,SAF 208: Whitebark Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-116,SAF 209: Bristlecone Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-117,SAF 256: California Mixed Subalpine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-118,SAF 210: Interior Douglas-Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-119,SAF 211: White Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-120,SAF 212: Western Larch,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-121,SAF 213: Grand Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-122,SAF 215: Western White Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-123,SAF 216: Blue Spruce,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-124,SAF 217: Aspen (Western),4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-125,SAF 218: Lodgepole Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-126,SAF 219: Limber Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-127,SAF 220: Rocky Mountain Juniper,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-128,SAF 221: Red Alder,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-129,SAF 222: Black Cottonwood-Willow,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-130,SAF 223: Sitka Spruce,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-131,SAF 224: Western Hemlock,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-132,SAF 225: Western Hemlock-Sitka Spruce,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-133,SAF 226: Coastal True Fir-Hemlock,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-134,SAF 227: Western Redcedar-Western Hemlock,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-135,SAF 228: Western Redcedar,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-136,SAF 229: Pacific Douglas-Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-137,SAF 230: Douglas-Fir-Western Hemlock,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-138,SAF 231: Port Orford-Cedar,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-139,SAF 232: Redwood,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-140,SAF 233: Oregon White Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-141,SAF 234: Douglas-Fir-Tanoak-Pacific Madrone,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-142,SAF 235: Cottonwood-Willow,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-143,SAF 236: Bur Oak (Western),4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-144,SAF 237: Interior Ponderosa Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-145,SAF 238: Western Juniper,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-146,SAF 239: Pinyon-Juniper,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-147,SAF 240: Arizona Cypress,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-148,SAF 241: Western Live Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-149,SAF 242: Mesquite,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-150,SAF 243: Sierra Nevada Mixed Conifer,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-151,SAF 244: Pacific Ponderosa Pine-Douglas-Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-152,SAF 245: Pacific Ponderosa Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-153,SAF 246: California Black Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-154,SAF 247: Jeffrey Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-155,SAF 248: Knobcone Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-156,SAF 249: Canyon Live Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-157,SAF 250: Blue Oak-Digger Pine,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-158,SAF 255: California Coast Live Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
+112,SAF 205: Mountain Hemlock,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+113,SAF 206: Engelmann Spruce-Subalpine Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+114,SAF 207: Red Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+115,SAF 208: Whitebark Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+116,SAF 209: Bristlecone Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+117,SAF 256: California Mixed Subalpine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+118,SAF 210: Interior Douglas-Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+119,SAF 211: White Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+120,SAF 212: Western Larch,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+121,SAF 213: Grand Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+122,SAF 215: Western White Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+123,SAF 216: Blue Spruce,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+124,SAF 217: Aspen (Western),4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+125,SAF 218: Lodgepole Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+126,SAF 219: Limber Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+127,SAF 220: Rocky Mountain Juniper,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+128,SAF 221: Red Alder,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+129,SAF 222: Black Cottonwood-Willow,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+130,SAF 223: Sitka Spruce,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+131,SAF 224: Western Hemlock,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+132,SAF 225: Western Hemlock-Sitka Spruce,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+133,SAF 226: Coastal True Fir-Hemlock,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+134,SAF 227: Western Redcedar-Western Hemlock,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+135,SAF 228: Western Redcedar,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+136,SAF 229: Pacific Douglas-Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+137,SAF 230: Douglas-Fir-Western Hemlock,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+138,SAF 231: Port Orford-Cedar,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+139,SAF 232: Redwood,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+140,SAF 233: Oregon White Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+141,SAF 234: Douglas-Fir-Tanoak-Pacific Madrone,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+142,SAF 235: Cottonwood-Willow,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+143,SAF 236: Bur Oak (Western),4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+144,SAF 237: Interior Ponderosa Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+145,SAF 238: Western Juniper,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+146,SAF 239: Pinyon-Juniper,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+147,SAF 240: Arizona Cypress,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+148,SAF 241: Western Live Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+149,SAF 242: Mesquite,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+150,SAF 243: Sierra Nevada Mixed Conifer,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+151,SAF 244: Pacific Ponderosa Pine-Douglas-Fir,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+152,SAF 245: Pacific Ponderosa Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+153,SAF 246: California Black Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+154,SAF 247: Jeffrey Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+155,SAF 248: Knobcone Pine,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+156,SAF 249: Canyon Live Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+157,SAF 250: Blue Oak-Digger Pine,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+158,SAF 255: California Coast Live Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
 159,SRM 204: Northern Coastal Shrub,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 160,SRM 205: Coastal Sage Shrub,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 161,SRM 206: Chamise Chaparral,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
@@ -205,22 +205,22 @@ MapID,Cover type,WF,Rx,RegionalRx,RegionalWF
 204,SRM 408: Other Sagebrush Types,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 205,SRM 409: Tall Forb (Great Basin),6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
 206,SRM 410: Alpine Rangeland (Great Basin),6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
-207,SRM 411: Aspen Woodland,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-208,SRM 412: Juniper-Pinyon Woodland,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
-209,SRM 413: Gambel Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
+207,SRM 411: Aspen Woodland,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+208,SRM 412: Juniper-Pinyon Woodland,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
+209,SRM 413: Gambel Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
 210,SRM 414: Salt Desert Shrub,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 211,SRM 415: Curlleaf Mountain-Mahogany,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 212,SRM 416: True Mountain-Mahogany,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 213,SRM 417: Littleleaf Mountain-Mahogany,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
-214,SRM 418: Bigtooth Maple,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-215,SRM 419: Bittercherry,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
+214,SRM 418: Bigtooth Maple,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+215,SRM 419: Bittercherry,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
 216,SRM 420: Snowbush,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 217,SRM 421: Chokecherry-Serviceberry-Rose,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
-218,SRM 422: Riparian (Great Basin),4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
+218,SRM 422: Riparian (Great Basin),4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
 219,SRM 501: Saltbush-Greasewood,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 220,SRM 502: Grama-Galetta,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
 221,SRM 503: Arizona Chaparral,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
-222,SRM 504: Juniper-Pinyon Pine Woodland,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
+222,SRM 504: Juniper-Pinyon Pine Woodland,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
 223,SRM 505: Grama-Tobosa Shrub,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 224,SRM 506: Creosotebush-Bursage,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 225,SRM 507: Palo Verde-Cactus,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
@@ -273,26 +273,26 @@ MapID,Cover type,WF,Rx,RegionalRx,RegionalWF
 272,SRM 730: Sand Shinnery Oak,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 273,SRM 731: Cross Timbers-Oklahoma,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 274,SRM 732: Cross Timbers-Texas (Little Bluestem Post Oak),5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
-275,SRM 733: Juniper-Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
-276,SRM 734: Mesquite-Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
+275,SRM 733: Juniper-Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
+276,SRM 734: Mesquite-Oak,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
 277,SRM 735: Sideoats Grama-Sumac-Juniper,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 278,SRM 801: Savanna,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
 279,SRM 802: Missouri Prairie,6: Grass,6: Grass,9-11: SE Grass,9-11: SE Grass
 280,SRM 803: Missouri Glade,6: Grass,6: Grass,9-11: SE Grass,9-11: SE Grass
 281,SRM 804: Tall Fescue,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
-282,SRM 805: Riparian (Southeastern),4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,
+282,SRM 805: Riparian (Southeastern),4: WF NW Conifer,3: Rx NW Conifer,12-14: SE Hdwd,12-14: SE Hdwd
 283,SRM 806: Gulf Coast Salt Marsh,6: Grass,6: Grass,9-11: SE Grass,9-11: SE Grass
 284,SRM 807: Gulf Coast Fresh Marsh,6: Grass,6: Grass,9-11: SE Grass,9-11: SE Grass
 285,SRM 808: Sand Pine Scrub,5: Shrub,5: Shrub,18-20: SE Shrub,18-20: SE Shrub
-286,SRM 809: Mixed Hardwood and Pine,1: SE Pine,1: SE pine,18-20: SE Shrub,
-287,SRM 810: Longleaf Pine-Turkey Oak Hills,1: SE Pine,1: SE pine,18-20: SE Shrub,
-288,SRM 811: South Florida Flatwoods,1: SE Pine,1: SE pine,15-17: SE Pine,
-289,SRM 812: North Florida Flatwoods,1: SE Pine,1: SE pine,15-17: SE Pine,
-290,SRM 813: Cutthroat Seeps,1: SE Pine,1: SE pine,18-20: SE Shrub,
-291,SRM 814: Cabbage Palms Flatwoods,1: SE Pine,1: SE pine,18-20: SE Shrub,
-292,SRM 815: Unpland Hardwood Hammocks,1: SE Pine,1: SE pine,18-20: SE Shrub,
-293,SRM 816: Cabbage Palm Hammocks,1: SE Pine,1: SE pine,18-20: SE Shrub,
-294,SRM 817: Oak Hammocks,1: SE Pine,1: SE pine,18-20: SE Shrub,
+286,SRM 809: Mixed Hardwood and Pine,1: SE Pine,1: SE pine,18-20: SE Shrub,18-20: SE Shrub
+287,SRM 810: Longleaf Pine-Turkey Oak Hills,1: SE Pine,1: SE pine,18-20: SE Shrub,18-20: SE Shrub
+288,SRM 811: South Florida Flatwoods,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+289,SRM 812: North Florida Flatwoods,1: SE Pine,1: SE pine,15-17: SE Pine,15-17: SE Pine
+290,SRM 813: Cutthroat Seeps,1: SE Pine,1: SE pine,18-20: SE Shrub,18-20: SE Shrub
+291,SRM 814: Cabbage Palms Flatwoods,1: SE Pine,1: SE pine,18-20: SE Shrub,18-20: SE Shrub
+292,SRM 815: Unpland Hardwood Hammocks,1: SE Pine,1: SE pine,18-20: SE Shrub,18-20: SE Shrub
+293,SRM 816: Cabbage Palm Hammocks,1: SE Pine,1: SE pine,18-20: SE Shrub,18-20: SE Shrub
+294,SRM 817: Oak Hammocks,1: SE Pine,1: SE pine,18-20: SE Shrub,18-20: SE Shrub
 295,SRM 818: Florida Salt Marsh,6: Grass,6: Grass,9-11: SE Grass,9-11: SE Grass
 296,SRM 819: Freshwater Marsh and Ponds,6: Grass,6: Grass,9-11: SE Grass,9-11: SE Grass
 297,SRM 820: Everglades Flatwoods,5: Shrub,5: Shrub,18-20: SE Shrub,18-20: SE Shrub
@@ -303,7 +303,7 @@ MapID,Cover type,WF,Rx,RegionalRx,RegionalWF
 302,SRM 903: Beach Wildrye-Mixed Forb,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
 303,SRM 904: Black Spruce-Lichen,8: Residual duff,8: Residual duff,,
 304,SRM 905: Bluejoint Reedgrass,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
-305,SRM 906: Broadleaf Forest,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,
+305,SRM 906: Broadleaf Forest,4: WF NW Conifer,3: Rx NW Conifer,27-29: W Hdwd,27-29: W Hdwd
 306,SRM 907: Dryas,5: Shrub,5: Shrub,30-32: W Shrub,30-32: W Shrub
 307,SRM 908: Fescue,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
 308,SRM 909: Freshwater Marsh,6: Grass,6: Grass,24-26: W Grass,24-26: W Grass
@@ -321,6 +321,6 @@ MapID,Cover type,WF,Rx,RegionalRx,RegionalWF
 320,SRM 921: Willow,2: Boreal,2: Boreal,27-29: W Hdwd,27-29: W Hdwd
 400,FERA 400: Southeast forest,1: SE pine,1: SE pine,,
 401,FERA 401: Boreal forest,2: Boreal,2: Boreal,33-35: Boreal,33-35: Boreal
-402,FERA 402: Western forest,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,
+402,FERA 402: Western forest,4: WF NW Conifer,3: Rx NW Conifer,21-23: W MC,21-23: W MC
 403,FERA 403: Shrubland,5: Shrub,5: Shrub,,
 404,FERA 404: Grassland,6: Grass,6: Grass,,
