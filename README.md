@@ -10,11 +10,17 @@ emissions from wildland fires.  Multiple sets of EF are supported, including:
 not accurately reflect observed data due to numerous reasons. Data are
 provisional; use at own risk.***
 
+
+
+
 ## Python 2 and 3 Support
 
 This package was originally developed to support python 2.7, but has since
 been refactored to support 3.5. Attempts to support both 2.7 and 3.5 have
 been made but are not guaranteed.
+
+
+
 
 ## Development
 
@@ -54,6 +60,9 @@ pip. One way to do so is with the following:
 To import eflookup in development, you'll have to add the repo root directory
 to the search path.
 
+
+
+
 ## Running tests
 
 Use pytest:
@@ -66,6 +75,9 @@ You can also use the ```--collect-only``` option to see a list of all tests.
     py.test --collect-only
 
 See [pytest](http://pytest.org/latest/getting-started.html#getstarted) for more information about
+
+
+
 
 ## Installing
 
@@ -82,6 +94,9 @@ sudo if necessary):
 
 See the Development > Install Dependencies > Notes section, above, for
 notes on resolving pip and gdal issues.
+
+
+
 
 ## Usage:
 
@@ -161,6 +176,17 @@ And then access the EFs with ```get```:
     >>> lu['flaming']['CO']
     0.07179999999999997
 
+The one difference is that using brackets will result in KeyErrors for invalid
+keys, whereas 'get' returns `None` if any of the arguments are invalid.  For example:
+
+    >>> lu.get(phase='flaminsdfg')
+    >>> lu['flaminsdfg']
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    KeyError: 'flaminsdfg'
+
+
+
 #### ```eflookup.fepsef.FepsEFLookup```
 
 There's only one look-up class for FEPS style EFs.  It has one option: to include
@@ -212,6 +238,21 @@ Or, get an EF for a specific species
     >>> lu.get(phase='flaming', species='CO')
     0.07179999999999997
 
+As with BasicEFLookup, you can use ```[]```
+
+    >>> lu['flaming']
+    {
+        'CH4': 0.003819999999999997,
+        'CO': 0.07179999999999997,
+        ...
+        'hap_85018': 2.5e-06
+    }
+
+    >>> lu['flaming']['CO']
+    0.07179999999999997
+
+
+
 #### ```eflookup.fccs2ef```
 
 There are two look-up classes to choose from, depending on whether you're
@@ -225,117 +266,24 @@ is_rx to False when instantiating the look-up object.
 First import and instantiate
 
     >>> from eflookup.fccs2ef import Fccs2Ef
-    >>> lu = Fccs2Ef(is_rx=True)
+    >>> lu = Fccs2Ef(4, is_rx=True)
 
-Then, get all EFs associated with a specific FCCS fuelbed id:
+then get the EF for a given fuel category, fuel sub-category, phase,
+and species.
 
-    >>> lu.get(4)
-    {
-        "smoldering": {
-            "CH3CH2OH": 0.64,
-            "CH3COOH": 8.922,
-            ...
-            "isomer4": 0.588
-        },
-        "flaming": {
-            "CH3CH2OH": 0.64,
-            "CH3COOH": 8.922,
-            ...
-            "isomer4": 0.588
-        },
-        "residual": {
-            "woody": {
-                "CH3CH2OH": 0.038,
-                "CH3COOH": 3.674,
-                ...
-                "isomer4": 0.872
-            },
-            "duff": {
-                "CH3CH2OH": 0.99,
-                "CH3COOH": 14.799,
-                ...
-                "isomer4": 0.016
-            }
-        }
-    }
+    >>> lu.get(phase="flaming", fuel_category="nonwoody",
+            fuel_sub_category="primary live", species="PM2.5")
+    17.57
 
-Or, get specifically the flaming EFs
+If no corresponding EF, `None` is returned
 
-    >>> lu.get(4, phase='flaming')
-    {
-        "CH3CH2OH": 0.64,
-        "CH3COOH": 8.922,
-        ...
-        "isomer4": 0.588
-    }
+    >>> lu.get(phase="residual", fuel_category="nonwoody",
+            fuel_sub_category="primary live", species="PM2.5")
 
-For residual EFs, there's an extra level of nesting due to the fact that there
-are different EFs for woody and duff emissions.  So, for example, here's how
-to get woody residual EFs:
-
-    >>> lu.get(4, phase='residual', fuel_category='woody')
-    {
-        "CH3CH2OH": 0.038,
-        "CH3COOH": 3.674,
-        ...
-        "isomer4": 0.872
-    }
-
-Note that the more specific fuel categories specified in CONSUME output
-(ex. "100-hr fuels", "duff upper", etc.) are also supported, as they
-are translated to 'woody' or 'duff' (or to nothing at all, if there are no
-residual emissions for the particular fuel category).  For example:
-
-    >>> # '100-hr fuels' does have residual emissions
-    >>> lu.get(4, phase='residual', fuel_category="100-hr fuels")
-    {
-        "CH3CH2OH": 0.038,
-        "CH3COOH": 3.674,
-        ...
-        "isomer4": 0.872
-    }
-    >>> # 'piles' does not
-    >>> lu.get(4, phase='residual', fuel_category="pile")
-    >>>
-
-To get an EF for a specific species:
-
-    >>> lu.get(4, phase='flaming', species='CO2')
-    3196.0
-    >>> lu.get(4, phase='residual', fuel_category='woody', species='CO2')
-    2816.0
+Note that `fccs2ef` does not support using ```__getitem__``` brackets
+instead of get.
 
 
-Note that you can use ```__getitem__``` brackets instead of get:
-
-    # this
-    lu.get(4)
-    # is equivalent to
-    lu[4]
-
-    # this
-    lu.get(4, 'flaming')
-    # is equivalent to
-    lu[4]['flaming']
-
-    # this
-    lu.get(4, 'flaming', 'CO2')
-    # is equivalent to
-    lu[4]['flaming']['CO2']
-
-    # this
-    lu.get(4, 'residual', 'woody', 'CO2')
-    # is equivalent to
-    lu[4]['residual']['woody']['CO2']
-
-The one difference is that using brackets will result in KeyErrors for invalid
-keys, whereas 'get' returns None if any of the arguments are invalid.  For example:
-
-    >>> lu.get(4,'flamesdfsdf')
-    >>> lu[4]['flamesdfsdf']
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    KeyError: 'flamesdfsdf'
 
 ### Using the Executables
 
@@ -406,6 +354,7 @@ the associated EF value. For example:
 
     $ $ ./bin/fccs2ef 52 flaming 'woody fuels' '1-hr fuels' PM2.5
     26.0
+
 
 
 ### Invoking the Executables In Perl
