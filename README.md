@@ -10,11 +10,17 @@ emissions from wildland fires.  Multiple sets of EF are supported, including:
 not accurately reflect observed data due to numerous reasons. Data are
 provisional; use at own risk.***
 
+
+
+
 ## Python 2 and 3 Support
 
 This package was originally developed to support python 2.7, but has since
 been refactored to support 3.5. Attempts to support both 2.7 and 3.5 have
 been made but are not guaranteed.
+
+
+
 
 ## Development
 
@@ -54,6 +60,9 @@ pip. One way to do so is with the following:
 To import eflookup in development, you'll have to add the repo root directory
 to the search path.
 
+
+
+
 ## Running tests
 
 Use pytest:
@@ -66,6 +75,9 @@ You can also use the ```--collect-only``` option to see a list of all tests.
     py.test --collect-only
 
 See [pytest](http://pytest.org/latest/getting-started.html#getstarted) for more information about
+
+
+
 
 ## Installing
 
@@ -82,6 +94,9 @@ sudo if necessary):
 
 See the Development > Install Dependencies > Notes section, above, for
 notes on resolving pip and gdal issues.
+
+
+
 
 ## Usage:
 
@@ -161,6 +176,17 @@ And then access the EFs with ```get```:
     >>> lu['flaming']['CO']
     0.07179999999999997
 
+The one difference is that using brackets will result in KeyErrors for invalid
+keys, whereas 'get' returns `None` if any of the arguments are invalid.  For example:
+
+    >>> lu.get(phase='flaminsdfg')
+    >>> lu['flaminsdfg']
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    KeyError: 'flaminsdfg'
+
+
+
 #### ```eflookup.fepsef.FepsEFLookup```
 
 There's only one look-up class for FEPS style EFs.  It has one option: to include
@@ -211,6 +237,21 @@ Or, get an EF for a specific species
 
     >>> lu.get(phase='flaming', species='CO')
     0.07179999999999997
+
+As with BasicEFLookup, you can use ```[]```
+
+    >>> lu['flaming']
+    {
+        'CH4': 0.003819999999999997,
+        'CO': 0.07179999999999997,
+        ...
+        'hap_85018': 2.5e-06
+    }
+
+    >>> lu['flaming']['CO']
+    0.07179999999999997
+
+
 
 #### ```eflookup.fccs2ef```
 
@@ -265,117 +306,24 @@ the is_rx setting comes into play. It can be set using set_is_rx().
 First import and instantiate
 
     >>> from eflookup.fccs2ef import Fccs2Ef
-    >>> lu = Fccs2Ef(is_rx=True)
+    >>> lu = Fccs2Ef(4, is_rx=True)
 
-Then, get all EFs associated with a specific FCCS fuelbed id:
+then get the EF for a given fuel category, fuel sub-category, phase,
+and species.
 
-    >>> lu.get(4)
-    {
-        "smoldering": {
-            "CH3CH2OH": 0.64,
-            "CH3COOH": 8.922,
-            ...
-            "isomer4": 0.588
-        },
-        "flaming": {
-            "CH3CH2OH": 0.64,
-            "CH3COOH": 8.922,
-            ...
-            "isomer4": 0.588
-        },
-        "residual": {
-            "woody": {
-                "CH3CH2OH": 0.038,
-                "CH3COOH": 3.674,
-                ...
-                "isomer4": 0.872
-            },
-            "duff": {
-                "CH3CH2OH": 0.99,
-                "CH3COOH": 14.799,
-                ...
-                "isomer4": 0.016
-            }
-        }
-    }
+    >>> lu.get(phase="flaming", fuel_category="nonwoody",
+            fuel_sub_category="primary live", species="PM2.5")
+    17.57
 
-Or, get specifically the flaming EFs
+If no corresponding EF, `None` is returned
 
-    >>> lu.get(4, phase='flaming')
-    {
-        "CH3CH2OH": 0.64,
-        "CH3COOH": 8.922,
-        ...
-        "isomer4": 0.588
-    }
+    >>> lu.get(phase="residual", fuel_category="nonwoody",
+            fuel_sub_category="primary live", species="PM2.5")
 
-For residual EFs, there's an extra level of nesting due to the fact that there
-are different EFs for woody and duff emissions.  So, for example, here's how
-to get woody residual EFs:
-
-    >>> lu.get(4, phase='residual', fuel_category='woody')
-    {
-        "CH3CH2OH": 0.038,
-        "CH3COOH": 3.674,
-        ...
-        "isomer4": 0.872
-    }
-
-Note that the more specific fuel categories specified in CONSUME output
-(ex. "100-hr fuels", "duff upper", etc.) are also supported, as they
-are translated to 'woody' or 'duff' (or to nothing at all, if there are no
-residual emissions for the particular fuel category).  For example:
-
-    >>> # '100-hr fuels' does have residual emissions
-    >>> lu.get(4, phase='residual', fuel_category="100-hr fuels")
-    {
-        "CH3CH2OH": 0.038,
-        "CH3COOH": 3.674,
-        ...
-        "isomer4": 0.872
-    }
-    >>> # 'piles' does not
-    >>> lu.get(4, phase='residual', fuel_category="pile")
-    >>>
-
-To get an EF for a specific species:
-
-    >>> lu.get(4, phase='flaming', species='CO2')
-    3196.0
-    >>> lu.get(4, phase='residual', fuel_category='woody', species='CO2')
-    2816.0
+Note that `fccs2ef` does not support using ```__getitem__``` brackets
+instead of get.
 
 
-Note that you can use ```__getitem__``` brackets instead of get:
-
-    # this
-    lu.get(4)
-    # is equivalent to
-    lu[4]
-
-    # this
-    lu.get(4, 'flaming')
-    # is equivalent to
-    lu[4]['flaming']
-
-    # this
-    lu.get(4, 'flaming', 'CO2')
-    # is equivalent to
-    lu[4]['flaming']['CO2']
-
-    # this
-    lu.get(4, 'residual', 'woody', 'CO2')
-    # is equivalent to
-    lu[4]['residual']['woody']['CO2']
-
-The one difference is that using brackets will result in KeyErrors for invalid
-keys, whereas 'get' returns None if any of the arguments are invalid.  For example:
-
-    >>> lu.get(4,'flamesdfsdf')
-    >>> lu[4]['flamesdfsdf']
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    KeyError: 'flamesdfsdf'
 
 ### Using the Executables
 
@@ -441,45 +389,12 @@ To see the script's usage, you can use the '-h' options:
 
     fccs2ef -h
 
-The script takes an FCCS id and returns JSON formatted data containing the EFs
-for that fuelbed. For example, to get all EFs associated with FCCS fuelbed 10:
+The script takes an FCCS id, phase, fuel_category, fuel_sub_category, and species
+the associated EF value. For example:
 
-    $ fccs2ef 10
-    {"10": {"smoldering": {"CH3CH2OH": 0.64, "CH3COOH": 8.922, "CH3OH": 4.122, "C2H8N2": 0.086, "isomer2_C9H8O": 0.062, "isomer2_C6H8": 0.026, "C3H4": 0.088, "C9H12": 0.04, "C5H8O": 0.022, "CH4": 14.64, "C5H10O": 0.08, "isomer2_C7H8": 0.0, "C6H8O": 0.096, "C5H7N": 0.01, "C7H14": 0.012, "C7H16": 0.07, "isomer1_C5H6N2": 0.038, "C4H10": 0.336, "C10H16": 0.016, "isomer3_C6H10": 0.004, "C4H6O": 0.004, "HCOOH": 1.01, "C4H8O2": 0.014, "C3H4O2": 0.124, "C6H12": 0.056, "C6H10": 0.042, "HCHO": 4.496, "isomer1_C10H14": 0.024, "C2H4O2": 0.06, "C2H4O3": 0.122, "isomer1_C7H8": 0.004, "C3H8": 1.018, "C6H14": 0.014, "isomer4_C9H8O": 0.0, "C11H22": 0.06, "NMOC": 67.748, "C5H12": 0.148, "C5H10": 0.08, "isomer1_C6H10": 0.028, "C15H24": 0.22, "isomer5_C6H10": 0.012, "C11H24": 0.068, "C4H8O": 0.002, "C3H6O": 0.386, "C8H14": 0.078, "C8H16": 0.122, "NOx": 4.0, "C8H10": 0.136, "C2H6": 2.154, "CH3CHO": 3.0, "C2H4": 3.65, "HCN": 1.08, "C6H5OH": 1.73, "C6H8": 0.01, "C7H6O": 0.734, "C6H6": 0.006, "SO2": 2.12, "C4H6O2": 0.008, "C8H6O": 0.362, "C3H6": 1.396, "HNCO": 0.396, "isomer1_C9H8O": 0.036, "MEK_C4H8O": 0.468, "C4H5N": 0.028, "C5H4O2": 0.032, "C3H5N": 0.032, "C6H12O": 0.032, "C7H5N": 0.168, "C6H6O2": 4.412, "C8H18": 0.062, "isomer3_C9H8O": 0.088, "C4H6N2": 0.006, "C3H6O2": 0.468, "sum3isos_C6H12": 0.176, "CO": 270.0, "C6H8N2": 0.02, "C9H18": 0.034, "C3H4O": 0.916, "isomer2_C5H6N2": 0.016, "C9H10": 0.024, "C10H14": 0.008, "C3H4O3": 0.06, "CO2": 3200.0, "C10H10": 0.02, "PM10": 54.752, "C10H12": 0.04, "CH3CN": 0.578, "C5H8O2": 0.094, "isomer3_C5H6N2": 0.008, "C3H3N": 0.09, "C6H5CH3": 0.614, "C5H6O": 0.03, "C7H12": 0.026, "MVK_C4H6O": 0.828, "PM2.5": 46.4, "C11": 0.368, "C9H20": 0.038, "C10H20": 0.048, "C10H22": 0.036, "C8H6": 0.016, "C8H8": 0.186, "C9H8": 0.054, "C4H10O": 0.276, "C10H8": 0.87, "C9H16": 0.008, "C4H8": 0.1, "C5H6": 0.008, "C5H8": 0.01, "C4H2": 0.002, "C4H4": 0.008, "C4H6": 0.01, "C4H4O": 0.966, "C2H2": 0.752, "C5H10O2": 0.046, "NH3": 3.0, "isomer2_C10H14": 0.014, "isomer1_C6H8": 0.026, "isomer2_C6H10": 0.002, "isomer4": 0.588}, "flaming": {"CH3CH2OH": 0.64, "CH3COOH": 8.922, "CH3OH": 4.122, "C2H8N2": 0.086, "isomer2_C9H8O": 0.062, "isomer2_C6H8": 0.026, "C3H4": 0.088, "C9H12": 0.04, "C5H8O": 0.022, "CH4": 14.64, "C5H10O": 0.08, "isomer2_C7H8": 0.0, "C6H8O": 0.096, "C5H7N": 0.01, "C7H14": 0.012, "C7H16": 0.07, "isomer1_C5H6N2": 0.038, "C4H10": 0.336, "C10H16": 0.016, "isomer3_C6H10": 0.004, "C4H6O": 0.004, "HCOOH": 1.01, "C4H8O2": 0.014, "C3H4O2": 0.124, "C6H12": 0.056, "C6H10": 0.042, "HCHO": 4.496, "isomer1_C10H14": 0.024, "C2H4O2": 0.06, "C2H4O3": 0.122, "isomer1_C7H8": 0.004, "C3H8": 1.018, "C6H14": 0.014, "isomer4_C9H8O": 0.0, "C11H22": 0.06, "NMOC": 67.748, "C5H12": 0.148, "C5H10": 0.08, "isomer1_C6H10": 0.028, "C15H24": 0.22, "isomer5_C6H10": 0.012, "C11H24": 0.068, "C4H8O": 0.002, "C3H6O": 0.386, "C8H14": 0.078, "C8H16": 0.122, "NOx": 4.0, "C8H10": 0.136, "C2H6": 2.154, "CH3CHO": 3.0, "C2H4": 3.65, "HCN": 1.08, "C6H5OH": 1.73, "C6H8": 0.01, "C7H6O": 0.734, "C6H6": 0.006, "SO2": 2.12, "C4H6O2": 0.008, "C8H6O": 0.362, "C3H6": 1.396, "HNCO": 0.396, "isomer1_C9H8O": 0.036, "MEK_C4H8O": 0.468, "C4H5N": 0.028, "C5H4O2": 0.032, "C3H5N": 0.032, "C6H12O": 0.032, "C7H5N": 0.168, "C6H6O2": 4.412, "C8H18": 0.062, "isomer3_C9H8O": 0.088, "C4H6N2": 0.006, "C3H6O2": 0.468, "sum3isos_C6H12": 0.176, "CO": 270.0, "C6H8N2": 0.02, "C9H18": 0.034, "C3H4O": 0.916, "isomer2_C5H6N2": 0.016, "C9H10": 0.024, "C10H14": 0.008, "C3H4O3": 0.06, "CO2": 3200.0, "C10H10": 0.02, "PM10": 54.752, "C10H12": 0.04, "CH3CN": 0.578, "C5H8O2": 0.094, "isomer3_C5H6N2": 0.008, "C3H3N": 0.09, "C6H5CH3": 0.614, "C5H6O": 0.03, "C7H12": 0.026, "MVK_C4H6O": 0.828, "PM2.5": 46.4, "C11": 0.368, "C9H20": 0.038, "C10H20": 0.048, "C10H22": 0.036, "C8H6": 0.016, "C8H8": 0.186, "C9H8": 0.054, "C4H10O": 0.276, "C10H8": 0.87, "C9H16": 0.008, "C4H8": 0.1, "C5H6": 0.008, "C5H8": 0.01, "C4H2": 0.002, "C4H4": 0.008, "C4H6": 0.01, "C4H4O": 0.966, "C2H2": 0.752, "C5H10O2": 0.046, "NH3": 3.0, "isomer2_C10H14": 0.014, "isomer1_C6H8": 0.026, "isomer2_C6H10": 0.002, "isomer4": 0.588}, "residual": {"woody": {"CH3CH2OH": 0.038, "CH3COOH": 3.674, "CH3OH": 7.034, "C2H8N2": 0.126, "isomer2_C9H8O": 0.092, "isomer2_C6H8": 0.038, "C3H4": 0.038, "C9H12": 0.05, "C5H8O": 0.48, "CH4": 27.88, "C5H10O": 0.12, "isomer2_C7H8": 0.002, "C6H8O": 0.388, "C5H7N": 0.016, "C7H14": 0.018, "C7H16": 0.086, "isomer1_C5H6N2": 0.056, "C4H10": 0.39, "C10H16": 0.022, "isomer3_C6H10": 0.008, "C4H6O": 0.006, "HCOOH": 0.0, "C4H8O2": 0.02, "C3H4O2": 0.186, "C6H12": 0.082, "C6H10": 0.062, "HCHO": 4.248, "isomer1_C10H14": 0.036, "C2H4O2": 0.088, "C2H4O3": 0.182, "isomer1_C7H8": 0.006, "C3H8": 1.604, "C6H14": 0.022, "isomer4_C9H8O": 0.0, "C11H22": 0.09, "NMOC": 90.35, "C5H12": 0.19, "C5H10": 0.144, "isomer1_C6H10": 0.042, "C15H24": 0.19, "isomer5_C6H10": 0.018, "C11H24": 0.1, "C4H8O": 0.002, "C3H6O": 0.572, "C8H14": 0.114, "C8H16": 0.132, "NOx": 0.0, "C8H10": 0.144, "C2H6": 5.446, "CH3CHO": 3.092, "C2H4": 2.796, "HCN": 1.446, "C6H5OH": 0.3, "C6H8": 0.016, "C7H6O": 1.088, "C6H6": 0.01, "SO2": 0.0, "C4H6O2": 0.01, "C8H6O": 0.536, "C3H6": 2.12, "HNCO": 0.586, "isomer1_C9H8O": 0.054, "MEK_C4H8O": 0.646, "C4H5N": 0.042, "C5H4O2": 0.046, "C3H5N": 0.046, "C6H12O": 0.046, "C7H5N": 0.248, "C6H6O2": 6.546, "C8H18": 0.072, "isomer3_C9H8O": 0.132, "C4H6N2": 0.008, "C3H6O2": 0.138, "sum3isos_C6H12": 0.26, "CO": 458.0, "C6H8N2": 0.028, "C9H18": 0.05, "C3H4O": 0.944, "isomer2_C5H6N2": 0.022, "C9H10": 0.036, "C10H14": 0.01, "C3H4O3": 0.09, "CO2": 2816.0, "C10H10": 0.03, "PM10": 77.88, "C10H12": 0.06, "CH3CN": 0.812, "C5H8O2": 0.14, "isomer3_C5H6N2": 0.012, "C3H3N": 0.054, "C6H5CH3": 1.158, "C5H6O": 1.292, "C7H12": 0.038, "MVK_C4H6O": 0.388, "PM2.5": 66.0, "C11": 0.548, "C9H20": 0.068, "C10H20": 0.072, "C10H22": 0.054, "C8H6": 0.144, "C8H8": 0.128, "C9H8": 0.08, "C4H10O": 0.408, "C10H8": 1.29, "C9H16": 0.014, "C4H8": 0.178, "C5H6": 0.01, "C5H8": 0.014, "C4H2": 0.004, "C4H4": 0.014, "C4H6": 0.016, "C4H4O": 1.71, "C2H2": 0.414, "C5H10O2": 0.07, "NH3": 0.96, "isomer2_C10H14": 0.02, "isomer1_C6H8": 0.038, "isomer2_C6H10": 0.004, "isomer4": 0.872}, "duff": {"CH3CH2OH": 0.99, "CH3COOH": 14.799, "CH3OH": 9.355, "C2H8N2": 0.0, "isomer2_C9H8O": 0.076, "isomer2_C6H8": 0.062, "C3H4": 0.084, "C9H12": 0.042, "C5H8O": 0.046, "CH4": 15.89, "C5H10O": 0.13, "isomer2_C7H8": 0.004, "C6H8O": 0.152, "C5H7N": 0.03, "C7H14": 0.018, "C7H16": 0.096, "isomer1_C5H6N2": 0.088, "C4H10": 0.958, "C10H16": 0.004, "isomer3_C6H10": 0.032, "C4H6O": 0.0, "HCOOH": 2.189, "C4H8O2": 0.004, "C3H4O2": 0.306, "C6H12": 0.01, "C6H10": 0.03, "HCHO": 4.953, "isomer1_C10H14": 0.006, "C2H4O2": 0.098, "C2H4O3": 0.18, "isomer1_C7H8": 0.01, "C3H8": 1.594, "C6H14": 0.028, "isomer4_C9H8O": 0.0, "C11H22": 0.072, "NMOC": 123.391, "C5H12": 0.424, "C5H10": 0.054, "isomer1_C6H10": 0.002, "C15H24": 0.19, "isomer5_C6H10": 0.008, "C11H24": 0.086, "C4H8O": 0.012, "C3H6O": 0.706, "C8H14": 0.1, "C8H16": 0.174, "NOx": 1.34, "C8H10": 0.202, "C2H6": 4.24, "CH3CHO": 5.4, "C2H4": 2.929, "HCN": 3.976, "C6H5OH": 5.281, "C6H8": 0.042, "C7H6O": 1.166, "C6H6": 0.032, "SO2": 3.52, "C4H6O2": 0.032, "C8H6O": 1.816, "C3H6": 3.581, "HNCO": 0.542, "isomer1_C9H8O": 0.048, "MEK_C4H8O": 0.844, "C4H5N": 0.102, "C5H4O2": 0.038, "C3H5N": 0.048, "C6H12O": 0.02, "C7H5N": 0.202, "C6H6O2": 5.38, "C8H18": 0.078, "isomer3_C9H8O": 0.104, "C4H6N2": 0.056, "C3H6O2": 0.554, "sum3isos_C6H12": 0.02, "CO": 514.0, "C6H8N2": 0.042, "C9H18": 0.046, "C3H4O": 1.18, "isomer2_C5H6N2": 0.018, "C9H10": 0.026, "C10H14": 0.004, "C3H4O3": 0.538, "CO2": 2742.0, "C10H10": 0.014, "PM10": 83.308, "C10H12": 0.01, "CH3CN": 1.478, "C5H8O2": 0.152, "isomer3_C5H6N2": 0.0, "C3H3N": 0.302, "C6H5CH3": 0.976, "C5H6O": 1.074, "C7H12": 0.02, "MVK_C4H6O": 0.842, "PM2.5": 70.6, "C11": 0.456, "C9H20": 0.046, "C10H20": 0.044, "C10H22": 0.054, "C8H6": 0.086, "C8H8": 0.234, "C9H8": 0.102, "C4H10O": 2.36, "C10H8": 1.63, "C9H16": 0.0, "C4H8": 0.196, "C5H6": 0.024, "C5H8": 0.024, "C4H2": 0.018, "C4H4": 0.036, "C4H6": 0.028, "C4H4O": 2.53, "C2H2": 0.314, "C5H10O2": 0.008, "NH3": 5.34, "isomer2_C10H14": 0.004, "isomer1_C6H8": 0.056, "isomer2_C6H10": 0.008, "isomer4": 0.016}}}}
+    $ $ ./bin/fccs2ef 52 flaming 'woody fuels' '1-hr fuels' PM2.5
+    26.0
 
-You can optionally specify a particular set of EFs.  For example, to
-specifically get the flaming/smoldering rx EFs:
-
-    $ fccs2ef 10 -p flaming
-    {"10": {"flaming": {"CH3CH2OH": 0.64, "CH3COOH": 8.922, "CH3OH": 4.122, "C2H8N2": 0.086, "isomer2_C9H8O": 0.062, "isomer2_C6H8": 0.026, "C3H4": 0.088, "C9H12": 0.04, "C5H8O": 0.022, "CH4": 14.64, "C5H10O": 0.08, "isomer2_C7H8": 0.0, "C6H8O": 0.096, "C5H7N": 0.01, "C7H14": 0.012, "C7H16": 0.07, "isomer1_C5H6N2": 0.038, "C4H10": 0.336, "C10H16": 0.016, "isomer3_C6H10": 0.004, "C4H6O": 0.004, "HCOOH": 1.01, "C4H8O2": 0.014, "C3H4O2": 0.124, "C6H12": 0.056, "C6H10": 0.042, "HCHO": 4.496, "isomer1_C10H14": 0.024, "C2H4O2": 0.06, "C2H4O3": 0.122, "isomer1_C7H8": 0.004, "C3H8": 1.018, "C6H14": 0.014, "isomer4_C9H8O": 0.0, "C11H22": 0.06, "NMOC": 67.748, "C5H12": 0.148, "C5H10": 0.08, "isomer1_C6H10": 0.028, "C15H24": 0.22, "isomer5_C6H10": 0.012, "C11H24": 0.068, "C4H8O": 0.002, "C3H6O": 0.386, "C8H14": 0.078, "C8H16": 0.122, "NOx": 4.0, "C8H10": 0.136, "C2H6": 2.154, "CH3CHO": 3.0, "C2H4": 3.65, "HCN": 1.08, "C6H5OH": 1.73, "C6H8": 0.01, "C7H6O": 0.734, "C6H6": 0.006, "SO2": 2.12, "C4H6O2": 0.008, "C8H6O": 0.362, "C3H6": 1.396, "HNCO": 0.396, "isomer1_C9H8O": 0.036, "MEK_C4H8O": 0.468, "C4H5N": 0.028, "C5H4O2": 0.032, "C3H5N": 0.032, "C6H12O": 0.032, "C7H5N": 0.168, "C6H6O2": 4.412, "C8H18": 0.062, "isomer3_C9H8O": 0.088, "C4H6N2": 0.006, "C3H6O2": 0.468, "sum3isos_C6H12": 0.176, "CO": 270.0, "C6H8N2": 0.02, "C9H18": 0.034, "C3H4O": 0.916, "isomer2_C5H6N2": 0.016, "C9H10": 0.024, "C10H14": 0.008, "C3H4O3": 0.06, "CO2": 3200.0, "C10H10": 0.02, "PM10": 54.752, "C10H12": 0.04, "CH3CN": 0.578, "C5H8O2": 0.094, "isomer3_C5H6N2": 0.008, "C3H3N": 0.09, "C6H5CH3": 0.614, "C5H6O": 0.03, "C7H12": 0.026, "MVK_C4H6O": 0.828, "PM2.5": 46.4, "C11": 0.368, "C9H20": 0.038, "C10H20": 0.048, "C10H22": 0.036, "C8H6": 0.016, "C8H8": 0.186, "C9H8": 0.054, "C4H10O": 0.276, "C10H8": 0.87, "C9H16": 0.008, "C4H8": 0.1, "C5H6": 0.008, "C5H8": 0.01, "C4H2": 0.002, "C4H4": 0.008, "C4H6": 0.01, "C4H4O": 0.966, "C2H2": 0.752, "C5H10O2": 0.046, "NH3": 3.0, "isomer2_C10H14": 0.014, "isomer1_C6H8": 0.026, "isomer2_C6H10": 0.002, "isomer4": 0.588}}}
-
-You can then optionally specify a particular emissions species. For example,
-to get the EF for flaming/smoldering rx CO2:
-
-    $ fccs2ef 10 -p flaming -s CO2
-    {"10": {"flaming": 3200.0}}
-
-Note that, when using the script, the resulting JSON data's nested depth is the
-same regardless of the input specificity.  The format is always like the following:
-
-    # For flaming and smoldering
-    {
-        <FCCS_ID>: {
-            <PHASE>: {
-                <SPECIES>: ...
-            }
-        }
-    }
-    # For residual
-    {
-        <FCCS_ID>: {
-            <PHASE>: {
-                <FUEL_CATEGORY>: {
-                    <SPECIES>: ...
-                }
-            }
-        }
-    }
 
 
 ### Invoking the Executables In Perl
