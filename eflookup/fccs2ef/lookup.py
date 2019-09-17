@@ -19,13 +19,19 @@ from .constants import CONSUME_FUEL_CATEGORY_TRANSLATIONS
 from .mappers import (
     Fccs2CoverType,
     CoverType2EfGroup,
+    CoverType2EfGroupName,
     CatPhase2EFGroup,
-    EfGroup2Ef
+    EfGroup2Ef,
+    EfGroupName2SeraEf,
+    FuelCategory2SeraPhaseExceptions
 )
 
 __all__ = [
     'Fccs2Ef',
-    'CoverType2Ef'
+    'CoverType2Ef',
+    'Fccs2SeraEf',
+    'CoverType2SeraEf',
+    'Fccs2CoverType'
 ]
 
 # RSC_KEYS = {
@@ -212,3 +218,122 @@ class CoverType2Ef(BaseLookUp):
     def __init__(self, cover_type_id, is_rx):
         self.cover_type_id = str(cover_type_id)
         super(CoverType2Ef, self).__init__(is_rx)
+
+
+class CoverType2SeraEf():
+
+    def __init__(self, cover_type):
+        self.cover_type = str(cover_type)
+        
+        # by default set is_rx to True (this is used when pollutant is not found in SERA data)
+        self.is_rx = True
+                
+        # Cover Type to EF Group Name (example: cover type 404 => W grassland)
+        cover_type_2_ef_group_name = CoverType2EfGroupName()
+        ef_group = cover_type_2_ef_group_name.get(str(cover_type))
+        if not ef_group:
+            raise ValueError("Invalid Covertype Id {}".format(cover_type))
+            
+        str_list = ef_group.split(" ", 1)
+        self.region = str_list[0]
+        self.veg_type = str_list[1]
+        
+        ef_group_name_2_sera_ef = EfGroupName2SeraEf()
+        subset_by_region = ef_group_name_2_sera_ef.get(str(self.region))
+        if not subset_by_region:
+            raise ValueError("Invalid Region {}".format(self.region))
+        
+        subset_by_vegtype = subset_by_region.get(str(self.veg_type))
+        if not subset_by_vegtype:
+            raise ValueError("Invalid Vegetation Type {}".format(self.veg_type))
+ 
+        self.ef_set = subset_by_vegtype
+        
+        # python3
+        # >>>from eflookup.fccs2ef import CoverType2SeraEf
+        # >>>lu = CoverType2SeraEf(118)
+
+    # this can be used to set is_rx to False 
+    # example: if someone wants wildfire results when the pollutant is not found in SERA
+    # lu = CoverType2SeraEf(118)
+    # lu.set_is_rx(False)
+    def set_is_rx(self, newValue):
+        self.is_rx = newValue
+        
+    def get(self, **kwargs):
+        if any([not kwargs.get(e) for e in ('phase', 'fuel_category', 'fuel_sub_category', 'species')]):
+            raise LookupError("Specify phase, fuel_category, fuel_sub_category and species")
+
+        phase = kwargs.get('phase')
+        fuel_category = kwargs.get('fuel_category')
+        fuel_sub_category = kwargs.get('fuel_sub_category')
+        species = kwargs.get('species')   #pollutant
+        stat = kwargs.get('stat')
+        if not stat:
+            stat = "EF"
+                
+        # check exceptions list
+        
+        generic_rcwd_rduff = {"PM2.5":{"rcwd":"33","rduff":"35.3"},"CO2":{"rcwd":"1408","rduff":"1371"},"CO":{"rcwd":"229","rduff":"257"},"CH4":{"rcwd":"13.94","rduff":"7.945"},"NH3":{"rcwd":"0.48","rduff":"2.67"},"NOx":{"rcwd":"0","rduff":"0.67"},"SO2":{"rcwd":"0","rduff":"1.76"},"NMOC":{"rcwd":"45.175","rduff":"61.6955"},"PM10":{"rcwd":"38.94","rduff":"41.654"}}
+        
+        exceptions = FuelCategory2SeraPhaseExceptions()
+        subset_fuel_category = exceptions.get(fuel_category)
+        if not subset_fuel_category:
+            raise ValueError("Invalid fuel category {}".format(fuel_category))
+            
+        subset_fuel_sub_category = subset_fuel_category.get(fuel_sub_category)
+        if not subset_fuel_sub_category:
+            raise ValueError("Invalid fuel sub category {}".format(fuel_sub_category))
+        
+        exception_phase = subset_fuel_sub_category.get(phase)
+        if exception_phase:
+            if exception_phase == 'na':
+                return None
+            elif exception_phase == "rcwd":
+                return float(generic_rcwd_rduff[species]["rcwd"])
+            elif exception_phase == "rduff":
+                return float(generic_rcwd_rduff[species]["rduff"])
+
+        # if ok, return stat from ef_set
+        subset_by_phase = self.ef_set.get(phase)
+        subset_by_pollutant = subset_by_phase.get(species)
+        
+        # handle case where pollutant is not found in SERA table
+        if not subset_by_pollutant:
+            # do lookup using existing non-SERA values
+            if stat == 'EF':
+                # print("pollutant not found... doing old style lookup.")
+                lu = CoverType2Ef(cover_type_id = self.cover_type, is_rx=self.is_rx)
+                non_sera_ef = lu.get(phase=phase, fuel_category=fuel_category, fuel_sub_category=fuel_sub_category, species=species)
+                return float(non_sera_ef) if non_sera_ef else None
+            else:
+                return None
+        elif stat == "all":
+            # return all stats
+            return subset_by_pollutant
+        else:
+            # look for EF, SD, or n     
+            ef = subset_by_pollutant.get(stat)
+            return float(ef) if ef else None
+
+class Fccs2SeraEf(CoverType2SeraEf):
+
+    def __init__(self, fccs_fuelbed_id):
+        self.fccs_fuelbed_id = str(fccs_fuelbed_id)
+        
+        # Fuelbed to Cover Type (fuel bed 0 => cover type 404)
+        fccs_2_cover_type = Fccs2CoverType()
+        cover_type = fccs_2_cover_type.get(str(fccs_fuelbed_id))
+        if not cover_type:
+            raise ValueError("Invalid Fuelbed Id {}".format(fccs_fuelbed_id))
+                        
+        super(Fccs2SeraEf, self).__init__(cover_type)
+        
+        # python3
+        # >>>from eflookup.fccs2ef import Fccs2SeraEf
+        # >>>lu = Fccs2SeraEf(52)
+
+
+
+
+

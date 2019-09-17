@@ -15,6 +15,7 @@ setup(
     packages=find_packages(),
     scripts=[
         'bin/fccs2ef',
+        'bin/fccs2seraef',
         'bin/ct2ef',
         'bin/fepsef',
     ],

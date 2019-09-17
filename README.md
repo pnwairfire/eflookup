@@ -214,13 +214,53 @@ Or, get an EF for a specific species
 
 #### ```eflookup.fccs2ef```
 
-There are two look-up classes to choose from, depending on whether you're
-keying off of FCCS id or cover type - Fccs2Ef and CoverType2Ef.  Also, each
-class can be instantiated either for wild fires or Rx burns. The following
+There are four look-up classes to choose from, depending on whether you're
+keying off of FCCS id or cover type: 
+Fccs2Ef, Fccs2SeraEf, CoverType2Ef, CoverType2SeraEf.  
+Also, each class can be instantiated either for wild fires or Rx burns. The following
 example illustrates use of Fccs2Ef for an Rx burn, but the usage of
 CoverType2Ef is identical other than passing in a cover type id instead of
 an FCCS id, and the usage for wild fires is identical other than setting
 is_rx to False when instantiating the look-up object.
+
+Fccs2SeraEf (and CoverType2SeraEf) try to lookup the species (pollutant) in the SERA data. 
+If the pollutant is not found, then the original Fccs2Ef (or CoverType2Ef) class is used. 
+Optionally, the "stat" can be specified: 
+EF = emissions factor (this is the default if not specified)
+SD = standard deviation
+n = count
+all: returns EF, SD, and n
+Example usage: 
+
+>>> from eflookup.fccs2ef import Fccs2SeraEf
+>>> lu = Fccs2SeraEf(52)
+>>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5")
+13.5
+>>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="all")
+{'SD': 5.18, 'n': 21, 'EF': 13.5}
+>>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="SD")
+5.18
+>>>
+>>>
+>>> from eflookup.fccs2ef import CoverType2SeraEf
+>>> lu = CoverType2SeraEf(118)
+>>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="SD")
+5.18
+>>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5")
+13.5
+>>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="all")
+{'SD': 5.18, 'n': 21, 'EF': 13.5}
+>>>
+>>>
+This next case shows a species that is not in the SERA data. When looking up values in Fccs2SeraEf, 
+the is_rx setting comes into play. It can be set using set_is_rx().
+>>>
+>>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="C2H2")
+0.312
+>>> lu.set_is_rx(False)
+>>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="C2H2")
+0.24
+
 
 First import and instantiate
 
