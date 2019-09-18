@@ -57,7 +57,11 @@ def run(lookup_class, examples_string=None):
             extra_output=lambda: parser.print_help())
 
     try:
-        look_up = lookup_class(args.id, args.rx)
+        if lookup_class.__name__ == "Fccs2SeraEf" or lookup_class.__name__ == "CoverType2SeraEf":
+            look_up = lookup_class(args.id)
+        else:
+            look_up = lookup_class(args.id, args.rx)
+            
         r = look_up.get(
             phase=args.phase,
             fuel_category=args.fuel_category,

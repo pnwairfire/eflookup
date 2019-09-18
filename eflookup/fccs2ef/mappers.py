@@ -12,14 +12,20 @@ import re
 from .data import (
     fccs2covertype,
     covertype2efgroup,
+    covertype2efgroupname,
     catphase2efgroup,
-    efgroup2ef
+    efgroup2ef,
+    efgroupname2seraef,
+    fuelcategory2seraphaseexceptions
 )
 
 __all__ = [
     'Fccs2CoverType',
     'CoverType2EfGroup',
-    'EfGroup2Ef'
+    'CoverType2EfGroupName',
+    'EfGroup2Ef', 
+    'EfGroupName2SeraEf', 
+    'FuelCategory2SeraPhaseExceptions'
 ]
 
 class MapperBase(object, metaclass=abc.ABCMeta):
@@ -41,11 +47,26 @@ class Fccs2CoverType(MapperBase):
 
     def __init__(self):
         self._data = fccs2covertype.FCCS_2_COVERTYPE
+        
+class FuelCategory2SeraPhaseExceptions(MapperBase):
+
+    def __init__(self):
+        self._data = fuelcategory2seraphaseexceptions.FUEL_CATEGORY_2_SERA_PHASE_EXCEPTIONS
+
+class EfGroupName2SeraEf(MapperBase):
+
+    def __init__(self):
+        self._data = efgroupname2seraef.EF_GROUP_NAME_2_SERA_EF
 
 class CoverType2EfGroup(MapperBase):
 
     def __init__(self):
         self._data = covertype2efgroup.COVERTYPE_2_EF_GROUP
+
+class CoverType2EfGroupName(MapperBase):
+
+    def __init__(self):
+        self._data = covertype2efgroupname.COVERTYPE_2_EF_GROUP_NAME
 
 
 class CatPhase2EFGroup(MapperBase):

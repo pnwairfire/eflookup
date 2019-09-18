@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+"""fccs2ef: returns emissions factors associated with an FCCS fuelbed id
+"""
+
+__author__      = "Joel Dubowy"
+
+from eflookup.fccs2ef import scripting, lookup
+
+EXAMPLES_STRING = """
+Example calls:
+ > ./bin/fccs2ef 52 flaming 'woody fuels' '1-hr fuels' PM2.5 --log-level=DEBUG
+ > ./bin/fccs2ef 52 residual canopy midstory PM2.5 --log-level=DEBUG
+ > ./bin/fccs2ef 303 flaming 'woody fuels' '1-hr fuels' PM2.5 --log-level=DEBUG
+"""
+
+if __name__ == "__main__":
+    scripting.run(lookup.Fccs2SeraEf, examples_string=EXAMPLES_STRING)
+    
