@@ -273,35 +273,34 @@ n = count
 all: returns EF, SD, and n
 Example usage:
 
->>> from eflookup.fccs2ef import Fccs2SeraEf
->>> lu = Fccs2SeraEf(52)
->>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5")
-13.5
->>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="all")
-{'SD': 5.18, 'n': 21, 'EF': 13.5}
->>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="SD")
-5.18
->>>
->>>
->>> from eflookup.fccs2ef import CoverType2SeraEf
->>> lu = CoverType2SeraEf(118)
->>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="SD")
-5.18
->>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5")
-13.5
->>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="all")
-{'SD': 5.18, 'n': 21, 'EF': 13.5}
->>>
->>>
+    >>> from eflookup.fccs2ef import Fccs2SeraEf
+    >>> lu = Fccs2SeraEf(52)
+    >>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5")
+    13.5
+    >>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="all")
+    {'SD': 5.18, 'n': 21, 'EF': 13.5}
+    >>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="SD")
+    5.18
+    >>>
+    >>>
+    >>> from eflookup.fccs2ef import CoverType2SeraEf
+    >>> lu = CoverType2SeraEf(118)
+    >>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="SD")
+    5.18
+    >>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5")
+    13.5
+    >>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="all")
+    {'SD': 5.18, 'n': 21, 'EF': 13.5}
+    
 This next case shows a species that is not in the SERA data. When looking up values in Fccs2SeraEf,
 the is_rx setting comes into play. It can be set using set_is_rx().
->>>
->>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="C2H2")
-0.312
->>> lu.set_is_rx(False)
->>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="C2H2")
-0.24
 
+    >>>
+    >>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="C2H2")
+    0.312
+    >>> lu.set_is_rx(False)
+    >>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="C2H2")
+    0.24
 
 First import and instantiate
 
