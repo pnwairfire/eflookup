@@ -265,12 +265,12 @@ an FCCS id, and the usage for wild fires is identical other than setting
 is_rx to False when instantiating the look-up object.
 
 Fccs2SeraEf (and CoverType2SeraEf) try to lookup the species (pollutant) in the SERA data.
-If the pollutant is not found, then the original Fccs2Ef (or CoverType2Ef) class is used.
-Optionally, the "stat" can be specified:
-EF = emissions factor (this is the default if not specified)
-SD = standard deviation
-n = count
-all: returns EF, SD, and n
+If the pollutant is not found, then the original Fccs2Ef (or CoverType2Ef) class is used.<br>
+Optionally, the "stat" can be specified:<br>
+EF = emissions factor (this is the default if not specified)<br>
+SD = standard deviation<br>
+n = count<br>
+all: returns EF, SD, and n<br>
 Example usage:
 
     >>> from eflookup.fccs2ef import Fccs2SeraEf
