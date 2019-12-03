@@ -296,6 +296,11 @@ class CoverType2SeraEf():
 
         # if ok, return stat from ef_set
         subset_by_phase = self.ef_set.get(phase)
+
+        # if subset_by_phase is None, use "average". Example: fuelbed 1 (cover type 13, W mixed forest) doesn't have "smoldering" phase.
+        if not subset_by_phase:
+            subset_by_phase = self.ef_set.get("average")
+
         subset_by_pollutant = subset_by_phase.get(species)
         
         # handle case where pollutant is not found in SERA table
