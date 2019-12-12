@@ -87,10 +87,10 @@ First, install pip (with sudo if necessary):
 
     apt-get install python-pip
 
-Then, to install, for example, v3.2.0, use the following (with
+Then, to install, for example, v3.2.1, use the following (with
 sudo if necessary):
 
-    pip install --extra-index https://pypi.airfire.org/simple eflookup==3.2.0
+    pip install --extra-index https://pypi.airfire.org/simple eflookup==3.2.1
 
 See the Development > Install Dependencies > Notes section, above, for
 notes on resolving pip and gdal issues.
@@ -291,7 +291,7 @@ Example usage:
     13.5
     >>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="PM2.5", stat="all")
     {'SD': 5.18, 'n': 21, 'EF': 13.5}
-    
+
 This next case shows a species that is not in the SERA data. When looking up values in Fccs2SeraEf,
 the is_rx setting comes into play. It can be set using set_is_rx().
 
