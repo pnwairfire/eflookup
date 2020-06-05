@@ -87,10 +87,10 @@ First, install pip (with sudo if necessary):
 
     apt-get install python-pip
 
-Then, to install, for example, v3.2.1, use the following (with
+Then, to install, for example, v3.2.2, use the following (with
 sudo if necessary):
 
-    pip install --extra-index https://pypi.airfire.org/simple eflookup==3.2.1
+    pip install --extra-index https://pypi.airfire.org/simple eflookup==3.2.2
 
 See the Development > Install Dependencies > Notes section, above, for
 notes on resolving pip and gdal issues.
