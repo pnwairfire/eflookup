@@ -161,7 +161,7 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
                     elif self.is_duff(fuel_category, fuel_sub_category):
                         return ef_or_none(self.ef_set_residual_duff, species)
                     else:
-                        return None
+                        return 0.0
                 else:
                     # flaming and smooldering use the same EF
                     # Note: if ef is not specified or empty string, use 0
