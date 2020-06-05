@@ -143,7 +143,7 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
 
         def ef_or_none(ef_set, species):
             ef = ef_set.get(species)
-            return float(ef) if ef else None
+            return float(ef) if ef is not None else None
 
         try:
             if override_ef_group == None:
