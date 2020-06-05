@@ -189,13 +189,18 @@ class TestFccs2EfAndCovertype2EF(object):
 
         ## Other
         for l in self.lookups.values():
-            assert None == l.get(phase='residual', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO2') # no residual emissions
+            assert 0.0 == l.get(phase='residual', fuel_category='canopy', fuel_sub_category='ladder fuels', species='CO2') # no residual emissions
             assert 1 == l.get(phase='residual', fuel_category='woody fuels', fuel_sub_category='1000-hr fuels rotten', species='CO2') #CWD - EFG 7
             assert 11 == l.get(phase='residual', fuel_category='ground fuels', fuel_sub_category='duff upper', species='CO2') #duff - EFG 8
 
     def test_get_existing_w_None_override(self):
-        for l in self.lookups.values():
-            assert None == l.get(phase='residual', fuel_category='canopy', fuel_sub_category='ladder fuels', species='NH3')
+            # fccs2ef_213_wf is the one that doesn't ahve None override
+            assert 0.0 ==  self.lookups['fccs2ef_213_wf'].get(phase='residual', fuel_category='canopy', fuel_sub_category='ladder fuels', species='NH3')
+
+            assert None ==  self.lookups['fccs2ef_213_rx'].get(phase='residual', fuel_category='canopy', fuel_sub_category='ladder fuels', species='NH3')
+            assert None ==  self.lookups['ct2ef_1_rx'].get(phase='residual', fuel_category='canopy', fuel_sub_category='ladder fuels', species='NH3')
+            assert None ==  self.lookups['ct2ef_10_wf'].get(phase='residual', fuel_category='canopy', fuel_sub_category='ladder fuels', species='NH3')
+
 
     def test_get_existing_w_float_override_for_rx_only(self):
         assert 9.89 == self.lookups['fccs2ef_213_rx'].get(phase='flaming', fuel_category='canopy', fuel_sub_category='ladder fuels', species='PM2.5')
