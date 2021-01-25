@@ -68,7 +68,13 @@ to the search path.
 Use pytest:
 
     py.test
-    py.test test/eflookup/test_lookup.py
+    test/unit/eflookup/test_basic_ef_lookup.py ....
+    test/unit/eflookup/test_fepsef.py ......
+    test/unit/eflookup/fccs2ef/test_import.py ....
+    test/unit/eflookup/fccs2ef/test_lookup.py ........
+    == 22 passed in 0.17 seconds ==
+    
+    py.test test/unit/eflookup/fccs2ef/test_lookup.py
 
 You can also use the ```--collect-only``` option to see a list of all tests.
 
@@ -293,7 +299,8 @@ Example usage:
     {'SD': 5.18, 'n': 21, 'EF': 13.5}
 
 This next case shows a species that is not in the SERA data. When looking up values in Fccs2SeraEf,
-the is_rx setting comes into play. It can be set using set_is_rx().
+the is_rx setting comes into play. It can be set using set_is_rx(). The default for Fccs2SeraEf is prescribed fire. 
+To obtain wildfire emission factors, set rx to False. Note: the default for Fccs2Ef is wildfire. 
 
     >>>
     >>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="C2H2")
@@ -301,6 +308,7 @@ the is_rx setting comes into play. It can be set using set_is_rx().
     >>> lu.set_is_rx(False)
     >>> lu.get(phase="flaming",fuel_category="woody fuels",fuel_sub_category="1-hr fuels",species="C2H2")
     0.24
+
 
 First import and instantiate
 
@@ -374,12 +382,12 @@ same regardless of the input specificity.  The format is always like the followi
     }
 
 
-#### ```fccs2ef``` & ```ct2ef```
+#### ```fccs2seraef``` & ```fccs2ef``` & ```ct2ef```
 
-There are two scripts to choose from, again depending on whether you're
-keying off of FCCS id or cover type - '''fccs2ef''' and '''ct2ef'''.  The
-following example illustrates use of '''fccs2ef''' for a wild fire (the default
-fire type), but as with the classes described above, the usage of '''ct2ef'''
+Use FCCS id with '''fccs2seraef''' and '''fccs2ef'''. Use Cover Type with '''ct2ef'''. 
+The following example illustrates use of '''fccs2ef''' for a wild fire (the default
+fire type). Usage of '''fccs2seraef''' is identical to '''fccs2ef'''. 
+As with the classes described above, the usage of '''ct2ef'''
 is identical other than passing in a cover type id instead of an FCCS id.
 Using the scripts for Rx burns is also idential other than having to add the
 option '--rx'
@@ -391,10 +399,28 @@ To see the script's usage, you can use the '-h' options:
 The script takes an FCCS id, phase, fuel_category, fuel_sub_category, and species
 the associated EF value. For example:
 
-    $ $ ./bin/fccs2ef 52 flaming 'woody fuels' '1-hr fuels' PM2.5
+    $ ./bin/fccs2ef 52 flaming 'woody fuels' '1-hr fuels' PM2.5
     26.0
 
+These examples show the difference between fccs2ef and fccs2seraef. 
+Note: the default for fccs2ef is wildfire, the default for fccs2seraef is prescribed. 
+So, now there is no option for setting fccs2seraef to wildfire when using the executable. 
+To get wildfire emissions factors using Fccs2SeraEf, use the python module directly and set 
+set_is_rx(False) as described above. 
 
+    
+    $ fccs2ef 52 flaming 'woody fuels' '1-hr fuels' C2H2
+    0.24
+    (wildfire)
+    $ fccs2ef 52 flaming 'woody fuels' '1-hr fuels' C2H2 --rx
+    0.312
+    (prescribed)
+    $ fccs2seraef 52 flaming 'woody fuels' '1-hr fuels' C2H2
+    0.312
+    (prescribed)
+    $ fccs2seraef 52 flaming 'woody fuels' '1-hr fuels' C2H2 --rx
+    0.312
+    (prescribed, --rx option is redundant in this case)
 
 ### Invoking the Executables In Perl
 
