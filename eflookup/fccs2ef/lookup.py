@@ -260,6 +260,18 @@ class CoverType2SeraEf():
     def set_is_rx(self, newValue):
         self.is_rx = newValue
 
+    GENERIC_RCWD_RDUFF = {
+        "PM2.5": {"rcwd":"33","rduff":"35.3"},
+        "CO2": {"rcwd":"1408","rduff":"1371"},
+        "CO": {"rcwd":"229","rduff":"257"},
+        "CH4": {"rcwd":"13.94","rduff":"7.945"},
+        "NH3": {"rcwd":"0.48","rduff":"2.67"},
+        "NOx": {"rcwd":"0","rduff":"0.67"},
+        "SO2": {"rcwd":"0","rduff":"1.76"},
+        "NMOC": {"rcwd":"45.175","rduff":"61.6955"},
+        "PM10": {"rcwd":"38.94","rduff":"41.654"}
+    }
+
     def get(self, **kwargs):
         if any([not kwargs.get(e) for e in ('phase', 'fuel_category', 'fuel_sub_category', 'species')]):
             raise LookupError("Specify phase, fuel_category, fuel_sub_category and species")
@@ -273,8 +285,6 @@ class CoverType2SeraEf():
             stat = "EF"
 
         # check exceptions list
-
-        generic_rcwd_rduff = {"PM2.5":{"rcwd":"33","rduff":"35.3"},"CO2":{"rcwd":"1408","rduff":"1371"},"CO":{"rcwd":"229","rduff":"257"},"CH4":{"rcwd":"13.94","rduff":"7.945"},"NH3":{"rcwd":"0.48","rduff":"2.67"},"NOx":{"rcwd":"0","rduff":"0.67"},"SO2":{"rcwd":"0","rduff":"1.76"},"NMOC":{"rcwd":"45.175","rduff":"61.6955"},"PM10":{"rcwd":"38.94","rduff":"41.654"}}
 
         exceptions = FuelCategory2SeraPhaseExceptions()
         subset_fuel_category = exceptions.get(fuel_category)
