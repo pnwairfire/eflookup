@@ -220,11 +220,15 @@ class CoverType2Ef(BaseLookUp):
         super(CoverType2Ef, self).__init__(is_rx)
 
 
-class CoverType2SeraEf():
+class CoverType2SeraEf(BaseLookUp):
 
     def __init__(self, cover_type, is_rx=True):
+        # call super first, since we'll override self.ef_set, below
+        # is_rx is used when pollutant is not found in SERA data)
+        # BaseLookUp sets self.is_rx
+        super(CoverType2SeraEf, self).__init__(is_rx)
+
         self.cover_type = str(cover_type)
-        self.is_rx = is_rx
 
         # Cover Type to EF Group Name (example: cover type 404 => W grassland)
         cover_type_2_ef_group_name = CoverType2EfGroupName()
