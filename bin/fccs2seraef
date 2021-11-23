@@ -3,7 +3,7 @@
 """fccs2ef: returns emissions factors associated with an FCCS fuelbed id
 """
 
-__author__      = "Joel Dubowy"
+__author__      = "Brian Drye"
 
 from eflookup.fccs2ef import scripting, lookup
 
