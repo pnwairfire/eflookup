@@ -222,11 +222,9 @@ class CoverType2Ef(BaseLookUp):
 
 class CoverType2SeraEf():
 
-    def __init__(self, cover_type):
+    def __init__(self, cover_type, is_rx=True):
         self.cover_type = str(cover_type)
-
-        # by default set is_rx to True (this is used when pollutant is not found in SERA data)
-        self.is_rx = True
+        self.is_rx = is_rx
 
         # Cover Type to EF Group Name (example: cover type 404 => W grassland)
         cover_type_2_ef_group_name = CoverType2EfGroupName()
@@ -334,7 +332,7 @@ class CoverType2SeraEf():
 
 class Fccs2SeraEf(CoverType2SeraEf):
 
-    def __init__(self, fccs_fuelbed_id):
+    def __init__(self, fccs_fuelbed_id, is_rx=True):
         self.fccs_fuelbed_id = str(fccs_fuelbed_id)
 
         # Fuelbed to Cover Type (fuel bed 0 => cover type 404)
@@ -343,7 +341,7 @@ class Fccs2SeraEf(CoverType2SeraEf):
         if not cover_type:
             raise ValueError("Invalid Fuelbed Id {}".format(fccs_fuelbed_id))
 
-        super(Fccs2SeraEf, self).__init__(cover_type)
+        super(Fccs2SeraEf, self).__init__(cover_type, is_rx=is_rx)
 
         # python3
         # >>>from eflookup.fccs2ef import Fccs2SeraEf
