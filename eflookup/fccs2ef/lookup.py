@@ -295,14 +295,15 @@ class CoverType2SeraEf():
         if not subset_fuel_sub_category:
             raise ValueError("Invalid fuel sub category {}".format(fuel_sub_category))
 
-        exception_phase = subset_fuel_sub_category.get(phase)
-        if exception_phase:
-            if exception_phase == 'na':
-                return None
-            elif exception_phase == "rcwd":
-                return float(generic_rcwd_rduff[species]["rcwd"])
-            elif exception_phase == "rduff":
-                return float(generic_rcwd_rduff[species]["rduff"])
+        if species in self.GENERIC_RCWD_RDUFF:
+            exception_phase = subset_fuel_sub_category.get(phase)
+            if exception_phase:
+                if exception_phase == 'na':
+                    return None
+                elif exception_phase == "rcwd":
+                    return float(self.GENERIC_RCWD_RDUFF[species]["rcwd"])
+                elif exception_phase == "rduff":
+                    return float(self.GENERIC_RCWD_RDUFF[species]["rduff"])
 
         # if ok, return stat from ef_set
         subset_by_phase = self.ef_set.get(phase)
