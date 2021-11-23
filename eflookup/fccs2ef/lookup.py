@@ -303,7 +303,7 @@ class CoverType2SeraEf(BaseLookUp):
             exception_phase = subset_fuel_sub_category.get(phase)
             if exception_phase:
                 if exception_phase == 'na':
-                    return None
+                    return 0.0
                 elif exception_phase == "rcwd":
                     return float(self.GENERIC_RCWD_RDUFF[species]["rcwd"])
                 elif exception_phase == "rduff":
@@ -328,7 +328,7 @@ class CoverType2SeraEf(BaseLookUp):
                     fuel_sub_category=fuel_sub_category, species=species)
                 return float(non_sera_ef) if non_sera_ef else None
             else:
-                return None
+                return 0.0
         elif stat == "all":
             # return all stats
             return subset_by_pollutant
