@@ -230,6 +230,8 @@ class CoverType2SeraEf(BaseLookUp):
 
         self.cover_type = str(cover_type)
 
+        self.covertype2ef_lookup = CoverType2Ef(cover_type_id = self.cover_type, is_rx=self.is_rx)
+
         # Cover Type to EF Group Name (example: cover type 404 => W grassland)
         cover_type_2_ef_group_name = CoverType2EfGroupName()
         ef_group = cover_type_2_ef_group_name.get(str(cover_type))
@@ -321,8 +323,9 @@ class CoverType2SeraEf(BaseLookUp):
             # do lookup using existing non-SERA values
             if stat == 'EF':
                 # print("pollutant not found... doing old style lookup.")
-                lu = CoverType2Ef(cover_type_id = self.cover_type, is_rx=self.is_rx)
-                non_sera_ef = lu.get(phase=phase, fuel_category=fuel_category, fuel_sub_category=fuel_sub_category, species=species)
+                non_sera_ef = self.covertype2ef_lookup.get(
+                    phase=phase, fuel_category=fuel_category,
+                    fuel_sub_category=fuel_sub_category, species=species)
                 return float(non_sera_ef) if non_sera_ef else None
             else:
                 return None
@@ -333,6 +336,11 @@ class CoverType2SeraEf(BaseLookUp):
             # look for EF, SD, or n
             ef = subset_by_pollutant.get(stat)
             return float(ef) if ef else None
+
+    def species(self, phase):
+        # Delegate to self.covertype2ef_lookup's species, since SERA overides a subset
+        # of the species and delegates to self.covertype2ef_lookup for the rest
+        return self.covertype2ef_lookup.species(phase)
 
 class Fccs2SeraEf(CoverType2SeraEf):
 
