@@ -210,27 +210,23 @@ class Fccs2Ef(BaseLookUp):
 
     def __init__(self, fccs_fuelbed_id, is_rx):
         self.fccs_fuelbed_id = str(fccs_fuelbed_id)
-        super(Fccs2Ef, self).__init__(is_rx)
+        super().__init__(is_rx)
 
 
 class CoverType2Ef(BaseLookUp):
 
     def __init__(self, cover_type_id, is_rx):
         self.cover_type_id = str(cover_type_id)
-        super(CoverType2Ef, self).__init__(is_rx)
+        super().__init__(is_rx)
 
 
-class CoverType2SeraEf(BaseLookUp):
+class CoverType2SeraEf(CoverType2Ef):
 
     def __init__(self, cover_type, is_rx=True):
         # call super first, since we'll override self.ef_set, below
         # is_rx is used when pollutant is not found in SERA data)
         # BaseLookUp sets self.is_rx
-        super(CoverType2SeraEf, self).__init__(is_rx)
-
-        self.cover_type = str(cover_type)
-
-        self.covertype2ef_lookup = CoverType2Ef(cover_type_id = self.cover_type, is_rx=self.is_rx)
+        super().__init__(cover_type, is_rx)
 
         # Cover Type to EF Group Name (example: cover type 404 => W grassland)
         cover_type_2_ef_group_name = CoverType2EfGroupName()
@@ -323,10 +319,9 @@ class CoverType2SeraEf(BaseLookUp):
             # do lookup using existing non-SERA values
             if stat == 'EF':
                 # print("pollutant not found... doing old style lookup.")
-                non_sera_ef = self.covertype2ef_lookup.get(
+                return super().get(
                     phase=phase, fuel_category=fuel_category,
                     fuel_sub_category=fuel_sub_category, species=species)
-                return float(non_sera_ef) if non_sera_ef else None
             else:
                 return 0.0
         elif stat == "all":
@@ -336,11 +331,6 @@ class CoverType2SeraEf(BaseLookUp):
             # look for EF, SD, or n
             ef = subset_by_pollutant.get(stat)
             return float(ef) if ef else None
-
-    def species(self, phase):
-        # Delegate to self.covertype2ef_lookup's species, since SERA overides a subset
-        # of the species and delegates to self.covertype2ef_lookup for the rest
-        return self.covertype2ef_lookup.species(phase)
 
 class Fccs2SeraEf(CoverType2SeraEf):
 
