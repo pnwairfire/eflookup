@@ -223,7 +223,6 @@ class CoverType2Ef(BaseLookUp):
 class CoverType2SeraEf(CoverType2Ef):
 
     def __init__(self, cover_type, is_rx=True):
-        # call super first, since we'll override self.ef_set, below
         # is_rx is used when pollutant is not found in SERA data)
         # BaseLookUp sets self.is_rx
         super().__init__(cover_type, is_rx)
@@ -247,7 +246,7 @@ class CoverType2SeraEf(CoverType2Ef):
         if not subset_by_vegtype:
             raise ValueError("Invalid Vegetation Type {}".format(self.veg_type))
 
-        self.ef_set = subset_by_vegtype
+        self.sera_ef_set = subset_by_vegtype
 
         # python3
         # >>>from eflookup.fccs2ef import CoverType2SeraEf
@@ -306,11 +305,11 @@ class CoverType2SeraEf(CoverType2Ef):
                     return float(self.GENERIC_RCWD_RDUFF[species]["rduff"])
 
         # if ok, return stat from ef_set
-        subset_by_phase = self.ef_set.get(phase)
+        subset_by_phase = self.sera_ef_set.get(phase)
 
         # if subset_by_phase is None, use "average". Example: fuelbed 1 (cover type 13, W mixed forest) doesn't have "smoldering" phase.
         if not subset_by_phase:
-            subset_by_phase = self.ef_set.get("average")
+            subset_by_phase = self.sera_ef_set.get("average")
 
         subset_by_pollutant = subset_by_phase.get(species)
 
@@ -331,6 +330,12 @@ class CoverType2SeraEf(CoverType2Ef):
             # look for EF, SD, or n
             ef = subset_by_pollutant.get(stat)
             return float(ef) if ef else None
+
+    def species(self, phase):
+        # if phase not in self:
+        #     return set()
+        return super().species(phase).union(set(self.sera_ef_set.get(phase,{}).keys()))
+
 
 class Fccs2SeraEf(CoverType2SeraEf):
 
