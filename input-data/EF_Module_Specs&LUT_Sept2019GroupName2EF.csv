@@ -248,9 +248,9 @@ N,grassland,FireAvg,CO,64.44,16.18,5,
 N,grassland,FireAvg,CH4,2.04,0.99,5,
 N,grassland,FireAvg,NH3,0.77,,1,
 N,grassland,FireAvg,NO,2.27,,1,
-N,grassland,FireAvg,NO2,,,,Used western grassland EF
-N,grassland,FireAvg,NOx,,,,Used western grassland EF
-N,grassland,FireAvg,SO2,,,,Used western grassland EF
+N,grassland,FireAvg,NO2,3.13,2.36,2,Used western grassland EF
+N,grassland,FireAvg,NOx,3.13,2.36,0,Used western grassland EF
+N,grassland,FireAvg,SO2,2.98,,1,Used western grassland EF
 N,grassland,F,PM2.5,9.89,6.9,4,
 N,grassland,F,CO2,1697.38,39.83,5,
 N,grassland,F,CO,64.44,16.18,5,

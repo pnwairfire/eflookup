@@ -2,6 +2,11 @@ import csv
 
 # this script generates the content for efgroupname2seraef.py 
 # the content is output to bdtest.py (which I copied to efgroupname2seraef.py)
+#
+# find/replace after running script:
+# FireAvg => average
+# "F" => "flaming"
+# "S" => "smoldering"
 
 with open('EF_Module_Specs&LUT_Sept2019GroupName2EF.csv', encoding='utf-8-sig') as csvfile:
     reader = csv.DictReader(csvfile)
@@ -61,6 +66,7 @@ with open('EF_Module_Specs&LUT_Sept2019GroupName2EF.csv', encoding='utf-8-sig') 
         print('"', pollutant, '":', sep='', end='', file=output_file)
         ef = row['EF']
         if ef == '':
+            print('bdtest: ', region, vegtype, phase, pollutant, ':', averageEF[pollutant])
             ef = averageEF[pollutant]
         print('{"EF":', ef, sep='', end='', file=output_file)
         sd = row['SD']
