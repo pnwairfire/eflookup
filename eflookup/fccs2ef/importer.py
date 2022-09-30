@@ -325,7 +325,8 @@ class EfGroup2EfImporter(ImporterBase):
             self._data[ef_group] = {}
 
     def _process_row(self, row):
-        species = (row[1] or row[0]).strip()
+        # Use 'Pullutant', not 'Formula'
+        species = row[0].strip()
         if species:
             for i in range(2, len(self._headers)):
                 ef_group = self._headers[i]
