@@ -5,6 +5,7 @@ emissions from wildland fires.  Multiple sets of EF are supported, including:
 
  - FCCS specific EFs, based on Prichard, S.J. and O'Neill, S. In prep. Wildland fire EFs in North America: summary of existing data, measurement needs and management applications. International Journal of Wildland Fire.
  - FEPS style EFs
+ - Crop-specific EFs from Pouliot 2017 and McCarty 2011
 
 ***This software is provided for research purposes only. It's output may
 not accurately reflect observed data due to numerous reasons. Data are
@@ -324,7 +325,20 @@ If no corresponding EF, `None` is returned
 Note that `fccs2ef` does not support using ```__getitem__``` brackets
 instead of get.
 
+#### ```eflookup.Crops2Ef```
 
+Crop emission factors are determined based on the underlying crop type. A modified
+crop ID is derived from the sum of 9000 and the CDL ID.
+
+First, import and instantiate:
+
+    >>> from eflookup.crops2ef import Crops2Ef
+    >>> lu = Crops2Ef(9001)
+
+Now get the EF for the specified pollutant:
+
+    >>> lu.get('CO')
+    0.05305007535
 
 ### Using the Executables
 
