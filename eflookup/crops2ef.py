@@ -13,6 +13,7 @@ __all__ = [
 
 # Crop codes listed below are from the CDL
 # See https://www.nass.usda.gov/Research_and_Science/Cropland/metadata/metadata_Cultivated-Layer-2022.htm for reference to crop name
+# EFs in lbs/ton
 CROPSEF = {
 '1': {'CO2': 3031.37, 'CH4': 4.253396665, 'CO': 106.1001507, 'NOX': 4.601521501, 'SO2': 2.380990744, 'PM2.5': 9.940884755, 'PM10': 21.360925, 'VOC': 18.47246, 'NH3': 19.32, 'hap_50000': 1.025634, 'hap_75070': 1.521677, 'hap_110543': 0.172563, 'hap_71432': 0.227658, 'hap_123386': 0.218663, 'hap_106990': 0.161739, 'hap_108883': 0.170455, 'hap_100425': 0.025581, 'hap_100414': 0.026645, 'hap_540841': 0.006738, 'hap_98828': 0.002136, 'hap_106423': 0.066206, 'PEC': 1.083556438, 'POC': 3.859051462}, 
 '2': {'CO2': 3341.458258, 'CH4': 4.075935999, 'CO': 110.2846823, 'NOX': 4.749334055, 'SO2': 0.880120992, 'PM2.5': 8.068089333, 'PM10': 14.09666667, 'VOC': 18.68672, 'NH3': 33.73, 'hap_50000': 1.355905, 'hap_75070': 1.10033, 'hap_110543': 0.313249, 'hap_71432': 0.220424, 'hap_123386': 0.179053, 'hap_106990': 0.127599, 'hap_108883': 0.094804, 'hap_100425': 0.018471, 'hap_100414': 0.01489, 'hap_540841': 0.002262, 'hap_98828': 0.000942, 'hap_106423': 0.040523, 'PEC': 0.879421737, 'POC': 3.132032279}, 
@@ -71,8 +72,9 @@ class Crops2Ef:
             print('CDL ID not found. Defaulting to other crops EF.')
             crop_ef = CROPSEF['12']
 
+        # Return in short tons/ton
         try:
-            return crop_ef[species]
+            return crop_ef[species] / 2000.
         except KeyError:
             return None
 
