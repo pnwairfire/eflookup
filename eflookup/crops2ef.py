@@ -7,6 +7,8 @@ Methods from Pouliot 2017
 
 __author__      = "James Beidler"
 
+from .lookup import BasicEFLookup
+
 __all__ = [
     'Crops2Ef',
 ]
@@ -33,7 +35,7 @@ CROPSEF = {
 '26': {'CO2': 3224.4, 'CH4': 5.0, 'CO': 128.48, 'NOX': 7.06, 'SO2': 2.52, 'PM2.5': 25.36, 'PM10': 26.38, 'VOC': 43.25, 'NH3': 1.82, 'hap_50000': 0.0, 'hap_75070': 0.0, 'hap_110543': 0.0, 'hap_71432': 0.0, 'hap_123386': 0.0, 'hap_106990': 0.0, 'hap_108883': 0.0, 'hap_100425': 0.0, 'hap_100414': 0.0, 'hap_540841': 0.0, 'hap_98828': 0.0, 'hap_106423': 0.0, 'PEC': 0.0, 'POC': 0.0}
 }
 
-class Crops2Ef:
+class Crops2Ef(BasicEFLookup):
     """Class for looking up emission factors for Crop fuelbed types
     """
 
@@ -44,7 +46,16 @@ class Crops2Ef:
         Args:
          - crop_fuelbed_id - Integer ID of modified CDL crop type (9000+CDL ID)
         """
-        self.crop_fuelbed_id = str(int(crop_fuelbed_id)-9000)
+        if int(crop_fuelbed_id) > 9000:
+            self.crop_fuelbed_id = str(int(crop_fuelbed_id)-9000)
+        else:
+            self.crop_fuelbed_id = str(int(crop_fuelbed_id))
+        # Lookup the crop bed, select the "other crops" type if it isn't found 
+        try:
+            self.efs = CROPSEF[self.crop_fuelbed_id]
+        except KeyError:
+            #print(f'CDL ID {crop_fuelbed_id} not found. Defaulting to other crops EF.')
+            self.efs = CROPSEF['12']
 
     def get(self, **kwargs):
         """Looks up and returns cover type specific emission factors
@@ -64,19 +75,11 @@ class Crops2Ef:
             raise LookupError("Specify species")
 
         species = kwargs.get('species')
-
-        # Lookup the crop bed, select the "other crops" type if it isn't found 
         try:
-            crop_ef = CROPSEF[self.crop_fuelbed_id]
-        except KeyError:
-            print('CDL ID not found. Defaulting to other crops EF.')
-            crop_ef = CROPSEF['12']
-
-        # Return in short tons/ton
-        try:
-            return crop_ef[species] / 2000.
+            return self.efs[species]
         except KeyError:
             return None
 
-
+    def species(self, phase):
+        return set(self.efs.keys())
 
