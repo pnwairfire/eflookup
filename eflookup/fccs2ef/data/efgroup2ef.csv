@@ -1,0 +1,1697 @@
+efgroup,species,ef
+1,"1,2,3-Trimethylbenzene",0.047
+1,"1,2,4-Trimethylbenzene",0.071
+1,"1,3,5-Trimethylbenzene",0.02
+1,1-Butanol,0.063
+1,1-Butene,0.131
+1,1-Butenylbenzene,0.002
+1,1-Decene,0.011
+1,1-Ethyl-2-Methylbenzene,0.006
+1,"1-Ethyl-3-,4-Methylbenzene",0.021
+1,1-Heptene,0.025
+1,1-Hexene,0.036
+1,1-Methyl-1-Propenylbenzene,0.009
+1,1-Methylcyclohexane,0.003
+1,1-Methylcyclohexene,0.006
+1,1-Methylcyclopentane,0.058
+1,1-Methylcyclopentene,0.003
+1,1-Methylpyrazole,0.001
+1,1-Methylpyrrole,0.002
+1,1-Nonene,0.008
+1,1-Octene,0.022
+1,1-Pentene,0.03
+1,1-Propenylbenzene,0.001
+1,1-Undecene,0.014
+1,1_1-Dimethylhydrazine,0.02
+1,1_2-Butadiene,0.001
+1,1_2-Butyne,0.01
+1,1_2-Dihydronaphthalene,0.004
+1,1_3-Butadiene,0.258
+1,1_3-Butadiyne,0.001
+1,1_3-CyclopentadienePIT,0.028
+1,1_3-Dihydronaphthalene,0.005
+1,1_3-MethylIndene,0
+1,1_4-Diethylbenzene,0.002
+1,2-Ethylfuran,0.009
+1,2-Ethylpyrazine,0.004
+1,2-Furaldehyde,0.067
+1,2-Hexanone,0.007
+1,2-Methyl-1-Butene,0.019
+1,2-Methyl-1-Pentene,0.035
+1,2-Methyl-2-Butenal,0.005
+1,2-Methyl-2-Butene,0.024
+1,2-Methylbutanal,0.026
+1,2-Methylfuran,0.007
+1,2-Methylpropanal,0.021
+1,2-Methylpropene,0.053
+1,2-Methylstyrene,0.006
+1,2-Pentanone,0.022
+1,2-Propenylbenzene,0.004
+1,2_2-Dimethylbutane,0
+1,2_2-Dimethylpropane,0
+1,2_3-Butadione,0.167
+1,2_3-Dihydro-1_4-Dioxin,0.002
+1,2_5-Dihydrofuran,0.001
+1,2_5-Dimethylfuran,0.031
+1,3-Carene,0.009
+1,3-Furaldehyde,0.013
+1,3-Hexanone,0.018
+1,3-Methyl-1-Butene,0.014
+1,3-Methyl-2-Butanone,0.011
+1,3-Methylfuran,0.018
+1,3-Methylpentane,0.003
+1,3-Methylstyrene,0.01
+1,3-Pentanone,0.018
+1,4-Methylstyrene,0.005
+1,Acetaldehyde,0.641
+1,Acetic Acid,1.489
+1,Acetone,0.651
+1,Acetonitrile,0.032
+1,Acrolein,0.323
+1,Acrylic Acid,0.029
+1,Acrylonitrile,0.054
+1,Benzaldehyde,0.168
+1,Benzene,0.283
+1,Benzenenitrile,0.038
+1,Benzofuran,0.083
+1,Butenyne,0.002
+1,C10H14 non-aromatic,0.002
+1,C11 Aromatics,0.084
+1,CH4,2.32
+1,CO,76
+1,CO2,1703
+1,Camphene,0.008
+1,Crotonaldehyde,0.181
+1,Cyclohexene,0.001
+1,Cyclopentane,0.002
+1,Cyclopentanone,0.087
+1,Cyclopentene,0.045
+1,Cyclopentenedione,0.007
+1,Cyclopentenone,0.004
+1,D-Limonene,0.06
+1,Divinylacetylene,0.002
+1,Ethane,0.288
+1,Ethanol,0.012
+1,Ethene,1.09
+1,Ethyl Formate,0.005
+1,Ethyl Xylene_i1,0.006
+1,Ethyl Xylene_i2,0.003
+1,Ethylbenzene,0.039
+1,Ethylstyrene,0.002
+1,Ethyne,0.362
+1,Ethynyl Benzene,0.004
+1,Formaldehyde,1.681
+1,FormicAcid,0.116
+1,Furan,0.178
+1,Glycolaldehyde,0.305
+1,Glycolic Acid,0.028
+1,Heptadiyne_i1,0.001
+1,Heptadiyne_i2,0
+1,Hexenes,0.04
+1,Hexenyne,0.002
+1,Hydrogen Cyanide,0.613
+1,Indane,0.004
+1,Indene,0.012
+1,Isobutylbenzene,0.005
+1,Isocyanic Acid,0.09
+1,Isoprene,0.14
+1,Isopropylbenzene,0.001
+1,Methacrolein,0.039
+1,Methanol,0.986
+1,Methyl Acetate,0.007
+1,Methyl Acrylate,0.005
+1,Methyl Diazine_i2,0.004
+1,Methyl Diazine_i3,0.002
+1,Methyl Ethyl Ketone,0.098
+1,Methyl Formate,0.014
+1,Methyl Propanoate,0.003
+1,Methyl Vinyl Ketone,0.058
+1,Methyl-n-Propylbenzene,0.005
+1,MethylButanoate,0.011
+1,MethylCyclopentadiene_i1,0.006
+1,MethylCyclopentadiene_i2,0.006
+1,MethylDiazine_i1,0.009
+1,MethylMethacrylate,0.022
+1,Methylbenzofuran,0
+1,Methylbenzofuran_i1,0.008
+1,Methylbenzofuran_i2,0.014
+1,Methylbenzofuran_i3,0.02
+1,Monoterpenes,0.253
+1,Myrcene,0.002
+1,NH3,0.14
+1,NMOC,16.046
+1,NOx,1.7
+1,Naphthalene,0.199
+1,Nonadiene,0.002
+1,Nonane,0.019
+1,Octadiene,0.018
+1,Other C6H10,0.003
+1,PM10,14.84
+1,PM2.5,12.58
+1,Pentadieneisomer,0.002
+1,Pentenone,0.317
+1,Pentenyneisomers,0.002
+1,Phenol,0.282
+1,Propanal,0.088
+1,Propane,0.094
+1,Propanenitrile,0.007
+1,Propylene,0.426
+1,Propyne,0.056
+1,Pyrrole,0.006
+1,Pyruvic Acid,0.014
+1,Resorcinol,1.009
+1,SO2,1.06
+1,Sesquiterpenes,0.05
+1,Styrene,0.04
+1,Terpinolene,0.003
+1,Tetrahydrofuran,0
+1,Toluene,0.199
+1,Vinyl Acetate,0
+1,alpha-Methylstyrene,0.002
+1,alpha-Pinene,0.094
+1,beta-Pinene,0.052
+1,cis-1_3-Hexadiene,0.001
+1,cis-1_3-Pentadiene,0.01
+1,cis-2-Butene,0.028
+1,cis-2-Hexene,0.013
+1,cis-2-Pentene,0.009
+1,gamma-Terpinene,0.001
+1,i-Butane,0.01
+1,i-Pentane,0.028
+1,iso-Limonene,0.003
+1,"m,p-Xylenes",0.08
+1,n-Butanal,0.032
+1,n-Butane,0.036
+1,n-Butylbenzene,0.008
+1,n-Decane,0.019
+1,n-Heptane,0.008
+1,n-Hexanal,0.023
+1,n-Hexane,0.012
+1,n-Octane,0.008
+1,n-Pentane,0.007
+1,n-Propylbenzene,0.005
+1,n-Undecane,0.016
+1,o-Xylene,0.025
+1,p-Cymene,0.002
+1,trans-1_3-Hexadiene,0.004
+1,trans-1_3-Pentadiene,0.023
+1,trans-2-Butene,0.035
+1,trans-2-Pentene,0.016
+10,CH4,2.21
+10,CO,65
+10,CO2,1696
+10,NH3,1.37
+10,NOx,3.53
+10,PM10,14.21
+10,PM2.5,12.08
+10,SO2,0.93
+11,CH4,5.4
+11,CO,119
+11,CO2,1538
+11,NH3,1.1
+11,NOx,3.53
+11,PM10,14.21
+11,PM2.5,12.08
+11,SO2,0.5
+12,CH4,2.67
+12,CO,84.19
+12,CO2,1651
+12,NH3,2.13
+12,NOx,2.18
+12,PM10,17.39
+12,PM2.5,14.78
+12,SO2,0.7
+13,CH4,2.27
+13,CO,76.87
+13,CO2,1658
+13,NH3,1.74
+13,NOx,2.18
+13,PM10,17.39
+13,PM2.5,14.78
+13,SO2,0.77
+14,CH4,5.9
+14,CO,129.5
+14,CO2,1580
+14,NH3,3.7
+14,NOx,2.18
+14,PM10,17.39
+14,PM2.5,14.78
+14,SO2,0.5
+15,CH4,4.12
+15,CO,97
+15,CO2,1576
+15,NH3,0.82
+15,NOx,3.34
+15,PM10,29.76
+15,PM2.5,25.3
+15,SO2,0.99
+16,CH4,2.41
+16,CO,74
+16,CO2,1692
+16,NH3,0.52
+16,NOx,2.43
+16,PM10,24.60
+16,PM2.5,20.91
+16,SO2,1.06
+17,CH4,11.36
+17,CO,166
+17,CO2,1462
+17,NH3,1.56
+17,NOx,1.56
+17,PM10,34.53
+17,PM2.5,29.35
+17,SO2,1.55
+18,CH4,2.38
+18,CO,73
+18,CO2,1708
+18,NH3,2.06
+18,NOx,2.86
+18,PM10,14.15
+18,PM2.5,12.03
+18,SO2,0.74
+19,CH4,2.2
+19,CO,70
+19,CO2,1746
+19,NH3,1.15
+19,NOx,2.86
+19,PM10,14.15
+19,PM2.5,12.03
+19,SO2,0.67
+2,"1,2,3-Trimethylbenzene",0.025
+2,"1,2,4-Trimethylbenzene",0.015
+2,"1,3,5-Trimethylbenzene",0.003
+2,1-Butanol,0.088
+2,1-Butene,0.077
+2,1-Butenylbenzene,0.002
+2,1-Decene,0.015
+2,1-Ethyl-2-Methylbenzene,0.009
+2,"1-Ethyl-3-,4-Methylbenzene",0.029
+2,1-Heptene,0.038
+2,1-Hexene,0.051
+2,1-Methyl-1-Propenylbenzene,0.013
+2,1-Methylcyclohexane,0.004
+2,1-Methylcyclohexene,0.008
+2,1-Methylcyclopentane,0.081
+2,1-Methylcyclopentene,0.004
+2,1-Methylpyrazole,0.002
+2,1-Methylpyrrole,0.003
+2,1-Nonene,0.011
+2,1-Octene,0.039
+2,1-Pentene,0.034
+2,1-Propenylbenzene,0.002
+2,1-Undecene,0.019
+2,1_1-Dimethylhydrazine,0.027
+2,1_2-Butadiene,0.002
+2,1_2-Butyne,0.003
+2,1_2-Dihydronaphthalene,0.006
+2,1_3-Butadiene,0.07
+2,1_3-Butadiyne,0.001
+2,1_3-CyclopentadienePIT,0.039
+2,1_3-Dihydronaphthalene,0.007
+2,1_3-MethylIndene,0
+2,1_4-Diethylbenzene,0.002
+2,2-Ethylfuran,0.017
+2,2-Ethylpyrazine,0.006
+2,2-Furaldehyde,0.45
+2,2-Hexanone,0.01
+2,2-Methyl-1-Butene,0.015
+2,2-Methyl-1-Pentene,0.049
+2,2-Methyl-2-Butenal,0.007
+2,2-Methyl-2-Butene,0.025
+2,2-Methylbutanal,0.036
+2,2-Methylfuran,0.009
+2,2-Methylpropanal,0.034
+2,2-Methylpropene,0.073
+2,2-Methylstyrene,0.009
+2,2-Pentanone,0.031
+2,2-Propenylbenzene,0.005
+2,2_2-Dimethylbutane,0
+2,2_2-Dimethylpropane,0.001
+2,2_3-Butadione,0.232
+2,2_3-Dihydro-1_4-Dioxin,0.002
+2,2_5-Dihydrofuran,0.001
+2,2_5-Dimethylfuran,0.031
+2,3-Carene,0.013
+2,3-Furaldehyde,0.019
+2,3-Hexanone,0.025
+2,3-Methyl-1-Butene,0.004
+2,3-Methyl-2-Butanone,0.023
+2,3-Methylfuran,0.025
+2,3-Methylpentane,0.018
+2,3-Methylstyrene,0.015
+2,3-Pentanone,0.026
+2,4-Methylstyrene,0.008
+2,Acetaldehyde,0.953
+2,Acetic Acid,2.42
+2,Acetone,0.37
+2,Acetonitrile,0.3
+2,Acrolein,0.291
+2,Acrylic Acid,0.04
+2,Acrylonitrile,0.029
+2,Benzaldehyde,0.233
+2,Benzene,0.55
+2,Benzenenitrile,0.053
+2,Benzofuran,0.115
+2,Butenyne,0.003
+2,C10H14 non-aromatic,0.003
+2,C11 Aromatics,0.117
+2,CH4,3.38
+2,CO,95
+2,CO2,1641
+2,Camphene,0.024
+2,Crotonaldehyde,0.252
+2,Cyclohexene,0.002
+2,Cyclopentane,0.003
+2,Cyclopentanone,0.12
+2,Cyclopentene,0.027
+2,Cyclopentenedione,0.01
+2,Cyclopentenone,0.005
+2,D-Limonene,0.083
+2,Divinylacetylene,0.002
+2,Ethane,0.61
+2,Ethanol,0.027
+2,Ethene,1.31
+2,Ethyl Formate,0.007
+2,Ethyl Xylene_i1,0.008
+2,Ethyl Xylene_i2,0.004
+2,Ethylbenzene,0.025
+2,Ethylstyrene,0.003
+2,Ethyne,0.237
+2,Ethynyl Benzene,0.005
+2,Formaldehyde,1.975
+2,FormicAcid,0.47
+2,Furan,0.28
+2,Glycolaldehyde,0.506
+2,Glycolic Acid,0.039
+2,Heptadiyne_i1,0.001
+2,Heptadiyne_i2,0
+2,Hexenes,0.056
+2,Hexenyne,0.003
+2,Hydrogen Cyanide,0.89
+2,Indane,0.006
+2,Indene,0.017
+2,Isobutylbenzene,0.007
+2,Isocyanic Acid,0.126
+2,Isoprene,0.074
+2,Isopropylbenzene,0.005
+2,Methacrolein,0.043
+2,Methanol,1.305
+2,Methyl Acetate,0.148
+2,Methyl Acrylate,0.007
+2,Methyl Diazine_i2,0.005
+2,Methyl Diazine_i3,0.003
+2,Methyl Ethyl Ketone,0.11
+2,Methyl Formate,0.019
+2,Methyl Propanoate,0.004
+2,Methyl Vinyl Ketone,0.097
+2,Methyl-n-Propylbenzene,0.007
+2,MethylButanoate,0.015
+2,MethylCyclopentadiene_i1,0.008
+2,MethylCyclopentadiene_i2,0.008
+2,MethylDiazine_i1,0.012
+2,MethylMethacrylate,0.03
+2,Methylbenzofuran,0
+2,Methylbenzofuran_i1,0.011
+2,Methylbenzofuran_i2,0.02
+2,Methylbenzofuran_i3,0.028
+2,Monoterpenes,0.351
+2,Myrcene,0.004
+2,NH3,0.79
+2,NMOC,23.152
+2,NOx,1
+2,Naphthalene,0.277
+2,Nonadiene,0.003
+2,Nonane,0.012
+2,Octadiene,0.024
+2,Other C6H10,0.004
+2,PM10,25.37
+2,PM2.5,21.5
+2,Pentadieneisomer,0.003
+2,Pentenone,0.44
+2,Pentenyneisomers,0.002
+2,Phenol,0.473
+2,Propanal,0.123
+2,Propane,0.23
+2,Propanenitrile,0.01
+2,Propylene,0.445
+2,Propyne,0.029
+2,Pyrrole,0.009
+2,Pyruvic Acid,0.019
+2,Resorcinol,1.402
+2,SO2,1.06
+2,Sesquiterpenes,0.07
+2,Styrene,0.059
+2,Terpinolene,0.004
+2,Tetrahydrofuran,0
+2,Toluene,0.24
+2,Vinyl Acetate,0
+2,alpha-Methylstyrene,0.003
+2,alpha-Pinene,0.81
+2,beta-Pinene,0.72
+2,cis-1_3-Hexadiene,0.002
+2,cis-1_3-Pentadiene,0.014
+2,cis-2-Butene,0.015
+2,cis-2-Hexene,0.018
+2,cis-2-Pentene,0.037
+2,gamma-Terpinene,0.001
+2,i-Butane,0.021
+2,i-Pentane,0.019
+2,iso-Limonene,0.005
+2,"m,p-Xylenes",0.06
+2,n-Butanal,0.03
+2,n-Butane,0.076
+2,n-Butylbenzene,0.011
+2,n-Decane,0.012
+2,n-Heptane,0.024
+2,n-Hexanal,0.032
+2,n-Hexane,0.027
+2,n-Octane,0.02
+2,n-Pentane,0.027
+2,n-Propylbenzene,0.009
+2,n-Undecane,0.022
+2,o-Xylene,0.027
+2,p-Cymene,0.071
+2,trans-1_3-Hexadiene,0.005
+2,trans-1_3-Pentadiene,0.022
+2,trans-2-Butene,0.02
+2,trans-2-Pentene,0.015
+20,CH4,3.3
+20,CO,94
+20,CO2,1461
+20,NH3,6.6
+20,NOx,2.86
+20,PM10,14.15
+20,PM2.5,12.03
+20,SO2,1.1
+21,CH4,5.05
+21,CO,104
+21,CO2,1629.54
+21,NH3,0.9
+21,NOx,1.41
+21,PM10,16.85
+21,PM2.5,14.32
+21,SO2,1.38
+22,CH4,3.41
+22,CO,80
+22,CO2,1663
+22,NH3,0.83
+22,NOx,1.49
+22,PM10,15.88
+22,PM2.5,13.5
+22,SO2,1.35
+23,CH4,7.59
+23,CO,140
+23,CO2,1579
+23,NH3,1.74
+23,NOx,1.08
+23,PM10,23.59
+23,PM2.5,20.05
+23,SO2,1.73
+24,CH4,2.9
+24,CO,56
+24,CO2,1421
+24,NH3,0.56
+24,NOx,3.13
+24,PM10,13.47
+24,PM2.5,11.45
+24,SO2,2.98
+25,CH4,1.63
+25,CO,30
+25,CO2,1547
+25,NH3,0.3
+25,NOx,3.13
+25,PM10,13.47
+25,PM2.5,11.45
+25,SO2,2.98
+26,CH4,4.8
+26,CO,101
+26,CO2,1210
+26,NH3,1.35
+26,NOx,3.13
+26,PM10,13.47
+26,PM2.5,11.45
+26,SO2,2.98
+27,CH4,2.35
+27,CO,55.26
+27,CO2,1669.5
+27,NH3,0.6
+27,NOx,2.55
+27,PM10,8.04
+27,PM2.5,6.83
+27,SO2,0.49
+28,CH4,2.35
+28,CO,55.26
+28,CO2,1669.5
+28,NH3,0.6
+28,NOx,2.55
+28,PM10,8.04
+28,PM2.5,6.83
+28,SO2,0.49
+29,CH4,2.35
+29,CO,55.26
+29,CO2,1669.5
+29,NH3,0.6
+29,NOx,2.55
+29,PM10,8.04
+29,PM2.5,6.83
+29,SO2,0.49
+3,"1,2,3-Trimethylbenzene",0.033
+3,"1,2,4-Trimethylbenzene",0.036
+3,"1,3,5-Trimethylbenzene",0.015
+3,1-Butanol,0.103
+3,1-Butene,0.145
+3,1-Butenylbenzene,0.003
+3,1-Decene,0.018
+3,1-Ethyl-2-Methylbenzene,0.01
+3,"1-Ethyl-3-,4-Methylbenzene",0.033
+3,1-Heptene,0.045
+3,1-Hexene,0.06
+3,1-Methyl-1-Propenylbenzene,0.015
+3,1-Methylcyclohexane,0.004
+3,1-Methylcyclohexene,0.01
+3,1-Methylcyclopentane,0.095
+3,1-Methylcyclopentene,0.004
+3,1-Methylpyrazole,0.002
+3,1-Methylpyrrole,0.004
+3,1-Nonene,0.013
+3,1-Octene,0.046
+3,1-Pentene,0.04
+3,1-Propenylbenzene,0.002
+3,1-Undecene,0.023
+3,1_1-Dimethylhydrazine,0.032
+3,1_2-Butadiene,0.002
+3,1_2-Butyne,0.004
+3,1_2-Dihydronaphthalene,0.007
+3,1_3-Butadiene,0.181
+3,1_3-Butadiyne,0.001
+3,1_3-CyclopentadienePIT,0.045
+3,1_3-Dihydronaphthalene,0.008
+3,1_3-MethylIndene,0
+3,1_4-Diethylbenzene,0.003
+3,2-Ethylfuran,0.02
+3,2-Ethylpyrazine,0.007
+3,2-Furaldehyde,0.528
+3,2-Hexanone,0.012
+3,2-Methyl-1-Butene,0.017
+3,2-Methyl-1-Pentene,0.057
+3,2-Methyl-2-Butenal,0.008
+3,2-Methyl-2-Butene,0.03
+3,2-Methylbutanal,0.042
+3,2-Methylfuran,0.011
+3,2-Methylpropanal,0.04
+3,2-Methylpropene,0.086
+3,2-Methylstyrene,0.01
+3,2-Pentanone,0.036
+3,2-Propenylbenzene,0.006
+3,2_2-Dimethylbutane,0
+3,2_2-Dimethylpropane,0.001
+3,2_3-Butadione,0.272
+3,2_3-Dihydro-1_4-Dioxin,0.003
+3,2_5-Dihydrofuran,0.001
+3,2_5-Dimethylfuran,0.036
+3,3-Carene,0.015
+3,3-Furaldehyde,0.022
+3,3-Hexanone,0.029
+3,3-Methyl-1-Butene,0.005
+3,3-Methyl-2-Butanone,0.027
+3,3-Methylfuran,0.03
+3,3-Methylpentane,0.005
+3,3-Methylstyrene,0.017
+3,3-Pentanone,0.03
+3,4-Methylstyrene,0.009
+3,Acetaldehyde,1.119
+3,Acetic Acid,3.02
+3,Acetone,0.575
+3,Acetonitrile,0.215
+3,Acrolein,0.342
+3,Acrylic Acid,0.047
+3,Acrylonitrile,0.034
+3,Benzaldehyde,0.274
+3,Benzene,0.3
+3,Benzenenitrile,0.062
+3,Benzofuran,0.135
+3,Butenyne,0.003
+3,C10H14 non-aromatic,0.004
+3,C11 Aromatics,0.138
+3,CH4,4.86
+3,CO,105
+3,CO2,1598
+3,Camphene,0.028
+3,Crotonaldehyde,0.296
+3,Cyclohexene,0.002
+3,Cyclopentane,0.004
+3,Cyclopentanone,0.141
+3,Cyclopentene,0.032
+3,Cyclopentenedione,0.012
+3,Cyclopentenone,0.006
+3,D-Limonene,0.097
+3,Divinylacetylene,0.003
+3,Ethane,0.665
+3,Ethanol,0.239
+3,Ethene,1.381
+3,Ethyl Formate,0.009
+3,Ethyl Xylene_i1,0.009
+3,Ethyl Xylene_i2,0.005
+3,Ethylbenzene,0.056
+3,Ethylstyrene,0.004
+3,Ethyne,0.312
+3,Ethynyl Benzene,0.006
+3,Formaldehyde,2.235
+3,FormicAcid,0.184
+3,Furan,0.49
+3,Glycolaldehyde,0.725
+3,Glycolic Acid,0.046
+3,Heptadiyne_i1,0.002
+3,Heptadiyne_i2,0
+3,Hexenes,0.066
+3,Hexenyne,0.004
+3,Hydrogen Cyanide,0.765
+3,Indane,0.007
+3,Indene,0.02
+3,Isobutylbenzene,0.008
+3,Isocyanic Acid,0.147
+3,Isoprene,0.096
+3,Isopropylbenzene,0.006
+3,Methacrolein,0.064
+3,Methanol,2.515
+3,Methyl Acetate,0.174
+3,Methyl Acrylate,0.008
+3,Methyl Diazine_i2,0.006
+3,Methyl Diazine_i3,0.003
+3,Methyl Ethyl Ketone,0.175
+3,Methyl Formate,0.022
+3,Methyl Propanoate,0.005
+3,Methyl Vinyl Ketone,0.309
+3,Methyl-n-Propylbenzene,0.008
+3,MethylButanoate,0.017
+3,MethylCyclopentadiene_i1,0.01
+3,MethylCyclopentadiene_i2,0.01
+3,MethylDiazine_i1,0.014
+3,MethylMethacrylate,0.035
+3,Methylbenzofuran,0
+3,Methylbenzofuran_i1,0.013
+3,Methylbenzofuran_i2,0.023
+3,Methylbenzofuran_i3,0.033
+3,Monoterpenes,0.413
+3,Myrcene,0.004
+3,NH3,1.53
+3,NMOC,26.975
+3,NOx,2.06
+3,Naphthalene,0.325
+3,Nonadiene,0.003
+3,Nonane,0.014
+3,Octadiene,0.029
+3,Other C6H10,0.005
+3,PM10,20.73
+3,PM2.5,17.57
+3,Pentadieneisomer,0.003
+3,Pentenone,0.517
+3,Pentenyneisomers,0.003
+3,Phenol,0.8
+3,Propanal,0.144
+3,Propane,0.242
+3,Propanenitrile,0.012
+3,Propylene,0.723
+3,Propyne,0.033
+3,Pyrrole,0.01
+3,Pyruvic Acid,0.023
+3,Resorcinol,1.647
+3,SO2,1.06
+3,Sesquiterpenes,0.082
+3,Styrene,0.069
+3,Terpinolene,0.005
+3,Tetrahydrofuran,0
+3,Toluene,0.229
+3,Vinyl Acetate,0
+3,alpha-Methylstyrene,0.003
+3,alpha-Pinene,0.052
+3,beta-Pinene,0.026
+3,cis-1_3-Hexadiene,0.002
+3,cis-1_3-Pentadiene,0.016
+3,cis-2-Butene,0.038
+3,cis-2-Hexene,0.021
+3,cis-2-Pentene,0.043
+3,gamma-Terpinene,0.002
+3,i-Butane,0.09
+3,i-Pentane,0.041
+3,iso-Limonene,0.006
+3,"m,p-Xylenes",0.144
+3,n-Butanal,0.035
+3,n-Butane,0.126
+3,n-Butylbenzene,0.012
+3,n-Decane,0.014
+3,n-Heptane,0.026
+3,n-Hexanal,0.038
+3,n-Hexane,0.032
+3,n-Octane,0.023
+3,n-Pentane,0.055
+3,n-Propylbenzene,0.01
+3,n-Undecane,0.025
+3,o-Xylene,0.05
+3,p-Cymene,0.083
+3,trans-1_3-Hexadiene,0.006
+3,trans-1_3-Pentadiene,0.026
+3,trans-2-Butene,0.046
+3,trans-2-Pentene,0.018
+30,CH4,2.16
+30,CO,97
+30,CO2,1588
+30,NH3,1.6
+30,NOx,3.33
+30,PM10,9.27
+30,PM2.5,7.88
+30,SO2,0.73
+31,CH4,1.87
+31,CO,64
+31,CO2,1684
+31,NH3,1.16
+31,NOx,3.11
+31,PM10,8.38
+31,PM2.5,7.12
+31,SO2,0.75
+32,CH4,4.14
+32,CO,76
+32,CO2,1539
+32,NH3,3.13
+32,NOx,2.89
+32,PM10,11.52
+32,PM2.5,9.79
+32,SO2,0.55
+33,CH4,2.6
+33,CO,86.49
+33,CO2,1614.26
+33,NH3,1.03
+33,NOx,1.28
+33,PM10,12.39
+33,PM2.5,10.53
+33,SO2,0.13
+34,CH4,2.03
+34,CO,72.29
+34,CO2,1624.11
+34,NH3,1.1
+34,NOx,1.28
+34,PM10,12.39
+34,PM2.5,10.53
+34,SO2,0.13
+35,CH4,4.7
+35,CO,113
+35,CO2,1616
+35,NH3,1.03
+35,NOx,1.28
+35,PM10,12.39
+35,PM2.5,10.53
+35,SO2,0.13
+4,"1,2-Dichloroethane",0.00082
+4,"1,2-Propadiene",0.011
+4,1-Butene,0.08
+4,1-Pentene,0.026
+4,1_3-Butadiene,0.055
+4,"2,3-Butanedione",2.1
+4,"2,3-Dimethylbutane",0.00096
+4,2-Butyl nitrate,0.0011
+4,2-Pentyl nitrate,0.00028
+4,3-Methyl-2-butyl nitrate,0.00039
+4,3-Methylpentane,0.0061
+4,3-Pentyl nitrate,0.00024
+4,Acetaldehyde,1.64
+4,Acetone,1.13
+4,Acetonitrile,0.25
+4,Acrylonitrile,0.25
+4,Ammonium,0.34
+4,Benzene,0.43
+4,Butadiene hydroxynitrates,0.014
+4,Butene hydroxynitrates,0.029
+4,C4-dihydroxycarbonyls,0.047
+4,C4-hydroxydicarbonyls/ C5-alkenediols,0.11
+4,CH4,4.9
+4,CO,89.3
+4,CO2,1454
+4,Carbonyl sulfide,0.0059
+4,Chloride,0.19
+4,Dibromomethane,0.00018
+4,Dichloromethane,0.0013
+4,Dimethyl sulfide,0.0031
+4,Ethanal nitrate,0.0027
+4,Ethane,0.72
+4,Ethene,0.91
+4,Ethene hydroxynitrate,0.013
+4,Ethyl nitrate,0.00084
+4,Ethylbenzene,0.026
+4,Ethyne,0.24
+4,Formaldehyde,2.29
+4,Furan,0.51
+4,HCFC-141b,0.00097
+4,HCFC-142b,0.00026
+4,HFC-152a,0.00068
+4,Hydrochloric acid,0.0039
+4,Hydrogen Cyanide,0.34
+4,Hydrogen peroxide,0.6
+4,Hydroperoxy acetone,0.086
+4,Hydroxyacetone,1.13
+4,Hydroxymethylhydrogenperoxide,0.19
+4,Isoprene,0.038
+4,Isoprene hydroperoxyaldehydes,0.17
+4,Isoprene hydroxy hydroperoxides/ isoprene epoxydiols,0.076
+4,Isoprene hydroxynitrates,0.017
+4,Methanol,2.45
+4,Methyl Vinyl Ketone,0.33
+4,Methyl bromide,0.00081
+4,Methyl chloride,0.027
+4,Methyl iodide,0.00037
+4,Methyl nitrate,0.0015
+4,Methyl vinyl ketone / methacrolein hydroxynitrates,0.021
+4,Monoterpenes,0.41
+4,NH3,1.5
+4,NMOC,33.874
+4,NO,0.11
+4,NO2,0.58
+4,NOx,0.49
+4,Nitrate,0.87
+4,Nitroxyhydroperoxide/nitroxyhydroxyepoxide,0.019
+4,Organic aerosol,24.3
+4,PM10,27.38
+4,PM2.5,26
+4,Peroxyacetic acid/hydroperoxy glycolaldehyde,0.24
+4,Propanal,1.13
+4,Propane,0.24
+4,Propanone nitrate,0.004
+4,Propene,0.35
+4,Propene hydroxynitrates,0.021
+4,SO2,0.32
+4,Sulfate,0.3
+4,Toluene,0.24
+4,alpha-Pinene,0.017
+4,beta-Pinene,0.01
+4,cis-2-Butene,0.0067
+4,i-Butane,0.016
+4,i-Butene,0.043
+4,i-Pentane,0.01
+4,i-Propyl nitrate,0.002
+4,"m,p-Xylenes",0.086
+4,n-Butane,0.061
+4,n-Heptane,0.014
+4,n-Hexane,0.021
+4,n-Pentane,0.03
+4,n-Propyl nitrate,0.00044
+4,o-Xylene,0.038
+4,trans-2-Butene,0.0068
+5,"1,2,3-Trimethylbenzene",0.0183
+5,"1,2,4-Trimethylbenzene",0.0166
+5,"1,3,5-Trimethylbenzene",0.0143
+5,1-Butanol,0.208
+5,1-Butene,0.0909
+5,1-Butenylbenzene,0.0025
+5,1-Decene,0.0125
+5,1-Ethyl-2-Methylbenzene,0.0111
+5,"1-Ethyl-3-,4-Methylbenzene",0.0163
+5,1-Heptene,0.0524
+5,1-Hexene,0.0673
+5,1-Methyl-1-Propenylbenzene,0.0321
+5,1-Methylcyclohexane,0.0028
+5,1-Methylcyclohexene,0.0028
+5,1-Methylcyclopentane,0.00455
+5,1-Methylcyclopentene,0.0117
+5,1-Methylpyrazole,0.0051
+5,1-Methylpyrrole,0.0119
+5,1-Nonene,0.0103
+5,1-Octene,0.0522
+5,1-Pentene,0.0177
+5,1-Propenylbenzene,0.0046
+5,1-Undecene,0.0136
+5,1_1-Dimethylhydrazine,0.046
+5,1_2-Butadiene,0.0025
+5,1_2-Butyne,0.00875
+5,1_2-Dihydronaphthalene,0.00685
+5,1_3-Butadiene,0.12
+5,1_3-Butadiyne,0.0058
+5,1_3-CyclopentadienePIT,0.0257
+5,1_3-Dihydronaphthalene,0.0074
+5,1_3-MethylIndene,0.00145
+5,1_4-Diethylbenzene,0.00155
+5,2-Ethylfuran,0.0094
+5,2-Ethylpyrazine,0.00415
+5,2-Furaldehyde,0.279
+5,2-Hexanone,0.0153
+5,2-Methyl-1-Butene,0.00965
+5,2-Methyl-1-Pentene,0.0674
+5,2-Methyl-2-Butenal,0.0059
+5,2-Methyl-2-Butene,0.0147
+5,2-Methylbutanal,0.0422
+5,2-Methylfuran,0.159
+5,2-Methylpropanal,0.0439
+5,2-Methylpropene,0.0262
+5,2-Methylstyrene,0.0135
+5,2-Pentanone,0.0524
+5,2-Propenylbenzene,0.00595
+5,2_2-Dimethylbutane,0.00005
+5,2_2-Dimethylpropane,0.0001
+5,2_3-Butadione,0.146
+5,2_3-Dihydro-1_4-Dioxin,0.00255
+5,2_5-Dihydrofuran,0.0153
+5,2_5-Dimethylfuran,0.0208
+5,3-Carene,0.0189
+5,3-Furaldehyde,0.0118
+5,3-Hexanone,0.033
+5,3-Methyl-1-Butene,0.0033
+5,3-Methyl-2-Butanone,0.0228
+5,3-Methylfuran,0.0129
+5,3-Methylpentane,0.0032
+5,3-Methylstyrene,0.02
+5,3-Pentanone,0.03
+5,4-Methylstyrene,0.0062
+5,Acetaldehyde,0.563
+5,Acetic Acid,1.91
+5,Acetone,0.31
+5,Acetonitrile,0.146
+5,Acrolein,0.386
+5,Acrylic Acid,0.00975
+5,Acrylonitrile,0.026
+5,Benzaldehyde,0.243
+5,Benzene,0.451
+5,Benzenenitrile,0.0557
+5,Benzofuran,0.103
+5,Butenyne,0.00935
+5,C10H14 non-aromatic,0.0024
+5,C11 Aromatics,0.0547
+5,CH4,3.69
+5,CO,74
+5,CO2,1674
+5,Camphene,0.00945
+5,Crotonaldehyde,0.182
+5,Cyclohexene,0.00175
+5,Cyclopentane,0.0008
+5,Cyclopentanone,0.0834
+5,Cyclopentene,0.0406
+5,Cyclopentenedione,0.00685
+5,Cyclopentenone,0.0748
+5,D-Limonene,0.0249
+5,Divinylacetylene,0.0068
+5,Ethane,0.48
+5,Ethanol,0.0553
+5,Ethene,1.01
+5,Ethyl Formate,0.0126
+5,Ethyl Xylene_i1,0.0063
+5,Ethyl Xylene_i2,0.0041
+5,Ethylbenzene,0.0401
+5,Ethylstyrene,0.00435
+5,Ethyne,0.213
+5,Ethynyl Benzene,0.0526
+5,Formaldehyde,1.33
+5,FormicAcid,0.0775
+5,Furan,0.302
+5,Glycolaldehyde,0.199
+5,Glycolic Acid,0.00455
+5,Heptadiyne_i1,0.00205
+5,Heptadiyne_i2,0.0024
+5,Hexenes,0.0571
+5,Hexenyne,0.0062
+5,Hydrogen Cyanide,0.749
+5,Indane,0.0087
+5,Indene,0.0305
+5,Isobutylbenzene,0.00505
+5,Isocyanic Acid,0.0815
+5,Isoprene,0.0465
+5,Isopropylbenzene,0.0061
+5,Methacrolein,0.0426
+5,Methanol,1.35
+5,Methyl Acetate,0.259
+5,Methyl Acrylate,0.00845
+5,Methyl Diazine_i2,0.00925
+5,Methyl Diazine_i3,0.0022
+5,Methyl Ethyl Ketone,0.105
+5,Methyl Formate,0.0732
+5,Methyl Propanoate,0.0098
+5,Methyl Vinyl Ketone,0.227
+5,Methyl-n-Propylbenzene,0.0037
+5,MethylButanoate,0.0027
+5,MethylCyclopentadiene_i1,0.00575
+5,MethylCyclopentadiene_i2,0.0054
+5,MethylDiazine_i1,0.0105
+5,MethylMethacrylate,0.0326
+5,Methylbenzofuran,0.00085
+5,Methylbenzofuran_i1,0.0121
+5,Methylbenzofuran_i2,0.019
+5,Methylbenzofuran_i3,0.0324
+5,Monoterpenes,0.146
+5,Myrcene,0.0102
+5,NH3,1.5
+5,NMOC,17.4988
+5,NOx,2.18
+5,Naphthalene,0.173
+5,Nonadiene,0.00205
+5,Nonane,0.013
+5,Octadiene,0.0231
+5,Other C6H10,0.0013
+5,PM10,8.33
+5,PM2.5,7.06
+5,Pentadieneisomer,0.00615
+5,Pentenone,0.231
+5,Pentenyneisomers,0.00825
+5,Phenol,0.453
+5,Propanal,0.0969
+5,Propane,0.889
+5,Propanenitrile,0.0117
+5,Propylene,0.532
+5,Propyne,0.0283
+5,Pyrrole,0.0127
+5,Pyruvic Acid,0.00885
+5,Resorcinol,0.189
+5,SO2,0.68
+5,Sesquiterpenes,0.0167
+5,Styrene,0.0881
+5,Terpinolene,0.0068
+5,Tetrahydrofuran,0.0016
+5,Toluene,0.174
+5,Vinyl Acetate,0.00035
+5,alpha-Methylstyrene,0.0047
+5,alpha-Pinene,0.0163
+5,beta-Pinene,0.0133
+5,cis-1_3-Hexadiene,0.0019
+5,cis-1_3-Pentadiene,0.0221
+5,cis-2-Butene,0.0147
+5,cis-2-Hexene,0.0147
+5,cis-2-Pentene,0.0315
+5,gamma-Terpinene,0.00535
+5,i-Butane,0.0214
+5,i-Pentane,0.00865
+5,iso-Limonene,0.0003
+5,"m,p-Xylenes",0.0692
+5,n-Butanal,0.0226
+5,n-Butane,0.0446
+5,n-Butylbenzene,0.0066
+5,n-Decane,0.0148
+5,n-Heptane,0.0211
+5,n-Hexanal,0.0163
+5,n-Hexane,0.00925
+5,n-Octane,0.019
+5,n-Pentane,0.0172
+5,n-Propylbenzene,0.0096
+5,n-Undecane,0.0189
+5,o-Xylene,0.038
+5,p-Cymene,0.117
+5,trans-1_3-Hexadiene,0.00375
+5,trans-1_3-Pentadiene,0.0264
+5,trans-2-Butene,0.0156
+5,trans-2-Pentene,0.0132
+6,"1,2,3-Trimethylbenzene",0.0183
+6,"1,2,4-Trimethylbenzene",0.0166
+6,"1,3,5-Trimethylbenzene",0.0143
+6,1-Butanol,0.208
+6,1-Butene,0.0909
+6,1-Butenylbenzene,0.0025
+6,1-Decene,0.0125
+6,1-Ethyl-2-Methylbenzene,0.0111
+6,"1-Ethyl-3-,4-Methylbenzene",0.0163
+6,1-Heptene,0.0524
+6,1-Hexene,0.0673
+6,1-Methyl-1-Propenylbenzene,0.0321
+6,1-Methylcyclohexane,0.0028
+6,1-Methylcyclohexene,0.0028
+6,1-Methylcyclopentane,0.00455
+6,1-Methylcyclopentene,0.0117
+6,1-Methylpyrazole,0.0051
+6,1-Methylpyrrole,0.0119
+6,1-Nonene,0.0103
+6,1-Octene,0.0522
+6,1-Pentene,0.0177
+6,1-Propenylbenzene,0.0046
+6,1-Undecene,0.0136
+6,1_1-Dimethylhydrazine,0.046
+6,1_2-Butadiene,0.0025
+6,1_2-Butyne,0.00875
+6,1_2-Dihydronaphthalene,0.00685
+6,1_3-Butadiene,0.12
+6,1_3-Butadiyne,0.0058
+6,1_3-CyclopentadienePIT,0.0257
+6,1_3-Dihydronaphthalene,0.0074
+6,1_3-MethylIndene,0.00145
+6,1_4-Diethylbenzene,0.00155
+6,2-Ethylfuran,0.0094
+6,2-Ethylpyrazine,0.00415
+6,2-Furaldehyde,0.279
+6,2-Hexanone,0.0153
+6,2-Methyl-1-Butene,0.00965
+6,2-Methyl-1-Pentene,0.0674
+6,2-Methyl-2-Butenal,0.0059
+6,2-Methyl-2-Butene,0.0147
+6,2-Methylbutanal,0.0422
+6,2-Methylfuran,0.159
+6,2-Methylpropanal,0.0439
+6,2-Methylpropene,0.0262
+6,2-Methylstyrene,0.0135
+6,2-Pentanone,0.0524
+6,2-Propenylbenzene,0.00595
+6,2_2-Dimethylbutane,0.00005
+6,2_2-Dimethylpropane,0.0001
+6,2_3-Butadione,0.146
+6,2_3-Dihydro-1_4-Dioxin,0.00255
+6,2_5-Dihydrofuran,0.0153
+6,2_5-Dimethylfuran,0.0208
+6,3-Carene,0.0189
+6,3-Furaldehyde,0.0118
+6,3-Hexanone,0.033
+6,3-Methyl-1-Butene,0.0033
+6,3-Methyl-2-Butanone,0.0228
+6,3-Methylfuran,0.0129
+6,3-Methylpentane,0.0032
+6,3-Methylstyrene,0.02
+6,3-Pentanone,0.03
+6,4-Methylstyrene,0.0062
+6,Acetaldehyde,0.563
+6,Acetic Acid,1.91
+6,Acetone,0.31
+6,Acetonitrile,0.146
+6,Acrolein,0.386
+6,Acrylic Acid,0.00975
+6,Acrylonitrile,0.026
+6,Benzaldehyde,0.243
+6,Benzene,0.451
+6,Benzenenitrile,0.0557
+6,Benzofuran,0.103
+6,Butenyne,0.00935
+6,C10H14 non-aromatic,0.0024
+6,C11 Aromatics,0.0547
+6,CH4,1.95
+6,CO,61
+6,CO2,1705
+6,Camphene,0.00945
+6,Crotonaldehyde,0.182
+6,Cyclohexene,0.00175
+6,Cyclopentane,0.0008
+6,Cyclopentanone,0.0834
+6,Cyclopentene,0.0406
+6,Cyclopentenedione,0.00685
+6,Cyclopentenone,0.0748
+6,D-Limonene,0.0249
+6,Divinylacetylene,0.0068
+6,Ethane,0.48
+6,Ethanol,0.0553
+6,Ethene,1.01
+6,Ethyl Formate,0.0126
+6,Ethyl Xylene_i1,0.0063
+6,Ethyl Xylene_i2,0.0041
+6,Ethylbenzene,0.0401
+6,Ethylstyrene,0.00435
+6,Ethyne,0.213
+6,Ethynyl Benzene,0.0526
+6,Formaldehyde,1.33
+6,FormicAcid,0.0775
+6,Furan,0.302
+6,Glycolaldehyde,0.199
+6,Glycolic Acid,0.00455
+6,Heptadiyne_i1,0.00205
+6,Heptadiyne_i2,0.0024
+6,Hexenes,0.0571
+6,Hexenyne,0.0062
+6,Hydrogen Cyanide,0.749
+6,Indane,0.0087
+6,Indene,0.0305
+6,Isobutylbenzene,0.00505
+6,Isocyanic Acid,0.0815
+6,Isoprene,0.0465
+6,Isopropylbenzene,0.0061
+6,Methacrolein,0.0426
+6,Methanol,1.35
+6,Methyl Acetate,0.259
+6,Methyl Acrylate,0.00845
+6,Methyl Diazine_i2,0.00925
+6,Methyl Diazine_i3,0.0022
+6,Methyl Ethyl Ketone,0.105
+6,Methyl Formate,0.0732
+6,Methyl Propanoate,0.0098
+6,Methyl Vinyl Ketone,0.227
+6,Methyl-n-Propylbenzene,0.0037
+6,MethylButanoate,0.0027
+6,MethylCyclopentadiene_i1,0.00575
+6,MethylCyclopentadiene_i2,0.0054
+6,MethylDiazine_i1,0.0105
+6,MethylMethacrylate,0.0326
+6,Methylbenzofuran,0.00085
+6,Methylbenzofuran_i1,0.0121
+6,Methylbenzofuran_i2,0.019
+6,Methylbenzofuran_i3,0.0324
+6,Monoterpenes,0.146
+6,Myrcene,0.0102
+6,NH3,1.5
+6,NMOC,17.6451
+6,NOx,2.18
+6,Naphthalene,0.173
+6,Nonadiene,0.00205
+6,Nonane,0.013
+6,Octadiene,0.0231
+6,Other C6H10,0.0013
+6,PM10,10.04
+6,PM2.5,8.51
+6,Pentadieneisomer,0.00615
+6,Pentenone,0.231
+6,Pentenyneisomers,0.00825
+6,Phenol,0.453
+6,Propanal,0.0969
+6,Propane,0.889
+6,Propanenitrile,0.0117
+6,Propylene,0.532
+6,Propyne,0.0283
+6,Pyrrole,0.0127
+6,Pyruvic Acid,0.00885
+6,Resorcinol,0.189
+6,SO2,0.68
+6,Sesquiterpenes,0.163
+6,Styrene,0.0881
+6,Terpinolene,0.0068
+6,Tetrahydrofuran,0.0016
+6,Toluene,0.174
+6,Vinyl Acetate,0.00035
+6,alpha-Methylstyrene,0.0047
+6,alpha-Pinene,0.0163
+6,beta-Pinene,0.0133
+6,cis-1_3-Hexadiene,0.0019
+6,cis-1_3-Pentadiene,0.0221
+6,cis-2-Butene,0.0147
+6,cis-2-Hexene,0.0147
+6,cis-2-Pentene,0.0315
+6,gamma-Terpinene,0.00535
+6,i-Butane,0.0214
+6,i-Pentane,0.00865
+6,iso-Limonene,0.0003
+6,"m,p-Xylenes",0.0692
+6,n-Butanal,0.0226
+6,n-Butane,0.0446
+6,n-Butylbenzene,0.0066
+6,n-Decane,0.0148
+6,n-Heptane,0.0211
+6,n-Hexanal,0.0163
+6,n-Hexane,0.00925
+6,n-Octane,0.019
+6,n-Pentane,0.0172
+6,n-Propylbenzene,0.0096
+6,n-Undecane,0.0189
+6,o-Xylene,0.038
+6,p-Cymene,0.117
+6,trans-1_3-Hexadiene,0.00375
+6,trans-1_3-Pentadiene,0.0264
+6,trans-2-Butene,0.0156
+6,trans-2-Pentene,0.0132
+7,"1,2,3-Trimethylbenzene",0.167
+7,"1,2,4-Trimethylbenzene",0.124
+7,"1,3,5-Trimethylbenzene",0.025
+7,1-Butanol,0.204
+7,1-Butene,0.248
+7,1-Butenylbenzene,0.005
+7,1-Decene,0.036
+7,1-Ethyl-2-Methylbenzene,0.02
+7,"1-Ethyl-3-,4-Methylbenzene",0.067
+7,1-Heptene,0.089
+7,1-Hexene,0.118
+7,1-Methyl-1-Propenylbenzene,0.03
+7,1-Methylcyclohexane,0.009
+7,1-Methylcyclohexene,0.019
+7,1-Methylcyclopentane,0.189
+7,1-Methylcyclopentene,0.009
+7,1-Methylpyrazole,0.004
+7,1-Methylpyrrole,0.008
+7,1-Nonene,0.025
+7,1-Octene,0.066
+7,1-Pentene,0.065
+7,1-Propenylbenzene,0.005
+7,1-Undecene,0.045
+7,1_1-Dimethylhydrazine,0.063
+7,1_2-Butadiene,0.004
+7,1_2-Butyne,0.008
+7,1_2-Dihydronaphthalene,0.014
+7,1_3-Butadiene,0.147
+7,1_3-Butadiyne,0.002
+7,1_3-CyclopentadienePIT,0.09
+7,1_3-Dihydronaphthalene,0.015
+7,1_3-MethylIndene,0
+7,1_4-Diethylbenzene,0.005
+7,2-Ethylfuran,0.036
+7,2-Ethylpyrazine,0.014
+7,2-Furaldehyde,0.067
+7,2-Hexanone,0.023
+7,2-Methyl-1-Butene,0.046
+7,2-Methyl-1-Pentene,0.114
+7,2-Methyl-2-Butenal,0.24
+7,2-Methyl-2-Butene,0.072
+7,2-Methylbutanal,0.083
+7,2-Methylfuran,0.646
+7,2-Methylpropanal,0.114
+7,2-Methylpropene,0.171
+7,2-Methylstyrene,0.02
+7,2-Pentanone,0.072
+7,2-Propenylbenzene,0.012
+7,2_2-Dimethylbutane,0
+7,2_2-Dimethylpropane,0.001
+7,2_3-Butadione,0.54
+7,2_3-Dihydro-1_4-Dioxin,0.005
+7,2_5-Dihydrofuran,0.003
+7,2_5-Dimethylfuran,0.194
+7,3-Carene,0.03
+7,3-Furaldehyde,0.043
+7,3-Hexanone,0.059
+7,3-Methyl-1-Butene,0.025
+7,3-Methyl-2-Butanone,0.062
+7,3-Methylfuran,0.059
+7,3-Methylpentane,0.011
+7,3-Methylstyrene,0.034
+7,3-Pentanone,0.06
+7,4-Methylstyrene,0.018
+7,Acetaldehyde,1.546
+7,Acetic Acid,1.837
+7,Acetone,1.548
+7,Acetonitrile,0.406
+7,Acrolein,0.472
+7,Acrylic Acid,0.093
+7,Acrylonitrile,0.027
+7,Benzaldehyde,0.544
+7,Benzene,0.803
+7,Benzenenitrile,0.124
+7,Benzofuran,0.268
+7,Butenyne,0.007
+7,C10H14 non-aromatic,0.007
+7,C11 Aromatics,0.274
+7,CH4,13.94
+7,CO,229
+7,CO2,1408
+7,Camphene,0.361
+7,Crotonaldehyde,0.588
+7,Cyclohexene,0.004
+7,Cyclopentane,0.007
+7,Cyclopentanone,0.281
+7,Cyclopentene,0.07
+7,Cyclopentenedione,0.023
+7,Cyclopentenone,0.013
+7,D-Limonene,2.647
+7,Divinylacetylene,0.005
+7,Ethane,2.723
+7,Ethanol,0.019
+7,Ethene,1.398
+7,Ethyl Formate,0.017
+7,Ethyl Xylene_i1,0.018
+7,Ethyl Xylene_i2,0.01
+7,Ethylbenzene,0.111
+7,Ethylstyrene,0.008
+7,Ethyne,0.207
+7,Ethynyl Benzene,0.072
+7,Formaldehyde,2.124
+7,FormicAcid,0
+7,Furan,0.855
+7,Glycolaldehyde,0
+7,Glycolic Acid,0.091
+7,Heptadiyne_i1,0.003
+7,Heptadiyne_i2,0.001
+7,Hexenes,0.13
+7,Hexenyne,0.008
+7,Hydrogen Cyanide,0.723
+7,Indane,0.013
+7,Indene,0.04
+7,Isobutylbenzene,0.017
+7,Isocyanic Acid,0.293
+7,Isoprene,0.374
+7,Isopropylbenzene,0.006
+7,Methacrolein,0.081
+7,Methanol,3.517
+7,Methyl Acetate,0.069
+7,Methyl Acrylate,0.015
+7,Methyl Diazine_i2,0.011
+7,Methyl Diazine_i3,0.006
+7,Methyl Ethyl Ketone,0.323
+7,Methyl Formate,0.044
+7,Methyl Propanoate,0.01
+7,Methyl Vinyl Ketone,0.194
+7,Methyl-n-Propylbenzene,0.015
+7,MethylButanoate,0.035
+7,MethylCyclopentadiene_i1,0.019
+7,MethylCyclopentadiene_i2,0.019
+7,MethylDiazine_i1,0.028
+7,MethylMethacrylate,0.07
+7,Methylbenzofuran,0
+7,Methylbenzofuran_i1,0.027
+7,Methylbenzofuran_i2,0.046
+7,Methylbenzofuran_i3,0.066
+7,Monoterpenes,0.82
+7,Myrcene,0.058
+7,NH3,0.48
+7,NMOC,45.175
+7,NOx,0
+7,Naphthalene,0.645
+7,Nonadiene,0.007
+7,Nonane,0.034
+7,Octadiene,0.057
+7,Other C6H10,0.009
+7,PM10,38.94
+7,PM2.5,33
+7,Pentadieneisomer,0.007
+7,Pentenone,1.028
+7,Pentenyneisomers,0.005
+7,Phenol,0.15
+7,Propanal,0.286
+7,Propane,0.802
+7,Propanenitrile,0.023
+7,Propylene,1.06
+7,Propyne,0.019
+7,Pyrrole,0.021
+7,Pyruvic Acid,0.045
+7,Resorcinol,3.273
+7,SO2,0
+7,Sesquiterpenes,0.095
+7,Styrene,0.064
+7,Terpinolene,0.01
+7,Tetrahydrofuran,0.001
+7,Toluene,0.579
+7,Vinyl Acetate,0
+7,alpha-Methylstyrene,0.007
+7,alpha-Pinene,2.65
+7,beta-Pinene,0.316
+7,cis-1_3-Hexadiene,0.004
+7,cis-1_3-Pentadiene,0.032
+7,cis-2-Butene,0.089
+7,cis-2-Hexene,0.041
+7,cis-2-Pentene,0.021
+7,gamma-Terpinene,0.003
+7,i-Butane,0.069
+7,i-Pentane,0.03
+7,iso-Limonene,0.011
+7,"m,p-Xylenes",0.286
+7,n-Butanal,0.048
+7,n-Butane,0.195
+7,n-Butylbenzene,0.025
+7,n-Decane,0.027
+7,n-Heptane,0.043
+7,n-Hexanal,0.075
+7,n-Hexane,0.061
+7,n-Octane,0.036
+7,n-Pentane,0.095
+7,n-Propylbenzene,0.031
+7,n-Undecane,0.05
+7,o-Xylene,0.072
+7,p-Cymene,0.422
+7,trans-1_3-Hexadiene,0.012
+7,trans-1_3-Pentadiene,0.052
+7,trans-2-Butene,0.112
+7,trans-2-Pentene,0.04
+8,"1,2,3-Trimethylbenzene",0.029
+8,"1,2,4-Trimethylbenzene",0.056
+8,"1,3,5-Trimethylbenzene",0.021
+8,1-Butanol,1.18
+8,1-Butene,0.311
+8,1-Butenylbenzene,0.002
+8,1-Decene,0.022
+8,1-Ethyl-2-Methylbenzene,0.012
+8,"1-Ethyl-3-,4-Methylbenzene",0.043
+8,1-Heptene,0.088
+8,1-Hexene,0.011
+8,1-Methyl-1-Propenylbenzene,0.005
+8,1-Methylcyclohexane,0.009
+8,1-Methylcyclohexene,0.01
+8,1-Methylcyclopentane,0.015
+8,1-Methylcyclopentene,0.019
+8,1-Methylpyrazole,0.028
+8,1-Methylpyrrole,0.015
+8,1-Nonene,0.023
+8,1-Octene,0.087
+8,1-Pentene,0.083
+8,1-Propenylbenzene,0.001
+8,1-Undecene,0.036
+8,1_1-Dimethylhydrazine,0
+8,1_2-Butadiene,0
+8,1_2-Butyne,0.014
+8,1_2-Dihydronaphthalene,0.006
+8,1_3-Butadiene,0.293
+8,1_3-Butadiyne,0.009
+8,1_3-CyclopentadienePIT,0.125
+8,1_3-Dihydronaphthalene,0.007
+8,1_3-MethylIndene,0.002
+8,1_4-Diethylbenzene,0.002
+8,2-Ethylfuran,0.048
+8,2-Ethylpyrazine,0.021
+8,2-Furaldehyde,0.647
+8,2-Hexanone,0.01
+8,2-Methyl-1-Butene,0.026
+8,2-Methyl-1-Pentene,0.117
+8,2-Methyl-2-Butenal,0.023
+8,2-Methyl-2-Butene,0.027
+8,2-Methylbutanal,0.092
+8,2-Methylfuran,0.537
+8,2-Methylpropanal,0.092
+8,2-Methylpropene,0.246
+8,2-Methylstyrene,0.019
+8,2-Pentanone,0.097
+8,2-Propenylbenzene,0.009
+8,2_2-Dimethylbutane,0.002
+8,2_2-Dimethylpropane,0.005
+8,2_3-Butadione,0.694
+8,2_3-Dihydro-1_4-Dioxin,0.016
+8,2_5-Dihydrofuran,0
+8,2_5-Dimethylfuran,0.076
+8,3-Carene,0.023
+8,3-Furaldehyde,0.059
+8,3-Hexanone,0.054
+8,3-Methyl-1-Butene,0.01
+8,3-Methyl-2-Butanone,0.039
+8,3-Methylfuran,0.073
+8,3-Methylpentane,0.014
+8,3-Methylstyrene,0.034
+8,3-Pentanone,0.065
+8,4-Methylstyrene,0.013
+8,Acetaldehyde,2.7
+8,Acetic Acid,7.3995
+8,Acetone,1.39
+8,Acetonitrile,0.739
+8,Acrolein,0.59
+8,Acrylic Acid,0.153
+8,Acrylonitrile,0.151
+8,Benzaldehyde,0.583
+8,Benzene,0.586
+8,Benzenenitrile,0.101
+8,Benzofuran,0.908
+8,Butenyne,0.018
+8,C10H14 non-aromatic,0
+8,C11 Aromatics,0.228
+8,CH4,7.945
+8,CO,257
+8,CO2,1371
+8,Camphene,0.081
+8,Crotonaldehyde,0.494
+8,Cyclohexene,0.006
+8,Cyclopentane,0.012
+8,Cyclopentanone,0.199
+8,Cyclopentene,0.06
+8,Cyclopentenedione,0.019
+8,Cyclopentenone,0.201
+8,D-Limonene,0.085
+8,Divinylacetylene,0.016
+8,Ethane,2.12
+8,Ethanol,0.495
+8,Ethene,1.4645
+8,Ethyl Formate,0.024
+8,Ethyl Xylene_i1,0.003
+8,Ethyl Xylene_i2,0.002
+8,Ethylbenzene,0.104
+8,Ethylstyrene,0.002
+8,Ethyne,0.157
+8,Ethynyl Benzene,0.043
+8,Formaldehyde,2.4765
+8,FormicAcid,1.0945
+8,Furan,1.265
+8,Glycolaldehyde,3.72
+8,Glycolic Acid,0.09
+8,Heptadiyne_i1,0.005
+8,Heptadiyne_i2,0.002
+8,Hexenes,0.01
+8,Hexenyne,0.021
+8,Hydrogen Cyanide,1.988
+8,Indane,0.01
+8,Indene,0.051
+8,Isobutylbenzene,0.008
+8,Isocyanic Acid,0.271
+8,Isoprene,0.079
+8,Isopropylbenzene,0.006
+8,Methacrolein,0.102
+8,Methanol,4.6775
+8,Methyl Acetate,0.277
+8,Methyl Acrylate,0.045
+8,Methyl Diazine_i2,0.009
+8,Methyl Diazine_i3,0
+8,Methyl Ethyl Ketone,0.422
+8,Methyl Formate,0.049
+8,Methyl Propanoate,0.002
+8,Methyl Vinyl Ketone,0.421
+8,Methyl-n-Propylbenzene,0.002
+8,MethylButanoate,0.004
+8,MethylCyclopentadiene_i1,0.028
+8,MethylCyclopentadiene_i2,0.031
+8,MethylDiazine_i1,0.044
+8,MethylMethacrylate,0.076
+8,Methylbenzofuran,0
+8,Methylbenzofuran_i1,0.024
+8,Methylbenzofuran_i2,0.038
+8,Methylbenzofuran_i3,0.052
+8,Monoterpenes,0.695
+8,Myrcene,0.036
+8,NH3,2.67
+8,NMOC,61.6955
+8,NOx,0.67
+8,Naphthalene,0.815
+8,Nonadiene,0
+8,Nonane,0.023
+8,Octadiene,0.05
+8,Other C6H10,0.004
+8,PM10,41.65
+8,PM2.5,35.3
+8,Pentadieneisomer,0.012
+8,Pentenone,3.78
+8,Pentenyneisomers,0.012
+8,Phenol,2.6405
+8,Propanal,0.353
+8,Propane,0.797
+8,Propanenitrile,0.024
+8,Propylene,1.7905
+8,Propyne,0.042
+8,Pyrrole,0.051
+8,Pyruvic Acid,0.269
+8,Resorcinol,2.69
+8,SO2,1.76
+8,Sesquiterpenes,0.095
+8,Styrene,0.117
+8,Terpinolene,0.007
+8,Tetrahydrofuran,0.006
+8,Toluene,0.488
+8,Vinyl Acetate,0
+8,alpha-Methylstyrene,0.004
+8,alpha-Pinene,0.084
+8,beta-Pinene,0.092
+8,cis-1_3-Hexadiene,0.004
+8,cis-1_3-Pentadiene,0.036
+8,cis-2-Butene,0.098
+8,cis-2-Hexene,0.005
+8,cis-2-Pentene,0.049
+8,gamma-Terpinene,0.004
+8,i-Butane,0.238
+8,i-Pentane,0.136
+8,iso-Limonene,0.002
+8,"m,p-Xylenes",0.178
+8,n-Butanal,0.114
+8,n-Butane,0.479
+8,n-Butylbenzene,0.013
+8,n-Decane,0.027
+8,n-Heptane,0.048
+8,n-Hexanal,0.159
+8,n-Hexane,0.11
+8,n-Octane,0.039
+8,n-Pentane,0.212
+8,n-Propylbenzene,0.012
+8,n-Undecane,0.043
+8,o-Xylene,0.101
+8,p-Cymene,0.059
+8,trans-1_3-Hexadiene,0.008
+8,trans-1_3-Pentadiene,0.054
+8,trans-2-Butene,0.125
+8,trans-2-Pentene,0.033
+9,CH4,2.53
+9,CO,68
+9,CO2,1686
+9,NH3,1.3
+9,NOx,3.53
+9,PM10,14.21
+9,PM2.5,12.08
+9,SO2,0.83
