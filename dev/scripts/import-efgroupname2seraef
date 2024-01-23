@@ -1,0 +1,85 @@
+#!/usr/bin/env python
+
+"""import-fccs2ef.py:
+"""
+
+__author__      = "Joel Dubowy"
+
+import csv
+import json
+import logging
+import os
+import sys
+import traceback
+from collections import defaultdict
+
+from afscripting import (
+    args as scripting_args,
+    utils as scripting_utils
+)
+
+REQUIRED_OPTIONS = []
+
+OPTIONAL_OPTIONS = [
+    {
+        'long': "--group-name-to-ef-csv",
+        'help': "csv containing group name eto EF mappings",
+        'metavar': "FILE",
+        'default': "./input-data/EF_Module_Specs&LUT_Sept2019GroupName2EF.csv"
+    }
+]
+EXAMPLES_STRING = f"""
+Example calls:
+ $ {sys.argv[0]} --log-level=DEBUG
+ """
+
+PHASE_KEYS = {
+    'FireAvg': 'average',
+    'F': 'flaming',
+    'S': 'smoldering'
+}
+
+def parseEf(v, default):
+    try:
+        return float(v)
+    except:
+        # e.g. empty string
+        return float(default)
+
+def main():
+    parser, args = scripting_args.parse_args(REQUIRED_OPTIONS,
+        OPTIONAL_OPTIONS, epilog=EXAMPLES_STRING)
+
+    try:
+        # fire_avg will store the FireAvg EF values for all polutants for the
+        # curent Region and VegType. These values will be used when flaming
+        # or smoldering have no EF value
+        fire_avg = {}
+        data = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {})))
+        with open(args.group_name_to_ef_csv, encoding='utf-8-sig') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                row = {k: v.strip() for k,v in row.items()}
+
+                if row['Phase'] == 'FireAvg':
+                    fire_avg[row['Pollutant']] = row['EF']
+
+                phase_key = PHASE_KEYS[row['Phase']]
+                data[row['Region']][row['VegType']][phase_key][row['Pollutant']] = {
+                    'EF': parseEf(row['EF'], fire_avg[row['Pollutant']]),
+                    'SD': parseEf(row['SD'], 0),
+                    'n': parseEf(row['n'], 0),
+                }
+
+        output_file_name = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+            'eflookup', 'fccs2ef', 'data', 'efgroupname2seraef.py')
+        with open(output_file_name, 'w') as f:
+            data = json.dumps(data,separators=(',', ':'))
+            f.write(f'EF_GROUP_NAME_2_SERA_EF={data}')
+
+    except Exception as e:
+        scripting_utils.exit_with_msg(str(e) + '\n\n' + traceback.format_exc())
+
+if __name__ == "__main__":
+    main()
