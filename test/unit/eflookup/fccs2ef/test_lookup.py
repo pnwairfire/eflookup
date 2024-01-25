@@ -10,7 +10,7 @@ from eflookup.fccs2ef.data import (
     efgroup2ef,
     fccs2covertype,
 )
-from py.test import raises
+from pytest import raises
 
 FCCS_2_COVERTYPE = {
     "213":"1",

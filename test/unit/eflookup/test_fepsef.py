@@ -3,7 +3,7 @@
 
 __author__      = "Joel Dubowy"
 
-from py.test import raises
+from pytest import raises
 
 from eflookup.fepsef import FepsEFLookup, FEPS_EFS_NO_HAPS
 
