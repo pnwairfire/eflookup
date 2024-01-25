@@ -2,10 +2,6 @@ from setuptools import setup, find_packages
 
 from eflookup import __version__
 
-test_requirements = []
-with open('requirements-test.txt') as f:
-    test_requirements = [r for r in f.read().splitlines()]
-
 setup(
     name='eflookup',
     version=__version__,
@@ -18,6 +14,7 @@ setup(
         'bin/fccs2seraef',
         'bin/ct2ef',
         'bin/fepsef',
+        'bin/crops2ef',
     ],
     package_data={
     },
@@ -37,5 +34,7 @@ setup(
     dependency_links=[
         "https://pypi.airfire.org/simple/afscripting/"
     ],
-    tests_require=test_requirements
+    tests_require=[
+      "pytest"
+    ]
 )

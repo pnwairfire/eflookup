@@ -1,0 +1,38 @@
+fuelcat,fuelsubcat,phase,exception
+canopy,ladder fuels,residual,na
+canopy,midstory,residual,na
+canopy,overstory,residual,na
+canopy,snags class 1 foliage,residual,rcwd
+canopy,snags class 1 no foliage,residual,rcwd
+canopy,snags class 1 wood,residual,rcwd
+canopy,snags class 2,residual,rcwd
+canopy,snags class 3,residual,rcwd
+canopy,understory,residual,na
+ground fuels,basal accumulations,residual,rduff
+ground fuels,duff lower,residual,rduff
+ground fuels,duff upper,residual,rduff
+ground fuels,squirrel middens,residual,rduff
+litter-lichen-moss,lichen,residual,na
+litter-lichen-moss,litter,residual,na
+litter-lichen-moss,moss,residual,na
+nonwoody,primary dead,residual,na
+nonwoody,primary live,residual,na
+nonwoody,secondary dead,residual,na
+nonwoody,secondary live,residual,na
+shrub,primary dead,residual,na
+shrub,primary live,residual,na
+shrub,secondary dead,residual,na
+shrub,secondary live,residual,na
+woody fuels,1-hr fuels,residual,na
+woody fuels,10-hr fuels,residual,na
+woody fuels,100-hr fuels,residual,na
+woody fuels,1000-hr fuels rotten,residual,rcwd
+woody fuels,1000-hr fuels sound,residual,rcwd
+woody fuels,10000-hr fuels rotten,residual,rcwd
+woody fuels,10000-hr fuels sound,residual,rcwd
+woody fuels,10k+-hr fuels rotten,residual,rcwd
+woody fuels,10k+-hr fuels sound,residual,rcwd
+woody fuels,piles,residual,rcwd
+woody fuels,stumps lightered,residual,rcwd
+woody fuels,stumps rotten,residual,rcwd
+woody fuels,stumps sound,residual,na

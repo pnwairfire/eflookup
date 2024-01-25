@@ -1,0 +1,326 @@
+covertype,efgroupname
+1,W grassland
+10,W grassland
+100,SE conifer forest
+101,SE mixed forest
+102,SE mixed forest
+103,SE mixed forest
+104,N forest
+105,N forest
+106,N forest
+107,N forest
+108,N forest
+109,N forest
+11,W grassland
+110,N forest
+111,N forest
+112,W conifer forest
+113,W conifer forest
+114,W conifer forest
+115,W conifer forest
+116,W conifer forest
+117,W conifer forest
+118,W conifer forest
+119,W conifer forest
+12,W grassland
+120,W conifer forest
+121,W conifer forest
+122,W conifer forest
+123,W conifer forest
+124,W mixed forest
+125,W conifer forest
+126,W conifer forest
+127,W conifer forest
+128,W mixed forest
+129,W mixed forest
+13,W mixed forest
+130,W conifer forest
+131,W conifer forest
+132,W conifer forest
+133,W conifer forest
+134,W conifer forest
+135,W conifer forest
+136,W conifer forest
+137,W conifer forest
+138,W conifer forest
+139,W conifer forest
+14,N forest
+140,W mixed forest
+141,W mixed forest
+142,W mixed forest
+143,W mixed forest
+144,W conifer forest
+145,W conifer forest
+146,W conifer forest
+147,W conifer forest
+148,W mixed forest
+149,W mixed forest
+15,N forest
+150,W conifer forest
+151,W conifer forest
+152,W conifer forest
+153,W mixed forest
+154,W conifer forest
+155,W conifer forest
+156,W mixed forest
+157,W mixed forest
+158,W mixed forest
+159,W shrubland
+16,N forest
+160,W shrubland
+161,W shrubland
+162,W shrubland
+163,W shrubland
+164,W shrubland
+165,W shrubland
+166,W shrubland
+167,W shrubland
+168,W grassland
+169,W grassland
+17,N forest
+170,W grassland
+171,W grassland
+172,W grassland
+173,W grassland
+174,W grassland
+175,W grassland
+176,W grassland
+177,W grassland
+178,W grassland
+179,W grassland
+18,N forest
+180,W grassland
+181,W grassland
+182,W grassland
+183,W grassland
+184,W grassland
+185,W grassland
+186,W shrubland
+187,W shrubland
+188,W shrubland
+189,W shrubland
+19,N forest
+190,W shrubland
+191,W shrubland
+192,W shrubland
+193,W shrubland
+194,W grassland
+195,W grassland
+196,W grassland
+197,W shrubland
+198,W shrubland
+199,W shrubland
+2,W grassland
+20,N forest
+200,W shrubland
+201,W shrubland
+202,W shrubland
+203,W shrubland
+204,W shrubland
+205,W grassland
+206,W grassland
+207,W mixed forest
+208,W conifer forest
+209,W mixed forest
+21,W mixed forest
+210,W shrubland
+211,W shrubland
+212,W shrubland
+213,W shrubland
+214,W mixed forest
+215,W mixed forest
+216,W shrubland
+217,W shrubland
+218,W mixed forest
+219,W shrubland
+22,N forest
+220,W grassland
+221,W shrubland
+222,W conifer forest
+223,W shrubland
+224,W shrubland
+225,W shrubland
+226,W shrubland
+227,W shrubland
+228,W grassland
+229,W grassland
+23,N forest
+230,W grassland
+231,W grassland
+232,W grassland
+233,W grassland
+234,W shrubland
+235,W grassland
+236,W grassland
+237,W grassland
+238,W grassland
+239,W grassland
+24,N forest
+240,W grassland
+241,W grassland
+242,W grassland
+243,W grassland
+244,W grassland
+245,W grassland
+246,W grassland
+247,W grassland
+248,W grassland
+249,W grassland
+25,N forest
+250,W grassland
+251,W grassland
+252,W grassland
+253,W grassland
+254,W grassland
+255,W grassland
+256,W grassland
+257,W grassland
+258,W grassland
+259,W grassland
+26,N forest
+260,W grassland
+261,W grassland
+262,W grassland
+263,W grassland
+264,W grassland
+265,W grassland
+266,W grassland
+267,W grassland
+268,W grassland
+269,W grassland
+27,N forest
+270,W grassland
+271,W shrubland
+272,W shrubland
+273,W shrubland
+274,W shrubland
+275,W mixed forest
+276,W shrubland
+277,W shrubland
+278,W grassland
+279,N grassland
+28,N forest
+280,N grassland
+281,W grassland
+282,SE mixed forest
+283,N grassland
+284,N grassland
+285,SE mixed forest
+286,SE mixed forest
+287,SE mixed forest
+288,SE mixed forest
+289,SE mixed forest
+29,N forest
+290,SE shrubland
+291,SE shrubland
+292,SE shrubland
+293,SE shrubland
+294,SE mixed forest
+295,N grassland
+296,N grassland
+297,SE mixed forest
+298,N grassland
+299,N grassland
+3,W grassland
+30,N forest
+300,W mixed forest
+301,W grassland
+302,W grassland
+303,N forest
+304,W grassland
+305,W mixed forest
+306,N grassland
+307,W grassland
+308,W grassland
+309,W grassland
+31,SE mixed forest
+310,N grassland
+311,W shrubland
+312,W shrubland
+313,N grassland
+314,N grassland
+315,N grassland
+316,W shrubland
+317,N grassland
+318,N grassland
+319,N forest
+32,SE mixed forest
+320,W shrubland
+33,SE mixed forest
+34,SE mixed forest
+35,SE mixed forest
+36,SE mixed forest
+37,SE mixed forest
+38,SE mixed forest
+39,SE mixed forest
+4,W grassland
+40,SE mixed forest
+400,SE conifer forest
+401,N forest
+402,W conifer forest
+403,W shrubland
+404,W grassland
+41,SE mixed forest
+42,SE mixed forest
+43,SE mixed forest
+44,SE mixed forest
+45,SE mixed forest
+46,SE mixed forest
+47,SE mixed forest
+48,SE mixed forest
+49,SE mixed forest
+5,W grassland
+50,SE mixed forest
+51,SE mixed forest
+52,SE mixed forest
+53,SE mixed forest
+54,SE mixed forest
+55,SE mixed forest
+56,SE mixed forest
+57,SE mixed forest
+58,SE mixed forest
+59,SE mixed forest
+6,W grassland
+60,SE mixed forest
+61,SE mixed forest
+62,SE mixed forest
+63,SE conifer forest
+64,SE conifer forest
+65,SE conifer forest
+66,SE conifer forest
+67,SE conifer forest
+68,SE conifer forest
+69,SE conifer forest
+7,W shrubland
+70,SE conifer forest
+71,SE conifer forest
+72,SE conifer forest
+73,SE conifer forest
+74,SE conifer forest
+75,SE conifer forest
+76,SE mixed forest
+77,SE mixed forest
+78,SE mixed forest
+79,SE mixed forest
+8,W grassland
+80,W mixed forest
+81,SE mixed forest
+82,SE mixed forest
+83,SE mixed forest
+84,SE mixed forest
+85,SE mixed forest
+86,SE mixed forest
+87,SE mixed forest
+88,SE mixed forest
+89,SE mixed forest
+9,W shrubland
+90,SE mixed forest
+91,SE mixed forest
+92,SE mixed forest
+93,W shrubland
+94,W mixed forest
+95,W mixed forest
+96,SE mixed forest
+97,SE conifer forest
+98,SE mixed forest
+99,SE mixed forest
