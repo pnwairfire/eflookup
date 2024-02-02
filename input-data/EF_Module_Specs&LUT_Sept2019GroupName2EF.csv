@@ -2,132 +2,148 @@ Region,VegType,Phase,Pollutant,EF,SD,n,citeShort,notes
 N,forest,F,CH4,2.399788664,0.646049266,6,"Goode et al., 2000, Urbanski et al., 2009",NA
 N,forest,FireAvg,CH4,3.033192443,1.325165297,9,"Goode et al., 2000, Hegg et al., 1989, Nance et al. 1993, Simpson et al., 2011, Urbanski et al., 2009",NA
 N,forest,S,CH4,4.7,,1,"Simpson et al., 2011",NA
-N,forest,F,CO,77.82547028,16.91864925,6,"Goode et al., 2000, Urbanski et al., 2009",NA
-N,forest,FireAvg,CO,92.88364685,35.49767551,9,"Goode et al., 2000, Hegg et al., 1989, Nance et al. 1993, Simpson et al., 2011, Urbanski et al., 2009",NA
-N,forest,S,CO,113,,1,"Simpson et al., 2011",NA
-N,forest,F,CO2,1682.310305,23.36196791,6,"Goode et al., 2000, Urbanski et al., 2009",NA
-N,forest,FireAvg,CO2,1650.873537,61.64999485,9,"Goode et al., 2000, Hegg et al., 1989, Nance et al. 1993, Simpson et al., 2011, Urbanski et al., 2009",NA
-N,forest,S,CO2,1616,,1,"Simpson et al., 2011",NA
-N,forest,F,NH3,0.926666667,0.490951457,3,"Goode et al., 2000",NA
-N,forest,FireAvg,NH3,0.855,0.425715085,4,"Goode et al., 2000, Nance et al. 1993",NA
-N,forest,FireAvg,PM25,10.5342128,0.806016527,3,"Urbanski et al., 2009",NA
-N,forest,FireAvg,SO2,0.133333333,0.057735027,3,"McMeeking et al., 2009",NA
 N,grassland,FireAvg,CH4,1.7,1.39,7,"Urbanski et al., 2009",NA
-N,grassland,FireAvg,CO,59.2,12.81,4,"Urbanski et al., 2009",NA
-N,grassland,FireAvg,CO2,1705.75,40.63,4,"Urbanski et al., 2009",NA
-N,grassland,FireAvg,NH3,0.77,,1,"Goode et al., 2000",NA
-N,grassland,FireAvg,PM25,9.88,6.92,4,"Urbanski et al., 2009",NA
 SE,conifer forest,F,CH4,2.465183728,1.21600502,35,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
 SE,conifer forest,FireAvg,CH4,3.663693426,4.444421692,41,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
 SE,conifer forest,S,CH4,10.655,8.902758561,6,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,conifer forest,F,CO,75.95639643,20.5118783,36,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,conifer forest,FireAvg,CO,87.51296799,38.31749537,54,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013, Urbanski et al., 2009, White, 1987, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,conifer forest,S,CO,159.375,34.46711683,8,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,conifer forest,F,CO2,1676.401934,35.36081213,36,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,conifer forest,FireAvg,CO2,1620.858035,156.0922158,46,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,conifer forest,S,CO2,1441.125,177.7610254,8,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,conifer forest,F,NH3,0.284625,0.303105455,16,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,conifer forest,FireAvg,NH3,0.707909091,1.34838704,22,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,conifer forest,S,NH3,1.836666667,2.293108516,6,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,conifer forest,F,PM25,20.91296961,10.95010973,60,"Aurell et al., 2015, Burling et al., 2011, Robertson et al., 2014, Strand et al., 2013, Urbanski et al., 2009",NA
-SE,conifer forest,FireAvg,PM25,24.16668176,14.00241022,100,"Aurell et al., 2013, Aurell et al., 2015, Burling et al., 2011, Mickler et al. 2007, Robertson et al., 2014, Strand et al., 2013, Urbanski et al., 2009",NA
-SE,conifer forest,S,PM25,26.19588235,12.78130474,17,"Aurell et al., 2015, Robertson et al., 2014, Strand et al., 2013",NA
-SE,conifer forest,F,SO2,0.968573567,0.294707879,10,"Burling et al., 2010, McMeeking et al., 2009, Selimovic et al., 2018",conifer forest and mixed forest are combined
-SE,conifer forest,FireAvg,SO2,0.908052548,0.366878636,14,"Burling et al., 2010, McMeeking et al., 2009, Mickler et al. 2007, Selimovic et al., 2018",conifer forest and mixed forest are combined
-SE,conifer forest,S,SO2,1.0235,0.7403408,2,"Burling et al., 2010, McMeeking et al., 2009",conifer forest and mixed forest are combined
 SE,grassland,FireAvg,CH4,2.38,1.39,7,"Aurell et al., 2015, Urbanski 2009, strand et al., 2016, Travis et al., 2023",NA
-SE,grassland,FireAvg,CO,69.55,26.54,8,"Aurell et al., 2015, Urbanski 2009, strand et al., 2016, Travis et al., 2023",NA
-SE,grassland,FireAvg,CO2,1689.63,83.74,8,"Aurell et al., 2015, Urbanski 2009, strand et al., 2016, Travis et al., 2023",NA
-SE,grassland,FireAvg,NH3,1.285,0.558957363,4,Gkatzelis et al. 2023,NA
-SE,grassland,FireAvg,PM25,11.97,9.15,6,"Aurell et al., 2015, Urbanski 2009, strand et al., 2016, Travis et al., 2023",NA
-SE,grassland,FireAvg,SO2,0.825,0.340342964,4,"McMeeking et al., 2009",NA
 SE,mixed forest,F,CH4,2.465183728,1.21600502,35,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
 SE,mixed forest,FireAvg,CH4,3.663693426,4.444421692,41,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
 SE,mixed forest,S,CH4,10.655,8.902758561,6,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,mixed forest,F,CO,75.95639643,20.5118783,36,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,mixed forest,FireAvg,CO,87.51296799,38.31749537,54,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013, Urbanski et al., 2009, White, 1987, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,mixed forest,S,CO,159.375,34.46711683,8,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,mixed forest,F,CO2,1676.401934,35.36081213,36,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,mixed forest,FireAvg,CO2,1620.858035,156.0922158,46,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,mixed forest,S,CO2,1441.125,177.7610254,8,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,mixed forest,F,NH3,0.284625,0.303105455,16,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,mixed forest,FireAvg,NH3,0.707909091,1.34838704,22,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Yokelson et al., 1999",conifer forest and mixed forest are combined
-SE,mixed forest,S,NH3,1.836666667,2.293108516,6,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,mixed forest,FireAvg,PM25,14.78467367,0.93590864,4,"Urbanski et al., 2009",NA
-SE,mixed forest,F,SO2,0.968573567,0.294707879,10,"Burling et al., 2010, McMeeking et al., 2009, Selimovic et al., 2018",conifer forest and mixed forest are combined
-SE,mixed forest,FireAvg,SO2,0.908052548,0.366878636,14,"Burling et al., 2010, McMeeking et al., 2009, Mickler et al. 2007, Selimovic et al., 2018",conifer forest and mixed forest are combined
-SE,mixed forest,S,SO2,1.0235,0.7403408,2,"Burling et al., 2010, McMeeking et al., 2009",conifer forest and mixed forest are combined
 SE,shrubland,FireAvg,CH4,2.181136367,0.453862708,5,"Urbanski et al., 2009",NA
-SE,shrubland,FireAvg,CO,75.26994783,9.339477953,5,"Urbanski et al., 2009",NA
-SE,shrubland,FireAvg,CO2,1675.486392,16.63052881,5,"Urbanski et al., 2009",NA
-SE,shrubland,F,NH3,1.612,1.565078273,5,"Burling et al., 2011","For NH3 SE shrubland data, use western data"
-SE,shrubland,FireAvg,NH3,1.407142857,1.404062134,7,"Burling et al., 2011, Hegg et al., 1989","For NH3 SE shrubland data, use western data"
-SE,shrubland,FireAvg,PM25,12.02680247,4.248633465,5,"Urbanski et al., 2009",NA
-SE,shrubland,F,SO2,0.6732,0.639133163,5,"Burling et al., 2010, McMeeking et al., 2009",NA
-SE,shrubland,FireAvg,SO2,0.744333333,0.597622512,6,"Burling et al., 2010, McMeeking et al., 2009",NA
 W,conifer forest,F,CH4,3.344224877,1.447703558,62,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
 W,conifer forest,FireAvg,CH4,5.478204434,2.31483695,170,"Babbitt et al., 1994, Burling et al., 2011, Hegg et al., 1989, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
 W,conifer forest,S,CH4,6.776913315,1.696453169,106,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
-W,conifer forest,F,CO,82.11520217,20.20160071,62,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
-W,conifer forest,FireAvg,CO,118.4710871,35.85846485,170,"Babbitt et al., 1994, Burling et al., 2011, Hegg et al., 1989, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
-W,conifer forest,S,CO,140.1315309,23.84586885,106,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
-W,conifer forest,F,CO2,1662.509654,49.6723348,62,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
-W,conifer forest,FireAvg,CO2,1605.017108,64.79467692,170,"Babbitt et al., 1994, Burling et al., 2011, Hegg et al., 1989, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
-W,conifer forest,S,CO2,1570.889715,46.71696661,106,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
-W,conifer forest,F,NH3,1.09,0.197989899,2,"Burling et al., 2011",conifer forest and mixed forest are combined
-W,conifer forest,FireAvg,NH3,1.324,0.59078761,5,"Burling et al., 2011, Hegg et al., 1989",conifer forest and mixed forest are combined
-W,conifer forest,S,NH3,1.84,,1,"Burling et al., 2011",conifer forest and mixed forest are combined
-W,conifer forest,F,PM25,12.71291673,5.571357609,45,"Babbitt et al., 1994, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993",conifer forest and mixed forest are combined
-W,conifer forest,FireAvg,PM25,13.87199347,6.281091004,101,"Aurell et al., 2021, Babbitt et al., 1994, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993",conifer forest and mixed forest are combined
-W,conifer forest,S,PM25,14.80339442,6.701985068,56,"Aurell et al., 2021, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993",conifer forest and mixed forest are combined
-W,conifer forest,F,SO2,1.316530204,0.560985344,49,"Burling et al., 2010, Liu et al., 2017, McMeeking et al., 2009, Selimovic et al., 2018",conifer forest and mixed forest are combined
-W,conifer forest,FireAvg,SO2,1.340479808,0.622438751,52,"Burling et al., 2010, Liu et al., 2017, McMeeking et al., 2009, Selimovic et al., 2018",conifer forest and mixed forest are combined
-W,conifer forest,S,SO2,1.731656667,1.443251122,3,"Liu et al., 2017, Selimovic et al., 2018",conifer forest and mixed forest are combined
 W,grassland,FireAvg,CH4,4.83,1.31,3,"Gkatzelis et al., 2023",NA
-W,grassland,FireAvg,CO,92,16.82,3,"Gkatzelis et al., 2023",NA
-W,grassland,FireAvg,CO2,1563.33,76.01,3,"Gkatzelis et al., 2023",NA
-W,grassland,FireAvg,NH3,1.19,0.65,3,"Gkatzelis et al., 2023",NA
-W,grassland,FireAvg,PM25,12.0752204,5.239811305,10,"Aurell et al., 2015, Urbanski et al., 2009","For PM25 W grassland data, use SE data"
-W,grassland,FireAvg,SO2,1.25678,1.009477509,5,"McMeeking et al., 2009, Selimovic et al., 2018",Combined SE and W grass EF data for W because only 1 W Lab datapoint.
 W,mixed forest,F,CH4,3.344224877,1.447703558,62,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
 W,mixed forest,FireAvg,CH4,5.478204434,2.31483695,170,"Babbitt et al., 1994, Burling et al., 2011, Hegg et al., 1989, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
 W,mixed forest,S,CH4,6.776913315,1.696453169,106,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,shrubland,FireAvg,CH4,3.72,1.4,13,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
+N,forest,F,CO,77.82547028,16.91864925,6,"Goode et al., 2000, Urbanski et al., 2009",NA
+N,forest,FireAvg,CO,92.88364685,35.49767551,9,"Goode et al., 2000, Hegg et al., 1989, Nance et al. 1993, Simpson et al., 2011, Urbanski et al., 2009",NA
+N,forest,S,CO,113,,1,"Simpson et al., 2011",NA
+N,grassland,FireAvg,CO,59.2,12.81,4,"Urbanski et al., 2009",NA
+SE,conifer forest,F,CO,75.95639643,20.5118783,36,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,conifer forest,FireAvg,CO,87.51296799,38.31749537,54,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013, Urbanski et al., 2009, White, 1987, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,conifer forest,S,CO,159.375,34.46711683,8,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
+SE,grassland,FireAvg,CO,69.55,26.54,8,"Aurell et al., 2015, Urbanski 2009, strand et al., 2016, Travis et al., 2023",NA
+SE,mixed forest,F,CO,75.95639643,20.5118783,36,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,mixed forest,FireAvg,CO,87.51296799,38.31749537,54,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013, Urbanski et al., 2009, White, 1987, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,mixed forest,S,CO,159.375,34.46711683,8,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
+SE,shrubland,FireAvg,CO,75.26994783,9.339477953,5,"Urbanski et al., 2009",NA
+W,conifer forest,F,CO,82.11520217,20.20160071,62,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,conifer forest,FireAvg,CO,118.4710871,35.85846485,170,"Babbitt et al., 1994, Burling et al., 2011, Hegg et al., 1989, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,conifer forest,S,CO,140.1315309,23.84586885,106,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,grassland,FireAvg,CO,92,16.82,3,"Gkatzelis et al., 2023",NA
 W,mixed forest,F,CO,82.11520217,20.20160071,62,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
 W,mixed forest,FireAvg,CO,118.4710871,35.85846485,170,"Babbitt et al., 1994, Burling et al., 2011, Hegg et al., 1989, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
 W,mixed forest,S,CO,140.1315309,23.84586885,106,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,shrubland,FireAvg,CO,77.33,18.49,13,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
+N,forest,F,CO2,1682.310305,23.36196791,6,"Goode et al., 2000, Urbanski et al., 2009",NA
+N,forest,FireAvg,CO2,1650.873537,61.64999485,9,"Goode et al., 2000, Hegg et al., 1989, Nance et al. 1993, Simpson et al., 2011, Urbanski et al., 2009",NA
+N,forest,S,CO2,1616,,1,"Simpson et al., 2011",NA
+N,grassland,FireAvg,CO2,1705.75,40.63,4,"Urbanski et al., 2009",NA
+SE,conifer forest,F,CO2,1676.401934,35.36081213,36,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,conifer forest,FireAvg,CO2,1620.858035,156.0922158,46,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,conifer forest,S,CO2,1441.125,177.7610254,8,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
+SE,grassland,FireAvg,CO2,1689.63,83.74,8,"Aurell et al., 2015, Urbanski 2009, strand et al., 2016, Travis et al., 2023",NA
+SE,mixed forest,F,CO2,1676.401934,35.36081213,36,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,mixed forest,FireAvg,CO2,1620.858035,156.0922158,46,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013, Urbanski et al., 2009, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,mixed forest,S,CO2,1441.125,177.7610254,8,"Akagi et al., 2013, Aurell et al., 2015, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
+SE,shrubland,FireAvg,CO2,1675.486392,16.63052881,5,"Urbanski et al., 2009",NA
+W,conifer forest,F,CO2,1662.509654,49.6723348,62,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,conifer forest,FireAvg,CO2,1605.017108,64.79467692,170,"Babbitt et al., 1994, Burling et al., 2011, Hegg et al., 1989, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,conifer forest,S,CO2,1570.889715,46.71696661,106,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,grassland,FireAvg,CO2,1563.33,76.01,3,"Gkatzelis et al., 2023",NA
 W,mixed forest,F,CO2,1662.509654,49.6723348,62,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
 W,mixed forest,FireAvg,CO2,1605.017108,64.79467692,170,"Babbitt et al., 1994, Burling et al., 2011, Hegg et al., 1989, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
 W,mixed forest,S,CO2,1570.889715,46.71696661,106,"Babbitt et al., 1994, Burling et al., 2011, Liu et al., 2017, Urbanski et al., 2009, Urbanski, 2013, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,shrubland,FireAvg,CO2,1623.23,93.47,13,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
+N,forest,F,NH3,0.926666667,0.490951457,3,"Goode et al., 2000",NA
+N,forest,FireAvg,NH3,0.855,0.425715085,4,"Goode et al., 2000, Nance et al. 1993",NA
+N,grassland,FireAvg,NH3,0.77,,1,"Goode et al., 2000",NA
+SE,conifer forest,F,NH3,0.284625,0.303105455,16,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,conifer forest,FireAvg,NH3,0.707909091,1.34838704,22,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,conifer forest,S,NH3,1.836666667,2.293108516,6,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
+SE,grassland,FireAvg,NH3,1.285,0.558957363,4,Gkatzelis et al. 2023,NA
+SE,mixed forest,F,NH3,0.284625,0.303105455,16,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,mixed forest,FireAvg,NH3,0.707909091,1.34838704,22,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013, Yokelson et al., 1999",conifer forest and mixed forest are combined
+SE,mixed forest,S,NH3,1.836666667,2.293108516,6,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
+SE,shrubland,F,NH3,1.612,1.565078273,5,"Burling et al., 2011","For NH3 SE shrubland data, use western data"
+SE,shrubland,FireAvg,NH3,1.407142857,1.404062134,7,"Burling et al., 2011, Hegg et al., 1989","For NH3 SE shrubland data, use western data"
+W,conifer forest,F,NH3,1.09,0.197989899,2,"Burling et al., 2011",conifer forest and mixed forest are combined
+W,conifer forest,FireAvg,NH3,1.324,0.59078761,5,"Burling et al., 2011, Hegg et al., 1989",conifer forest and mixed forest are combined
+W,conifer forest,S,NH3,1.84,,1,"Burling et al., 2011",conifer forest and mixed forest are combined
+W,grassland,FireAvg,NH3,1.19,0.65,3,"Gkatzelis et al., 2023",NA
 W,mixed forest,F,NH3,1.09,0.197989899,2,"Burling et al., 2011",conifer forest and mixed forest are combined
 W,mixed forest,FireAvg,NH3,1.324,0.59078761,5,"Burling et al., 2011, Hegg et al., 1989",conifer forest and mixed forest are combined
 W,mixed forest,S,NH3,1.84,,1,"Burling et al., 2011",conifer forest and mixed forest are combined
+W,shrubland,FireAvg,NH3,1.55,1.18,9,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
+N,forest,FireAvg,NOx,1.275,0.225,2,"Hegg et al., 1989, Nance et al., 1993",
+N,grassland,FireAvg,NOx,1.01,0.26,3,"Gkatzelis et al., 2023",Used Western data
+SE,conifer forest,F,NOx,2.27,1.21,13,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
+SE,conifer forest,FireAvg,NOx,2.04,1.16,17,"Akagi et al., 2013, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013",conifer forest and mixed forest are combined
+SE,conifer forest,S,NOx,1.1,0.14,2,"Strand et al., 2013",conifer forest and mixed forest are combined
+SE,grassland,FireAvg,NOx,1.01,0.26,3,"Gkatzelis et al., 2023",Used Western data
+SE,mixed forest,F,NOx,2.27,1.21,13,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
+SE,mixed forest,FireAvg,NOx,2.04,1.16,17,"Akagi et al., 2013, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013",conifer forest and mixed forest are combined
+SE,mixed forest,S,NOx,1.1,0.14,2,"Strand et al., 2013",conifer forest and mixed forest are combined
+SE,shrubland,FireAvg,NOx,1.97,1.2,8,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",Used Western data
+W,conifer forest,F,NOx,1.71,1.31,4,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
+W,conifer forest,FireAvg,NOx,1.5,1.25,6,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
+W,conifer forest,S,NOx,1.08,1.43,2,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
+W,grassland,FireAvg,NOx,1.01,0.26,3,"Gkatzelis et al., 2023",NA
+W,mixed forest,F,NOx,1.71,1.31,4,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
+W,mixed forest,FireAvg,NOx,1.5,1.25,6,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
+W,mixed forest,S,NOx,1.08,1.43,2,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
+W,shrubland,FireAvg,NOx,1.97,1.2,8,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
+N,forest,FireAvg,PM25,10.5342128,0.806016527,3,"Urbanski et al., 2009",NA
+N,grassland,FireAvg,PM25,9.88,6.92,4,"Urbanski et al., 2009",NA
+SE,conifer forest,F,PM25,20.91296961,10.95010973,60,"Aurell et al., 2015, Burling et al., 2011, Robertson et al., 2014, Strand et al., 2013, Urbanski et al., 2009",NA
+SE,conifer forest,FireAvg,PM25,24.16668176,14.00241022,100,"Aurell et al., 2013, Aurell et al., 2015, Burling et al., 2011, Mickler et al. 2007, Robertson et al., 2014, Strand et al., 2013, Urbanski et al., 2009",NA
+SE,conifer forest,S,PM25,26.19588235,12.78130474,17,"Aurell et al., 2015, Robertson et al., 2014, Strand et al., 2013",NA
+SE,grassland,FireAvg,PM25,11.97,9.15,6,"Aurell et al., 2015, Urbanski 2009, strand et al., 2016, Travis et al., 2023",NA
+SE,mixed forest,FireAvg,PM25,14.78467367,0.93590864,4,"Urbanski et al., 2009",NA
+SE,shrubland,FireAvg,PM25,12.02680247,4.248633465,5,"Urbanski et al., 2009",NA
+W,conifer forest,F,PM25,12.71291673,5.571357609,45,"Babbitt et al., 1994, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,conifer forest,FireAvg,PM25,13.87199347,6.281091004,101,"Aurell et al., 2021, Babbitt et al., 1994, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,conifer forest,S,PM25,14.80339442,6.701985068,56,"Aurell et al., 2021, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,grassland,FireAvg,PM25,12.0752204,5.239811305,10,"Aurell et al., 2015, Urbanski et al., 2009","For PM25 W grassland data, use SE data"
 W,mixed forest,F,PM25,12.71291673,5.571357609,45,"Babbitt et al., 1994, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993",conifer forest and mixed forest are combined
 W,mixed forest,FireAvg,PM25,13.87199347,6.281091004,101,"Aurell et al., 2021, Babbitt et al., 1994, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993",conifer forest and mixed forest are combined
 W,mixed forest,S,PM25,14.80339442,6.701985068,56,"Aurell et al., 2021, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993",conifer forest and mixed forest are combined
+W,shrubland,FireAvg,PM25,11.09,5.53,10,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
+N,forest,FireAvg,SO2,0.133333333,0.057735027,3,"McMeeking et al., 2009",NA
+SE,conifer forest,F,SO2,0.968573567,0.294707879,10,"Burling et al., 2010, McMeeking et al., 2009, Selimovic et al., 2018",conifer forest and mixed forest are combined
+SE,conifer forest,FireAvg,SO2,0.908052548,0.366878636,14,"Burling et al., 2010, McMeeking et al., 2009, Mickler et al. 2007, Selimovic et al., 2018",conifer forest and mixed forest are combined
+SE,conifer forest,S,SO2,1.0235,0.7403408,2,"Burling et al., 2010, McMeeking et al., 2009",conifer forest and mixed forest are combined
+SE,grassland,FireAvg,SO2,0.825,0.340342964,4,"McMeeking et al., 2009",NA
+SE,mixed forest,F,SO2,0.968573567,0.294707879,10,"Burling et al., 2010, McMeeking et al., 2009, Selimovic et al., 2018",conifer forest and mixed forest are combined
+SE,mixed forest,FireAvg,SO2,0.908052548,0.366878636,14,"Burling et al., 2010, McMeeking et al., 2009, Mickler et al. 2007, Selimovic et al., 2018",conifer forest and mixed forest are combined
+SE,mixed forest,S,SO2,1.0235,0.7403408,2,"Burling et al., 2010, McMeeking et al., 2009",conifer forest and mixed forest are combined
+SE,shrubland,F,SO2,0.6732,0.639133163,5,"Burling et al., 2010, McMeeking et al., 2009",NA
+SE,shrubland,FireAvg,SO2,0.744333333,0.597622512,6,"Burling et al., 2010, McMeeking et al., 2009",NA
+W,conifer forest,F,SO2,1.316530204,0.560985344,49,"Burling et al., 2010, Liu et al., 2017, McMeeking et al., 2009, Selimovic et al., 2018",conifer forest and mixed forest are combined
+W,conifer forest,FireAvg,SO2,1.340479808,0.622438751,52,"Burling et al., 2010, Liu et al., 2017, McMeeking et al., 2009, Selimovic et al., 2018",conifer forest and mixed forest are combined
+W,conifer forest,S,SO2,1.731656667,1.443251122,3,"Liu et al., 2017, Selimovic et al., 2018",conifer forest and mixed forest are combined
+W,grassland,FireAvg,SO2,1.25678,1.009477509,5,"McMeeking et al., 2009, Selimovic et al., 2018",Combined SE and W grass EF data for W because only 1 W Lab datapoint.
 W,mixed forest,F,SO2,1.316530204,0.560985344,49,"Burling et al., 2010, Liu et al., 2017, McMeeking et al., 2009, Selimovic et al., 2018",conifer forest and mixed forest are combined
 W,mixed forest,FireAvg,SO2,1.340479808,0.622438751,52,"Burling et al., 2010, Liu et al., 2017, McMeeking et al., 2009, Selimovic et al., 2018",conifer forest and mixed forest are combined
 W,mixed forest,S,SO2,1.731656667,1.443251122,3,"Liu et al., 2017, Selimovic et al., 2018",conifer forest and mixed forest are combined
-W,shrubland,FireAvg,CH4,3.72,1.4,13,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
-W,shrubland,FireAvg,CO,77.33,18.49,13,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
-W,shrubland,FireAvg,CO2,1623.23,93.47,13,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
-W,shrubland,FireAvg,NH3,1.55,1.18,9,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
-W,shrubland,FireAvg,PM25,11.09,5.53,10,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
 W,shrubland,FireAvg,SO2,0.731158889,0.280044832,27,"Burling et al., 2010, McMeeking et al., 2009, Selimovic et al., 2018",NA
-W,shrubland,FireAvg,NOx,1.97,1.2,8,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",NA
-W,grassland,FireAvg,NOx,1.01,0.26,3,"Gkatzelis et al., 2023",NA
-SE,shrubland,FireAvg,NOx,1.97,1.2,8,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",Used Western data
-SE,grassland,FireAvg,NOx,1.01,0.26,3,"Gkatzelis et al., 2023",Used Western data
-SE,conifer forest,FireAvg,NOx,2.04,1.16,17,"Akagi et al., 2013, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,conifer forest,F,NOx,2.27,1.21,13,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,conifer forest,S,NOx,1.1,0.14,2,"Strand et al., 2013",conifer forest and mixed forest are combined
-W,conifer forest,FireAvg,NOx,1.5,1.25,6,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
-W,conifer forest,F,NOx,1.71,1.31,4,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
-W,conifer forest,S,NOx,1.08,1.43,2,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
-SE,mixed forest,FireAvg,NOx,2.04,1.16,17,"Akagi et al., 2013, Burling et al., 2011, Mickler et al. 2007, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,mixed forest,F,NOx,2.27,1.21,13,"Akagi et al., 2013, Burling et al., 2011, Strand et al., 2013",conifer forest and mixed forest are combined
-SE,mixed forest,S,NOx,1.1,0.14,2,"Strand et al., 2013",conifer forest and mixed forest are combined
-W,mixed forest,FireAvg,NOx,1.5,1.25,6,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
-W,mixed forest,F,NOx,1.71,1.31,4,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
-W,mixed forest,S,NOx,1.08,1.43,2,"Burling et al., 2011, Liu et al., 2017",conifer forest and mixed forest are combined
-N,forest,FireAvg,NOx,1.275,0.225,2,"Hegg et al., 1989, Nance et al., 1993",
-N,grassland,FireAvg,NOx,1.01,0.26,3,"Gkatzelis et al., 2023",Used Western data
+N,forest,FireAvg,PM10,11.70468089,,3,"Urbanski et al., 2009",PM10 is PM2.5/0.9 
+N,grassland,FireAvg,PM10,10.97777778,,4,"Urbanski et al., 2009",PM10 is PM2.5/0.9 
+SE,conifer forest,F,PM10,23.2366329,,60,"Aurell et al., 2015, Burling et al., 2011, Robertson et al., 2014, Strand et al., 2013, Urbanski et al., 2009",PM10 is PM2.5/0.9 
+SE,conifer forest,FireAvg,PM10,26.85186863,,100,"Aurell et al., 2013, Aurell et al., 2015, Burling et al., 2011, Mickler et al. 2007, Robertson et al., 2014, Strand et al., 2013, Urbanski et al., 2009",PM10 is PM2.5/0.9 
+SE,conifer forest,S,PM10,29.10653595,,17,"Aurell et al., 2015, Robertson et al., 2014, Strand et al., 2013",PM10 is PM2.5/0.9 
+SE,grassland,FireAvg,PM10,13.3,,6,"Aurell et al., 2015, Urbanski 2009, strand et al., 2016, Travis et al., 2023",PM10 is PM2.5/0.9 
+SE,mixed forest,FireAvg,PM10,16.42741518,,4,"Urbanski et al., 2009",PM10 is PM2.5/0.9 
+SE,shrubland,FireAvg,PM10,13.36311386,,5,"Urbanski et al., 2009",PM10 is PM2.5/0.9 
+W,conifer forest,F,PM10,14.12546304,,45,"Babbitt et al., 1994, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993","conifer forest and mixed forest are combined, PM10 is PM2.5/0.9 "
+W,conifer forest,FireAvg,PM10,15.41332608,,101,"Aurell et al., 2021, Babbitt et al., 1994, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993","conifer forest and mixed forest are combined, PM10 is PM2.5/0.9 "
+W,conifer forest,S,PM10,16.44821602,,56,"Aurell et al., 2021, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993","conifer forest and mixed forest are combined, PM10 is PM2.5/0.9 "
+W,grassland,FireAvg,PM10,13.41691156,,10,"Aurell et al., 2015, Urbanski et al., 2009","For PM25 W grassland data, use SE data. PM10 is PM2.5/0.9"
+W,mixed forest,F,PM10,14.12546304,,45,"Babbitt et al., 1994, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993","conifer forest and mixed forest are combined, PM10 is PM2.5/0.9 "
+W,mixed forest,FireAvg,PM10,15.41332608,,101,"Aurell et al., 2021, Babbitt et al., 1994, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993","conifer forest and mixed forest are combined, PM10 is PM2.5/0.9 "
+W,mixed forest,S,PM10,16.44821602,,56,"Aurell et al., 2021, Burling et al., 2011, Urbanski et al., 2009, Ward and Susott, 1993","conifer forest and mixed forest are combined, PM10 is PM2.5/0.9 "
+W,shrubland,FireAvg,PM10,12.32222222,,10,"Burling et al., 2011, Nance et al., 1993, Gkatzelis et al., 2023, Pemar et al., 2020, Lindaas et al., 2020, Garofalo et al., 2019, Hardy et al., 1996",PM10 is PM2.5/0.9 
