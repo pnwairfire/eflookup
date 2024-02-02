@@ -16,6 +16,7 @@ import logging
 
 from .. import Phase
 from .constants import CONSUME_FUEL_CATEGORY_TRANSLATIONS
+from .importer import SPECIES_TRANSLATION
 from .mappers import (
     Fccs2CoverType,
     CoverType2EfGroup,
@@ -133,6 +134,7 @@ class BaseLookUp(object, metaclass=abc.ABCMeta):
         fuel_category = kwargs.get('fuel_category')
         fuel_sub_category = kwargs.get('fuel_sub_category')
         species = kwargs.get('species')
+        species = SPECIES_TRANSLATION.get(species) or species
 
         override_ef_group = -1
         if self.region:
@@ -279,6 +281,7 @@ class CoverType2SeraEf(CoverType2Ef):
         fuel_category = kwargs.get('fuel_category')
         fuel_sub_category = kwargs.get('fuel_sub_category')
         species = kwargs.get('species')   #pollutant
+        species = SPECIES_TRANSLATION.get(species) or species
         stat = kwargs.get('stat')
         if not stat:
             stat = "EF"
