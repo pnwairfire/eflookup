@@ -53,23 +53,29 @@ def main():
     try:
         # fire_avg will store the FireAvg EF values for all polutants for the
         # curent Region and VegType. These values will be used when flaming
-        # or smoldering have no EF value
+        # or smoldering have no EF value.
+        # We'll record the FireAvg values on the first pass through the data,
+        # and then do a second pass for the rest, in case the flaming or
+        # smoldering values come before the FireAvg values.
         fire_avg = {}
+        rows = []
         data = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {})))
         with open(args.group_name_to_ef_csv, encoding='utf-8-sig') as f:
             reader = csv.DictReader(f)
             for row in reader:
                 row = {k: v.strip() for k,v in row.items()}
+                rows.append(row)
 
                 if row['Phase'] == 'FireAvg':
                     fire_avg[row['Pollutant']] = row['EF']
 
-                phase_key = PHASE_KEYS[row['Phase']]
-                data[row['Region']][row['VegType']][phase_key][row['Pollutant']] = {
-                    'EF': parseEf(row['EF'], fire_avg[row['Pollutant']]),
-                    'SD': parseEf(row['SD'], 0),
-                    'n': parseEf(row['n'], 0),
-                }
+        for row in rows:
+            phase_key = PHASE_KEYS[row['Phase']]
+            data[row['Region']][row['VegType']][phase_key][row['Pollutant']] = {
+                'EF': parseEf(row['EF'], fire_avg[row['Pollutant']]),
+                'SD': parseEf(row['SD'], 0),
+                'n': parseEf(row['n'], 0),
+            }
 
         output_file_name = os.path.join(
             os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
