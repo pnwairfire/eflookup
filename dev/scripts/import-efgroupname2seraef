@@ -81,8 +81,25 @@ def main():
             os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
             'eflookup', 'fccs2ef', 'data', 'efgroupname2seraef.py')
         with open(output_file_name, 'w') as f:
-            data = json.dumps(data,separators=(',', ':'))
-            f.write(f'EF_GROUP_NAME_2_SERA_EF={data}')
+            json_data = json.dumps(data,separators=(',', ':'))
+            f.write(f'EF_GROUP_NAME_2_SERA_EF={json_data}')
+
+        with open(output_file_name.replace('.py', '.csv'), 'w') as csvfile:
+            fieldnames = ['regionname','efgroupname','phase','species','EF','SD','n']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            for regionname in data:
+                for efgroupname in data[regionname]:
+                    for phase in data[regionname][efgroupname]:
+                        for species in data[regionname][efgroupname][phase]:
+                            writer.writerow(dict(
+                                regionname=regionname,
+                                efgroupname=efgroupname,
+                                phase=phase,
+                                species=species,
+                                **data[regionname][efgroupname][phase][species]
+                            ))
+
 
     except Exception as e:
         scripting_utils.exit_with_msg(str(e) + '\n\n' + traceback.format_exc())
