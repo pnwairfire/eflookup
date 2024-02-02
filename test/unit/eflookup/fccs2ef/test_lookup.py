@@ -92,7 +92,7 @@ EF_GROUP_2_EF = {
 
 class TestFccs2EfAndCovertype2EF(object):
 
-    def setup(self):
+    def setup_method(self):
         fccs2covertype.FCCS_2_COVERTYPE = FCCS_2_COVERTYPE
         efgroup2ef.EF_GROUP_2_EF = EF_GROUP_2_EF
         covertype2efgroup.COVERTYPE_2_EF_GROUP = COVERTYPE_2_EF_GROUP
