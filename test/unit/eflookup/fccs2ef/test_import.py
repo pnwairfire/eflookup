@@ -20,15 +20,20 @@ def run_test(tmpdir, input_content, importer_class, expected_output):
     input_file = tmpdir.join("input.csv")
     input_file.write(input_content)
     input_filename = str(input_file)
-    output_filename = input_filename.replace('input', 'output')
-    importer_class(input_filename).write(output_file_name=output_filename)
-    assert len(tmpdir.listdir()) == 2
-    # TODO: assert that output_filename exists
-    output_content = open(output_filename, 'r').read()
-    var_name = re.compile('([^=]+)=').search(output_content).group(1).strip()
-    exec(output_content)
+    output_csv_filename = input_filename.replace('input', 'output')
+    output_py_filename = output_csv_filename.replace('.csv', '.py')
+    importer_class(input_filename).write(output_file_name=output_py_filename)
+    assert len(tmpdir.listdir()) == 3 # both csv and py output files are created
+    # TODO: assert that output_py_filename and output_csv_filename exist
+
+    output_py_content = open(output_py_filename, 'r').read()
+    var_name = re.compile('([^=]+)=').search(output_py_content).group(1).strip()
+    exec(output_py_content)
     output = locals()[var_name]
     assert expected_output == output
+
+    output_csv_content = open(output_py_filename, 'r').read()
+    # TODO: check csv content
 
 
 class TestFccs2CoverTypeImporter(object):
