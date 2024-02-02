@@ -18,6 +18,8 @@ from afscripting import (
     utils as scripting_utils
 )
 
+from eflookup.fccs2ef.importer import SPECIES_TRANSLATION
+
 REQUIRED_OPTIONS = []
 
 OPTIONAL_OPTIONS = [
@@ -65,6 +67,7 @@ def main():
             for row in reader:
                 row = {k: v.strip() for k,v in row.items()}
                 rows.append(row)
+                row['Pollutant'] = SPECIES_TRANSLATION.get(row['Pollutant']) or row['Pollutant']
 
                 if row['Phase'] == 'FireAvg':
                     fire_avg[row['Pollutant']] = row['EF']

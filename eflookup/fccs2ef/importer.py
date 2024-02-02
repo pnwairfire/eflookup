@@ -19,6 +19,7 @@ from collections import OrderedDict
 from .constants import CONSUME_FUEL_CATEGORY_TRANSLATIONS
 
 __all__ = [
+    'SPECIES_TRANSLATION',
     'Fccs2CoverTypeImporter',
     'CoverType2EfGroupImporter',
     'CatPhase2EFGroupImporter',
@@ -187,6 +188,10 @@ class CoverType2EfGroupImporter(ImporterBase):
 ## CatPhase2EFGroup
 ##
 
+SPECIES_TRANSLATION = {
+    'PM25': 'PM2.5'
+}
+
 class CatPhase2EFGroupImporter(ImporterBase):
     """CatPhase2EFGroupImporter: imports regional EF group assignments
     for specific chemical species + consume category combinations.
@@ -274,10 +279,6 @@ class CatPhase2EFGroupImporter(ImporterBase):
         self._process_second_header_row(csv_reader)
         self._combine_header_rows()
 
-    SPECIES_TRANSLATION = {
-        'PM25': 'PM2.5'
-    }
-
     def _process_row(self, row):
         row = [row[i+self.FIRST_COL_IDX]
             for i in range(len(self._headers)+len(self._col_idxs_to_skip))
@@ -299,7 +300,7 @@ class CatPhase2EFGroupImporter(ImporterBase):
                 self._data[reg][cat][sub_cat] = self._data[reg][cat].get(
                     sub_cat, {})
                 self._data[reg][cat][sub_cat][phase] = {
-                    self.SPECIES_TRANSLATION.get(s, s): row[i] or None for s in species
+                    SPECIES_TRANSLATION.get(s, s): row[i] or None for s in species
                 }
 
     # extracts number range (e.g. "General (1-6)" -> '1-6')
