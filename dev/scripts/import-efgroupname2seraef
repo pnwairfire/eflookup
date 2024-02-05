@@ -91,10 +91,10 @@ def main():
             fieldnames = ['regionname','efgroupname','phase','species','EF','SD','n']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for regionname in data:
-                for efgroupname in data[regionname]:
-                    for phase in data[regionname][efgroupname]:
-                        for species in data[regionname][efgroupname][phase]:
+            for regionname in sorted(data):
+                for efgroupname in sorted(data[regionname]):
+                    for phase in sorted(data[regionname][efgroupname]):
+                        for species in sorted(data[regionname][efgroupname][phase]):
                             writer.writerow(dict(
                                 regionname=regionname,
                                 efgroupname=efgroupname,

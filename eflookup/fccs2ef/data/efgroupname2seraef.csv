@@ -1,8 +1,4 @@
 regionname,efgroupname,phase,species,EF,SD,n
-N,forest,flaming,CH4,2.399788664,0.646049266,6.0
-N,forest,flaming,CO,77.82547028,16.91864925,6.0
-N,forest,flaming,CO2,1682.310305,23.36196791,6.0
-N,forest,flaming,NH3,0.926666667,0.490951457,3.0
 N,forest,average,CH4,3.033192443,1.325165297,9.0
 N,forest,average,CO,92.88364685,35.49767551,9.0
 N,forest,average,CO2,1650.873537,61.64999485,9.0
@@ -10,6 +6,10 @@ N,forest,average,NH3,0.855,0.425715085,4.0
 N,forest,average,NOx,1.275,0.225,2.0
 N,forest,average,PM2.5,10.5342128,0.806016527,3.0
 N,forest,average,SO2,0.133333333,0.057735027,3.0
+N,forest,flaming,CH4,2.399788664,0.646049266,6.0
+N,forest,flaming,CO,77.82547028,16.91864925,6.0
+N,forest,flaming,CO2,1682.310305,23.36196791,6.0
+N,forest,flaming,NH3,0.926666667,0.490951457,3.0
 N,forest,smoldering,CH4,4.7,0.0,1.0
 N,forest,smoldering,CO,113.0,0.0,1.0
 N,forest,smoldering,CO2,1616.0,0.0,1.0
@@ -19,12 +19,6 @@ N,grassland,average,CO2,1705.75,40.63,4.0
 N,grassland,average,NH3,0.77,0.0,1.0
 N,grassland,average,NOx,1.01,0.26,3.0
 N,grassland,average,PM2.5,9.88,6.92,4.0
-SE,conifer forest,flaming,CH4,2.465183728,1.21600502,35.0
-SE,conifer forest,flaming,CO,75.95639643,20.5118783,36.0
-SE,conifer forest,flaming,CO2,1676.401934,35.36081213,36.0
-SE,conifer forest,flaming,NH3,0.284625,0.303105455,16.0
-SE,conifer forest,flaming,NOx,2.27,1.21,13.0
-SE,conifer forest,flaming,SO2,0.968573567,0.294707879,10.0
 SE,conifer forest,average,CH4,3.663693426,4.444421692,41.0
 SE,conifer forest,average,CO,87.51296799,38.31749537,54.0
 SE,conifer forest,average,CO2,1620.858035,156.0922158,46.0
@@ -32,6 +26,12 @@ SE,conifer forest,average,NH3,0.707909091,1.34838704,22.0
 SE,conifer forest,average,NOx,2.04,1.16,17.0
 SE,conifer forest,average,PM2.5,13.1,7.01,22.0
 SE,conifer forest,average,SO2,0.908052548,0.366878636,14.0
+SE,conifer forest,flaming,CH4,2.465183728,1.21600502,35.0
+SE,conifer forest,flaming,CO,75.95639643,20.5118783,36.0
+SE,conifer forest,flaming,CO2,1676.401934,35.36081213,36.0
+SE,conifer forest,flaming,NH3,0.284625,0.303105455,16.0
+SE,conifer forest,flaming,NOx,2.27,1.21,13.0
+SE,conifer forest,flaming,SO2,0.968573567,0.294707879,10.0
 SE,conifer forest,smoldering,CH4,10.655,8.902758561,6.0
 SE,conifer forest,smoldering,CO,159.375,34.46711683,8.0
 SE,conifer forest,smoldering,CO2,1441.125,177.7610254,8.0
@@ -45,12 +45,6 @@ SE,grassland,average,NH3,1.285,0.558957363,4.0
 SE,grassland,average,NOx,1.01,0.26,3.0
 SE,grassland,average,PM2.5,11.97,9.15,6.0
 SE,grassland,average,SO2,0.825,0.340342964,4.0
-SE,mixed forest,flaming,CH4,2.465183728,1.21600502,35.0
-SE,mixed forest,flaming,CO,75.95639643,20.5118783,36.0
-SE,mixed forest,flaming,CO2,1676.401934,35.36081213,36.0
-SE,mixed forest,flaming,NH3,0.284625,0.303105455,16.0
-SE,mixed forest,flaming,NOx,2.27,1.21,13.0
-SE,mixed forest,flaming,SO2,0.968573567,0.294707879,10.0
 SE,mixed forest,average,CH4,3.663693426,4.444421692,41.0
 SE,mixed forest,average,CO,87.51296799,38.31749537,54.0
 SE,mixed forest,average,CO2,1620.858035,156.0922158,46.0
@@ -58,14 +52,18 @@ SE,mixed forest,average,NH3,0.707909091,1.34838704,22.0
 SE,mixed forest,average,NOx,2.04,1.16,17.0
 SE,mixed forest,average,PM2.5,14.78467367,0.93590864,4.0
 SE,mixed forest,average,SO2,0.908052548,0.366878636,14.0
+SE,mixed forest,flaming,CH4,2.465183728,1.21600502,35.0
+SE,mixed forest,flaming,CO,75.95639643,20.5118783,36.0
+SE,mixed forest,flaming,CO2,1676.401934,35.36081213,36.0
+SE,mixed forest,flaming,NH3,0.284625,0.303105455,16.0
+SE,mixed forest,flaming,NOx,2.27,1.21,13.0
+SE,mixed forest,flaming,SO2,0.968573567,0.294707879,10.0
 SE,mixed forest,smoldering,CH4,10.655,8.902758561,6.0
 SE,mixed forest,smoldering,CO,159.375,34.46711683,8.0
 SE,mixed forest,smoldering,CO2,1441.125,177.7610254,8.0
 SE,mixed forest,smoldering,NH3,1.836666667,2.293108516,6.0
 SE,mixed forest,smoldering,NOx,1.1,0.14,2.0
 SE,mixed forest,smoldering,SO2,1.0235,0.7403408,2.0
-SE,shrubland,flaming,NH3,1.612,1.565078273,5.0
-SE,shrubland,flaming,SO2,0.6732,0.639133163,5.0
 SE,shrubland,average,CH4,2.181136367,0.453862708,5.0
 SE,shrubland,average,CO,75.26994783,9.339477953,5.0
 SE,shrubland,average,CO2,1675.486392,16.63052881,5.0
@@ -73,13 +71,8 @@ SE,shrubland,average,NH3,1.407142857,1.404062134,7.0
 SE,shrubland,average,NOx,1.97,1.2,8.0
 SE,shrubland,average,PM2.5,12.02680247,4.248633465,5.0
 SE,shrubland,average,SO2,0.744333333,0.597622512,6.0
-W,conifer forest,flaming,CH4,3.344224877,1.447703558,62.0
-W,conifer forest,flaming,CO,82.11520217,20.20160071,62.0
-W,conifer forest,flaming,CO2,1662.509654,49.6723348,62.0
-W,conifer forest,flaming,NH3,1.09,0.197989899,2.0
-W,conifer forest,flaming,NOx,1.71,1.31,4.0
-W,conifer forest,flaming,PM2.5,12.71291673,5.571357609,45.0
-W,conifer forest,flaming,SO2,1.316530204,0.560985344,49.0
+SE,shrubland,flaming,NH3,1.612,1.565078273,5.0
+SE,shrubland,flaming,SO2,0.6732,0.639133163,5.0
 W,conifer forest,average,CH4,5.478204434,2.31483695,170.0
 W,conifer forest,average,CO,118.4710871,35.85846485,170.0
 W,conifer forest,average,CO2,1605.017108,64.79467692,170.0
@@ -87,6 +80,13 @@ W,conifer forest,average,NH3,1.324,0.59078761,5.0
 W,conifer forest,average,NOx,1.5,1.25,6.0
 W,conifer forest,average,PM2.5,13.87199347,6.281091004,101.0
 W,conifer forest,average,SO2,1.340479808,0.622438751,52.0
+W,conifer forest,flaming,CH4,3.344224877,1.447703558,62.0
+W,conifer forest,flaming,CO,82.11520217,20.20160071,62.0
+W,conifer forest,flaming,CO2,1662.509654,49.6723348,62.0
+W,conifer forest,flaming,NH3,1.09,0.197989899,2.0
+W,conifer forest,flaming,NOx,1.71,1.31,4.0
+W,conifer forest,flaming,PM2.5,12.71291673,5.571357609,45.0
+W,conifer forest,flaming,SO2,1.316530204,0.560985344,49.0
 W,conifer forest,smoldering,CH4,6.776913315,1.696453169,106.0
 W,conifer forest,smoldering,CO,140.1315309,23.84586885,106.0
 W,conifer forest,smoldering,CO2,1570.889715,46.71696661,106.0
@@ -101,13 +101,6 @@ W,grassland,average,NH3,1.19,0.65,3.0
 W,grassland,average,NOx,1.01,0.26,3.0
 W,grassland,average,PM2.5,12.0752204,5.239811305,10.0
 W,grassland,average,SO2,1.25678,1.009477509,5.0
-W,mixed forest,flaming,CH4,3.344224877,1.447703558,62.0
-W,mixed forest,flaming,CO,82.11520217,20.20160071,62.0
-W,mixed forest,flaming,CO2,1662.509654,49.6723348,62.0
-W,mixed forest,flaming,NH3,1.09,0.197989899,2.0
-W,mixed forest,flaming,NOx,1.71,1.31,4.0
-W,mixed forest,flaming,PM2.5,12.71291673,5.571357609,45.0
-W,mixed forest,flaming,SO2,1.316530204,0.560985344,49.0
 W,mixed forest,average,CH4,5.478204434,2.31483695,170.0
 W,mixed forest,average,CO,118.4710871,35.85846485,170.0
 W,mixed forest,average,CO2,1605.017108,64.79467692,170.0
@@ -115,6 +108,13 @@ W,mixed forest,average,NH3,1.324,0.59078761,5.0
 W,mixed forest,average,NOx,1.5,1.25,6.0
 W,mixed forest,average,PM2.5,13.87199347,6.281091004,101.0
 W,mixed forest,average,SO2,1.340479808,0.622438751,52.0
+W,mixed forest,flaming,CH4,3.344224877,1.447703558,62.0
+W,mixed forest,flaming,CO,82.11520217,20.20160071,62.0
+W,mixed forest,flaming,CO2,1662.509654,49.6723348,62.0
+W,mixed forest,flaming,NH3,1.09,0.197989899,2.0
+W,mixed forest,flaming,NOx,1.71,1.31,4.0
+W,mixed forest,flaming,PM2.5,12.71291673,5.571357609,45.0
+W,mixed forest,flaming,SO2,1.316530204,0.560985344,49.0
 W,mixed forest,smoldering,CH4,6.776913315,1.696453169,106.0
 W,mixed forest,smoldering,CO,140.1315309,23.84586885,106.0
 W,mixed forest,smoldering,CO2,1570.889715,46.71696661,106.0

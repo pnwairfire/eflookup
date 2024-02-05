@@ -133,7 +133,7 @@ class Fccs2CoverTypeImporter(ImporterBase):
             fieldnames = ['fccs_id','covertype']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for fccs_id, covertype in self._data.items():
+            for fccs_id, covertype in sorted(self._data.items(), key=lambda e: e[0]):
                 writer.writerow(dict(
                     fccs_id=fccs_id,
                     covertype=covertype
@@ -175,8 +175,8 @@ class CoverType2EfGroupImporter(ImporterBase):
             fieldnames = ['covertype','phase','efgroup']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for covertype in self._data:
-                for phase, efgroup in self._data[covertype].items():
+            for covertype in sorted(self._data):
+                for phase, efgroup in sorted(self._data[covertype].items(), key=lambda e: e[0]):
                     writer.writerow(dict(
                         covertype=covertype,
                         phase=phase,
@@ -339,10 +339,10 @@ class CatPhase2EFGroupImporter(ImporterBase):
             ]
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for region in self._data:
-                for fuelcat in self._data[region]:
-                    for fuelsubcat in self._data[region][fuelcat]:
-                        for phase in self._data[region][fuelcat][fuelsubcat]:
+            for region in sorted(self._data):
+                for fuelcat in sorted(self._data[region]):
+                    for fuelsubcat in sorted(self._data[region][fuelcat]):
+                        for phase in sorted(self._data[region][fuelcat][fuelsubcat]):
                             for species, efgroup in self._data[region][fuelcat][fuelsubcat][phase].items():
                                 writer.writerow(dict(
                                     region=region,
@@ -395,8 +395,8 @@ class EfGroup2EfImporter(ImporterBase):
             fieldnames = ['efgroup','species','ef']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for efgroup in self._data:
-                for species, ef in self._data[efgroup].items():
+            for efgroup in sorted(self._data):
+                for species, ef in sorted(self._data[efgroup].items(), key=lambda e: e[0]):
                     writer.writerow(dict(
                         efgroup=efgroup,
                         species=species,
