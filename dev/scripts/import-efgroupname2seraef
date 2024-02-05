@@ -27,7 +27,7 @@ OPTIONAL_OPTIONS = [
         'long': "--group-name-to-ef-csv",
         'help': "csv containing group name eto EF mappings",
         'metavar': "FILE",
-        'default': "./input-data/EF_Module_Specs&LUT_Sept2019GroupName2EF.csv"
+        'default': "./input-data/orig-efgroupname2seraef.csv"
     }
 ]
 EXAMPLES_STRING = f"""
