@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+
+import csv
+
+import argparse
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--original', required=True, help='original csv')
+    parser.add_argument('--overrides', required=True, help='csv with overrides')
+    parser.add_argument('--output', required=True, help='output csv')
+    parser.add_argument('--id-col', required=True, help='id column')
+
+    return parser.parse_args()
+
+def load_mappings(mappings, filename, id_col):
+    with open(filename) as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            mappings[row[id_col]] = row
+
+
+def sort_key(e, id_col):
+    try:
+        return int(e[id_col])
+    except:
+        return e[id_col]
+
+def write_output(mappings, filename, id_col):
+    # make sure id_col is first in fieldnames
+    fieldnames = list(list(mappings.values())[0].keys())
+    fieldnames.remove(id_col)
+    fieldnames = [id_col] + fieldnames
+
+    with open(filename, 'w') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in sorted(mappings.values(), key=lambda e: sort_key(e, id_col)):
+            writer.writerow(row)
+
+if __name__ == "__main__":
+    args = parse_args()
+
+    mappings = {}
+    load_mappings(mappings, args.original, args.id_col)
+    load_mappings(mappings, args.overrides, args.id_col)
+    write_output(mappings, args.output, args.id_col)
