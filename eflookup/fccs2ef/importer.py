@@ -395,7 +395,7 @@ class EfGroup2EfImporter(ImporterBase):
             fieldnames = ['efgroup','species','ef']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for efgroup in sorted(self._data):
+            for efgroup in sorted(self._data, key=lambda e: int(e)):
                 for species, ef in sorted(self._data[efgroup].items(), key=lambda e: e[0]):
                     writer.writerow(dict(
                         efgroup=efgroup,
