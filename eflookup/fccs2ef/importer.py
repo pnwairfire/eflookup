@@ -133,7 +133,7 @@ class Fccs2CoverTypeImporter(ImporterBase):
             fieldnames = ['fccs_id','covertype']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for fccs_id, covertype in sorted(self._data.items(), key=lambda e: e[0]):
+            for fccs_id, covertype in sorted(self._data.items(), key=lambda e: int(e[0])):
                 writer.writerow(dict(
                     fccs_id=fccs_id,
                     covertype=covertype
@@ -175,7 +175,7 @@ class CoverType2EfGroupImporter(ImporterBase):
             fieldnames = ['covertype','phase','efgroup']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for covertype in sorted(self._data):
+            for covertype in sorted(self._data, key=lambda e: int(e)):
                 for phase, efgroup in sorted(self._data[covertype].items(), key=lambda e: e[0]):
                     writer.writerow(dict(
                         covertype=covertype,
