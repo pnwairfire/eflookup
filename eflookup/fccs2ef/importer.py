@@ -97,6 +97,14 @@ class ImporterBase(object):
             self._write_ordered_data(self._data, f)
             self._write_csv(output_file_name.replace('.py', '.csv'))
 
+def _sortable_fccs_id(fccs_id):
+    # some FCCS Ids are numeric (e.g. '52') and some are alphanumeric
+    # (e.g. 'globalFCCS1010'). Zero pad numeric ones so that they are
+    # ordered correctly
+    if fccs_id.isnumeric():
+        return '0' * (10-len(fccs_id)) + fccs_id
+    return fccs_id
+
 ##
 ## Fccs2CoverType
 ##
@@ -133,7 +141,8 @@ class Fccs2CoverTypeImporter(ImporterBase):
             fieldnames = ['fccs_id','covertype']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for fccs_id, covertype in sorted(self._data.items(), key=lambda e: int(e[0])):
+            for fccs_id, covertype in sorted(self._data.items(),
+                    key=lambda e: _sortable_fccs_id(e[0])):
                 writer.writerow(dict(
                     fccs_id=fccs_id,
                     covertype=covertype
@@ -175,7 +184,7 @@ class CoverType2EfGroupImporter(ImporterBase):
             fieldnames = ['covertype','phase','efgroup']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for covertype in sorted(self._data, key=lambda e: int(e)):
+            for covertype in sorted(self._data, key=lambda e: _sortable_fccs_id(e)):
                 for phase, efgroup in sorted(self._data[covertype].items(), key=lambda e: e[0]):
                     writer.writerow(dict(
                         covertype=covertype,
@@ -395,7 +404,7 @@ class EfGroup2EfImporter(ImporterBase):
             fieldnames = ['efgroup','species','ef']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for efgroup in sorted(self._data, key=lambda e: int(e)):
+            for efgroup in sorted(self._data, key=lambda e: _sortable_fccs_id(e)):
                 for species, ef in sorted(self._data[efgroup].items(), key=lambda e: e[0]):
                     writer.writerow(dict(
                         efgroup=efgroup,
