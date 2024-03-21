@@ -61,7 +61,6 @@ def main():
         # smoldering values come before the FireAvg values.
         fire_avg = {}
         rows = []
-        data = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {})))
         with open(args.group_name_to_ef_csv, encoding='utf-8-sig') as f:
             reader = csv.DictReader(f)
             for row in reader:
@@ -72,13 +71,19 @@ def main():
                 if row['Phase'] == 'FireAvg':
                     fire_avg[row['Pollutant']] = row['EF']
 
+        data = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {})))
+        csvData = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {})))
+
         for row in rows:
             phase_key = PHASE_KEYS[row['Phase']]
-            data[row['Region']][row['VegType']][phase_key][row['Pollutant']] = {
+            v = {
                 'EF': parseEf(row['EF'], fire_avg[row['Pollutant']]),
                 'SD': parseEf(row['SD'], 0),
                 'n': parseEf(row['n'], 0),
             }
+            data[row['Region']][row['VegType']][phase_key][row['Pollutant']] = v
+            csvData[row['Region']][row['VegType']][phase_key][row['Pollutant']] = (
+                dict(v, citeShort=row['citeShort']))
 
         output_file_name = os.path.join(
             os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
@@ -88,21 +93,20 @@ def main():
             f.write(f'EF_GROUP_NAME_2_SERA_EF={json_data}')
 
         with open(output_file_name.replace('.py', '.csv'), 'w') as csvfile:
-            fieldnames = ['regionname','efgroupname','phase','species','EF','SD','n']
+            fieldnames = ['regionname','efgroupname','phase','species','EF','SD','n', 'citeShort']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
-            for regionname in sorted(data):
-                for efgroupname in sorted(data[regionname]):
-                    for phase in sorted(data[regionname][efgroupname]):
-                        for species in sorted(data[regionname][efgroupname][phase]):
+            for regionname in sorted(csvData):
+                for efgroupname in sorted(csvData[regionname]):
+                    for phase in sorted(csvData[regionname][efgroupname]):
+                        for species in sorted(csvData[regionname][efgroupname][phase]):
                             writer.writerow(dict(
                                 regionname=regionname,
                                 efgroupname=efgroupname,
                                 phase=phase,
                                 species=species,
-                                **data[regionname][efgroupname][phase][species]
+                                **csvData[regionname][efgroupname][phase][species]
                             ))
-
 
     except Exception as e:
         scripting_utils.exit_with_msg(str(e) + '\n\n' + traceback.format_exc())
