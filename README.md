@@ -88,10 +88,10 @@ First, install pip (with sudo if necessary):
 
     apt-get install python-pip
 
-Then, to install, for example, v4.0.11, use the following (with
+Then, to install, for example, v5.0.0, use the following (with
 sudo if necessary):
 
-    pip install --extra-index https://pypi.airfire.org/simple eflookup==4.0.11
+    pip install --extra-index https://pypi.airfire.org/simple eflookup==5.0.0
 
 See the Development > Install Dependencies > Notes section, above, for
 notes on resolving pip and gdal issues.
